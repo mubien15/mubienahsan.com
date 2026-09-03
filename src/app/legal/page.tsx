@@ -179,9 +179,9 @@ export default function LegalPage() {
             </Link>
             . If you write to me, I will have whatever you send: your address,
             your name if you give it, and the content of your message. I use it
-            to reply to you and for nothing else. I will not add you to a
-            mailing list, because there is not one, and I will not pass your
-            message on.
+            to reply to you and for nothing else. Writing to me will never put
+            you on the newsletter — that only happens if you sign up and
+            confirm it yourself — and I will not pass your message on.
           </p>
           <p>
             Email is not a secure channel. Please do not send me anything
@@ -321,8 +321,8 @@ export default function LegalPage() {
         <Section id="changes" title="Changes to this page">
           <p>
             If I add anything that changes the answers here, such as a
-            newsletter, a community, or analytics, I will update this page and
-            change the date at the top before it goes live rather than after.
+            community or analytics, I will update this page and change the date
+            at the top before it goes live rather than after.
             Until then, what is written above is what happens.
           </p>
         </Section>
