@@ -29,12 +29,24 @@ home page, and a one-time popup (25s or exit intent). Both render
 
 ```
 visitor submits
-  -> POST /api/subscribe        (src/app/api/subscribe/route.ts)
-     -> Brevo sends the confirmation email
-        -> visitor clicks confirm
-           -> Brevo adds them to the list, redirects to /thank-you
-              -> the guide is offered there and emailed by the welcome automation
+  -> POST /api/subscribe   sends a confirmation email carrying a signed link
+     -> visitor clicks it
+        -> GET /api/confirm  verifies the signature, adds them to the list,
+                             redirects to /thank-you
+           -> the guide is offered there and emailed by the welcome automation
 ```
+
+We do not use Brevo's double opt-in endpoint. It requires a template registered
+as a DOI template, which their UI gives no obvious way to create, and it failed
+with "An active DOI template does not exist" against an ordinary active
+template containing a DOI link. Sending the confirmation ourselves through the
+plain transactional endpoint removes that dependency entirely.
+
+The link carries a signed token rather than a database row: the address and a
+timestamp, HMAC-signed with a key derived from `BREVO_API_KEY`, valid 48 hours.
+Nobody can mint a link subscribing an address they do not control, and there is
+nothing to store or clean up. Rotating the API key invalidates links in flight,
+which is fine given their lifetime.
 
 The contact is **not** added to the list until they confirm. That click is the
 consent record CASL expects, and it keeps the guide away from typo'd and
@@ -49,8 +61,7 @@ Without them the endpoint fails closed with a neutral message.
 |---|---|
 | `BREVO_API_KEY` | Brevo v3 API key (secret) |
 | `BREVO_LIST_ID` | `6` |
-| `BREVO_DOI_TEMPLATE_ID` | `2` |
-| `CONFIRM_REDIRECT_URL` | `https://mubienahsan.com/thank-you` |
+| `CONFIRM_REDIRECT_URL` | `https://mubienahsan.com/thank-you` (its origin also builds the confirm link) |
 
 ### Brevo setup
 
@@ -59,8 +70,12 @@ Without them the endpoint fails closed with a neutral message.
   `p=none`. SPF stays Porkbun-only on purpose — Brevo uses its own return-path,
   so DMARC passes on DKIM alignment and a Brevo SPF include would be cosmetic.
   There must only ever be **one** SPF record on the domain.
-- Template `mubienahsan.com_lead_magnet` (id 2), button link type
-  *Double opt-in link*.
+- No Brevo template is used. The confirmation email is built in
+  `src/app/api/subscribe/route.ts`; edit the copy there.
+- `SIGNUP_SOURCE` is sent as a contact attribute so you can see which placement
+  works. It only sticks if that attribute exists under Brevo's contact
+  attributes; if it does not, the confirm route retries without it rather than
+  losing the subscriber.
 
 ### Brevo IP authorisation must stay off
 
