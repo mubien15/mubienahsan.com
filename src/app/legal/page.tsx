@@ -8,11 +8,11 @@ import { SOCIAL_LINKS } from "@/lib/nav";
 export const metadata: Metadata = {
   title: "Privacy Policy & Disclaimer",
   description:
-    "What this site collects, which is almost nothing, which Canadian and other privacy laws apply, and the honest limits of what you read here.",
+    "What this site collects, which is your email only if you ask for the newsletter, which Canadian and other privacy laws apply, and the honest limits of what you read here.",
 };
 
-const UPDATED = "25 August 2026";
-const EMAIL = "mubien.ahsan@gmail.com";
+const UPDATED = "3 September 2026";
+const EMAIL = "hello@mubienahsan.com";
 
 /** Small helper so every section on this page looks the same. */
 function Section({
@@ -45,8 +45,9 @@ export default function LegalPage() {
         tone="accent"
       >
         Written in plain language, because a policy nobody can read is not
-        transparency. The short version: this site collects nothing about you,
-        and everything here is my own view rather than my employer&apos;s.
+        transparency. The short version: this site collects nothing about you
+        unless you ask for the newsletter, in which case it is your email
+        address and nothing else.
       </PageIntro>
 
       <div className="mt-14 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
@@ -114,19 +115,28 @@ export default function LegalPage() {
         <Section id="collect" title="What this site collects">
           <p>
             <strong className="text-ink">
-              This site does not collect anything about you.
+              Reading this site collects nothing about you.
             </strong>{" "}
-            To be specific about what that means:
+            The one exception is the newsletter, which is covered below and only
+            ever happens because you asked for it. To be specific:
           </p>
           <ul className="my-4 list-disc space-y-2 pl-6 marker:text-accent">
             <li>No analytics of any kind, and no tracking pixels</li>
-            <li>No cookies, and nothing stored in your browser</li>
-            <li>No forms, accounts, sign ups or comments</li>
+            <li>No accounts, and no comments</li>
+            <li>
+              No cookies. The one thing kept in your browser is a note that you
+              have already seen the newsletter box, so it does not ask you
+              twice. It stays on your device and is never sent anywhere
+            </li>
+            <li>
+              One form, for the newsletter. Nothing is sent anywhere unless you
+              type your address and submit it
+            </li>
             <li>No advertising, and nothing sold or shared with anyone</li>
             <li>
-              No third party requests. Fonts are served from this site rather
-              than loaded from Google, so visiting a page contacts nobody but
-              this domain
+              No third party requests while you read. Fonts are served from this
+              site rather than loaded from Google, so visiting a page contacts
+              nobody but this domain
             </li>
           </ul>
           <p>
@@ -180,14 +190,38 @@ export default function LegalPage() {
           </p>
         </Section>
 
-        <Section id="mail" title="There is no mailing list">
+        <Section id="mail" title="The newsletter">
           <p>
-            I do not send newsletters or marketing email, and you cannot be
-            subscribed to anything here. If I ever add a newsletter, it will be
-            express opt in, it will say clearly who it is from, and every
-            message will carry a working unsubscribe link, as Canada&apos;s
-            anti spam legislation requires. I will not import addresses from
-            people who emailed me.
+            There is now a newsletter. You are only on it if you asked to be,
+            twice: once by entering your address, and once by clicking the
+            confirmation link I email you. Until you click that link nothing is
+            stored, which is what Canada&apos;s anti spam legislation means by
+            express consent.
+          </p>
+          <p>
+            All I hold is your email address, which of the two forms you used,
+            and the date you confirmed. No name, and nothing I have inferred
+            about you.
+          </p>
+          <p>
+            The list runs on{" "}
+            <a
+              href="https://www.brevo.com/legal/privacypolicy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-accent underline decoration-accent/30 hover:decoration-accent"
+            >
+              Brevo
+            </a>
+            , a French company, so your address sits on their servers under the
+            GDPR and they process it only on my instructions.
+          </p>
+          <p>
+            Every email carries a working unsubscribe link, and unsubscribing is
+            immediate. If you would rather be deleted outright than merely
+            unsubscribed, email me and I will remove you. I will not import
+            addresses from people who emailed me, and I will not pass the list
+            to anyone.
           </p>
         </Section>
 
