@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/confirm-token";
+import { button, emailShell, sendEmail } from "@/lib/brevo";
 
 /*
   Newsletter signup, step two: the link in the confirmation email lands here.
@@ -12,6 +13,23 @@ import { verifyToken } from "@/lib/confirm-token";
 const BREVO_CONTACTS_ENDPOINT = "https://api.brevo.com/v3/contacts";
 
 export const runtime = "nodejs";
+
+function welcomeEmail(guideUrl: string) {
+  return emailShell(
+    `<h1 style="margin:0 0 16px;font-size:24px;line-height:1.3;color:#241a10;">Here&rsquo;s The First Build</h1>
+     <p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#6f6350;">
+       Thanks for confirming. Here is the guide — keep this email and you will always have it.
+     </p>
+     ${button(guideUrl, "Download the guide")}
+     <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#6f6350;">
+       It is the whole build: the actual instructions I use, every decision behind them, and the parts I got wrong. No code, and you can have it running by the end of an evening.
+     </p>
+     <p style="margin:16px 0 0;font-size:15px;line-height:1.6;color:#6f6350;">
+       If you get stuck, reply to this email — it comes straight to me.
+     </p>
+     <p style="margin:20px 0 0;font-size:14px;color:#6f6350;">— Mubien</p>`
+  );
+}
 
 function landing(base: string, status: string) {
   const url = new URL(base);
@@ -76,6 +94,21 @@ export async function GET(request: Request) {
     }
 
     if (response.status === 201 || response.status === 204) {
+      // Deliver the guide. The thank-you page promises this email, so a failure
+      // here is worth logging loudly — but never worth failing the confirmation
+      // over, since they are subscribed and the page offers the download too.
+      const guideUrl = new URL("/essays/the-first-build.pdf", redirectBase).toString();
+      const sent = await sendEmail(
+        {
+          to: result.email,
+          subject: "Here's The First Build",
+          html: welcomeEmail(guideUrl),
+        },
+        apiKey
+      );
+      if (!sent.ok) {
+        console.error("confirm: welcome email failed", sent.status, sent.detail);
+      }
       return landing(redirectBase, "ok");
     }
 
