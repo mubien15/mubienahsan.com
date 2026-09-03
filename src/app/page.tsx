@@ -6,6 +6,7 @@ import { BrowserFrame } from "@/components/browser-frame";
 import { PhoneShowcase } from "@/components/phone-frame";
 import { PhotoBlob } from "@/components/photo-blob";
 import { Squiggle } from "@/components/doodle";
+import { SubscribeForm } from "@/components/subscribe-form";
 import { cn } from "@/lib/cn";
 import { COURSES } from "@/content/courses";
 import { QUESTIONS } from "@/content/quiz";
@@ -127,6 +128,40 @@ export default function Home() {
                     See what I&apos;ve built
                   </CtaLink>
                 </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Container>
+
+      {/* Free guide — email capture */}
+      <Container className="pt-10 sm:pt-12">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-accent-soft p-8 sm:p-12">
+            <div
+              aria-hidden
+              className="glow glow-gold animate-drift absolute -left-32 -bottom-40 h-[26rem] w-[26rem] rounded-full"
+            />
+            <div className="relative grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+              <div>
+                <Eyebrow tone="accent">Free guide</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+                  Build a morning brief that writes itself
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed text-ink/70">
+                  <span className="font-medium text-ink">The First Build</span>{" "}
+                  is the whole thing: the actual instructions I use, every
+                  decision behind them, and the parts I got wrong. No code, and
+                  you can have it running by the end of an evening.
+                </p>
+              </div>
+
+              <div>
+                <SubscribeForm source="home-band" />
+                <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                  I&apos;ll send it straight to your inbox, plus new builds as I
+                  publish them. Free, always — unsubscribe anytime.
+                </p>
               </div>
             </div>
           </div>

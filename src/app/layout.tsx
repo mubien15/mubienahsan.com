@@ -3,6 +3,7 @@ import { Figtree, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SubscribePopup } from "@/components/subscribe-popup";
 
 // Bold geometric sans for headlines: confident, warm, high x-height.
 const figtree = Figtree({
@@ -83,6 +84,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <SubscribePopup />
       </body>
     </html>
   );
