@@ -21,6 +21,9 @@ import {
 
 const DELAY_MS = 25_000;
 
+/** Dispatched on window to open the popup deliberately (e.g. the footer link). */
+export const OPEN_SUBSCRIBE_EVENT = "mah:open-subscribe";
+
 export function SubscribePopup() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -41,6 +44,17 @@ export function SubscribePopup() {
     writeFlag(DISMISSED_KEY);
     setOpen(false);
     restoreFocusRef.current?.focus?.();
+  }, []);
+
+  // A deliberate click ignores suppression: someone asking for the popup should
+  // get it, even if they dismissed the timed one earlier.
+  useEffect(() => {
+    const onRequest = () => {
+      restoreFocusRef.current = document.activeElement as HTMLElement | null;
+      setOpen(true);
+    };
+    window.addEventListener(OPEN_SUBSCRIBE_EVENT, onRequest);
+    return () => window.removeEventListener(OPEN_SUBSCRIBE_EVENT, onRequest);
   }, []);
 
   // Arm the timer and exit intent. The flags are read here rather than held in
