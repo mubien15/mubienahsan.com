@@ -80,8 +80,7 @@ export function SiteFooter() {
           </Link>
         </div>
         <p className="mt-2 text-xs text-muted/80">
-          Views are my own, not my employer&apos;s. Nothing here is professional
-          advice.
+          Nothing here is professional advice.
         </p>
       </Container>
     </footer>
