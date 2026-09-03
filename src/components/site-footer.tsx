@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/nav";
+import { SubscribeLink } from "@/components/subscribe-link";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -34,6 +35,7 @@ export function SiteFooter() {
                 {link.label}
               </Link>
             ))}
+            <SubscribeLink>Get the free guide</SubscribeLink>
           </nav>
 
           <nav className="flex flex-col gap-2 text-sm">
