@@ -62,6 +62,15 @@ Without them the endpoint fails closed with a neutral message.
 - Template `mubienahsan.com_lead_magnet` (id 2), button link type
   *Double opt-in link*.
 
+### Brevo IP authorisation must stay off
+
+Brevo can restrict API calls to an allowlist of IP addresses. It cannot be used
+here: Vercel functions run from a large rotating AWS pool, so the address
+changes per invocation and no allowlist can track it. With it on, every signup
+fails with a 401 naming an "unrecognised IP address". Keep it disabled at
+https://app.brevo.com/security/authorised_ips — the API key in Vercel's
+encrypted environment variables is the security boundary.
+
 ### Two things that break silently
 
 - **The API key expires after 90 days of inactivity**, whatever its stated

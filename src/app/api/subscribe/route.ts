@@ -88,6 +88,16 @@ export async function POST(request: Request) {
     if (data?.code === "duplicate_parameter") return ok();
 
     console.error("subscribe: brevo rejected request", response.status, data);
+
+    // 401/403 means our credentials or account settings are wrong — a bad or
+    // expired key, or Brevo's IP allowlist blocking Vercel's rotating serverless
+    // addresses. Nothing the visitor did, and nothing retrying will fix, so say
+    // what the missing-config path says rather than implying their address was
+    // the problem.
+    if (response.status === 401 || response.status === 403) {
+      return fail("Signup is temporarily unavailable.", 503);
+    }
+
     return fail("We could not sign you up. Please try again.", 400);
   } catch (error) {
     console.error("subscribe: request failed", error);
