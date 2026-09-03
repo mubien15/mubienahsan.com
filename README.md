@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mubienahsan.com
 
-## Getting Started
-
-First, run the development server:
+Personal site — free AI courses, projects, and writing. Next.js (App Router),
+TypeScript, Tailwind v4, MDX for lesson content. Deployed on Vercel from
+`main`.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/app/          routes (App Router); lessons are .mdx under (lessons)/
+src/components/   shared UI — ui.tsx holds CtaLink, Eyebrow, Pill, PageIntro
+src/content/      course, project and quiz data
+src/app/globals.css   design tokens (warm cream, orange accent, light only)
+public/essays/    downloadable PDFs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Email capture
 
-## Learn More
+Two placements feed one double opt-in Brevo list: a band under the hero on the
+home page, and a one-time popup (25s or exit intent). Both render
+`SubscribeForm`, so their copy and validation cannot drift apart.
 
-To learn more about Next.js, take a look at the following resources:
+```
+visitor submits
+  -> POST /api/subscribe        (src/app/api/subscribe/route.ts)
+     -> Brevo sends the confirmation email
+        -> visitor clicks confirm
+           -> Brevo adds them to the list, redirects to /thank-you
+              -> the guide is offered there and emailed by the welcome automation
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The contact is **not** added to the list until they confirm. That click is the
+consent record CASL expects, and it keeps the guide away from typo'd and
+hostile addresses.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Environment variables
 
-## Deploy on Vercel
+Set in Vercel → Settings → Environment Variables, for all three environments.
+Without them the endpoint fails closed with a neutral message.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variable | Value |
+|---|---|
+| `BREVO_API_KEY` | Brevo v3 API key (secret) |
+| `BREVO_LIST_ID` | `6` |
+| `BREVO_DOI_TEMPLATE_ID` | `2` |
+| `CONFIRM_REDIRECT_URL` | `https://mubienahsan.com/thank-you` |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Brevo setup
+
+- Sender `hello@mubienahsan.com`, forwarded to a personal inbox via Porkbun.
+- Domain authenticated: DKIM on the `brevo1`/`brevo2` selectors, DMARC at
+  `p=none`. SPF stays Porkbun-only on purpose — Brevo uses its own return-path,
+  so DMARC passes on DKIM alignment and a Brevo SPF include would be cosmetic.
+  There must only ever be **one** SPF record on the domain.
+- Template `mubienahsan.com_lead_magnet` (id 2), button link type
+  *Double opt-in link*.
+
+### Two things that break silently
+
+- **The API key expires after 90 days of inactivity**, whatever its stated
+  expiry. If signups are sparse, run a test signup every couple of months.
+- **The endpoint fails closed.** A missing or expired key shows visitors
+  "Signup is temporarily unavailable" and logs the reason server-side — check
+  the Vercel function logs rather than the browser.
+
+### Before any send
+
+Every campaign needs a physical mailing address and a working unsubscribe link
+in the footer. Both are required by CASL, not optional.
