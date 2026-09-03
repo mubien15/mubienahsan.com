@@ -1,0 +1,209 @@
+import type { Tone } from "@/components/ui";
+
+export type Lesson = {
+  slug: string;
+  title: string;
+  summary: string;
+  minutes: number;
+};
+
+export type Course = {
+  slug: string;
+  title: string;
+  tone: Tone;
+  level: "Absolute beginner" | "Beginner" | "Intermediate";
+  blurb: string;
+  outcome: string;
+  status: "Available" | "In progress" | "Planned";
+  lessons: Lesson[];
+};
+
+/**
+ * The learning ladder, in order: absolute beginner, then prompting that works,
+ * then the 4D framework that names the whole skill, then shipping a real app.
+ * Array order IS the ladder order, and the homepage band renders it directly.
+ */
+export const COURSES: Course[] = [
+  {
+    slug: "getting-started-with-claude-code",
+    title: "Getting Started with Claude Code",
+    tone: "mint",
+    level: "Absolute beginner",
+    blurb:
+      "The thing people shy away from because it sounds like coding. It isn't. If you can describe what you want in plain English, you can use Claude Code.",
+    outcome:
+      "By the end you will have Claude Code installed and you will have made a real change to a real project, with no prior coding needed.",
+    status: "Available",
+    lessons: [
+      {
+        slug: "what-is-claude-code",
+        title: "What Claude Code actually is",
+        summary:
+          "A plain explanation of what this tool is, what it isn't, and why it is the friendliest way into building with AI.",
+        minutes: 6,
+      },
+      {
+        slug: "setup",
+        title: "Getting set up",
+        summary:
+          "Install it once, and never think about it again. We go one step at a time and name each thing you do.",
+        minutes: 8,
+      },
+      {
+        slug: "your-first-change",
+        title: "Your first real change",
+        summary:
+          "Point Claude Code at a project, ask for a change in plain English, and watch it happen. This is the moment it clicks.",
+        minutes: 10,
+      },
+    ],
+  },
+  {
+    slug: "prompting-basics",
+    title: "Prompting, without the hype",
+    tone: "grape",
+    level: "Beginner",
+    blurb:
+      "Most prompt engineering advice is noise. Here is the small handful of ideas that actually change your results.",
+    outcome:
+      "A reliable way to ask for what you want and steadily improve the answer, with no magic words and nothing to memorise.",
+    status: "Available",
+    lessons: [
+      {
+        slug: "why-most-advice-is-noise",
+        title: "Why most prompting advice is noise",
+        summary:
+          "Magic words, secret phrases and threats do not work. The techniques that do are unglamorous and few. Here is the honest list.",
+        minutes: 6,
+      },
+      {
+        slug: "say-what-you-want",
+        title: "Say exactly what you want",
+        summary:
+          "The biggest lever there is. What to include, what to leave out, and the reframing that fixes most bad prompts on its own.",
+        minutes: 9,
+      },
+      {
+        slug: "give-it-the-why",
+        title: "Give it the why, not just the what",
+        summary:
+          "One extra sentence of reasoning makes your instructions cover the cases you never thought to mention. The most underrated habit here.",
+        minutes: 7,
+      },
+      {
+        slug: "show-dont-tell",
+        title: "Show, don't tell",
+        summary:
+          "One good example beats a paragraph of description. How to use examples to lock in tone and shape, and how many you actually need.",
+        minutes: 9,
+      },
+      {
+        slug: "steer-dont-restart",
+        title: "Steer, don't restart",
+        summary:
+          "The first answer is a draft, not a verdict. Feedback that lands, when to rewrite instead, and the draft then critique then refine loop.",
+        minutes: 9,
+      },
+    ],
+  },
+  {
+    slug: "the-4d-framework",
+    title: "The 4D Framework",
+    tone: "gold",
+    level: "Beginner",
+    blurb:
+      "Four habits that turn using AI from something you do by instinct into something you can explain, repeat, and get right on purpose.",
+    outcome:
+      "A mental model you can apply to any tool and any task: knowing what to hand over, how to ask, how to judge what comes back, and what you owe the people who rely on it.",
+    status: "Available",
+    lessons: [
+      {
+        slug: "why-a-framework",
+        title: "Why bother with a framework",
+        summary:
+          "Most of us use AI reactively and get results we cannot explain or repeat. Where the 4Ds came from, and the honest case for having a model in your head.",
+        minutes: 7,
+      },
+      {
+        slug: "delegation",
+        title: "Delegation: what to hand over",
+        summary:
+          "The decision almost nobody makes deliberately. Knowing your problem, knowing what the tool can really do, and dividing the work between you on purpose.",
+        minutes: 8,
+      },
+      {
+        slug: "description",
+        title: "Description: saying what you want",
+        summary:
+          "Three things you can describe and most people only ever describe one: the product you want, the process to get there, and the manner it should work in.",
+        minutes: 9,
+      },
+      {
+        slug: "discernment",
+        title: "Discernment: judging what comes back",
+        summary:
+          "Fluent writing feels correct, which is exactly the trap. How to evaluate the output, the reasoning behind it, and the way the tool is behaving.",
+        minutes: 9,
+      },
+      {
+        slug: "diligence",
+        title: "Diligence: owning what you ship",
+        summary:
+          "The competency people skip because it is the least fun. Where your work came from, who you tell, and who carries it when it goes wrong.",
+        minutes: 8,
+      },
+    ],
+  },
+  {
+    slug: "ship-your-first-app",
+    title: "Ship your first small app",
+    tone: "flame",
+    level: "Intermediate",
+    blurb:
+      "Go from an idea to a live URL you can send to a friend, the same full loop I used to ship Fable.",
+    outcome:
+      "A real app running on the internet at its own address, built one small slice at a time, that you can hand to someone else.",
+    status: "Available",
+    lessons: [
+      {
+        slug: "pick-something-you-can-finish",
+        title: "Pick something you can finish",
+        summary:
+          "Almost no first app dies for technical reasons. It dies because it was too big on day one. How to cut an idea down to something that reaches the internet.",
+        minutes: 7,
+      },
+      {
+        slug: "get-it-running",
+        title: "Get a real app running",
+        summary:
+          "Three commands and you have a working app on your own machine. What each one does, and the four files that matter out of the hundreds you just made.",
+        minutes: 9,
+      },
+      {
+        slug: "build-in-slices",
+        title: "Build it in slices",
+        summary:
+          "The mistake is describing the whole app in one giant request. The fix is one small piece at a time, checked in the browser before you move on.",
+        minutes: 11,
+      },
+      {
+        slug: "when-it-breaks",
+        title: "When it breaks",
+        summary:
+          "It will break. That is the job, not a sign you are bad at this. How to read an error, hand it over well, and never take the word fixed on trust.",
+        minutes: 9,
+      },
+      {
+        slug: "put-it-on-the-internet",
+        title: "Put it on the internet",
+        summary:
+          "From a page only you can see to a link you can text someone, in about five minutes. Then a proper domain if you want one.",
+        minutes: 10,
+      },
+    ],
+  },
+];
+
+export function getCourse(slug: string): Course | undefined {
+  return COURSES.find((c) => c.slug === slug);
+}

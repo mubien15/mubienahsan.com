@@ -1,0 +1,108 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { MythList } from "@/components/course/prompting";
+import { ScopeCompare } from "@/components/course/ship";
+
+export const metadata = {
+  title: "Pick something you can finish",
+  description:
+    "Almost no first app dies for technical reasons. It dies because it was too big on day one. How to cut an idea down to something that actually reaches the internet.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 1</span>
+
+# Pick something you can finish
+
+Here is the uncomfortable thing I learned building Fable, and every small thing since: the gap between wanting to build something and having a live URL is almost never about technical skill.
+
+It is about scope. People do not fail to ship because the code defeated them. They fail because they picked something that would have taken four months, ran out of momentum somewhere in week two, and quietly stopped opening the folder.
+
+So this lesson has no code in it at all. It is the lesson that decides whether the other four work.
+
+## The trap
+
+The trap is that AI makes the first hour feel free. You describe a habit tracker and something appears. It looks real. So you describe the next bit, and the next, and by day four you have accounts that half work, a database you do not understand, and a bug you cannot describe well enough to fix.
+
+Nothing went wrong technically. You just wrote a cheque your attention could not cash.
+
+## The one sentence test
+
+Say what you are building in one sentence. If you need the word **and** to finish it, you are describing two apps.
+
+<ScopeCompare
+  tooBig={{
+    idea: "A habit tracker with accounts, streaks, charts, reminders and a mobile app.",
+    why: "You spend the first three days on login screens. None of that is the thing you wanted to make. By the time you reach the actual habit tracking, the excitement has gone and so have your evenings.",
+  }}
+  rightSized={{
+    idea: "One page that shows my current streak for one habit, and a button that says I did it today.",
+    why: "Live by the weekend. It does the thing you actually wanted. And now that it exists and works, adding a second habit next month is a small, obvious change instead of a mountain.",
+  }}
+/>
+
+Notice the second one is not a lesser version of the ambition. It is the *core* of it, with the packaging removed. You can add packaging later, to a thing that already works, which is a hundred times easier than adding it to a thing that does not.
+
+## Cut until it hurts, then cut once more
+
+Everything on this list is reasonable. None of it belongs in the first version.
+
+<MythList
+  title="What your first app does not need"
+  items={[
+    "Accounts, login and passwords",
+    "A database",
+    "Payments",
+    "A settings page",
+    "Dark mode",
+    "Working perfectly on every screen size",
+    "Anyone else being able to use it",
+  ]}
+/>
+
+That last one surprises people, so let me be plain about it. Your first app can be for exactly one user, and that user is you. Building for strangers means handling their mistakes, their browsers and their data. Building for yourself means none of that. You get to the finish line, and the finish line is the point.
+
+<Callout type="important" title="The rule I hold myself to">
+  If a feature is not the reason you wanted to build the thing, it does not go in version one. Login is never the reason. Neither is dark mode.
+</Callout>
+
+## What a finishable app looks like
+
+Four traits, and the good ones have all four:
+
+- **One screen.** No navigation, no second page.
+- **One job.** It does a single thing a single person needs.
+- **No memory, or barely any.** Nothing to save, or something small the browser can hold on to.
+- **You can picture the finished thing.** If you cannot see it in your head, you cannot describe it, and describing it is the whole method.
+
+Some that fit, to get you thinking:
+
+- A bill splitter that does the specific unfair way your friends actually split things
+- A countdown to one date that matters to you
+- A random question picker for your one to ones, so you stop asking how was your weekend
+- A converter for the one unit conversion you look up constantly
+- A page that turns a messy pasted list into a clean formatted one
+
+None of these will impress anyone at a dinner party. All of them will be finished and real, which is worth considerably more than an impressive thing that does not exist.
+
+## Now pick yours
+
+Do this before the next lesson. Not in your head, written down.
+
+<Checklist
+  title="Before you move on"
+  items={[
+    "Write your app in one sentence, with no and in it",
+    "Name the one job it does",
+    "Write down three things you are deliberately leaving out of version one",
+    "Say out loud what the finished screen looks like",
+  ]}
+/>
+
+If you cannot get it into one sentence, that is not a failure of writing. It is the idea telling you it is still two ideas. Pick the half you care about more.
+
+<Callout type="tip" title="A trick for the stubborn ones">
+  Ask yourself what you would build if you had one evening and it had to be working by bedtime. That answer is almost always the right version one. The four month version is just the same idea with more furniture.
+</Callout>
+
+## What's next
+
+You have an idea small enough to survive contact with a real evening. Next we turn it into a real app running on your own machine, which takes three commands and about five minutes.

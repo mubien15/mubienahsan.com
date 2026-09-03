@@ -1,0 +1,114 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { Parts } from "@/components/course/fluency";
+import { BuildLoop } from "@/components/course/ship";
+
+export const metadata = {
+  title: "Discernment: judging what comes back",
+  description:
+    "Fluent writing feels correct, which is exactly the trap. How to evaluate the output, the reasoning behind it, and the way the tool is behaving.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 4</span>
+
+# Discernment: judging what comes back
+
+This is the one I care about most, and I should declare my bias: I work in risk, and I wrote [an essay](/essays/the-verification-gap.pdf) arguing that as these systems get more capable, the scarce skill stops being the ability to produce work and becomes the ability to check it. So take the emphasis here as a personal conviction rather than a neutral summary.
+
+## The trap is that good writing feels true
+
+Here is the uncomfortable mechanic at the centre of all this.
+
+These tools are extraordinarily good at producing text that has the *texture* of a correct answer. Confident, well structured, appropriately hedged in the right places. Your brain has spent its whole life using those signals as a proxy for whether someone knows what they are talking about, because with humans it mostly works. Someone who writes a fluent, well organised report has usually done the work.
+
+That correlation is broken now. **Fluency and accuracy have come apart**, and your instincts have not caught up. They will not catch up on their own, either. The only fix is a deliberate habit.
+
+<Callout type="important" title="The line to remember">
+  You are not evaluating whether the answer sounds right. You are evaluating whether it is right. Those feel like the same activity from the inside, and they are not.
+</Callout>
+
+## Three things to judge
+
+Discernment mirrors Description. You described three things, so you check the same three.
+
+<Parts
+  title="What to evaluate"
+  parts={[
+    {
+      name: "Product discernment",
+      text: "Is the output itself any good? Is it accurate, complete, and actually what you asked for? Does it hold up if you check the parts you can check?",
+    },
+    {
+      name: "Process discernment",
+      text: "Did it get there in a sound way? If it showed reasoning, does the reasoning hold, or does it merely look like reasoning? Did it quietly skip a step?",
+    },
+    {
+      name: "Performance discernment",
+      text: "How is it behaving? Is it agreeing with everything you say? Is it confident about something it cannot possibly know? Has it drifted from what you asked?",
+    },
+  ]}
+/>
+
+## Product: check the checkable
+
+You cannot verify everything, so spend your attention where being wrong costs the most.
+
+- **Numbers, names, dates and citations.** These are the highest risk items and the easiest to check. If a source is named, look it up. A plausible reference to a paper that does not exist is a classic failure and it is trivially caught.
+- **The specific claim you most want to be true.** Motivated reasoning is the real enemy. When an answer conveniently supports what you already wanted to do, that is the sentence to check first, not last.
+- **What is missing.** Much harder, and where domain knowledge earns its keep. These tools rarely tell you about the consideration nobody raised. If you know the subject, ask yourself what a good version would have mentioned that this one did not.
+
+<Callout type="warning" title="The failure mode nobody watches for">
+  Omission. A wrong fact is visible. A missing caveat looks exactly like a clean answer, and it is far more likely to be the thing that hurts you.
+</Callout>
+
+## Process: does the reasoning actually hold
+
+If you asked it to show its working, read the working rather than skipping to the conclusion.
+
+The specific thing to look for: reasoning that is **shaped** like an argument without being one. Steps that follow each other in a plausible order but where step three does not really follow from step two. It reads fine at speed. It falls apart when you make yourself go line by line.
+
+A good test is to pick the single step the conclusion depends on most and interrogate only that one. You do not have the time to audit everything, and you rarely need to.
+
+## Performance: watch how it is behaving
+
+Two patterns worth naming, because once you can name them you spot them everywhere.
+
+**Agreeing too easily.** You push back, and it immediately folds and adopts your position. That is not you winning an argument. It is a system optimising for your approval. When it caves instantly, try pushing back on something you know you are *wrong* about and see whether it holds. If it folds there too, its agreement carries no information at all.
+
+**Confidence beyond its reach.** Discussing a document it cannot see, recent events it has no access to, or specifics of your organisation nobody told it. The tone stays identical whether it knows or is constructing something plausible. The tone is not a signal. Only the question *how could it possibly know this* is.
+
+## The loop
+
+Description and Discernment are not two steps in sequence. They are a loop, and it is the same loop as the build cycle from my [shipping course](/courses/ship-your-first-app/build-in-slices).
+
+<BuildLoop title="Describe, then discern, then describe again" />
+
+Each pass through, your description gets sharper because discernment told you what was missing. That is the actual mechanism by which people get good results. Not better opening prompts. More laps.
+
+## Calibrate to the stakes
+
+Not everything needs forensic review, and treating it that way means you will abandon the habit within a week.
+
+- **Low stakes, easy to check.** Reformatting, brainstorming, a first draft only you will read. Skim it.
+- **Low stakes, hard to check.** Explaining an unfamiliar concept. Worth a second source, since you cannot tell whether it is wrong.
+- **High stakes, easy to check.** Numbers in something you are sending out. Check every one. Non negotiable and it takes two minutes.
+- **High stakes, hard to check.** Advice you intend to act on, in a field you do not know. This is where you slow right down, or go and ask a person.
+
+That bottom right box is where real harm lives, and it is exactly where the confident, fluent answer is most tempting.
+
+## Try it on your own task
+
+<Checklist
+  title="Run Discernment on what came back"
+  items={[
+    "Check every number, name, date and source",
+    "Find the claim you most want to be true, and check that one hardest",
+    "Ask what a good answer would have included that this one did not",
+    "If it showed reasoning, test the single step the conclusion rests on",
+    "Push back on something and see whether it holds or just folds",
+    "Ask how it could possibly know the thing it sounds most confident about",
+  ]}
+/>
+
+## What's next
+
+You have something good and you have checked it. The last competency is the one people skip because it is the least fun: what you owe the people who will rely on this.

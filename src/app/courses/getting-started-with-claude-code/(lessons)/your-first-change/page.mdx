@@ -1,0 +1,76 @@
+import { Terminal } from "@/components/course/interactive";
+import { Callout, PromptToClaude, ClaudeSession } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Your first real change",
+  description:
+    "Point Claude Code at a real project, ask for a change in plain English, and watch it happen. The moment building with AI clicks.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-mint"><span className="h-1.5 w-1.5 rounded-full bg-mint" />Lesson 3</span>
+
+# Your first real change
+
+This is the one that changes how you see all of it. We are going to make a small, real change to a real project, and you'll do it by asking, in ordinary words.
+
+## Step 1. Give yourself something to change
+
+If you don't have a project yet, make an empty folder to play in. In your terminal:
+
+<Terminal command={`mkdir my-first-project\ncd my-first-project\nclaude`} />
+
+- `mkdir` makes a folder.
+- `cd` moves you into it.
+- `claude` starts Claude Code, now focused on that folder.
+
+## Step 2. Ask for something small
+
+At the prompt, type a plain request. For example:
+
+<PromptToClaude>
+  Create a simple web page called index.html that says &ldquo;Hello, I&apos;m learning to build with AI&rdquo; as a big heading, with a light background colour.
+</PromptToClaude>
+
+Press Enter and watch. Here is roughly what that looks like, so it feels familiar before you try it:
+
+<ClaudeSession />
+
+Notice the middle box. **Claude asks before it changes anything.** It shows you what it wants to do and waits for you to approve, usually by choosing &ldquo;Yes&rdquo; and pressing Enter. Nothing happens to your files until you say so.
+
+<Callout type="note" title="Why the approval step matters">
+  That little Yes or No prompt is your steering wheel. You stay in control of every change. As you get comfortable you can loosen it, but starting out, reading each step before you approve is exactly the right habit.
+</Callout>
+
+You didn't write a single line of HTML. You described an outcome.
+
+## Step 3. Look at what it did
+
+This is the most important habit in the whole course. **Read what changed before moving on.** Claude will show you the file it created. You don't need to understand every character. Just get a feel for it, the way you'd glance at a letter someone drafted for you.
+
+## Step 4. Ask for a change
+
+Now the loop that is the entire skill. Try:
+
+<PromptToClaude>
+  Make the heading dark green and add a short sentence underneath introducing myself.
+</PromptToClaude>
+
+Claude edits the same file and asks you to approve again. Look at the result. Notice how you are steering: describe, look, adjust, repeat. That rhythm is everything. The rest is just bigger versions of it.
+
+## Step 5. See it for real
+
+Open the `index.html` file by double clicking it in your file browser. It opens in your web browser. **That thing on your screen exists because you asked for it.** Sit with that for a second. It is the whole promise of this, made concrete.
+
+## What you just proved
+
+- You can create real software without writing code yourself.
+- The skill isn't syntax. It is clear description and honest review.
+- The distance between an idea and a working thing is now something you can cross.
+
+> When I made my first change like this, something clicked that no article had managed. The ceiling I imagined wasn't real. Everything I've shipped since started from exactly this loop.
+
+## Where to go next
+
+Keep practising the loop of describe, look, and adjust on tiny projects until it feels boring. When it does, you're ready for the next course in the ladder, prompting that actually works, where we sharpen how you ask so the results get noticeably better.
+
+Thanks for spending this time here. That you finished says something. Most people never make the first change. You just did.

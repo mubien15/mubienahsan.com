@@ -1,0 +1,94 @@
+import { Callout } from "@/components/course/blocks";
+import { PromptCompare } from "@/components/course/prompting";
+
+export const metadata = {
+  title: "Give it the why, not just the what",
+  description:
+    "Explaining the reason behind an instruction lets the model generalise to the cases you forgot to mention. The most underrated habit in prompting.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 3</span>
+
+# Give it the why, not just the what
+
+This is the lesson people skip, and it is the one that changed my results the most. It takes one extra sentence.
+
+## Rules are brittle. Reasons are not.
+
+A rule covers exactly the case you wrote down. A reason covers every case you did not think of.
+
+Here is the example Anthropic use, and it is so good I am not going to improve on it. Suppose you write:
+
+> NEVER use ellipses
+
+Fine. The model obeys. But it has no idea why, so it cannot help you with anything adjacent. Now try:
+
+> Your response will be read aloud by a text to speech engine, so never use ellipses, since the text to speech engine will not know how to pronounce them.
+
+Same instruction, plus a reason. And now something quietly excellent happens: the model understands the actual goal. It will also start avoiding the other things that trip up a speech engine, the emoji, the tables, the weird symbols, the stage directions in brackets. You never listed those. You did not have to. You explained the world, and it generalised.
+
+<Callout type="tip" title="The one line version">
+  A rule tells the model what to do in the case you imagined. A reason tells it what to do in the cases you did not.
+</Callout>
+
+## What this looks like in real life
+
+<PromptCompare
+  weakLabel="Rule only"
+  strongLabel="Rule plus reason"
+  weak={{
+    prompt: "Keep the email short.",
+    result:
+      "A short email. Possibly short and cold. Possibly short in the wrong places, cutting the part that actually mattered.",
+  }}
+  strong={{
+    prompt:
+      "Keep the email short, because she reads everything on her phone between meetings and anything past a screen gets left for later and forgotten.",
+    result:
+      "Short, front loaded, scannable, one clear ask near the top. It solved the real problem, not the literal instruction.",
+  }}
+/>
+
+Look at what the model did with the second one. Nobody told it to front load the ask. It worked that out from the reason, because the reason described a person.
+
+## Say who you are and what happens next
+
+The two pieces of context most people leave out, and both are one line:
+
+**Who you are.** "I am a teacher, not a developer" changes the entire register of an answer. So does "I have been doing this for ten years, skip the basics." The model has no way to know which of you it is talking to unless you say.
+
+**What happens to this next.** "This goes in a board pack" and "this is a rough note for me" should produce very different things from the same request. If you do not say, you get the average of both, which serves neither.
+
+<PromptCompare
+  weakLabel="No context"
+  strongLabel="Context given"
+  weak={{
+    prompt: "Explain what a vector database is.",
+    result:
+      "A competent, generic explainer. Pitched at nobody in particular. Either too basic for you or full of terms you now have to look up.",
+  }}
+  strong={{
+    prompt:
+      "Explain what a vector database is. I work in audit and I am comfortable with databases but I have never touched machine learning. I need to understand it well enough to ask a vendor sensible questions next week.",
+    result:
+      "An explanation built from what you already know, aimed at the meeting you are walking into, ending with questions worth asking. Useful, not just correct.",
+  }}
+/>
+
+That second answer is not smarter. It is aimed.
+
+## Why this feels wrong at first
+
+Explaining yourself to software feels a bit silly. I get it. There is a voice that says this is a machine, just give it the command.
+
+But that framing is exactly what keeps people stuck. Go back to the new colleague from lesson 1. You would never hand a new starter a list of rules with no explanation and expect good judgement. You would tell them what the work is for. Then they make sensible calls in the moments you were not there to supervise.
+
+That is the same trade here. Context buys you judgement.
+
+<Callout type="note" title="This is not politeness">
+  To be clear, this is not about being nice to the model, and saying please does not improve your output. The reason works because it is information. It genuinely narrows what a good answer looks like. That is a different thing from manners.
+</Callout>
+
+## What's next
+
+You have told it what and why. The next lesson covers the shortcut that beats both when you are chasing a particular voice or shape: showing it, instead of describing it.

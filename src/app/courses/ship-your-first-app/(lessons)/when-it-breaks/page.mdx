@@ -1,0 +1,112 @@
+import { Terminal } from "@/components/course/interactive";
+import { Callout, PromptToClaude, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "When it breaks",
+  description:
+    "It will break, and that is the job rather than a sign you are bad at this. How to read an error, hand it over well, and never take the word fixed on trust.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 4</span>
+
+# When it breaks
+
+At some point, probably today, your page will go white and fill with red text, and you will feel that small drop in your stomach that says *I have broken it and I do not know enough to fix it.*
+
+I want to be direct about this, because it is the moment most people quit: **that feeling is not evidence of anything.** Things breaking is not a detour from building software. It is most of building software. I have been doing this for a while and I still spend a good share of every project reading errors. The difference is not that experienced people break things less. It is that they stopped reading it as a verdict on themselves.
+
+## Errors are not shouting at you
+
+An error looks hostile because it is dense and red. It is actually the most helpful output your computer produces, because unlike a silent bug it tells you where to look.
+
+<Terminal
+  title="Terminal"
+  command="npm run dev"
+  output={`Error: Cannot read properties of undefined (reading 'name')\n    at PersonRow (app/page.tsx:34:22)\n    at renderList (app/page.tsx:51:9)`}
+/>
+
+Ignore the vocabulary and read it in three parts:
+
+- **What went wrong.** Something was undefined when the code expected an object. In plain terms: it went looking for a thing that was not there.
+- **Where.** `app/page.tsx`, line 34. That is the actual file, and the actual line.
+- **How it got there.** The lines underneath are the trail of what called what.
+
+You do not need to know what "undefined" means at a technical level to be useful here. You already know more than enough to hand this over well, and knowing *where* is most of the battle.
+
+## Hand it over properly
+
+Here is the difference between a fix in one round and a fix in six.
+
+<PromptToClaude>
+  It's broken
+</PromptToClaude>
+
+That gives your assistant nothing. It has to guess what you saw, and it will often guess by rewriting code that was working fine.
+
+<PromptToClaude>
+  I clicked Add with an empty name box and the page went white. The terminal shows: Cannot read properties of undefined (reading 'name') at app/page.tsx:34. It worked before I added the tip field.
+</PromptToClaude>
+
+That is four pieces of gold in three sentences: what you did, what you saw, the exact error text, and when it last worked.
+
+<Callout type="tip" title="Paste the whole error, not your summary of it">
+  Copy the red text exactly, including the file and line numbers. Your paraphrase drops the one detail that would have identified it. This costs you nothing and it is the single highest value habit in this lesson.
+</Callout>
+
+## The three questions
+
+When you are stuck and cannot even describe the problem, answer these in order:
+
+1. **What did I expect to happen?**
+2. **What actually happened instead?**
+3. **What changed since it last worked?**
+
+Question three solves most problems on its own. If it worked ten minutes ago and does not now, the cause is in the small number of things you did in those ten minutes. This is precisely why we build in slices and commit as we go: it keeps that list short. Someone who built for three hours without a checkpoint has to consider everything.
+
+## Do not take fixed on trust
+
+This is the part I care about most, so I will be blunt.
+
+When you are told a problem has been resolved, that is a claim, not a result. Usually a correct one. Not always. And the failure mode is specific and worth naming: an assistant can fix the error message while leaving the actual behaviour broken, or fix your bug and quietly break something two slices back that nobody thought to look at.
+
+So you check. Every time, and it takes fifteen seconds:
+
+- Go to the browser and do the exact thing that broke it
+- Do it again with something silly, like an empty box or a very long name
+- Click through the parts that were working before, in case they still are
+
+<Callout type="important" title="The habit in one line">
+  Nothing is fixed until you have watched it work with your own eyes. Not when you are told it is fixed. Not when the error disappears from the terminal.
+</Callout>
+
+I care about this well beyond building small apps. It is the whole subject of my essay [The Verification Gap](/essays/the-verification-gap.pdf): as these tools get more capable, the scarce skill stops being the ability to produce work and becomes the ability to check it. Building your first app is a genuinely good place to practise that, because the feedback is instant and the stakes are zero.
+
+## When you are properly stuck
+
+Some problems will not move. A short list of things that work, roughly in order:
+
+**Go back to the last checkpoint.** Not a defeat. You lose one slice and get back a working app, which is a good trade.
+
+**Describe the goal, not the fix.** If three rounds of "change this to that" have failed, you may be steering toward the wrong solution. Say what you want the user to experience and let the approach be reconsidered.
+
+**Restart the dev server.** Stop it with `Ctrl` and `C` in that terminal window, then `npm run dev` again. A small share of baffling problems are just a confused server, and this costs ten seconds.
+
+<Terminal command="npm run dev" />
+
+**Stop for the night.** I am not being cute. I have lost three hour evenings to problems I then solved in four minutes the next morning. Your judgement degrades and you stop reading what is actually on the screen, which is fatal when the answer is usually right there in the error.
+
+<Checklist
+  title="Your debugging routine"
+  items={[
+    "Read the error for what, where, and how it got there",
+    "Copy the exact text, never your summary of it",
+    "Say what you did, what you saw, and when it last worked",
+    "Ask what changed since the last working version",
+    "Check the fix yourself in the browser before moving on",
+    "Go back to a checkpoint rather than fighting for an hour",
+  ]}
+/>
+
+## What's next
+
+Your app works, and you have survived it not working, which is the more useful of the two. Now we put it somewhere other people can reach.

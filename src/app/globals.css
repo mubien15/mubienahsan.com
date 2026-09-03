@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/*
+  mubienahsan.com identity
+  Warm cream base with a friendly orange accent and a vibrant category palette.
+  Figtree (bold display) + Geist (sans body) + Geist Mono.
+  Category colors: mint / flame / grape / gold.
+  Light theme only, on purpose: no dark mode, so every visitor sees the same thing.
+*/
+
+:root {
+  /* One theme for everybody: the warm light one. This also stops browsers from
+     auto darkening the page or drawing dark scrollbars and form controls. */
+  color-scheme: light;
+
+  --paper: #f9f1e4; /* warm cream */
+  --surface: #fffdf7;
+  --surface-sunken: #f0e6d3;
+  --ink: #241a10; /* warm near-black */
+  --muted: #6f6350;
+  --line: #eaddc6;
+
+  /* Brand / primary accent (friendly orange) */
+  --accent: #ee6a3a;
+  --accent-strong: #d5561f;
+  --accent-soft: #fbe4d5;
+
+  /* Category colors — warm & friendly */
+  --mint: #10a396; /* teal */
+  --mint-soft: #cdece8;
+  --flame: #f2603f; /* coral */
+  --flame-soft: #fde0d5;
+  --grape: #6a6cf2; /* friendly blue-violet */
+  --grape-soft: #e6e5fd;
+  --gold: #e9a80c; /* warm yellow */
+  --gold-soft: #faeac0;
+
+  /* Same colours as RGB triplets, so a gradient can vary their alpha. */
+  --gold-rgb: 233 168 12;
+  --mint-rgb: 16 163 150;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-flame: var(--flame);
+  --color-flame-soft: var(--flame-soft);
+  --color-grape: var(--grape);
+  --color-grape-soft: var(--grape-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+
+  --font-display: var(--font-figtree);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "kern", "liga";
+    letter-spacing: -0.006em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+  a {
+    text-underline-offset: 3px;
+  }
+}
+
+/* Display treatment (Figtree, bold geometric sans). The tight tracking is what
+   gives headlines their confident, modern set. */
+.font-display {
+  font-family: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.028em;
+  font-weight: 800;
+}
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Slow drifting gradient blobs used for subtle background movement. */
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+.animate-drift {
+  animation: drift 20s ease-in-out infinite;
+}
+
+/*
+  Ambient corner glow.
+
+  The old version was `radial-gradient(circle, <colour>, transparent 70%)` with a
+  heavy blur. Two things made that read as a visible edge rather than as light:
+
+  1. A two stop gradient fades out in a straight line and then stops dead. The
+     brightness is continuous but its SLOPE is not, and the eye picks up that
+     kink as a soft ring (Mach banding). Blurring it moves the ring, it does not
+     remove it.
+  2. Fading to the `transparent` keyword means fading to transparent BLACK, so
+     the midtones drift slightly grey instead of staying warm.
+
+  The fix is a many stop, ease out falloff that lands on zero alpha at the very
+  edge, using the colour itself at alpha 0 so the hue never shifts. No blur is
+  needed, which also drops a compositing layer that used to fight the card's
+  rounded corner clip.
+*/
+.glow {
+  background-image: radial-gradient(
+    circle at center,
+    rgb(var(--glow-rgb) / 0.4) 0%,
+    rgb(var(--glow-rgb) / 0.33) 14%,
+    rgb(var(--glow-rgb) / 0.24) 28%,
+    rgb(var(--glow-rgb) / 0.15) 42%,
+    rgb(var(--glow-rgb) / 0.085) 55%,
+    rgb(var(--glow-rgb) / 0.042) 68%,
+    rgb(var(--glow-rgb) / 0.016) 80%,
+    rgb(var(--glow-rgb) / 0.004) 90%,
+    rgb(var(--glow-rgb) / 0) 100%
+  );
+}
+.glow-gold {
+  --glow-rgb: var(--gold-rgb);
+}
+.glow-mint {
+  --glow-rgb: var(--mint-rgb);
+}

@@ -1,0 +1,119 @@
+import { Terminal } from "@/components/course/interactive";
+import { Callout, PromptToClaude, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Put it on the internet",
+  description:
+    "From a page only you can see to a link you can text someone, in about five minutes. Then a proper domain if you want one.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 5</span>
+
+# Put it on the internet
+
+Everything so far has happened at `localhost:3000`, and it is worth being clear about what that address actually is: a door that only opens from inside your own machine. Close the laptop and it is gone. Send the link to a friend and they get an error.
+
+This lesson closes that gap. It genuinely takes about five minutes.
+
+## First, build it once yourself
+
+Before deploying anything, run the production build on your own machine:
+
+<Terminal command="npm run build" />
+
+Up to now you have been running the development server, which is forgiving on purpose so it does not interrupt you. The production build is strict. It is the same check the deploy will run, so running it here means finding problems on your machine, where you have Claude Code and your files, rather than in a log on a server.
+
+If it fails, that is the system doing its job. Hand it over the way you learned in the last lesson:
+
+<PromptToClaude>
+  npm run build failed. Here is the full output: [paste everything]. Can you fix the errors so it builds?
+</PromptToClaude>
+
+When it finishes without errors, you are ready.
+
+<Callout type="tip" title="A green build is the whole gate">
+  If `npm run build` passes locally, deployment almost always succeeds. If it fails locally, deployment will definitely fail. This one command saves you from debugging through a build log.
+</Callout>
+
+## Deploy it
+
+We are using Vercel. They make Next.js, the free tier is genuinely free for something like this, and it needs no configuration at all.
+
+From your project folder, in the terminal that is **not** running the dev server:
+
+<Terminal command="npx vercel" />
+
+The first time, it opens your browser to sign in. Signing in with GitHub is the easiest route and pays off in a minute. Then it asks a handful of setup questions: which account, what to call the project, which folder. **Press Enter through all of them.** The defaults are correct, because it recognises a Next.js app and configures itself.
+
+Then it uploads, builds, and prints a URL.
+
+Open it. That is your app, on the internet, reachable by anyone. That first load is a good moment and I would not rush past it.
+
+<Callout type="note" title="Preview versus production">
+  That first URL is a preview deployment, which is a private working copy. To publish the real one, run the same command with `--prod` on the end. Every deploy gets its own permanent URL, so nothing overwrites anything and you can always go back to an earlier one.
+</Callout>
+
+<Terminal command="npx vercel --prod" />
+
+That gives you the address to actually share.
+
+## Send it to one person
+
+Do this before you polish anything. Text the link to someone and ask them to try it.
+
+You will learn more in that ninety seconds than in another evening of tinkering. They will tap something you never tap, on a phone screen narrower than yours, and it will be immediately obvious what to fix first. Everything you would have guessed at is now just visible.
+
+It also changes your relationship to the project. It stops being an exercise and becomes a thing that exists.
+
+## Make new versions deploy themselves
+
+Running a command every time gets old. Since your project already had git set up in lesson 2, connecting it to GitHub gets you automatic deploys:
+
+<PromptToClaude>
+  Help me push this project to a new GitHub repository.
+</PromptToClaude>
+
+Then on [vercel.com](https://vercel.com), import that repository. From then on, every change you push goes live on its own. Push, wait a minute, refresh. That is the loop I use for this site.
+
+## Give it a real name, if you want one
+
+`my-first-app-a1b2c3.vercel.app` is a perfectly good address. But a real domain costs a few pounds a year and changes how the thing feels, both for you and for anyone you send it to.
+
+The path is short: buy a domain from any registrar, add it to your project in the Vercel dashboard under Settings and then Domains, and copy the DNS records it gives you back to the registrar. Then wait. DNS changes are usually live in minutes but are allowed to take up to a couple of days, and refreshing furiously does not help.
+
+<Callout type="warning" title="One thing that catches everyone">
+  A new domain can look broken on strict networks, particularly corporate laptops, for the first week or two. Some security filters block domains simply for being newly registered, with nothing wrong on your end. If it works on your phone but not at the office, that is usually what is happening. It clears up on its own.
+</Callout>
+
+## What you can do now
+
+Look back at where you started this course. You can now:
+
+- Cut an idea down to something that reaches a finish line
+- Create a real app and run it on your own machine
+- Build in slices, checking the browser after each one
+- Keep checkpoints so a bad hour costs you ten minutes
+- Read an error, hand it over well, and verify the fix yourself
+- Put it all on the internet at an address you can share
+
+That is the entire loop I used for Fable, for this site, and for every small tool I have built since. The projects get bigger. The loop does not change.
+
+<Checklist
+  title="Before you close the laptop"
+  items={[
+    "npm run build passes with no errors",
+    "You have run npx vercel --prod and have a live URL",
+    "You have opened that URL on your phone",
+    "You have sent it to one real person",
+  ]}
+/>
+
+## Where to go next
+
+Build the second one. Not a bigger version of the first, and not the four month idea you cut back in lesson 1. Another small thing, ideally something you will actually use.
+
+The second app is where it stops feeling like following instructions. You will move faster, recognise the errors, and catch yourself making decisions rather than looking them up. That is the point where this becomes a skill you own rather than a tutorial you completed.
+
+> The thing nobody told me is that shipping is a habit, not an achievement. The first live URL is the hard one, because it is the one where you find out you can. After that it is just repetition, and repetition is a much easier problem than doubt.
+
+You have a real thing on the internet with your name on it. Most people who say they want to build something never get here. Go and build the next one.

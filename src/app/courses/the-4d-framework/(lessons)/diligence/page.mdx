@@ -1,0 +1,116 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { Parts, FourD, Credit } from "@/components/course/fluency";
+
+export const metadata = {
+  title: "Diligence: owning what you ship",
+  description:
+    "The competency people skip because it is the least fun. Where your work came from, who you tell, and who carries it when it goes wrong.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 5</span>
+
+# Diligence: owning what you ship
+
+Diligence is the competency people skim, because the other three make you better at your work and this one mostly asks you to take responsibility for it. It is also the one that will matter most to your career, so I would rather be direct than comfortable here.
+
+## Three parts
+
+<Parts
+  title="What Diligence breaks into"
+  parts={[
+    {
+      name: "Creation diligence",
+      text: "Should this exist, and did you make it responsibly? Whose work is underneath it, was the input yours to use, and are you comfortable with how it was made.",
+    },
+    {
+      name: "Transparency diligence",
+      text: "Who needs to know AI was involved, and what do they need to know? Not a confession, a disclosure proportionate to what is at stake for them.",
+    },
+    {
+      name: "Deployment diligence",
+      text: "You are accountable for what you send. Not the tool, not the vendor. If it goes out with your name on it, it is yours.",
+    },
+  ]}
+/>
+
+## Creation: whose work is underneath this
+
+Two questions that are worth asking before you start rather than after.
+
+**Was the input mine to use?** Pasting a client's confidential document into a consumer chat tool is a decision, whether or not you experienced it as one. Most organisations now have a rule about this. Many people have not read it. Knowing your own organisation's position is part of the competency, not an administrative chore.
+
+**Am I comfortable with what this displaces?** I am not going to lecture you about this and I do not think there is one right answer. But there is a real difference between using AI to do work you could not otherwise do, and using it to avoid paying someone who does that work for a living. Where you draw that line is yours to draw. Not drawing it at all is the part I would push back on.
+
+<Callout type="note" title="On my own line">
+  Everything on this site is written by me. I use AI heavily to build the things I write about, and to think through structure. I do not have it write the courses, because if I did the courses would be a summary of what a model already knows, and you could get that yourself in five minutes. The whole value here is that a specific person actually did this and is telling you what happened.
+</Callout>
+
+## Transparency: proportionate to the stakes
+
+The question is not "did AI touch this". It is **"would the person receiving this want to know, and would they be annoyed to find out later?"**
+
+- **Nobody needs to know** if you used it to reformat a table, tidy your own notes, or think through an approach you then executed yourself. Tools do not require disclosure.
+- **Say something** when it materially shaped the content, and the reader is relying on it as your judgement. A line is usually enough.
+- **Say it clearly and in advance** when it is a formal deliverable, someone is making a decision on it, or your field has rules. Academic work, regulated advice, legal filings, journalism. Find out the rule rather than assuming.
+
+The test I use: if this person learned six months from now exactly how it was made, would they feel misled? If yes, say it now. It costs a sentence now and your credibility later.
+
+<Callout type="warning" title="The asymmetry">
+  Disclosing costs you almost nothing. Being found out costs you the assumption of good faith on everything else you have produced. That trade is not close.
+</Callout>
+
+## Deployment: it is yours
+
+This is the shortest part to write and the hardest to live with.
+
+**"The AI got it wrong" is not a defence.** Not to a client, not to a regulator, not to a colleague who relied on you. You chose the tool, you chose to delegate, you chose to accept the output, and you chose to send it. Each of those was your decision.
+
+I find this genuinely clarifying rather than frightening. It puts the responsibility somewhere it can actually sit, which is with a person who can be asked to explain themselves. Diffusing accountability into a system is how organisations end up with nobody responsible for anything, and I have seen enough of that at work to want no part of it in my own.
+
+<Callout type="important" title="One sentence version">
+  If your name is on it, you are answering for it. Work backwards from that and most of the hard questions in this lesson answer themselves.
+</Callout>
+
+## The four together
+
+<FourD title="Where you started, and where you are now" />
+
+Read them again now that you have the detail behind each one. They are not four separate techniques. They are one loop:
+
+You decide **what to hand over**, you **say what you want**, you **judge what came back**, and you **own what you send**. When something goes wrong, one of those four is where it went wrong, and you can now name which.
+
+That is the whole promise of having a model in your head. Not that you make fewer mistakes, but that your mistakes become legible to you.
+
+## Try it on your own task
+
+<Checklist
+  title="Run Diligence before you send"
+  items={[
+    "Confirm the input was yours to use, and that your organisation allows it",
+    "Ask whether the recipient would feel misled to learn how this was made",
+    "If yes, add the sentence now rather than explaining later",
+    "Read the whole thing once more as the person receiving it",
+    "Accept that you are answering for every line of it",
+  ]}
+/>
+
+## What you can do now
+
+Look back at where you started this course. You can now:
+
+- Decide whether AI belongs in a task at all, and split the work deliberately
+- Describe the product, the process and the manner rather than only the first
+- Judge output, reasoning and behaviour instead of trusting how confident it sounds
+- Know what you owe the people who will rely on what you send
+
+None of that required a new tool, and none of it expires when the tools change.
+
+<Credit />
+
+## Where to go next
+
+Use it on something today. Frameworks decay fast if they stay theoretical, and this one only becomes yours once you have caught yourself skipping a step.
+
+The next course in the ladder is [Ship your first small app](/courses/ship-your-first-app), which is all four of these running at once against something real, and it is where the framework stops being an idea. If you skipped ahead to get here, [Prompting, without the hype](/courses/prompting-basics) is Description in much more depth.
+
+> I used to think being good with AI meant knowing better prompts. It does not. It means knowing what to hand over, what to check, and what you are still on the hook for. That is a less exciting answer and it is the one that holds up.

@@ -1,0 +1,149 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { PromptCompare, PromptAnatomy } from "@/components/course/prompting";
+
+export const metadata = {
+  title: "Say exactly what you want",
+  description:
+    "Specificity is the biggest lever in prompting. What to include, what to leave out, and the reframing that fixes most bad prompts on its own.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 2</span>
+
+# Say exactly what you want
+
+If you only ever learn one thing about prompting, learn this one. Most disappointing answers are not a model failure. They are an answer to a question you did not quite ask.
+
+## Why vague asks fail
+
+When your request has gaps, the model still has to produce something, so it fills those gaps with the most average choice available. Average length. Average tone. Average audience. You get the beige middle of everything ever written about your topic.
+
+That is not the model being lazy. It is the model guessing, because you left it no way to know. Every detail you add removes a guess.
+
+## The five things worth naming
+
+You do not need all five every time. But when an answer comes back wrong, it is almost always because one of these was missing:
+
+<Checklist
+  title="Before you hit enter, have you said"
+  items={[
+    "The task: what you actually want made or done",
+    "The audience: who reads this, and what they already know",
+    "The format: length, structure, and shape of the output",
+    "The constraints: what to include, what to avoid, what matters most",
+    "The context: why this exists and what happens to it next",
+  ]}
+/>
+
+## Watch it work
+
+Here is the same underlying need, asked twice:
+
+<PromptCompare
+  weak={{
+    prompt: "Summarise this report.",
+    result:
+      "A summary. But how long? For whom? It gives you eight paragraphs when you needed five bullets for your boss, and it treats every section as equally important.",
+  }}
+  strong={{
+    prompt:
+      "Summarise this report in five bullets for my manager, who has not read it and has about two minutes. Lead with the decision we need from her. Skip the methodology.",
+    result:
+      "Five bullets. Decision first. Nothing about methodology. Something you can paste into an email almost untouched.",
+  }}
+/>
+
+Notice that the strong prompt is not longer because it is padded. Every clause removes a guess: length, reader, time budget, priority, exclusion.
+
+## The anatomy
+
+Here is the same idea laid out as parts, so you can see the machine:
+
+<PromptAnatomy
+  parts={[
+    {
+      label: "Task",
+      tone: "grape",
+      text: "Write a follow up email to a client who went quiet after our proposal.",
+    },
+    {
+      label: "Audience",
+      tone: "mint",
+      text: "She is a busy operations lead who liked the work but has not got budget sign off yet.",
+    },
+    {
+      label: "Format",
+      tone: "gold",
+      text: "Under 120 words. No subject line. Plain sentences, no bullet points.",
+    },
+    {
+      label: "Constraints",
+      tone: "flame",
+      text: "Do not chase or guilt her. Give her an easy way to say the timing is wrong.",
+    },
+    {
+      label: "Context",
+      tone: "accent",
+      text: "I want to keep this relationship for next year even if this deal dies.",
+    },
+  ]}
+/>
+
+Read that as a whole and it is just a person explaining a situation to a colleague. That is all a good prompt ever is.
+
+## The reframing that fixes most bad prompts
+
+This one is small and it changes everything.
+
+**Say what to do, not what not to do.**
+
+Anthropic call this out directly, and it matches what I see constantly. "Do not be formal" gives the model a thing to avoid and no direction to walk in. It still has to choose a tone, and now it is choosing while distracted.
+
+<PromptCompare
+  weakLabel="Negative framing"
+  strongLabel="Positive framing"
+  weak={{
+    prompt: "Do not use markdown. Do not be too wordy. Do not sound like a robot.",
+    result:
+      "Often still a bit robotic, sometimes still full of bullets. You gave three fences and no field.",
+  }}
+  strong={{
+    prompt:
+      "Write in flowing prose paragraphs, the way you would explain this to a friend over coffee. Keep it under 200 words.",
+    result:
+      "Prose. Warm. Short. You described the destination instead of listing the ditches.",
+  }}
+/>
+
+<Callout type="tip" title="A quick rule">
+  Every time you catch yourself typing "do not", stop and ask what you want instead. Then write that. Nine times out of ten the sentence gets shorter and the answer gets better.
+</Callout>
+
+## When the order matters, number it
+
+If your request has steps that must happen in sequence, write them as a numbered list. Anthropic recommend this explicitly, and it is the difference between a request and a recipe.
+
+Prose like "look at the data and clean it up then chart the top five and tell me what stands out" invites the model to blur those together. Numbered steps do not:
+
+<PromptAnatomy
+  title="A request that cannot be misread"
+  parts={[
+    { label: "Step 1", tone: "grape", text: "Clean the data: drop empty rows and fix the date column." },
+    { label: "Step 2", tone: "mint", text: "Find the top five products by revenue." },
+    { label: "Step 3", tone: "gold", text: "Chart those five as a simple bar chart." },
+    { label: "Step 4", tone: "flame", text: "In two sentences, tell me the one thing that surprises you." },
+  ]}
+/>
+
+## A warning about the other direction
+
+Specific does not mean long. A prompt stuffed with detail that does not matter is just a new way to bury the signal. If a detail would not change the output, leave it out.
+
+The test is not "have I written a lot?" It is the golden rule from lesson 1: could a colleague act on this without asking me a question?
+
+<Callout type="warning" title="The honest caveat">
+  You will not get this right first time, and you are not supposed to. Prompting is not a spell you cast perfectly. It is a conversation you steer, which is exactly what lesson 4 is about.
+</Callout>
+
+## What's next
+
+Specificity tells the model what. The next lesson is about something most people never bother with, telling it why, and why that single habit makes your instructions travel further than you would expect.

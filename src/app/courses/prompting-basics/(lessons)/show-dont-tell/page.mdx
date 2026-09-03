@@ -1,0 +1,108 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { PromptCompare } from "@/components/course/prompting";
+
+export const metadata = {
+  title: "Show, don't tell",
+  description:
+    "One good example beats a paragraph of description. How to use examples to lock in tone, format and structure, and how many you actually need.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 4</span>
+
+# Show, don't tell
+
+Try to describe your own writing voice in words. Go on. "Friendly but not cheesy, direct but warm, casual but not sloppy." Useless, isn't it. You know it when you see it, and so does everybody who reads you.
+
+Now paste two things you have written and say "like this."
+
+That is this entire lesson. Anthropic call examples one of the most reliable ways to steer output format, tone and structure, and in my experience it is not close. When I want a specific voice, describing it gets me near. Showing it gets me there.
+
+## Why examples beat adjectives
+
+Adjectives are compression. "Professional" means one thing at a bank and something else entirely at a startup, and the model has to average every use of that word it has ever seen. An example is not compressed. It is the actual thing.
+
+<PromptCompare
+  weakLabel="Described"
+  strongLabel="Demonstrated"
+  weak={{
+    prompt:
+      "Write product update notes in a friendly, casual, on brand voice. Not too corporate.",
+    result:
+      "Something plausibly friendly. Probably some exclamation marks you would never use. It is somebody's idea of casual, just not yours.",
+  }}
+  strong={{
+    prompt:
+      "Here are three of our past update notes. Match this voice exactly, including the length and how we open. [three real examples pasted in] Now write one for the new export button.",
+    result:
+      "Your voice. Your rhythm. Your opener. Often close enough to ship with a light edit.",
+  }}
+/>
+
+## How many, and which ones
+
+Anthropic's guidance is specific here, so I will pass it on straight:
+
+<Checklist
+  title="Good examples are"
+  items={[
+    "Relevant: they mirror the real task, not a tidied up version of it",
+    "Diverse: they vary enough that the model does not latch onto an accidental pattern",
+    "Structured: clearly marked as examples so they are not mistaken for instructions",
+    "Around three to five: enough to show the pattern, not so many you bury the ask",
+  ]}
+/>
+
+That diversity point is the one people miss, and it bites. If all three of your examples happen to open with a question, you have quietly taught it that everything opens with a question. It cannot tell which parts of your examples are the pattern and which are coincidence. So vary the things you do not care about, and keep constant the things you do.
+
+<Callout type="warning" title="The accidental pattern trap">
+  If your examples are all short, you have asked for short. If they all end with a call to action, you have asked for that too. Whatever your examples share, you have requested, whether you meant to or not.
+</Callout>
+
+## Mark your examples clearly
+
+When you paste examples in alongside your instructions, the model has to work out which text is the thing to copy and which is the thing to do. Usually it manages. Sometimes it does not, and it follows an instruction that was buried inside your example.
+
+The fix is to label the parts. Anthropic recommend wrapping content in simple tags, and it looks like this:
+
+```
+<examples>
+  <example>
+    Shipping now: dark mode. Your eyes asked, we listened.
+    Find it in Settings.
+  </example>
+  <example>
+    New this week: you can rename your workspace.
+    Small thing, lots of requests. Settings, then General.
+  </example>
+</examples>
+
+Write one in this voice, for the new export button.
+```
+
+You do not need to be a developer to do this. It is just labelling. The tags mean "this bit is an example" and "this bit is the request", and the ambiguity disappears. Use whatever names make sense: `<context>`, `<draft>`, `<notes>`.
+
+<Callout type="tip" title="When to bother">
+  For a one line ask, do not bother. The moment your prompt contains more than one kind of thing, instructions plus a document, or a request plus examples, labelling the parts starts paying for itself.
+</Callout>
+
+## The quiet trick: your prompt is an example too
+
+This one surprised me, and it is real. The style of your prompt influences the style of your answer.
+
+Write your prompt as a wall of bullet points and you tend to get bullet points back. Write it in plain flowing sentences and the answer softens too. Anthropic mention this directly as a lever: if you are fighting the format of the output, try matching your prompt to the output you want.
+
+So if you are asking for warm, human prose, do not ask for it in clipped fragments. You are demonstrating the opposite of what you requested.
+
+## Steal from yourself
+
+The best example library is the work you have already done. Keep a note with:
+
+- Two or three emails you were happy with
+- A piece of writing that sounds like you on a good day
+- One output from a past chat that landed exactly right
+
+Paste them in when it matters. It takes ten seconds and it beats any prompt pack you could buy, because it is actually yours.
+
+## What's next
+
+You now have the three inputs that matter: what, why, and a picture of done. The last lesson is about the part almost everyone gets wrong, what to do when the first answer is not right.

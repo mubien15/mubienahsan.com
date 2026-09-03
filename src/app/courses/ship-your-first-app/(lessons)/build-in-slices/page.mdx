@@ -1,0 +1,116 @@
+import { Terminal } from "@/components/course/interactive";
+import { Callout, PromptToClaude } from "@/components/course/blocks";
+import { BuildLoop } from "@/components/course/ship";
+
+export const metadata = {
+  title: "Build it in slices",
+  description:
+    "The mistake is describing the whole app in one giant request. The fix is one small piece at a time, checked in the browser before you move on.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 3</span>
+
+# Build it in slices
+
+This is the lesson that is actually the skill. Everything else in this course is setup and logistics.
+
+## The mistake everyone makes once
+
+You have a working app and an idea, so you paste in the whole thing:
+
+<PromptToClaude>
+  Build me a bill splitter where people can add their names and what they ordered, and it works out who owes what including tip and tax, and you can share the result.
+</PromptToClaude>
+
+And something *will* appear. It might even look right. This is exactly why the mistake is so easy to make.
+
+The problem shows up twenty minutes later, when one part of it is wrong. You now have a large amount of unfamiliar code, several features tangled together, and no idea which piece broke or when. You cannot go back, because there is no back to go to. Your only move is to describe the whole thing again and hope.
+
+## Slices instead
+
+A slice is the smallest change that leaves the app working. Not a finished feature. A step.
+
+<BuildLoop />
+
+The loop is deliberately boring. Its whole value is that when something goes wrong, only one small thing changed since it last worked, so you always know where to look.
+
+## What slicing looks like in practice
+
+That bill splitter, cut properly. Six slices, each one leaving you with an app that runs:
+
+1. A page with a heading and one text box for a name
+2. An Add button that puts the name in a list below
+3. A second box next to each name for an amount
+4. A line at the bottom showing the total
+5. Tip as a percentage that updates the total
+6. Split the total across the names and show what each person owes
+
+After slice one you have something visibly working. After slice four you have something genuinely useful. If slice five goes badly, slices one to four are untouched and you can still ship.
+
+Compare that with the giant request, where you either have all of it or none of it.
+
+<Callout type="tip" title="How small is small enough">
+  If you cannot picture what the screen looks like after the change, the slice is too big. Cut it in half and ask again.
+</Callout>
+
+## Ask the way you learned to ask
+
+Everything from the prompting course applies here, and it pays off more than it did in a chat window because you are compounding on real code. Two habits matter most.
+
+**Give it the why.** These two get very different results:
+
+<PromptToClaude>
+  Add a button under the list.
+</PromptToClaude>
+
+<PromptToClaude>
+  Add a button under the list that clears everyone and starts a new bill, because we use this at the end of a meal and then immediately start a new one for drinks.
+</PromptToClaude>
+
+The second gets you a confirmation step you did not ask for, because the reason implies you would be annoyed to lose a bill by accident. That is the model doing your thinking with you.
+
+**Say what you want, precisely.** Vague asks get generic answers. "Make it look better" produces something. "Make the total bigger than everything else on the page, since it is the number people actually look for" produces the thing you meant.
+
+## Look at the browser. Every time.
+
+This is the habit I would tape to your monitor if I could.
+
+After every slice, look at the actual page in your actual browser. Not the summary of what was done. Not a confident sentence saying the feature has been added. The page.
+
+The summary is a description of intent. The browser is the truth. Most of the time they agree. The times they do not are exactly the times you need to catch, and if you have got into the habit of trusting the summary, you will find the problem six slices later when it is expensive.
+
+<Callout type="important" title="Say what you see">
+  When something is wrong, describe what you observed, not what you concluded. &ldquo;The total shows 0 no matter what I type&rdquo; is worth ten times &ldquo;the calculation is broken&rdquo;. The first is evidence. The second is a guess that sends you both down the wrong path.
+</Callout>
+
+## Your undo button
+
+Remember the git repository that was set up for you. It is what lets you take risks.
+
+After every slice that works, save that state. You can just ask:
+
+<PromptToClaude>
+  Commit this with a short message describing what we just added.
+</PromptToClaude>
+
+Or run it yourself:
+
+<Terminal command={`git add -A\ngit commit -m "Add tip percentage"`} />
+
+You do not need to learn git properly today. You need one idea: **a commit is a checkpoint you can return to.** Once you have checkpoints, a bad slice costs you ten minutes instead of your whole evening, and you will experiment far more freely, which is where the good stuff comes from.
+
+When something goes badly wrong, going back is not a defeat. It is the cheapest move available:
+
+<PromptToClaude>
+  That did not work. Undo those changes and go back to the last commit.
+</PromptToClaude>
+
+## Steer, then start over
+
+When a slice comes back wrong, your instinct is to explain what to fix. That is right, twice. If the third attempt is still wrong, stop.
+
+Three failed attempts usually means the request was unclear rather than the work being hard. Go back to the last checkpoint and describe the slice differently, from scratch. Fresh wording beats a fourth correction almost every time, because you are no longer dragging the misunderstanding along with you.
+
+## What's next
+
+You are building. Which means quite soon something will break in a way you do not understand, and that is not a sign you have gone wrong. The next lesson is about exactly that moment.

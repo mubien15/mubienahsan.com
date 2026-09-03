@@ -1,0 +1,90 @@
+import { Callout } from "@/components/course/blocks";
+import { MythList, PromptCompare } from "@/components/course/prompting";
+
+export const metadata = {
+  title: "Why most prompting advice is noise",
+  description:
+    "Magic words, secret phrases and threats do not work. The techniques that do are unglamorous and few. Here is the honest list.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 1</span>
+
+# Why most prompting advice is noise
+
+Search for prompt engineering and you will find threads promising secret phrases, packs of "500 god tier prompts" for sale, and confident people telling you to threaten the model or offer it a tip. Almost none of it holds up.
+
+I want to save you that detour. This lesson clears the noise so the next four can give you the small handful of things that genuinely move results.
+
+## The stuff that does not work
+
+<MythList
+  title="You can stop doing all of this"
+  items={[
+    "Opening with \"You are a world class expert genius\" and hoping the flattery does the work",
+    "Threatening the model, or promising it a $200 tip",
+    "Hunting for a secret magic word that unlocks a better mode",
+    "Buying a pack of prompt templates for a job you could describe in your own words",
+    "Saying \"do not make mistakes\" and expecting that to prevent mistakes",
+  ]}
+/>
+
+Why do these keep spreading? Because they are memorable and easy to sell, and because people credit the magic phrase when the real improvement came from something boring in the same prompt, usually being more specific.
+
+<Callout type="note" title="Where this course gets its facts">
+  Everything here is checked against Anthropic's own published prompting guidance rather than folklore. When their advice and a viral thread disagree, I follow the people who built the model.
+</Callout>
+
+## The stuff that does work
+
+Here is the honest list. It is short, and none of it is clever:
+
+1. **Say exactly what you want.** Specific beats vague, every time.
+2. **Explain why you want it.** Reasons travel further than rules.
+3. **Show an example.** One good example beats a paragraph of description.
+4. **Steer instead of starting over.** The second ask is where the quality is.
+
+That is the whole course. Four lessons, one idea each.
+
+## The mental model that makes it click
+
+Anthropic describe Claude as a brilliant but new employee who lacks context on your norms and workflows. I have not found a better way to put it.
+
+Think about what that means. On a new colleague's first day you would never say "make me a report" and expect the right thing. They do not know your audience, your format, your standards, or what happens to the work next. They are not lacking intelligence. They are lacking context. So you tell them.
+
+That is the whole job. Not magic words. Context.
+
+## See it once
+
+Same request, same model, thirty extra seconds of thought from you:
+
+<PromptCompare
+  weak={{
+    prompt: "Write something about our new feature.",
+    result:
+      "A generic, shapeless blurb. Right topic, wrong length, wrong audience, wrong tone. You rewrite most of it yourself, then conclude that AI is overrated.",
+  }}
+  strong={{
+    prompt:
+      "Write a short announcement post for our new export button, aimed at existing customers who are not technical. Around 120 words, warm and plain, no jargon. End with one sentence telling them where to find it.",
+    result:
+      "Roughly what you had in your head. Maybe you tweak a line. That is the difference, and it came from being clear, not from a secret phrase.",
+  }}
+/>
+
+Nothing on the right is clever. There is no incantation. It is just someone saying what they actually wanted.
+
+## The golden rule
+
+Anthropic offer a test I now use constantly, and it is the single most useful idea in this whole course:
+
+> Show your prompt to a colleague with minimal context on the task and ask them to follow it. If they would be confused, Claude will be too.
+
+That is it. If a reasonable human with no background could not act on your request without asking a follow up question, your prompt is not finished. Every technique in the next four lessons is really just a way of passing this test.
+
+<Callout type="tip" title="Try this now">
+  Take the last thing you asked an AI that disappointed you. Read it back as if you were a new colleague who has never met you. What would you need to ask before you could start? That answer is exactly what your prompt was missing.
+</Callout>
+
+## What's next
+
+Next we take the biggest lever, being specific, and make it practical: what to include, what to leave out, and the one reframing that fixes most bad prompts on its own.

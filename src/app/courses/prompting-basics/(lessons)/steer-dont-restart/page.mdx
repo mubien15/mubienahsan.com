@@ -1,0 +1,128 @@
+import { Callout } from "@/components/course/blocks";
+import { PromptCompare, PromptAnatomy } from "@/components/course/prompting";
+
+export const metadata = {
+  title: "Steer, don't restart",
+  description:
+    "The first answer is a draft, not a verdict. How to give feedback that actually lands, when to edit the prompt instead, and the draft then critique then refine loop.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 5</span>
+
+# Steer, don't restart
+
+Here is the most common way people waste their time with AI. They ask. They get something mediocre. They sigh, delete everything, and write a slightly different prompt from scratch. Then they do it again. Then they decide the tool is overhyped.
+
+The first answer was never the product. It was the first draft, and you just threw away the only thing that made the second one easy.
+
+## The first answer is a probe
+
+Treat the opening response as information. It shows you exactly which of your gaps the model had to guess at. A boring answer is not a failure, it is a diagnosis: it tells you what you forgot to say.
+
+So do not restart. Respond.
+
+<PromptCompare
+  weakLabel="Starting over"
+  strongLabel="Steering"
+  weak={{
+    prompt:
+      "[deletes everything] Write a better version of the announcement post, make it good this time.",
+    result:
+      "A different mediocre post. You threw away the context, so the model is guessing from scratch again. You are running in place.",
+  }}
+  strong={{
+    prompt:
+      "Closer. Cut the second paragraph entirely, it repeats the first. Keep the opening line, that is exactly right. Make the ending a single sentence pointing at Settings.",
+    result:
+      "The post you wanted. It kept what worked because you told it what worked, and it only changed what you named.",
+  }}
+/>
+
+## Feedback that lands
+
+Vague feedback gets vague fixes. "Make it better" is not an instruction, it is a sigh. The same specificity you learned in lesson 2 applies to the second turn, and honestly it matters more there.
+
+Good feedback does three things:
+
+<PromptAnatomy
+  title="The shape of useful feedback"
+  parts={[
+    {
+      label: "Keep",
+      tone: "mint",
+      text: "Name what worked, so it does not get lost in the rewrite. \"The opening line is perfect, keep it.\"",
+    },
+    {
+      label: "Change",
+      tone: "flame",
+      text: "Name the specific problem, not the feeling. Not \"it is off\", but \"paragraph two repeats paragraph one\".",
+    },
+    {
+      label: "Direction",
+      tone: "grape",
+      text: "Say where to go, not just what to leave. \"Make it warmer\" is weak. \"Write it like you are telling a friend\" is a destination.",
+    },
+  ]}
+/>
+
+That "keep" line is the one people skip, and it is why rewrites often go backwards. If you only say what is broken, you are inviting it to change everything, including the parts you liked.
+
+## When to edit the prompt instead
+
+Steering is not always right. Sometimes the conversation is built on a bad foundation and every turn is you patching a wonky wall.
+
+Restart, properly, when:
+
+- You are three or four corrections deep and still fighting the same issue. That is a sign the original ask was wrong, not the output.
+- You realise you never said the one thing that mattered most, like the audience.
+- The thread has wandered so far that half of it is now noise the model is still reading.
+
+The move is not to type "no, again". It is to take everything you learned from the failed attempts, write one properly specific prompt, and start clean. Those failed turns were not wasted. They were how you found out what to say.
+
+<Callout type="tip" title="A rule I use">
+  Two corrections, keep steering. Three or more on the same problem, stop and rewrite the ask. You are not being asked to fix the answer, you are being told the question was wrong.
+</Callout>
+
+## The loop worth learning: draft, critique, refine
+
+This is the one professional pattern in this course, and it is easy.
+
+Instead of asking for a thing and hoping, do it in three moves:
+
+1. **Draft.** Ask for the first version.
+2. **Critique.** Ask it to review its own draft against your actual criteria. "Read this back as if you are the sceptical client. Where would you stop reading? What is unclear? What is filler?"
+3. **Refine.** Ask it to rewrite, using its own critique.
+
+Anthropic name this exact pattern, and it works because the critique step forces the standard out into the open. In step one, "good" is vague. By step two, "good" has a definition. In step three it has something to aim at.
+
+<Callout type="note" title="Why the middle step is the point">
+  The critique is where the value is, and it is worth reading yourself. Half the time you will disagree with it, and disagreeing tells you what you actually wanted. That is often the fastest way to find out.
+</Callout>
+
+## The same loop as course one
+
+If you took the first course this should feel familiar. There it was describe, look, adjust. Here it is ask, read, steer.
+
+That is not a coincidence. It is the same skill wearing different clothes. Whether you are building an app or writing an email, the work is: say what you want, look honestly at what came back, and say the next true thing. Everything else is decoration.
+
+## What you can do now
+
+Look back at where you started this course. You can now:
+
+- Spot prompting advice that is noise, and ignore it without guilt
+- Say what you want clearly enough that a stranger could act on it
+- Explain the why, so your instructions cover the cases you did not list
+- Show an example instead of hunting for the right adjective
+- Steer a mediocre first answer into the thing you wanted
+
+None of that is magic. All of it is just being clear with someone who cannot read your mind. Which, it turns out, is a useful skill with humans too.
+
+> I used to think people who got great results from AI knew something I didn't. They didn't. They were just willing to say what they meant, and to keep going after the first answer. That is the whole secret, and now you have it.
+
+## Where to go next
+
+Practise on real work, not exercises. The next time you catch yourself disappointed by an answer, do not sigh and rewrite it yourself. Ask what you left out. Then say that.
+
+When this feels natural, the next course in the ladder is [The 4D Framework](/courses/the-4d-framework), which gives a name to what you have just learned and to the three habits that sit either side of it. After that comes [Ship your first small app](/courses/ship-your-first-app), where you point all of it at something real and end up with a live URL.
+
+Thanks for reading this far. Most people want the magic phrase. You did the unglamorous version instead, which is the one that actually works.

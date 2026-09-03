@@ -1,0 +1,107 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { Parts } from "@/components/course/fluency";
+
+export const metadata = {
+  title: "Delegation: what to hand over",
+  description:
+    "The decision almost nobody makes deliberately. Knowing your problem, knowing what the tool can really do, and dividing the work between you on purpose.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 2</span>
+
+# Delegation: what to hand over
+
+Delegation comes first for a reason. It is the decision you make before you type anything, and it is the one people skip entirely.
+
+The usual pattern is that you have a task, so you paste the task in. The question of whether this is a job for AI at all, and if so which part of it, never gets asked. It just happens.
+
+## Three parts to it
+
+<Parts
+  title="What Delegation actually breaks into"
+  parts={[
+    {
+      name: "Problem awareness",
+      text: "Knowing what you are really trying to achieve, which is often not the task in front of you. The task is write a summary. The problem is my director has ten minutes and needs to make a decision.",
+    },
+    {
+      name: "Platform awareness",
+      text: "Knowing what this particular tool is genuinely good at, where it is weak, and what it cannot see. A model with no access to your files cannot check your files, however confidently it discusses them.",
+    },
+    {
+      name: "Task delegation",
+      text: "Deciding who does which part. Not all of it or none of it, but a deliberate split between what you keep, what you hand over, and what you do together.",
+    },
+  ]}
+/>
+
+## Problem awareness: the task is not the problem
+
+Almost every disappointing AI session I have had started here. I asked for the task instead of the outcome.
+
+"Summarise this report" gets you a summary. Fine, and useless, if what you actually needed was the three things your director will ask about. Same document, same tool, completely different job. Only one of them was the real problem, and it was not the one I typed.
+
+<Callout type="tip" title="The question that fixes this">
+  Before you ask for anything, finish this sentence: <em>this is done when...</em> If you cannot finish it, you do not have a problem yet, you have a topic. Asking anything at that point is guesswork.
+</Callout>
+
+## Platform awareness: know what it cannot do
+
+You do not need to understand how models work. You do need a rough sense of what the thing in front of you can reach.
+
+Ask three questions of whatever you are using:
+
+- **What can it see?** Only your message, or your files, or the live internet? A tool with no web access confidently discussing this week's news is not lying to you, it is guessing, and it does not know the difference.
+- **What can it change?** A chat window can only produce text. Something like Claude Code can edit real files on your machine. The consequences of a mistake are wildly different, and so is how carefully you should be reading.
+- **What is it actually good at?** These tools are strong at language, structure, drafting, explaining and transforming. They are much weaker at arithmetic, at knowing what happened recently, and at anything requiring them to know a fact nobody told them.
+
+<Callout type="warning" title="The most expensive misjudgement">
+  Handing over something where being wrong matters and being wrong is invisible. A summary that quietly drops the one caveat that mattered looks exactly like a good summary. That combination, high stakes and hard to check, is where you keep the work yourself or check it line by line.
+</Callout>
+
+## Task delegation: split the job
+
+Here is the part that changed how I work. Stop thinking about whether to use AI for a task. Break the task up and place each piece.
+
+Take something real, like writing a governance assessment for a new system:
+
+- **Only me.** Knowing which risks actually matter for this organisation. Judging whether a control is genuinely adequate. Being accountable for the conclusion.
+- **Better as AI.** Producing a first structure. Turning my rough notes into complete sentences. Checking I have not left a section empty. Rewriting the same point for a different audience.
+- **Together.** Working out what I am missing. I describe the situation, it asks questions, and the questions I did not have a good answer to are the gaps.
+
+That third category is the one people miss, and it is the most valuable. Not automation, not doing it alone, but thinking out loud with something that has read more governance frameworks than I ever will and has no idea which of them matters here.
+
+<Callout type="note" title="A rule I hold to">
+  The judgement stays with me. Everything around the judgement is negotiable. That single line resolves nearly every delegation question I have had, and it is why I have never felt like I am cheating.
+</Callout>
+
+## When the answer is no
+
+Delegation includes deciding not to. Sometimes the honest answer is that this is not a job for AI, and being able to say that is part of the competency rather than a failure of it.
+
+Reasons that hold up:
+
+- The thinking **is** the work, and outsourcing it means you never build the understanding
+- The information is confidential and should not leave your organisation
+- It is short enough that describing it well takes longer than doing it
+- You need to be able to stand behind every word under real scrutiny
+
+That third one catches people. If your prompt would take longer to write than the email, write the email.
+
+## Try it on your own task
+
+<Checklist
+  title="Run Delegation on the thing you brought with you"
+  items={[
+    "Finish the sentence: this is done when...",
+    "Name what the tool you are using can see and can change",
+    "Write down the part only you can do",
+    "Write down the part it would genuinely do better",
+    "Name one thing you could work out together rather than alone",
+    "Decide honestly whether any of it should be AI at all",
+  ]}
+/>
+
+## What's next
+
+You have decided what to hand over. Next comes saying what you want clearly enough that you get it, which turns out to have three parts most people never separate.

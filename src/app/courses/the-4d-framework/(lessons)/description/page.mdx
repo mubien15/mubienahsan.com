@@ -1,0 +1,129 @@
+import { Callout, Checklist, PromptToClaude } from "@/components/course/blocks";
+import { PromptCompare } from "@/components/course/prompting";
+import { Parts } from "@/components/course/fluency";
+
+export const metadata = {
+  title: "Description: saying what you want",
+  description:
+    "Three things you can describe and most people only ever describe one: the product you want, the process to get there, and the manner it should work in.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 3</span>
+
+# Description: saying what you want
+
+If you have taken my [prompting course](/courses/prompting-basics), this lesson will feel familiar. That is deliberate, and I would rather say so than pretend otherwise. What the framework adds is a sharper cut: it splits describing into three separate things, and once you see the split you notice that almost everyone only ever does one of them.
+
+## The three descriptions
+
+<Parts
+  title="What you can describe"
+  parts={[
+    {
+      name: "Product description",
+      text: "What you want to end up with. The form, the length, the audience, the tone, what it must contain and what it must not.",
+    },
+    {
+      name: "Process description",
+      text: "How you want it to get there. Ask me questions first. Work through it step by step. Give me three options rather than one. Start with an outline before you write anything.",
+    },
+    {
+      name: "Performance description",
+      text: "The manner you want it to work in. Be blunt with me. Do not agree with me too easily. Assume I know the basics. Flag anything you are unsure about instead of smoothing over it.",
+    },
+  ]}
+/>
+
+Nearly everyone describes the product. Almost nobody describes the process or the performance, and those two are where the biggest gains hide.
+
+## Product: the one you already do
+
+Even here most people stop too early. "Write me an email" describes a form, not a product.
+
+<PromptCompare
+  weakLabel="Product, barely"
+  strongLabel="Product, properly"
+  weak={{
+    prompt: "Write an email to my team about the new process.",
+    result:
+      "A generic, slightly corporate email. Right shape, wrong everything else. You now rewrite it, which is the work you were trying to avoid.",
+  }}
+  strong={{
+    prompt:
+      "Write an email to my team of six analysts introducing a new review step. Under 150 words, warm but not chatty, ends with exactly one action for them. It must acknowledge that this adds work, because it does and pretending otherwise will annoy them.",
+    result:
+      "Something you can almost send. The constraints did the work: the length forced priorities, and naming the awkward part stopped it being cheerful about extra work.",
+  }}
+/>
+
+The second one is not longer for the sake of it. Every clause removes a decision the tool would otherwise make badly on your behalf.
+
+## Process: how to get there
+
+This is the one that surprised me most. You can describe the route, not just the destination.
+
+<PromptToClaude>
+  Before you write anything, ask me the five questions you most need answered to do this well.
+</PromptToClaude>
+
+That single sentence has saved me more time than any other habit in this course. The questions expose what I had not decided yet. Half the time I realise my own thinking was the thing missing, not the output.
+
+Other process descriptions worth stealing:
+
+- **"Give me three versions with genuinely different approaches, not three rewordings."** Stops you anchoring on the first idea.
+- **"Outline it first and wait for me to approve the outline."** Cheap to fix a structure, expensive to fix a finished draft.
+- **"Work through this step by step and show your reasoning."** Gives you something to check, which matters enormously for the next lesson.
+- **"Argue the opposite case before you answer."** Uncomfortable and useful.
+
+## Performance: how it should behave
+
+The third one is nearly invisible until someone points it out, and then you cannot unsee it.
+
+These tools default to a manner: helpful, agreeable, a bit eager, inclined to give you something rather than admit it does not know. That default is fine for casual use and actively unhelpful when you need a real opinion.
+
+<PromptCompare
+  weakLabel="Default manner"
+  strongLabel="Manner described"
+  weak={{
+    prompt: "What do you think of this plan?",
+    result:
+      "A balanced, encouraging response that finds something nice to say, lists some considerations, and leaves you no wiser about whether the plan is any good.",
+  }}
+  strong={{
+    prompt:
+      "What do you think of this plan? Be direct and lead with the biggest problem. Do not soften it. If you think it is fundamentally wrong, say so plainly. Where you are uncertain, say you are uncertain rather than guessing.",
+    result:
+      "An actual opinion, with the weakest point first and the uncertain parts labelled. Occasionally uncomfortable. Considerably more useful.",
+  }}
+/>
+
+<Callout type="important" title="Why this one matters most">
+  A tool that agrees with you is not being nice, it is being useless. If you only ever get encouragement back, you are not getting a second opinion at all, you are getting an echo with better grammar. Describing the performance you want is how you turn it back into a colleague.
+</Callout>
+
+## You do not need all three every time
+
+For a quick reformatting job, product alone is plenty. Do not turn this into ceremony.
+
+The three parts are a diagnostic, not a template. When something comes back wrong, ask which of the three you left out. In my experience it is process about half the time, performance about a third, and the rest is genuinely just a hard task.
+
+<Callout type="tip" title="One sentence upgrade">
+  If you take one thing from this lesson: add <em>&ldquo;ask me questions first&rdquo;</em> to your next serious request. It is the cheapest description you can add and it does the most work.
+</Callout>
+
+## Try it on your own task
+
+<Checklist
+  title="Run Description on the thing you brought with you"
+  items={[
+    "Product: name the form, the length, the audience, and one thing it must not do",
+    "Process: decide whether you want questions, an outline, or options first",
+    "Performance: decide how blunt you want it to be",
+    "Write the request with all three, then read it back as if you were the one receiving it",
+    "Ask whether a competent stranger could act on it without guessing",
+  ]}
+/>
+
+## What's next
+
+You have said what you want and something has come back. Now the hard part, and the one your own judgement is actually needed for: working out whether it is any good.

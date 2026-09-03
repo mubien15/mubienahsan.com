@@ -1,0 +1,117 @@
+import { Terminal, PlatformTabs } from "@/components/course/interactive";
+import { Callout, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Getting set up",
+  description:
+    "Install Claude Code once, with every step named. The native installer needs no coding tools and no prior setup knowledge.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-mint"><span className="h-1.5 w-1.5 rounded-full bg-mint" />Lesson 2</span>
+
+# Getting set up
+
+This is the only part of the course that looks technical, and it is shorter than you expect. We go one small step at a time, and I explain what each thing is, not just what to type. Do this once and you never think about it again.
+
+<Checklist
+  title="Before you start, you need"
+  items={[
+    "A computer running macOS, Windows, or Linux",
+    "A paid Claude plan (Pro or Max). The free plan does not include Claude Code",
+  ]}
+/>
+
+<Callout type="important" title="You need a paid plan">
+  Claude Code runs on a Pro, Max, Team, or Enterprise account. The free plan at{" "}
+  <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>{" "}
+  does not include it. If you are on the free plan, upgrading to Pro is the smallest step that unlocks everything in this course.
+</Callout>
+
+## Prefer to skip the terminal entirely?
+
+There is now a **Claude Code Desktop app** with a normal window, buttons, and no terminal at all. If you would rather not touch the terminal, that is a completely valid door in.
+
+<Callout type="tip" title="The no terminal option">
+  Download the{" "}
+  <a href="https://claude.com/download" target="_blank" rel="noopener noreferrer">Desktop app</a>{" "}
+  for macOS or Windows, sign in, and you can start giving Claude Code instructions right away. You can always come back and learn the terminal later. The rest of this lesson covers the terminal path, which is worth knowing.
+</Callout>
+
+## What a terminal is
+
+**Terminal.** A plain window where you type commands instead of clicking buttons. It comes built into your computer. That is all it is. Nothing you type in a single line here can break your machine, and you can always close the window and start again.
+
+## Step 1. Open your terminal
+
+<PlatformTabs
+  mac={
+    <>
+      Press <code>Cmd + Space</code>, type &ldquo;Terminal&rdquo;, and press Enter. A window with a blinking cursor appears. That is your terminal.
+    </>
+  }
+  windows={
+    <>
+      Open the Start menu, type &ldquo;PowerShell&rdquo;, and press Enter. A blue window with a blinking cursor appears. That is your terminal.
+    </>
+  }
+/>
+
+## Step 2. Install Claude Code
+
+Copy the one line for your system, paste it into the terminal, and press Enter. This is the friendly native installer. It does not need any coding tools, and it keeps itself up to date on its own from now on.
+
+<PlatformTabs
+  mac={
+    <Terminal command="curl -fsSL https://claude.ai/install.sh | bash" />
+  }
+  windows={
+    <Terminal
+      title="PowerShell"
+      prompt=">"
+      command="irm https://claude.ai/install.ps1 | iex"
+    />
+  }
+  linux={
+    <Terminal command="curl -fsSL https://claude.ai/install.sh | bash" />
+  }
+/>
+
+Give it a moment. When the cursor comes back and stops printing, it is done.
+
+<Callout type="note" title="Rather use npm?">
+  If you already have Node.js version 22 or newer, you can install with{" "}
+  <code>npm install -g @anthropic-ai/claude-code</code> instead. The native installer above is simpler for most people because it needs nothing installed first, so that is the one I recommend starting with.
+</Callout>
+
+## Step 3. Check it worked
+
+Type this and press Enter:
+
+<Terminal command="claude --version" output="2.x.x (Claude Code)" />
+
+If you see a version number, any recent one, you are good. If instead you see &ldquo;command not found&rdquo;, close the terminal, open a fresh one, and try again. A brand new window picks up the freshly installed tool.
+
+<Callout type="tip" title="A built in doctor">
+  Claude Code ships with a self check. If anything feels off, run{" "}
+  <code>claude doctor</code> and it tells you what is wrong and how to fix it.
+</Callout>
+
+## Step 4. Start it up and sign in
+
+Type:
+
+<Terminal command="claude" />
+
+The first time, it opens your browser to sign in with your Claude account. Follow the prompts. When you land back in the terminal on a friendly welcome screen waiting for your input, you are in.
+
+## If something goes sideways
+
+That is normal, and it is not you. The single most useful move: copy the exact error message and paste it into Claude, the chat at claude.ai, or a search engine. Almost every setup snag has a short fix that someone has already written down.
+
+<Callout type="tip">
+  Do not aim for a perfect, tidy setup. Aim for &ldquo;it starts.&rdquo; That is the whole bar for this lesson.
+</Callout>
+
+## What's next
+
+The setup is done. In the final lesson, we point Claude Code at a real project and make an actual change, the moment where this all clicks.

@@ -1,0 +1,109 @@
+import { Terminal } from "@/components/course/interactive";
+import { Callout, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Get a real app running",
+  description:
+    "Three commands and you have a working app on your own machine. What each one does, and the four files that matter out of the hundreds you just created.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 2</span>
+
+# Get a real app running
+
+We are going to make a real app skeleton on your machine and see it in a browser. It takes three commands and about five minutes, most of which is waiting.
+
+One thing to say before we start, because it stops people: you are about to install a web framework called Next.js, and you do not need to understand it. I use it because it is what I built Fable on, and because putting it on the internet later is a single command. Treat it as the workshop, not the thing you are making.
+
+## First, check you have Node
+
+Node is the engine everything here runs on. Check whether you already have it:
+
+<Terminal command="node --version" output="v22.13.1" />
+
+If you see a version number of **20.9 or higher**, you are set. If you get an error saying the command is not found, install it from [nodejs.org](https://nodejs.org), take the version marked LTS, then close and reopen your terminal and try again.
+
+<Callout type="note" title="Close and reopen matters">
+  A terminal window reads your settings once, when it opens. After installing anything new, an open window will keep insisting the command does not exist. Open a fresh one. This wastes more beginner hours than any other single thing.
+</Callout>
+
+## Command one: create the app
+
+Pick a name for your project folder, lowercase with dashes instead of spaces, then run:
+
+<Terminal command="npx create-next-app@latest my-first-app --yes" />
+
+Change `my-first-app` to whatever you like. This takes a minute or two and prints a lot of text, which is normal. Read the last line: it should say **Success!**
+
+That `--yes` on the end is doing you a favour. It skips about eight questions you have no basis to answer yet and takes sensible defaults: TypeScript, Tailwind for styling, and the modern App Router. It also sets up a git repository for you, which becomes your undo button in lesson 3.
+
+<Callout type="tip" title="It writes instructions for Claude Code too">
+  The setup drops a file called `AGENTS.md` in your project, along with a `CLAUDE.md` that points at it. That file tells Claude Code how this version of Next.js actually works, so it writes current code instead of code from a year ago. You do not have to do anything with it. Just do not delete it.
+</Callout>
+
+## Command two: go into the folder and start it
+
+<Terminal
+  command={`cd my-first-app\nnpm run dev`}
+  output={`▲ Next.js 16.3.3 (Turbopack)\n- Local:         http://localhost:3000\n\n✓ Ready in 200ms`}
+/>
+
+`cd` means change directory. `npm run dev` starts a small web server on your own machine.
+
+Now open [http://localhost:3000](http://localhost:3000) in your browser. You should see a starter page. **That is your app.** It is running on your computer, and only your computer, which is exactly what we will fix in lesson 5.
+
+<Callout type="important" title="Leave that terminal alone now">
+  The dev server has to keep running for the page to work. That window is busy from now on, and it will not accept new commands. When you need to type something else, open a second terminal window. Closing the first one takes your site down.
+</Callout>
+
+## Command three: point Claude Code at it
+
+Open a **new** terminal window, move into the same folder, and start Claude Code there:
+
+<Terminal command={`cd my-first-app\nclaude`} />
+
+That last part matters more than it looks. Claude Code works with whatever folder you started it in, so starting it inside your project is what gives it access to your app. Start it somewhere else and it will be helpfully confused about a project it cannot see.
+
+## The four files that matter
+
+You just created several hundred files. You can ignore almost all of them. These are the ones worth knowing by name:
+
+- **`app/page.tsx`** is your home page. This is the file you will change most. When you edit this, the browser updates by itself, no refresh needed.
+- **`app/layout.tsx`** is the wrapper that goes around every page: the title in the browser tab, fonts, anything that should appear everywhere.
+- **`public/`** is where images go. Anything in there is reachable at your site address plus the filename.
+- **`package.json`** lists what your project depends on and the commands it can run. You will rarely edit it by hand.
+
+Everything else is machinery. The `node_modules` folder in particular holds thousands of files you should never open, never edit, and never worry about.
+
+<Callout type="note" title="If you were expecting a src folder">
+  Some tutorials and older projects keep everything inside a `src` folder, so you would see `src/app/page.tsx` instead. Both layouts are fine and Next.js supports either. The setup we just ran does not create one, so if a guide tells you to open `src/app/page.tsx` and you cannot find it, drop the `src` and look again.
+</Callout>
+
+## Make one change, just to prove it works
+
+Before we do anything real, let us confirm the whole chain is connected. In Claude Code, type:
+
+<Terminal
+  title="claude"
+  prompt=">"
+  command="Change the text on the home page to say Hello, this is my app."
+/>
+
+Approve the change, then look at your browser. It should have updated on its own, without you refreshing.
+
+If that happened, everything is wired up: your editor, your server, your browser and your assistant are all pointing at the same project. That is the whole setup, and you will not have to do it again.
+
+<Checklist
+  title="You should now have"
+  items={[
+    "Node 20.9 or higher installed",
+    "A project folder created with create-next-app",
+    "A dev server running in one terminal window, left alone",
+    "Claude Code running in a second window, inside the same folder",
+    "A starter page at localhost:3000 that responds to a change",
+  ]}
+/>
+
+## What's next
+
+You have a working app that does nothing in particular. Next we turn it into your idea, one small slice at a time, which is where the real method lives.
