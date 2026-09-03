@@ -98,8 +98,10 @@ export function SubscribeForm({
         )}
       >
         <span className="font-medium">Check your inbox.</span> Click the
-        confirmation link and The First Build is yours — it should land within a
-        minute.
+        confirmation link and The First Build is yours. It should land within a
+        minute — <span className="font-medium">if it isn&apos;t there, check
+        your spam folder</span>, since I&apos;m a new sender and filters are
+        cautious at first.
       </p>
     );
   }

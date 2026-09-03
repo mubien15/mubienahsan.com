@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/confirm-token";
-import { button, emailShell, sendEmail } from "@/lib/brevo";
+import { LIST_UNSUBSCRIBE_HEADERS, button, emailShell, sendEmail } from "@/lib/brevo";
 
 /*
   Newsletter signup, step two: the link in the confirmation email lands here.
@@ -103,6 +103,7 @@ export async function GET(request: Request) {
           to: result.email,
           subject: "Here's The First Build",
           html: welcomeEmail(guideUrl),
+          headers: LIST_UNSUBSCRIBE_HEADERS,
         },
         apiKey
       );

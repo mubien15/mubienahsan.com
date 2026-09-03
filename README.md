@@ -77,6 +77,23 @@ Without them the endpoint fails closed with a neutral message.
   attributes; if it does not, the confirm route retries without it rather than
   losing the subscriber.
 
+### Deliverability on a new domain
+
+Early emails land in spam for one dominant reason: `mubienahsan.com` has no
+sending history, and filters distrust unknown senders regardless of how well
+they are authenticated. DKIM and DMARC stop it being *rejected*; only volume
+and engagement move it out of spam, over weeks.
+
+What is in our control is done: authenticated domain, a plain text-and-one-link
+email rather than an image-heavy one, and a `List-Unsubscribe` header so Gmail
+and Outlook render their own unsubscribe button. The absence of that header
+reads as a sender who does not expect anyone to leave.
+
+What helps beyond code: ask early subscribers to reply or mark as not-spam, and
+keep sending consistently rather than in bursts. Do not buy a list, and do not
+import addresses — one spam complaint on a new domain costs more than a hundred
+subscribers gain.
+
 ### Brevo IP authorisation must stay off
 
 Brevo can restrict API calls to an allowlist of IP addresses. It cannot be used

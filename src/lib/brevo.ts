@@ -8,12 +8,35 @@ const BREVO_SMTP_ENDPOINT = "https://api.brevo.com/v3/smtp/email";
 
 export const SENDER = { name: "Mubien Ahsan", email: "hello@mubienahsan.com" };
 
+/*
+  A one-click unsubscribe address, used both in the footer and in the
+  List-Unsubscribe header. Gmail and Outlook read that header to render their
+  own unsubscribe button, and its presence is one of the few deliverability
+  levers available to a brand new sending domain — its absence looks like a
+  sender who does not expect people to leave.
+*/
+export const UNSUBSCRIBE_MAILTO = `${SENDER.email}?subject=unsubscribe`;
+export const LIST_UNSUBSCRIBE_HEADERS = {
+  "List-Unsubscribe": `<mailto:${UNSUBSCRIBE_MAILTO}>`,
+};
+
 export type SendResult =
   | { ok: true }
   | { ok: false; status?: number; detail?: unknown };
 
 export async function sendEmail(
-  { to, subject, html }: { to: string; subject: string; html: string },
+  {
+    to,
+    subject,
+    html,
+    headers,
+  }: {
+    to: string;
+    subject: string;
+    html: string;
+    /** Extra SMTP headers, e.g. List-Unsubscribe. */
+    headers?: Record<string, string>;
+  },
   apiKey: string
 ): Promise<SendResult> {
   try {
@@ -29,6 +52,7 @@ export async function sendEmail(
         to: [{ email: to }],
         subject,
         htmlContent: html,
+        ...(headers ? { headers } : {}),
       }),
     });
     if (response.ok) return { ok: true };
@@ -52,7 +76,7 @@ export function emailShell(body: string, { unsubscribe = true } = {}): string {
   const footer = unsubscribe
     ? `<p style="margin:28px 0 0;padding-top:20px;border-top:1px solid #eaddc6;font-size:13px;line-height:1.6;color:#8a827a;">
          You are getting this because you asked for The First Build at mubienahsan.com.
-         Don&rsquo;t want these? Just reply with &ldquo;unsubscribe&rdquo; and I&rsquo;ll take you off straight away.
+         Don&rsquo;t want these? <a href="mailto:${UNSUBSCRIBE_MAILTO}" style="color:#8a827a;">Unsubscribe here</a> and I&rsquo;ll take you off straight away.
          ${address ? `<br>Mubien Ahsan, ${address}` : ""}
        </p>`
     : "";
