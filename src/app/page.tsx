@@ -123,8 +123,10 @@ export default function Home() {
                   <span className="font-medium text-ink">
                     calm and rigour in the noisiest topic there is
                   </span>
-                  . I have no computer science degree. That is the point, not
-                  the caveat.
+                  . I worked all of this out myself: evenings spent pushing
+                  these models to find where they hold and where they break,
+                  certifications where they earned it, and a great deal of noise
+                  filtered by hand. What is on this site is what survived that.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <CtaLink href="/courses">Start with a course</CtaLink>
@@ -471,9 +473,10 @@ export default function Home() {
                     actually use.
                   </p>
                   <p>
-                    I don&apos;t have a computer science degree. That is exactly
-                    the point. If I can do this, the barrier is far lower than it
-                    looks, and I want to show the path, not just talk about it.
+                    I taught myself the whole of it, on nights and weekends,
+                    by testing these systems until I understood what they could
+                    and could not be trusted to do. The path exists and it is
+                    walkable — I want to show it rather than talk about it.
                     Everything here is free, and I hope to keep it that way.
                   </p>
                 </div>
