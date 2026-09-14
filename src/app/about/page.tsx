@@ -66,6 +66,22 @@ export default function AboutPage() {
               Toronto, where I am now.
             </p>
           </Reveal>
+
+          <Reveal>
+            <p>
+              Law leaves you with a particular reflex. You do not ask first
+              whether something works, you ask who is answerable when it does
+              not, what the rules already require, and what evidence would
+              satisfy someone who is not inclined to take your word for it.
+              Applied to AI, that reflex turns into governance: auditing,
+              assurance, and the unglamorous question of how a claim about a
+              model is actually verified. It is why I hold ISACA&apos;s
+              Certified in Auditing Generative AI and Microsoft&apos;s course on
+              the ethical and regulatory implications of the technology, and why
+              most of what I have built seriously is for risk teams rather than
+              consumers.
+            </p>
+          </Reveal>
           <Reveal>
             <p>
               Then I opened Claude Code for the first time. I typed a few
