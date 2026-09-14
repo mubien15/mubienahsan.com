@@ -110,17 +110,21 @@ export default function Home() {
                   <span className="inline-block">👋</span>
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                  The hard part of learning AI is not the technology. It is
-                  working out what deserves your attention. This site is my
-                  answer: free courses that run from your first command to a
-                  deployed application, the projects I have built and what each
-                  one taught me, and honest assessments of which books and
-                  certifications were worth the time. The aim is to bring{" "}
+                  The hard part of AI is not the technology. It is working out
+                  what deserves your attention, and what deserves your caution.
+                  I came to this from a business law degree and I still think
+                  like it: what the rules actually require, where accountability
+                  sits when a system gets it wrong, and how you would prove any
+                  of it. So this site runs on two tracks. Free courses that take
+                  you from your first command to a deployed app, and the
+                  governance side — AI auditing and assurance, the frameworks
+                  organisations are now being held to, and tools I build for
+                  risk teams. The aim is{" "}
                   <span className="font-medium text-ink">
-                    calm to the noisiest topic there is
+                    calm and rigour in the noisiest topic there is
                   </span>
-                  , and to meet people worth building with. I have no computer
-                  science degree. That is the point, not the caveat.
+                  . I have no computer science degree. That is the point, not
+                  the caveat.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <CtaLink href="/courses">Start with a course</CtaLink>
@@ -162,6 +166,89 @@ export default function Home() {
                   I&apos;ll send it straight to your inbox, plus new builds as I
                   publish them. Free, always — unsubscribe anytime.
                 </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Container>
+
+      {/* Governance & ethics — the other half of the work */}
+      <Container className="py-16 sm:py-20">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-grape-soft p-8 sm:p-12">
+            <div
+              aria-hidden
+              className="glow glow-mint animate-drift absolute -right-40 -bottom-40 h-[28rem] w-[28rem] rounded-full opacity-50"
+            />
+            <div className="relative">
+              <div className="max-w-2xl">
+                <Eyebrow tone="grape">Governance &amp; ethics</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+                  Building it is only half the job.
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed text-ink/70">
+                  The other half is asking whether it should be built that way,
+                  who is accountable when it fails, and how anyone outside the
+                  room could verify the answer. That question came with me from
+                  law, and it is where most of my serious work sits.
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                <a
+                  href="/essays/the-verification-gap.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
+                >
+                  <Pill tone="grape">Writing</Pill>
+                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
+                    The Verification Gap
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
+                    Whether independent assurance can make AI trustworthy to the
+                    institutions now betting on it. Built on OSFI&apos;s model
+                    risk guideline, the EU AI Act and ISO 42001.
+                  </span>
+                  <span className="mt-3 text-sm font-medium text-grape">
+                    Read the essay →
+                  </span>
+                </a>
+
+                <Link
+                  href="/projects"
+                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
+                >
+                  <Pill tone="grape">Tools</Pill>
+                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
+                    Built for risk teams
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
+                    An assessment agent that produces a structured governance
+                    review mapped to real frameworks, and a risk register tool
+                    that drafts its own entries.
+                  </span>
+                  <span className="mt-3 text-sm font-medium text-grape">
+                    See the projects →
+                  </span>
+                </Link>
+
+                <Link
+                  href="/library"
+                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
+                >
+                  <Pill tone="grape">Credentials</Pill>
+                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
+                    Auditing and ethics
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
+                    Certified in Auditing Generative AI (ISACA), and Microsoft&apos;s
+                    Ethical &amp; Regulatory Implications of Generative AI.
+                  </span>
+                  <span className="mt-3 text-sm font-medium text-grape">
+                    What else earned its place →
+                  </span>
+                </Link>
               </div>
             </div>
           </div>

@@ -29,8 +29,9 @@ export default function LibraryPage() {
         tone="grape"
       >
         There is an infinite amount of AI content and a finite amount of your
-        attention. Here is what earned mine: the certifications I took and the
-        books that shaped how I think.
+        attention. Here is what earned mine: the certifications I took, the
+        essays on governance and safety worth your time, and the books that
+        shaped how I think.
       </PageIntro>
 
       {/* Certifications */}

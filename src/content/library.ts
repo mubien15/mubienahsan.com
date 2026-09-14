@@ -92,6 +92,13 @@ export const BOOKS: BookNote[] = [
     take: "Abdaal's claim is that feeling good is not the reward for being productive but the source of it, and he builds that into energizers, unblockers and sustainers instead of a lecture about discipline. I do not buy every study he cites, but it reframed evening projects as something to enjoy rather than grind through, and that reframe is the only reason this site exists.",
   },
   {
+    title: "We Must Pace the Frontier (essay)",
+    author: "Dario Amodei",
+    tone: "grape",
+    href: "https://darioamodei.com/post/we-must-pace-the-frontier",
+    take: "September 2026, and the most consequential thing he has written. The argument is that the industry should deliberately slow how fast it improves capabilities — not halt training, but leave enough room for alignment, interpretability and independent verification to keep up. What makes it matter to me is step one of his three part plan: embedded third party evaluators inside frontier labs, with employee level access and a contractual right to publish findings. That is an assurance model, and it is close to what I argued for in The Verification Gap. The rest of the plan needs industry and then global coordination, which is where I am less convinced — the first step is the only one a single company can take alone, and Anthropic has taken it.",
+  },
+  {
     title: "The Adolescence of Technology (essay)",
     author: "Dario Amodei",
     tone: "gold",

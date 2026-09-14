@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s · Mubien Ahsan",
   },
   description:
-    "You do not need a computer science degree to build with AI. Free guides that start from zero, the real apps I have shipped, and honest notes on what is worth learning.",
+    "You do not need a computer science degree to build with AI. Free guides that start from zero, the apps I have shipped, and my work on AI governance — auditing, assurance and the ethics of deploying these systems.",
   alternates: { canonical: "/" },
   keywords: [
     "AI",
@@ -43,6 +43,12 @@ export const metadata: Metadata = {
     "learn AI",
     "build with AI",
     "AI governance",
+    "AI auditing",
+    "AI assurance",
+    "AI ethics",
+    "responsible AI",
+    "EU AI Act",
+    "ISO 42001",
     "Mubien Ahsan",
   ],
   authors: [{ name: "Mubien Ahsan" }],
@@ -52,14 +58,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Mubien Ahsan · Learning & building with AI, in public",
     description:
-      "AI courses made for beginners, a showcase of apps I've shipped, and a calm take on a noisy field.",
+      "AI courses made for beginners, the apps I've shipped, and serious work on AI governance, auditing and ethics.",
     siteName: "Mubien Ahsan",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mubien Ahsan · Learning & building with AI, in public",
     description:
-      "AI courses made for beginners, a showcase of apps I've shipped, and a calm take on a noisy field.",
+      "AI courses made for beginners, the apps I've shipped, and serious work on AI governance, auditing and ethics.",
   },
 };
 
