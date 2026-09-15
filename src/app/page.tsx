@@ -196,7 +196,25 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <Link
+                  href="/agents"
+                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
+                >
+                  <Pill tone="grape">In progress</Pill>
+                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
+                    Agents that spend
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
+                    AI agents are starting to transact for people. The payment
+                    layer is solved; nothing records what the buyer actually
+                    authorised. Controls for that gap.
+                  </span>
+                  <span className="mt-3 text-sm font-medium text-grape">
+                    Read the work →
+                  </span>
+                </Link>
+
                 <a
                   href="/essays/the-verification-gap.pdf"
                   target="_blank"
