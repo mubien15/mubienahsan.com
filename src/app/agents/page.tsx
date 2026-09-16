@@ -81,7 +81,8 @@ export default function AgentsPage() {
             A purchase made by an agent passes through seven moments. Five of
             them need a control, and those are the steps shown in colour. Pick a
             step to see what happens there, what can go wrong, and which control
-            covers it.
+            covers it. The sixth control does not sit on any one step, because
+            the buyer can say stop at any of them.
           </p>
         </Reveal>
         <Reveal>
@@ -94,10 +95,10 @@ export default function AgentsPage() {
       <section className="mt-16">
         <h2 className="font-display text-2xl text-ink">The controls</h2>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-          All five in full. The numbers run in the order the controls were
+          All six in full. The numbers run in the order the controls were
           written, which is deliberately not the order above — a purchase runs
-          into them as C1, C4, C3, C5, C2. The steps are the sequence to build
-          in; the numbers are just names.
+          into them as C1, C4, C3, C5, C2, with C6 cutting across the lot. The
+          steps are the sequence to build in; the numbers are just names.
         </p>
         <Stagger className="mt-6 grid gap-4" inView>
           {PUBLISHED_CONTROLS.map((control) => (
@@ -133,12 +134,10 @@ export default function AgentsPage() {
 
         <Reveal>
           <p className="mt-6 text-sm leading-relaxed text-muted">
-            More are in progress: how a buyer withdraws permission in the
-            middle of a task and what happens to the work already in flight, how
-            you rebuild months later why the agent bought this particular thing,
-            and who carries the loss when an agent goes beyond what it was
-            allowed to do. I would rather publish these properly than announce a
-            list.
+            Two more are in progress: how you rebuild, months later, why the
+            agent bought this particular thing, and who carries the loss when an
+            agent goes beyond what it was allowed to do. I would rather publish
+            these properly than announce a list.
           </p>
         </Reveal>
       </section>

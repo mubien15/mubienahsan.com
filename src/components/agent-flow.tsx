@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/cn";
 import { Pill } from "@/components/ui";
-import { CONTROLS, FLOW_STAGES } from "@/content/agents";
+import { CONTROLS, FLOW_OVERLAY, FLOW_STAGES } from "@/content/agents";
 
 /**
  * The path a purchase takes, with the controls pinned to the point each one
@@ -20,6 +20,9 @@ export function AgentFlow() {
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
   const reduce = useReducedMotion();
 
+  const overlay = CONTROLS.find(
+    (c) => c.slug === FLOW_OVERLAY.controlSlug && c.published
+  );
   const stage = FLOW_STAGES[active];
   const control = stage.controlSlug
     ? CONTROLS.find((c) => c.slug === stage.controlSlug && c.published)
@@ -131,6 +134,25 @@ export function AgentFlow() {
         </ol>
       </div>
 
+      {/* ---------- Runs under every step, so it is drawn under the rail ---------- */}
+      {overlay ? (
+        <Link
+          href={`/agents/${overlay.slug}`}
+          className="group mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-dashed border-grape/40 bg-grape-soft/25 px-4 py-3 transition-colors hover:border-grape/70 hover:bg-grape-soft/50"
+        >
+          <Pill tone="grape">{overlay.ref}</Pill>
+          <span className="text-sm font-medium text-ink group-hover:text-grape">
+            {FLOW_OVERLAY.label}
+          </span>
+          <span className="w-full text-sm leading-relaxed text-muted sm:w-auto sm:flex-1">
+            {FLOW_OVERLAY.moment}
+          </span>
+          <span className="text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </Link>
+      ) : null}
+
       {/* ---------- The open stage ---------- */}
       <motion.div
         key={stage.id}
@@ -172,7 +194,7 @@ export function AgentFlow() {
           </div>
         ) : (
           <p className="mt-5 rounded-xl border border-line bg-paper/60 p-5 text-sm leading-relaxed text-muted">
-            No control sits on this step. It is where the five either pay off or
+            No control sits on this step. It is where the other controls either pay off or
             turn out to have been missing.
           </p>
         )}
