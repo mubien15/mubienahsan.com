@@ -10,6 +10,14 @@ import {
   PUBLISHED_CONTROLS,
 } from "@/content/agents";
 
+/** Stable anchor for a section heading, so the jump links keep working. */
+function anchor(heading: string) {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 export function generateStaticParams() {
   return PUBLISHED_CONTROLS.map((c) => ({ slug: c.slug }));
 }
@@ -80,11 +88,38 @@ export default async function ControlPage({
         </p>
       </Reveal>
 
+      <Reveal>
+        <nav
+          aria-label="Sections of this control"
+          className="mt-10 max-w-2xl rounded-2xl border border-line bg-surface p-5"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+            On this page
+          </p>
+          <ol className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-5">
+            {control.sections.map((section, i) => (
+              <li key={section.heading} className="text-sm leading-snug">
+                <a
+                  href={`#${anchor(section.heading)}`}
+                  className="text-ink/80 hover:text-grape hover:underline"
+                >
+                  <span className="mr-1.5 text-muted">{i + 1}.</span>
+                  {section.heading}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </Reveal>
+
       <div className="mt-12 max-w-2xl space-y-10">
         {control.sections.map((section) => (
           <Reveal key={section.heading}>
             <section>
-              <h2 className="font-display text-2xl text-ink">
+              <h2
+                id={anchor(section.heading)}
+                className="font-display scroll-mt-24 text-2xl text-ink"
+              >
                 {section.heading}
               </h2>
               <div className="mt-4 space-y-4 text-[1.05rem] leading-8 text-ink/85">
