@@ -22,6 +22,12 @@ export type Control = {
   question: string;
   tone: Tone;
   published: string | null;
+  /**
+   * When the factual claims were last verified against sources. This space
+   * moves fast enough that a claim true in March can be wrong by September,
+   * so the date is published rather than kept privately.
+   */
+  lastChecked: string;
   summary: string;
   sections: ControlSection[];
 };
@@ -35,6 +41,7 @@ export const CONTROLS: Control[] = [
       "What did the person actually agree to, and can a machine check it before the money moves?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "The checkout protocols record the purchase a buyer is approving and limit the credential that pays for it. They do not record the standing permission the agent was sent out with — what it may buy, from whom, what to do when the item is gone. The card networks are now building exactly that, which is the strongest sign the gap is real.",
     sections: [
@@ -95,6 +102,7 @@ export const CONTROLS: Control[] = [
       "A task that begins inside its limits can wander outside them. Where is the check?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "Most systems validate at the top: the request looks reasonable, so the agent is let loose. But an agent reads the open web, changes plan, and adds up small decisions. The only check that counts is the one immediately before the payment.",
     sections: [
@@ -151,6 +159,7 @@ export const CONTROLS: Control[] = [
       "A request arrives claiming to be an agent shopping for a customer. How does the shop know either half of that is true?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "Identity and permission are different proofs, and it is easy to collapse them into one question. Proving which software sent a request does not prove the buyer told it to make that purchase.",
     sections: [
@@ -209,6 +218,7 @@ export const CONTROLS: Control[] = [
       "An agent reads the open web, and web pages contain words. What stops something it reads from becoming something it obeys?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "This one is not solved and I am not going to write it as though it were. The useful question is not how to stop injected instructions but how much damage one can do when it gets through — which is where the industry guidance has now landed too.",
     sections: [
