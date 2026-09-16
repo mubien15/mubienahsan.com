@@ -172,10 +172,30 @@ export function AgentFlow() {
           </div>
         ) : (
           <p className="mt-5 rounded-xl border border-line bg-paper/60 p-5 text-sm leading-relaxed text-muted">
-            No control here yet. This step is where the other four either pay
-            off or turn out to have been missing.
+            No control sits on this step. It is where the five either pay off or
+            turn out to have been missing.
           </p>
         )}
+
+        <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4">
+          <button
+            onClick={() => setActive(active - 1)}
+            disabled={active === 0}
+            className="text-sm font-medium text-grape hover:underline disabled:cursor-default disabled:text-muted/50 disabled:no-underline"
+          >
+            ← {active === 0 ? "Start" : FLOW_STAGES[active - 1].label}
+          </button>
+          <button
+            onClick={() => setActive(active + 1)}
+            disabled={active === FLOW_STAGES.length - 1}
+            className="text-right text-sm font-medium text-grape hover:underline disabled:cursor-default disabled:text-muted/50 disabled:no-underline"
+          >
+            {active === FLOW_STAGES.length - 1
+              ? "End"
+              : FLOW_STAGES[active + 1].label}{" "}
+            →
+          </button>
+        </div>
       </motion.div>
     </div>
   );
