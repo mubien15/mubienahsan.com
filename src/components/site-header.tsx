@@ -16,8 +16,10 @@ export function SiteHeader() {
     setOpen(false);
   }, [pathname]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (link: { href: string; owns?: string[] }) =>
+    link.href === "/"
+      ? pathname === "/"
+      : [link.href, ...(link.owns ?? [])].some((p) => pathname.startsWith(p));
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
@@ -36,7 +38,7 @@ export function SiteHeader() {
               href={link.href}
               className={cn(
                 "rounded-full px-3.5 py-1.5 text-sm transition-colors",
-                isActive(link.href)
+                isActive(link)
                   ? "bg-accent-soft text-accent-strong"
                   : "text-muted hover:text-ink"
               )}
@@ -87,7 +89,7 @@ export function SiteHeader() {
                 href={link.href}
                 className={cn(
                   "rounded-lg px-3 py-2.5 text-base",
-                  isActive(link.href)
+                  isActive(link)
                     ? "text-accent-strong"
                     : "text-ink hover:bg-sunken"
                 )}
