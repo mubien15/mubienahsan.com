@@ -78,9 +78,6 @@ export function AgentFlow() {
           {FLOW_STAGES.map((item, i) => {
             const selected = i === active;
             const hasControl = Boolean(item.controlSlug);
-            const ref = item.controlSlug
-              ? CONTROLS.find((c) => c.slug === item.controlSlug)?.ref
-              : null;
 
             return (
               <li key={item.id} className="min-w-0">
@@ -113,7 +110,7 @@ export function AgentFlow() {
                             : "border-line bg-paper text-muted group-hover:border-grape/40"
                       )}
                     >
-                      {ref ?? i + 1}
+                      {i + 1}
                     </span>
                   </span>
 

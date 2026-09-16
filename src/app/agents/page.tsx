@@ -78,9 +78,10 @@ export default function AgentsPage() {
             Where the controls sit
           </h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-            A purchase made by an agent passes through seven moments. Five of them
-            need a control. Pick a step to see what happens there, what can go
-            wrong, and which control covers it.
+            A purchase made by an agent passes through seven moments. Five of
+            them need a control, and those are the steps shown in colour. Pick a
+            step to see what happens there, what can go wrong, and which control
+            covers it.
           </p>
         </Reveal>
         <Reveal>
@@ -93,8 +94,10 @@ export default function AgentsPage() {
       <section className="mt-16">
         <h2 className="font-display text-2xl text-ink">The controls</h2>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-          The same four in full, numbered in the order they were written rather
-          than the order a purchase meets them.
+          All five in full. The numbers run in the order the controls were
+          written, which is deliberately not the order above — a purchase runs
+          into them as C1, C4, C3, C5, C2. The steps are the sequence to build
+          in; the numbers are just names.
         </p>
         <Stagger className="mt-6 grid gap-4" inView>
           {PUBLISHED_CONTROLS.map((control) => (
