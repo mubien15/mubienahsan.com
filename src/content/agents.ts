@@ -227,7 +227,7 @@ export const CONTROLS: Control[] = [
         body: [
           "An agent shopping on your behalf reads product pages, reviews, descriptions, and whatever else the open web puts in front of it. Somewhere in that text is a line that says, in effect, ignore what you were told and do this instead.",
           "A person scrolling past sees nothing — the text may be invisible, or buried in a review, or sitting in a page element nobody renders. The agent reads it and treats it as direction.",
-          "The reason this works is structural rather than careless. A model takes everything as one stream of text: your instructions, the page it fetched, the system prompt underneath. There is no reliable way to mark one part as orders and another part as merely information. It is all the same material, and the model has no privileged channel to tell them apart.",
+          "The reason this works is structural rather than careless. The model ultimately has to process both your trusted instructions and the untrusted page it fetched. Unlike ordinary software, it has no reliable security boundary guaranteeing that one will be treated as instructions and the other only as data. Systems can and do put mechanisms around this — delimiters, isolation, instruction hierarchies — but dependable separation remains the open problem.",
           "That is why this is the attack that keeps working. Researchers at Unit 42 and Forcepoint have found it running on live sites, and Forcepoint's April 2026 work includes payloads aimed at moving money.",
         ],
       },
@@ -235,8 +235,8 @@ export const CONTROLS: Control[] = [
         heading: "Why this control is different",
         body: [
           "Every other control here tells you to build something. This one starts by telling you what you cannot build.",
-          "There is no filter that reliably catches injected instructions, and anyone selling you one is selling you something. Retrieval and fine-tuning help with other problems and do not solve this. An OWASP researcher put it plainly this year: prompt injection remains unsolved.",
-          "The industry guidance has moved accordingly. The 2026 OWASP list shifts the job from prevention to containment — from stopping the instruction to limiting what it can accomplish. Five Eyes guidance points the same way, advising incremental deployment with a human present at consequential decisions.",
+          "There is no filter that reliably catches injected instructions, and anyone selling you one is selling you something. Retrieval and fine-tuning can help with other problems, but neither fully mitigates prompt injection. OWASP researcher Ariel Fogel put it plainly in June 2026: prompt injection remains an unsolved architectural problem.",
+          "The security guidance has moved towards containment rather than promises of prevention. OWASP says it is unclear whether foolproof prevention is even possible given how these models work, and frames its recommendations around reducing impact. Microsoft is blunter: assume indirect prompt injection will happen, then limit what happens next. Australian cyber-security guidance published in May 2026 points the same way, recommending human supervision and approval where actions are high-impact or hard to reverse — and saying that call belongs to the people designing the system rather than to the agent.",
           "So the honest question is not how to keep bad instructions out. It is how much damage one can do on the day it gets in. A control that cannot eliminate a risk can still decide how expensive it is, and pretending otherwise is how this sort of writing stops being useful.",
         ],
       },
@@ -244,15 +244,15 @@ export const CONTROLS: Control[] = [
         heading: "What this changes legally",
         body: [
           "Something shifts once a risk is publicly documented, and it is worth naming.",
-          "Where the law asks whether someone behaved reasonably, it tends to care about what was foreseeable. A published attack class, demonstrated on live websites and written up by named research teams, is foreseeable more or less by definition. Not knowing stops being available as a position.",
-          "I would not push that further than it goes. Whether a particular design falls short of reasonable care is fact-specific, varies by jurisdiction, and is not something I can settle here. But the direction is clear enough to plan around: the defensible position is not that you prevented it. It is that you knew, and you built so that it mattered less.",
+          "Once an attack class has been documented on live websites and written up by named security researchers, it becomes much harder to argue the risk was unknowable. That does not by itself establish negligence. Foreseeability, and what precautions a reasonable operator should have taken, stay fact-specific and vary by jurisdiction.",
+          "What the published material does give you is a clear sense of what a careful operator is expected to know. Microsoft’s own 2026 guidance tells organisations to design on the assumption that indirect prompt injection will happen and to put human verification behind risky actions. The defensible position is not that you prevented it. It is that you knew, and you built so that it mattered less.",
         ],
       },
       {
         heading: "What to build",
         body: [
           "Design from the assumption that an injected instruction will eventually get through, and put your effort into what happens next.",
-          "Keep reading and acting apart. The pattern that works is two models rather than one: a trusted model that sees only the buyer’s instruction and produces a plan, and a quarantined model that handles fetched pages and returns data rather than direction. The untrusted content never reaches the part of the system that decides to spend.",
+          "Keep reading and acting apart. One architectural pattern worth knowing uses two models rather than one: a trusted model that sees only the buyer’s instruction and produces a plan, and a quarantined model that handles fetched pages and returns data rather than direction. This does not solve injection. It stops the exposed part of the system from directly wielding the authority to spend, which is a different and more achievable thing.",
           "Cut down what the agent can do at all. Tools scoped to this task, credentials scoped to this purchase, no standing access to anything it does not need today. Worth knowing the limit of this one: least privilege does not stop an attack that misuses a tool the agent legitimately holds. It shrinks the blast radius rather than preventing the blast.",
           "Put a person in front of the irreversible things. Spending above a threshold, anything that cannot be undone, anything outside the pattern of what this buyer normally does. A confirmation step is unfashionable and it is the control most likely to actually save you.",
           "Re-check permission after the agent reads anything it did not control, which is the same point C2 makes from the other direction. The moment it ingests a page is the moment its instructions may have changed.",
@@ -271,7 +271,7 @@ export const CONTROLS: Control[] = [
         heading: "What the rules actually say",
         body: [
           "Nothing binding, and the useful material is guidance rather than law.",
-          "OWASP treats prompt injection as the first item on its list for large language model applications, and its 2026 revision reframes the work around containment rather than prevention. Its prevention guidance and Microsoft’s both converge on layers — architecture, runtime checks at the point of action, and governance above both — rather than one guardrail carrying everything.",
+          "Prompt injection sits at the top of OWASP’s risk list for large language model applications, and has done for three years running. OWASP recommends a set of mitigations rather than claiming any single preventative control, and Microsoft explicitly calls for defence in depth combining probabilistic and deterministic measures. Both converge on layers — architecture, checks at the point of action, and governance above them — rather than one guardrail carrying everything.",
           "No regulation I am aware of requires any of this specifically. But if a dispute ever turns on whether a system was built with reasonable care, published guidance describing a known attack and the expected response is the sort of thing that gets cited.",
         ],
       },
