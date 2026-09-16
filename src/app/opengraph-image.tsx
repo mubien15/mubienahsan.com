@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { logoDataUri } from "@/lib/logo-shapes";
 
 export const alt = "Mubien Ahsan · Learning and building with AI, in public";
 export const size = { width: 1200, height: 630 };
@@ -34,13 +35,11 @@ export default function Image() {
               letterSpacing: 2,
             }}
           >
-            <div
-              style={{
-                width: 14,
-                height: 14,
-                borderRadius: 999,
-                background: "#ee6a3a",
-              }}
+            <img
+              src={logoDataUri("#ee6a3a", 44)}
+              alt=""
+              width={44}
+              height={44}
             />
             MUBIENAHSAN.COM
           </div>
