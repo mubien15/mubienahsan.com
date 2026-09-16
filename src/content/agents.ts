@@ -127,7 +127,7 @@ export const CONTROLS: Control[] = [
         body: [
           "When the law asks whether an agent had permission, what matters is the moment the agent acted, not the moment the instructions were first given. Permission can change, expire, be withdrawn, or simply end once its purpose has been served.",
           "That maps cleanly onto software. A limit checked at the start is a statement about what the agent intended; a limit checked at the point of payment is a statement about what it did. Only the second is worth anything in an argument.",
-          "One wrinkle is worth knowing. Permission ending on your side does not automatically end what a shop may reasonably believe, because a merchant can sometimes still rely on authority that looks like it is still there. Withdrawing permission quietly is not the same as withdrawing it effectively.",
+          "One wrinkle is worth knowing. Permission ending on your side does not automatically end what a shop may reasonably believe, because a merchant can sometimes still rely on authority that looks like it is still there. Withdrawing permission quietly is not the same as withdrawing it effectively, which is the whole of C6.",
           "The timing also matters for the hidden-instruction attack. An injected instruction works precisely by changing the agent's behaviour after it has started, so any check that ran before it read that page is checking a version of the task the attacker has since replaced.",
         ],
       },
@@ -350,6 +350,70 @@ export const CONTROLS: Control[] = [
       },
     ],
   },
+  {
+    slug: "make-stop-mean-stop",
+    ref: "C6",
+    title: "Make stop actually stop",
+    question:
+      "The buyer says cancel. What is still able to spend their money, and for how long?",
+    tone: "grape",
+    published: "September 2026",
+    lastChecked: "16 September 2026",
+    summary:
+      "Every agent product promises a stop button and almost none of them can say how long it takes to work. Withdrawing permission runs on three separate clocks — your agent, the payment, and what the shop is still entitled to believe — and you only control the first one.",
+    sections: [
+      {
+        heading: "What goes wrong",
+        body: [
+          "A buyer changes their mind halfway through and tells the agent to stop. The purchase happens anyway.",
+          "There are several reasons it can happen, and they are independent of each other, which is what makes this hard. The payment order may already have gone. The agent may be holding a credential minted an hour ago that stays valid whatever your database now says. A request may be on the wire, and nothing unsends an HTTP request. And the shop, which is the party about to take the money, may never be told anything at all.",
+          "There is a quieter version. The agent handed part of the job to another agent forty minutes ago, with a copy of its authority. You revoked the first one. The second is still working.",
+          "The thing worth noticing is that none of those failures is a bug. Each is a system behaving exactly as designed, and the design simply never had a defined answer for stop.",
+          "So the revocation that matters is not the row you changed in your own database. It is whether the purchase happens.",
+        ],
+      },
+      {
+        heading: "Three clocks, and you control one of them",
+        body: [
+          "When permission is withdrawn, three different things end at three different times, and it is worth separating them because systems tend to be built as though there were only one.",
+          "The first is the authority between you and your agent. As a general matter that ends the moment you say so — and it is the least useful of the three, because it governs the one relationship where nobody is about to take your money.",
+          "The second is the payment. Payment law fixes a point after which an instruction can no longer be pulled back. Under the EU's payment services rules, a payment order generally cannot be revoked once it has been received by the payer's provider, with narrower windows for future-dated payments and direct debits. Card payments have their own version of the same shape, where an authorisation can be reversed up until the point it is captured. In both cases the deadline is set by the plumbing rather than by you, and it is usually earlier than people expect.",
+          "The third is what the merchant is still entitled to believe. This is C2's wrinkle given a control of its own. Ending your agent's actual authority does not automatically end the appearance of it, and a third party who does not know the arrangement has been withdrawn may still be able to rely on what it looked like. That clock does not stop when you act. It stops when the other side finds out.",
+          "Line them up and the result is uncomfortable. Revocation is instantaneous in the place it matters least, fixed by someone else's deadline in the middle, and slowest exactly where the loss lands. A stop button that only does the first of the three is honest marketing for about one second.",
+          "One more thing is worth knowing before anyone promises a user an unconditional cancel. Not all authority is revocable at will. Where authority has been given as security, or is bound up with an interest of the person holding it, it may not be freely withdrawable at all. That is an edge case for ordinary shopping and much less of one for anything resembling a standing arrangement, so it is worth knowing which kind you have built.",
+        ],
+      },
+      {
+        heading: "What to build",
+        body: [
+          "Do not hand the agent a credential you cannot recall. A self-contained token — one that a recipient can validate on its own, without asking anybody — cannot be revoked, only outlived. Issue a one-hour token and you have decided, in advance, that stop can take up to an hour. Short lifetimes and a check against live authority are the whole of the fix, and the cost is a lookup.",
+          "Make revocation a condition checked in front of the money, not a message sent to the agent. This is the same architecture as C2, for the same reason: an agent that has been told to stop is an agent you are trusting to comply, and the whole premise of C4 is that its instructions are not reliably yours. The check that counts reads the current state of the mandate at the point of payment.",
+          "Tell the counterparty, not only the agent. This is the single step that closes the third clock, and it is the one almost everyone skips, because it sits outside the happy path and nobody is asking for it. Anyone the agent has been dealing with under this mandate should be told it has ended.",
+          "Decide in advance what happens to work already in flight, and write it into the mandate alongside everything else in C1. There are only three answers — let it finish, abandon it, or reverse it — and the right one differs by category. A booking that can be cancelled free for an hour is not a custom order already in production. Choosing at the moment of panic means choosing badly.",
+          "Make revocation travel down the chain. If your agent can hand work to another agent, then withdrawing permission has to reach the second one too. I have not found a protocol in this space that describes how that propagation is supposed to work, which is a reason to keep delegation chains short and explicit rather than a reason to assume somebody has solved it.",
+          "Fail closed on doubt. If the system cannot currently tell whether a mandate is live, it does not spend. That is the same rule as C2 and it matters more here, because revocation tends to be attempted exactly when something has already gone wrong.",
+        ],
+      },
+      {
+        heading: "What proves it worked",
+        body: [
+          "One number does most of the work: the gap between when the buyer said stop and when the last thing the agent could still do actually stopped. Revoked at 14:02, final action at 14:07, gap five minutes. That number is the control, and if nobody has ever measured it, it is not bounded — it is just unknown.",
+          "Alongside it: every attempt refused after revocation and what was attempted, and evidence that the counterparty was told, with the time.",
+          "The test is a rehearsal. Revoke a real mandate mid-task in a system you control and measure what happens. Almost nobody does this, which is why almost nobody knows their own number.",
+        ],
+      },
+      {
+        heading: "What the rules actually say",
+        body: [
+          "More concrete than most of this set, because payment law has had to answer the question of when an instruction becomes final since long before agents existed.",
+          "The EU's payment services framework sets the general rule that a payment order cannot be revoked once received by the payer's provider, along with the narrower exceptions for future-dated and direct debit payments. Card network rules handle the same problem through the gap between authorisation and capture. Neither was written with an agent in mind, and neither needs to be rewritten for this control to bind: the deadline applies whoever pressed the button.",
+          "The EU's payments framework is itself being replaced. Co-legislators reached political agreement on the successor package, with final texts settled in April 2026. As of September 2026 my understanding is that it has not yet become applicable law, so the existing rules are still the ones to design against — but this is the sort of claim that goes stale quickly, and the date at the top of this page is doing real work.",
+          "On the agency side there is no statute to point at, only the ordinary principle that ending an agent's authority is one thing and ending the impression of it is another. That principle is old, well settled, and almost never reflected in a product's cancel flow.",
+          "Nothing I am aware of requires a stop button of any particular speed, or requires anyone to publish how long theirs takes. Which is worth sitting with, because stop is the feature most likely to be promised in a marketing page and least likely to have been measured.",
+        ],
+      },
+    ],
+  },
 ];
 
 export const PUBLISHED_CONTROLS = CONTROLS.filter((c) => c.published);
@@ -373,6 +437,18 @@ export type FlowStage = {
   risk: string;
   /** The control that covers this stage, if one is published yet. */
   controlSlug: string | null;
+};
+
+/**
+ * Some controls do not sit on a step. Revocation can land at any point on the
+ * line above, which is most of what makes it hard, so the diagram shows it
+ * running underneath rather than as another dot.
+ */
+export const FLOW_OVERLAY = {
+  label: "And at any point: the buyer says stop",
+  moment:
+    "Withdrawing permission runs on three clocks — the agent, the payment, and what the shop is still entitled to believe — and only the first one stops when you say so.",
+  controlSlug: "make-stop-mean-stop",
 };
 
 export const FLOW_STAGES: FlowStage[] = [
