@@ -31,7 +31,7 @@ export default function AgentsPage() {
             The Agentic Commerce Protocol, published in 2025, sets out how an
             agent finishes a purchase: the cart, the checkout, and a card
             credential limited to one use, a maximum amount and an expiry. It
-            works, and a good deal of commercial tooling now sits on top of it.
+            works, and commercial tooling now sits on top of it.
           </p>
         </Reveal>
         <Reveal>

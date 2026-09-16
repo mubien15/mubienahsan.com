@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { Eyebrow, Pill } from "@/components/ui";
 import { Reveal } from "@/components/motion";
+import { RichText } from "@/components/glossary-term";
+import { ThreeClocks } from "@/components/three-clocks";
 import {
   CONTROLS,
   FLOW_STAGES,
@@ -124,9 +126,12 @@ export default async function ControlPage({
               </h2>
               <div className="mt-4 space-y-4 text-[1.05rem] leading-8 text-ink/85">
                 {section.body.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
+                  <p key={i}>
+                    <RichText text={paragraph} />
+                  </p>
                 ))}
               </div>
+              {section.diagram === "three-clocks" ? <ThreeClocks /> : null}
             </section>
           </Reveal>
         ))}

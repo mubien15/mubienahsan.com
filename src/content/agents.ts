@@ -15,10 +15,48 @@ import type { Tone } from "@/components/ui";
   document's scope rather than a failing of whoever wrote it.
 */
 
+/**
+ * Terms a reader may not have met, defined once and shown on click.
+ *
+ * Nothing here is a definition of law — each is a plain-language gloss so an
+ * engineer can read the legal paragraphs and a lawyer can read the technical
+ * ones. Mark a term in body text as [[term]] and it renders as a button.
+ */
+export const GLOSSARY: Record<string, string> = {
+  principal:
+    "The person an agent acts for. If you send an agent shopping, you are the principal and it is the agent.",
+  "actual authority":
+    "What the principal actually permitted the agent to do, either spelled out or reasonably implied from what was said.",
+  "apparent authority":
+    "What a third party, such as a shop, may reasonably believe the agent was permitted to do — based on something the principal did, not on the agent's own say-so. It can outlast actual authority.",
+  ratification:
+    "Approving an act after it has happened, sometimes by staying silent once you know about it. It can turn an unauthorised purchase into an authorised one.",
+  "breach of warranty of authority":
+    "The claim available to someone who dealt with an agent on the strength of authority the agent did not actually have.",
+  "power given as security":
+    "Authority granted to protect an interest of the person holding it, rather than for the principal's convenience. Historically called a power coupled with an interest, and unlike ordinary authority it may not be freely revocable.",
+  mandate:
+    "The record of what the agent was permitted to buy: amount, scope, duration, and what to do when the exact thing is unavailable. C1 is about capturing it.",
+  "prompt injection":
+    "Text placed where an agent will read it, written so the agent treats it as an instruction rather than as content. Indirect prompt injection is the version planted on a page the agent fetches.",
+  "self-contained token":
+    "A credential a recipient can validate on its own, without asking the issuer. Convenient, and the reason revocation is hard: there is nobody to ask whether it has been withdrawn.",
+  "fail closed":
+    "When a check cannot run, refuse the action rather than allow it. The opposite, failing open, breaks in the attacker's favour.",
+  "least privilege":
+    "Give the agent only the access this task needs, for as long as it needs it. It limits the damage of a successful attack rather than preventing one.",
+  "web bot auth":
+    "A proposal for agents to sign the web requests they send, so a site can check which software is calling. It answers who the agent is, and says nothing about who authorised it.",
+  "delegated payment credential":
+    "A payment method minted for one specific use, capped at an amount and an expiry, rather than a card number that works anywhere.",
+};
+
 export type ControlSection = {
   heading: string;
   /** Paragraphs. Kept as plain strings so the content stays readable here. */
   body: string[];
+  /** Optional figure rendered under this section's prose. */
+  diagram?: "three-clocks";
 };
 
 export type Control = {
@@ -63,11 +101,11 @@ export const CONTROLS: Control[] = [
       {
         heading: "The law already has a name for this",
         body: [
-          "It is an old problem in new clothes. When one person acts for another, the law calls them an agent, and it calls the person they act for the principal. It has spent centuries working out who is responsible for what.",
+          "It is an old problem in new clothes. When one person acts for another, the law calls them an agent, and it calls the person they act for the [[principal]]. It has spent centuries working out who is responsible for what.",
           "Whether an AI counts as the agent in that legal sense is not settled — it might be the software, it might be the company that built it. Nothing here assumes an answer. But the questions agency law asks are the right questions, and there are three of them.",
-          "First: what was the agent actually allowed to do? Permission can be spelled out or reasonably implied, so a vague instruction does not leave an agent with nothing to work from. It also does not hand over a blank cheque. “Buy me a laptop” is not permission to buy a Ferrari, and the gap between the two is not filled by whatever the agent guesses you would have wanted.",
-          "Second: can the shop rely on it? Sometimes. If a seller reasonably believed the agent had permission, and that belief traces back to something the buyer did, the seller may be protected. But that is the hard part, not the easy part. Does handing an agent your card details tell a merchant it can buy anything? Does using a particular platform? Nobody has answered that, and these disputes will have to.",
-          "Third: what if you find out later and say nothing? Staying quiet can count as agreeing after the fact, though not automatically. It usually turns on whether you knew what had happened, and on whether a reasonable person would read your silence as approval. That matters a great deal when the first you hear of a purchase is a statement three weeks later.",
+          "First: what was the agent actually allowed to do? [[Actual authority]] can be spelled out or reasonably implied, so a vague instruction does not leave an agent with nothing to work from. It also does not hand over a blank cheque. “Buy me a laptop” is not permission to buy a Ferrari, and the gap between the two is not filled by whatever the agent guesses you would have wanted.",
+          "Second: can the shop rely on it? This is [[apparent authority]]. If a seller reasonably believed the agent had permission, and that belief traces back to something the buyer did, the seller may be protected. But that is the hard part, not the easy part. Does handing an agent your card details tell a merchant it can buy anything? Does using a particular platform? Nobody has answered that, and these disputes will have to.",
+          "Third: what if you find out later and say nothing? This is [[ratification]], and staying quiet can count as agreeing after the fact, though not automatically. It usually turns on whether you knew what had happened, and on whether a reasonable person would read your silence as approval. That matters a great deal when the first you hear of a purchase is a statement three weeks later.",
         ],
       },
       {
@@ -77,7 +115,7 @@ export const CONTROLS: Control[] = [
           "At a minimum it should say: the most that can be spent in total, what kinds of things or which shops are in scope, how long the permission lasts, whether it is good for one purchase or many, and what the agent should do when the exact thing is unavailable.",
           "That last one matters more than it sounds. Substitution is where a helpful agent turns into an unauthorised purchase. Out of stock, so it bought the next size up. Sold out, so it bought a similar model at twice the price. Every one of those is a decision the buyer never made.",
           "Build the permission from what the buyer said, and then have the buyer confirm it. An agent that works out its own permission from a vague sentence has not been authorised — it has guessed, and the guess is what gets argued about later.",
-          "The Agentic Commerce Protocol, the open specification for agent checkout, already limits the payment credential to one use, a maximum amount and an expiry, based on the checkout the buyer has just approved. That is the right instinct, and more than critics usually give it credit for. What the specification does not describe is what the agent was allowed to go looking for before any checkout existed — which is a boundary on its scope rather than a defect, because the document is about finishing a purchase and it does that job well.",
+          "The Agentic Commerce Protocol, the open specification for agent checkout, already limits the [[delegated payment credential]] to one use, a maximum amount and an expiry, based on the checkout the buyer has just approved. That is the right instinct, and more than critics usually give it credit for. What the specification does not describe is what the agent was allowed to go looking for before any checkout existed — which is a boundary on its scope rather than a defect, because the document is about finishing a purchase and it does that job well.",
         ],
       },
       {
@@ -137,7 +175,7 @@ export const CONTROLS: Control[] = [
           "Check against the recorded permission immediately before each purchase completes, rather than when the task is created.",
           "Track the running total across the whole task, not each purchase in isolation. A limit that applies only per transaction is not a limit — it is a suggestion that resets.",
           "Re-check after any step where the agent has read something it did not control: a web page, a review, a product description, another agent's output. That is the moment its instructions may have changed.",
-          "Fail closed. If the check cannot run, because the permission record is unreachable or the running total is unknown, the purchase does not go through. Systems that fail open under load fail open at exactly the moment an attacker wants them to.",
+          "[[Fail closed]]. If the check cannot run, because the permission record is unreachable or the running total is unknown, the purchase does not go through. Systems that fail open under load fail open at exactly the moment an attacker wants them to.",
           "Put the check somewhere the agent cannot reason its way around. If the model itself decides whether it is within its limits, the limit is a suggestion written in a prompt — and prompts are precisely what injected instructions overwrite.",
         ],
       },
@@ -182,7 +220,7 @@ export const CONTROLS: Control[] = [
         heading: "The law already has a name for this",
         body: [
           "In the ordinary world, someone dealing with an agent carries some of the risk of checking. If a stranger turns up saying they buy on behalf of a company, a careful supplier asks for something: a purchase order, a letter, a phone call to someone known. Sensible commerce has always involved verifying the claim rather than accepting it.",
-          "There is also a doctrine covering someone who claims authority they do not have. An agent who claims permission it was never given may be liable to a third party who relied on that claim, and the law calls this breach of warranty of authority.",
+          "There is also a doctrine covering someone who claims authority they do not have. An agent who claims permission it was never given may be liable to a third party who relied on that claim, and the law calls this [[breach of warranty of authority]].",
           "That remedy becomes awkward when the agent is software. The software is not the obvious legal person to sue, so liability would have to attach, if at all, to a person or company behind the system. Which one — the buyer, the agent operator, the platform, the model provider, someone else — is not something I would treat as settled, and it may well depend on the architecture and the contracts as much as on the doctrine.",
           "The useful takeaway is narrower than a legal conclusion. Verification has always been the third party's job as well as the principal's, so building a system in which the merchant has no way to verify anything is not a neutral choice.",
         ],
@@ -191,7 +229,7 @@ export const CONTROLS: Control[] = [
         heading: "What to build",
         body: [
           "Treat the two claims separately, because they have different answers.",
-          "For who the agent is, sign the requests. Web Bot Auth does this with cryptographic signatures on the requests themselves, built on an existing standard for signing them (RFC 9421). A signed request carries three headers: a Signature header, a Signature-Agent header pointing at a directory of public keys, and a Signature-Input header saying what was signed.",
+          "For who the agent is, sign the requests. [[Web Bot Auth]] does this with cryptographic signatures on the requests themselves, built on an existing standard for signing them (RFC 9421). A signed request carries three headers: a Signature header, a Signature-Agent header pointing at a directory of public keys, and a Signature-Input header saying what was signed.",
           "It rests on two drafts at the IETF — the body that standardises internet protocols — one covering the directory and one the protocol itself, so it is a live proposal rather than a settled standard. It is not theoretical either. OpenAI signs the outbound requests from ChatGPT's cloud browser this way and publishes its verification keys at a well-known directory. Cloudflare put forward a registry format in February 2026, and that registry work has since continued as a draft authored jointly with Amazon.",
           "For who the agent acts for, do not accept the agent's word. The delegation has to be evidenced by something the buyer produced, such as a signed mandate travelling with the request, rather than asserted by the party that benefits from being believed. An agent vouching for its own authority is the oldest bad idea in this space.",
           "Verify against a directory you actually trust, at the moment of the request. A key you fetched once and cached forever is a key you cannot revoke.",
@@ -242,7 +280,7 @@ export const CONTROLS: Control[] = [
         heading: "Why this control is different",
         body: [
           "Every other control here tells you to build something. This one starts by telling you what you cannot build.",
-          "There is no filter that reliably catches injected instructions, and anyone selling you one is selling you something. Retrieval and fine-tuning can help with other problems, but neither fully mitigates prompt injection. Ariel Fogel, a researcher at OWASP — the non-profit whose security risk lists the industry treats as a baseline — put it plainly in June 2026: prompt injection remains an unsolved architectural problem.",
+          "There is no filter that reliably catches injected instructions, and anyone selling you one is selling you something. Retrieval and fine-tuning can help with other problems, but neither fully mitigates [[prompt injection]]. Ariel Fogel, a researcher at OWASP — the non-profit whose security risk lists the industry treats as a baseline — put it plainly in June 2026: prompt injection remains an unsolved architectural problem.",
           "The security guidance has moved towards containment rather than promises of prevention. OWASP says it is unclear whether foolproof prevention is even possible, given how these models work, and frames its recommendations around reducing impact. Microsoft is blunter, telling organisations to assume indirect prompt injection will happen and then limit what happens next. Australian cyber-security guidance published in May 2026 points the same way, recommending human supervision and approval where actions are high-impact or hard to reverse, and saying that this call belongs to the people designing the system rather than to the agent.",
           "So the honest question is not how to keep bad instructions out. It is how much damage one can do on the day it gets in. A control that cannot eliminate a risk can still decide how expensive that risk is, and pretending otherwise is how this sort of writing stops being useful.",
         ],
@@ -260,7 +298,7 @@ export const CONTROLS: Control[] = [
         body: [
           "Design from the assumption that an injected instruction will eventually get through, and put your effort into what happens next.",
           "Keep reading and acting apart. One architectural pattern worth knowing uses two models rather than one: a trusted model that sees only the buyer's instruction and produces a plan, and a quarantined model that handles fetched pages and returns data rather than direction. This does not solve injection. What it does is stop the exposed part of the system from directly wielding the authority to spend, which is a different and more achievable thing.",
-          "Cut down what the agent can do at all: tools scoped to this task, credentials scoped to this purchase, and no standing access to anything it does not need today. The limit of this one is worth knowing too. Least privilege does not stop an attack that misuses a tool the agent legitimately holds, so it shrinks the blast radius rather than preventing the blast.",
+          "Cut down what the agent can do at all — [[least privilege]]: tools scoped to this task, credentials scoped to this purchase, and no standing access to anything it does not need today. The limit of this one is worth knowing too. Least privilege does not stop an attack that misuses a tool the agent legitimately holds, so it shrinks the blast radius rather than preventing the blast.",
           "Put a person in front of the irreversible things — spending above a threshold, anything that cannot be undone, anything outside the pattern of what this buyer normally does. A confirmation step is unfashionable, and it is the control most likely to actually save you.",
           "Re-check permission after the agent reads anything it did not control, which is the same point C2 makes from the other direction. The moment it ingests a page is the moment its instructions may have changed.",
           "Record what it read before it decided. Not for the model's benefit, but for yours: when something goes wrong, you will need to know which content was in front of it.",
@@ -278,7 +316,7 @@ export const CONTROLS: Control[] = [
         heading: "What the rules actually say",
         body: [
           "Nothing binding, and the useful material is guidance rather than law.",
-          "Prompt injection sits at the top of OWASP's risk list for large language model applications, and has done for three years running. OWASP recommends a set of mitigations rather than claiming any single preventative control, and Microsoft explicitly calls for defence in depth, combining probabilistic and deterministic measures. Both converge on layers — architecture, checks at the point of action, and governance above them — rather than one guardrail carrying everything.",
+          "Prompt injection sits at the top of OWASP's risk list for large language model applications. OWASP recommends a set of mitigations rather than claiming any single preventative control, and Microsoft explicitly calls for defence in depth, combining probabilistic and deterministic measures. Both converge on layers — architecture, checks at the point of action, and governance above them — rather than one guardrail carrying everything.",
           "No regulation I am aware of requires any of this specifically. But if a dispute ever turns on whether a system was built with reasonable care, published guidance describing a known attack and the expected response is exactly the sort of thing that gets cited.",
         ],
       },
@@ -311,7 +349,7 @@ export const CONTROLS: Control[] = [
           "The other controls ask what the agent was allowed to do. This one asks a stranger question: when the agent is the only thing that read the page, which of the two of you was told?",
           "There is a great deal of law about what has to be on the screen. Under the EU Consumer Rights Directive, a trader must make the consumer aware of the main characteristics, the total price and the relevant duration directly before the order is placed, and the ordering button itself has to be labelled unambiguously enough that the consumer acknowledges an obligation to pay. The Court of Justice read that strictly in Fuhrmann-2 (C-249/21): what the button says is what counts. In the United Kingdom, the total price including every mandatory fee has to be given up front in an invitation to purchase, which has applied since 6 April 2025.",
           "Ontario has the most useful wording of the three for this argument, and it has been sitting in a statute since 2002. Section 38 of the Consumer Protection Act, 2002 requires a supplier to give the consumer an express opportunity to accept or decline an internet agreement, and to correct errors, immediately before entering into it. It also requires the disclosure to be made in a way that ensures the consumer has accessed the information and is able to retain and print it. Not made available to them. Accessed. The Consumer Protection Act, 2023 will replace it, is not yet in force, and keeps the same idea.",
-          "Now put an agent in the middle of that requirement. The page renders, the shopping agent accesses the full disclosure, a model compresses it, and a human reads the compression. Has the consumer accessed the information? Ontario law does not appear to answer that, and I am not going to pretend it does. What is striking is that a provision drafted in 2002, for a web nobody expected software to shop on, frames the question this precisely.",
+          "Now put an agent in the middle of that requirement. The page renders, the shopping agent accesses the full disclosure, a model compresses it, and a human reads the compression. Has the consumer accessed the information? Ontario law does not appear to answer that, and I am not going to pretend it does. What is striking is that a provision from 2002, written for a web nobody expected software to shop on, frames the question this precisely.",
           "That is the pattern across all three. Each describes something a person is supposed to see, and something a person is supposed to do about it, and none of them contemplates that the seeing and the doing might be carried out by software the buyer switched on that morning. So the question is who the law thinks is doing the seeing.",
           "Agency law offers a route towards an answer, and it is worth being exact about how far that route actually goes, because this is easy to overclaim.",
           "What is established is that agency law can impute to a principal knowledge an agent acquired within the scope of the agency, subject to limits and exceptions. What is not established is that an AI shopping agent is an agent in that sense for every purpose, which is the same open question C1 flags. And less established again is that a statutory disclosure duty, written to inform a natural person, is discharged because software acting for that person ingested the text.",
@@ -321,7 +359,7 @@ export const CONTROLS: Control[] = [
       {
         heading: "What to build",
         body: [
-          "Decide in advance which purchases a person has to see before they happen, and write that rule down alongside the permission from C1. Not every purchase: an agent you have to supervise line by line is a browser with extra steps. The useful triggers are the same three as in C4 — spending above a threshold, anything that cannot be undone, and anything outside the pattern of what this buyer normally does.",
+          "Decide in advance which purchases a person has to see before they happen, and write that rule down alongside the [[mandate]] from C1. Not every purchase: an agent you have to supervise line by line is a browser with extra steps. The useful triggers are the same three as in C4 — spending above a threshold, anything that cannot be undone, and anything outside the pattern of what this buyer normally does.",
           "When you do show something, show the commitment rather than a description of it. At a minimum that means the total with everything mandatory included, every line item rather than a subtotal, whether it renews, whether it can be cancelled and by when, and who the seller actually is.",
           "Mark what the buyer did not ask for. If you build only one field, build this one: which items came from the buyer's instruction, and which the agent chose on their behalf. Substitutions and additions are exactly where an unauthorised purchase lives, and they are invisible in a total.",
           "Do not let the model write the confirmation. If the agent generates the text the buyer approves, then an injected instruction can generate that text too, and the screen becomes part of the attack surface rather than a check on it. Render it from the transaction data, deterministically, the same way every time.",
@@ -374,6 +412,7 @@ export const CONTROLS: Control[] = [
       },
       {
         heading: "Three clocks, and you control one of them",
+        diagram: "three-clocks",
         body: [
           "When permission is withdrawn, three different things end at three different times, and it is worth separating them because systems tend to be built as though there were only one.",
           "The first is the authority between you and your agent. As a general matter that ends the moment you say so — and it is the least useful of the three, because it governs the one relationship where nobody is about to take your money.",
@@ -381,13 +420,13 @@ export const CONTROLS: Control[] = [
           "Card payments have their own version of the same shape. There is typically a separate authorisation stage before clearing and presentment, and scheme rules provide mechanisms for reversing an authorisation when a transaction is cancelled or changed. The exact window depends on the scheme and on the transaction, so this is a clock rather than a single deadline. Either way it is set by the plumbing rather than by you, and it closes earlier than most people expect.",
           "The third is what the merchant is still entitled to believe. This is C2's wrinkle given a control of its own. Ending your agent's actual authority does not by itself end the appearance of it. The appearance ends when it is no longer reasonable for the third party to believe the agent still has authority — which is to say it does not stop when you act, it stops when the other side has reason to know.",
           "Line them up and the result is uncomfortable. Revocation is instantaneous in the place it matters least, fixed by someone else's deadline in the middle, and slowest exactly where the loss lands. A stop button that only does the first of the three is honest marketing for about one second.",
-          "One more thing is worth knowing before anyone promises a user an unconditional cancel. Ordinary agency authority is generally revocable, but there are narrow exceptions — notably a power given as security, historically described as a power coupled with an interest. The bar is higher than simply calling something irrevocable, and higher than the agent merely having an economic stake in going through with it. For a consumer shopping agent this is genuinely an edge case. It gets more interesting wherever authority is wrapped up in collateral, financing or an escrow-like arrangement, so it is worth knowing which kind you have built.",
+          "One more thing is worth knowing before anyone promises a user an unconditional cancel. Ordinary agency authority is generally revocable, but there are narrow exceptions — notably a [[power given as security]], historically described as a power coupled with an interest. The bar is higher than simply calling something irrevocable, and higher than the agent merely having an economic stake in going through with it. For a consumer shopping agent this is genuinely an edge case. It gets more interesting wherever authority is wrapped up in collateral, financing or an escrow-like arrangement, so it is worth knowing which kind you have built.",
         ],
       },
       {
         heading: "What to build",
         body: [
-          "Do not hand the agent a credential with no way to call it back. A self-contained token — one a recipient can validate on its own, without asking anybody — has no built-in kill switch. Unless the parties checking it consult external revocation state, or have that state pushed to them, it stays usable until it expires. Issue a one-hour token and you have decided in advance that stop may take up to an hour.",
+          "Do not hand the agent a credential with no way to call it back. A [[self-contained token]] — one a recipient can validate on its own, without asking anybody — has no built-in kill switch. Unless the parties checking it consult external revocation state, or have that state pushed to them, it stays usable until it expires. Issue a one-hour token and you have decided in advance that stop may take up to an hour.",
           "This is not a niche observation. RFC 7009, the standard for revoking these tokens, says as much: immediate revocation of a self-contained token needs extra communication with the back end, short lifetimes are the alternative way to bound the exposure, and revocation can propagate with a delay that implementations are told to keep small. Short lifetimes and a check against live authority are most of the fix, and the cost is a lookup.",
           "Make revocation a condition checked in front of the money, not a message sent to the agent. This is the same architecture as C2, for the same reason: an agent that has been told to stop is an agent you are trusting to comply, and the whole premise of C4 is that its instructions are not reliably yours. The check that counts reads the current state of the mandate at the point of payment.",
           "Tell the counterparty, not only the agent. This is the single step that closes the third clock, and it is the one almost everyone skips, because it sits outside the happy path and nobody is asking for it. Anyone the agent has been dealing with under this mandate should be told it has ended.",
