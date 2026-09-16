@@ -206,9 +206,9 @@ export default function Home() {
                     Agents that spend
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    AI agents are starting to transact for people. The payment
-                    layer is solved; nothing records what the buyer actually
-                    authorised. Controls for that gap.
+                    AI agents are starting to transact for people. The protocols
+                    constrain the checkout; nothing records the authority the
+                    agent was sent out with. Controls for that gap.
                   </span>
                   <span className="mt-3 text-sm font-medium text-grape">
                     Read the work →
