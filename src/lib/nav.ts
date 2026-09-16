@@ -1,9 +1,15 @@
-export type NavLink = { href: string; label: string };
+export type NavLink = {
+  href: string;
+  label: string;
+  /** Extra path prefixes this item should light up for, e.g. /research owns /agents. */
+  owns?: string[];
+};
 
 export const NAV_LINKS: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
   { href: "/projects", label: "Projects" },
+  { href: "/research", label: "Research", owns: ["/agents"] },
   { href: "/library", label: "Library" },
   { href: "/about", label: "About" },
 ];

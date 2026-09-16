@@ -15,6 +15,13 @@ export const metadata: Metadata = {
 export default function AgentsPage() {
   return (
     <Container className="py-16 sm:py-20">
+      <Link
+        href="/research"
+        className="text-sm font-medium text-muted hover:text-grape"
+      >
+        ← Research
+      </Link>
+      <div className="mt-6" />
       <PageIntro
         eyebrow="Agents that spend"
         title="The protocols settled how an agent pays. Not what it was allowed to buy."
