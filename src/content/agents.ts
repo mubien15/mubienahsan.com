@@ -36,7 +36,7 @@ export const CONTROLS: Control[] = [
     tone: "grape",
     published: "September 2026",
     summary:
-      "The protocols record the checkout a buyer is completing and limit the card credential that pays for it. What nobody writes down is the standing permission the agent was sent out with — what it may buy, from whom, and what to do when the thing is out of stock. That is where the arguments start.",
+      "The checkout protocols record the purchase a buyer is approving and limit the credential that pays for it. They do not record the standing permission the agent was sent out with — what it may buy, from whom, what to do when the item is gone. The card networks are now building exactly that, which is the strongest sign the gap is real.",
     sections: [
       {
         heading: "What goes wrong",
@@ -81,6 +81,7 @@ export const CONTROLS: Control[] = [
           "Less than people claim, and pretending otherwise is how this kind of writing loses its readers.",
           "The EU AI Act's transparency rules under Article 50 have applied since 2 August 2026. They are about whether a person knows they are dealing with an AI, not about what it may buy. The AI Omnibus came into force on 27 July 2026 and moved the high-risk rules for Annex III systems to 2 December 2027. That regime is not a general agentic-commerce regime and does not automatically cover ordinary shopping agents.",
           "Card network rules on authorisation, disputes and chargebacks still decide who absorbs a loss, and they are the most immediately relevant rules here. The networks are also not standing still: Visa, Mastercard and others are building controls specific to agents — who the agent represents, what it may do, under what conditions — and in September 2026 Visa, Mastercard and Ant International announced work towards a shared agent-trust framework.",
+          "Worth noting against my own argument: the card networks are building this. Mastercard's Agent Pay binds a token at provisioning to a specific agent and to the cardholder's limits — spend ceilings, merchant categories, time windows, recurring rules — which is close to the structure described above. That does not weaken the case for recording permission. It is the clearest evidence available that the gap is real, and it is covered properly in C3.",
           "I am not aware of a general legal requirement to record permission the way this describes. Agency principles and card network rules will settle these arguments long before any dedicated law does, which is a reason to build it now rather than wait to be told.",
         ],
       },
@@ -138,6 +139,64 @@ export const CONTROLS: Control[] = [
         body: [
           "Nothing specific, yet — and this control is mostly about engineering discipline rather than regulation.",
           "The closest thing is where the card networks are heading. Visa describes agent tokens bound to context — who the agent represents, what it may do, under what conditions — and says this lets it verify an agent's authority to start a transaction. That suggests authority has to be checked against the purchase as it happens, not only when the agent was first instructed. A design that checks at task creation and nowhere else would not meet that bar.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "prove-who-it-acts-for",
+    ref: "C3",
+    title: "Make the agent prove who it is, and who it acts for",
+    question:
+      "A request arrives claiming to be an agent shopping for a customer. How does the shop know either half of that is true?",
+    tone: "grape",
+    published: "September 2026",
+    summary:
+      "Identity and permission are different proofs, and it is easy to collapse them into one question. Proving which software sent a request does not prove the buyer told it to make that purchase.",
+    sections: [
+      {
+        heading: "What goes wrong",
+        body: [
+          "A request arrives at a shop. It looks like a browser. It might be a person, an agent doing the shopping for a real customer, or a scraper wearing the same costume. The shop cannot tell.",
+          "The usual signals are all forgeable. A user-agent string is a text field anyone can type. Behaviour patterns are a guess. IP ranges move. So merchants end up choosing between blocking agents and losing genuine customers, or letting everything through and eating the fraud. Both are defaults dressed up as decisions.",
+          "There is a second problem hiding inside the first, and it is easy to miss because the two questions sound alike. Suppose the shop does know the request genuinely comes from a well-known agent platform. That tells it which software is calling. It says nothing about whether the buyer told that software to make this purchase.",
+          "Amazon puts it plainly in its own documentation: verification confirms a request came from Bedrock AgentCore, and the site still decides what to allow — a cryptographically verified agent can still be blocked. A valid signature proves this really is Agent X. It does not prove a person authorised Agent X to buy this. Two different proofs: identity, and delegation.",
+        ],
+      },
+      {
+        heading: "The law already has a name for this",
+        body: [
+          "In the ordinary world, someone dealing with an agent carries some of the risk of checking. If a stranger turns up saying they buy on behalf of a company, a careful supplier asks for something: a purchase order, a letter, a phone call to someone known. Sensible commerce has always involved verifying the claim rather than accepting it.",
+          "There is also a doctrine covering someone who claims authority they do not have. An agent who claims permission it was never given may be liable to a third party who relied on that claim — the law calls this breach of warranty of authority.",
+          "That remedy becomes awkward when the agent is software. The software is not the obvious legal person to sue, so liability would have to attach, if at all, to a person or company behind the system. Which one — the buyer, the agent operator, the platform, the model provider, someone else — is not something I would treat as settled, and it may well depend on the architecture and the contracts as much as on the doctrine.",
+          "The useful takeaway is narrower than a legal conclusion. Verification has always been the third party's job as well as the principal's, and building a system where the merchant has no way to verify anything is not a neutral choice.",
+        ],
+      },
+      {
+        heading: "What to build",
+        body: [
+          "Treat the two claims separately, because they have different answers.",
+          "For who the agent is, sign the requests. Web Bot Auth does this with cryptographic signatures on HTTP messages, built on RFC 9421: a Signature header, a Signature-Agent header pointing at a directory of public keys, and a Signature-Input header saying what was signed. It rests on two IETF drafts — one for the directory, one for the protocol — so it is a live proposal rather than a settled standard. It is also not theoretical. OpenAI signs the outbound requests from ChatGPT's cloud browser this way and publishes its verification keys at a well-known directory. Cloudflare put forward a registry format in February 2026, and the registry work has since continued as an IETF draft authored jointly with Amazon.",
+          "For who the agent acts for, do not accept the agent's word. The delegation has to be evidenced by something the buyer produced — a signed mandate travelling with the request — rather than asserted by the party that benefits from being believed. An agent vouching for its own authority is the oldest bad idea in this space.",
+          "Verify against a directory you actually trust, at the moment of the request. A key you fetched once and cached forever is a key you cannot revoke.",
+          "Match strictness to stakes. Browsing on an unverified claim is fine. Spending money on one is not. Fail closed where value moves, and degrade gracefully everywhere else, or you will have built a system that quietly blocks customers.",
+        ],
+      },
+      {
+        heading: "What proves it worked",
+        body: [
+          "For each request that mattered: what identity was presented, how it was checked, against which directory, and what evidence of delegation came with it.",
+          "The question you are preparing to answer is simple and will be asked months later: who was this, and who were they acting for? If the records only say a purchase happened, you cannot answer it.",
+        ],
+      },
+      {
+        heading: "What the rules actually say",
+        body: [
+          "More than anywhere else in this set, and it is moving quickly.",
+          "Visa's Trusted Agent Protocol separates the pieces rather than bundling them: an agent recognition signature, signed consumer and device identity, and a signed payment container, with Visa publishing verification keys. Mastercard's Agent Pay issues a token uniquely to an agent, and its material describes tokens carrying predefined spending limits, merchant categories, purpose constraints and time windows. Mastercard's framework also registers and verifies agents so participants can recognise agent transactions.",
+          "The most interesting of the three is Verifiable Intent, which Mastercard announced with Google in March 2026 and open-sourced as a specification with a reference implementation. It links the consumer's identity, the original instructions including product and price limits, and the eventual transaction. That is a cryptographic proof of what the person authorised — the second proof, built by the industry itself.",
+          "The direction of travel is the same in each case: bind the agent, the person, and the permission into something a merchant can check before the money moves. Which is to say the distinction this control is built on is not one I am proposing against the grain — parts of the industry are already designing for it explicitly.",
+          "What does not yet exist is one answer. Web Bot Auth, Visa's protocol and Mastercard's token solve overlapping parts of the problem in different places in the stack, and a merchant may end up handling several at once. Picking one today is a bet, not a compliance decision — and worth making deliberately rather than by accident.",
         ],
       },
     ],
