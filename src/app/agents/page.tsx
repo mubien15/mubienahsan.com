@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { PageIntro, Pill } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
+import { AgentFlow } from "@/components/agent-flow";
 import { PUBLISHED_CONTROLS } from "@/content/agents";
 
 export const metadata: Metadata = {
@@ -27,10 +28,10 @@ export default function AgentsPage() {
       <div className="mt-14 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p>
-            The Agentic Commerce Protocol, built by OpenAI and Stripe and opened
-            up in 2025, sets out how an agent finishes a purchase: the cart, the
-            checkout, and a card credential limited to one use, a maximum amount
-            and an expiry. It works, and Stripe sells a whole suite on top of it.
+            The Agentic Commerce Protocol, published in 2025, sets out how an
+            agent finishes a purchase: the cart, the checkout, and a card
+            credential limited to one use, a maximum amount and an expiry. It
+            works, and a good deal of commercial tooling now sits on top of it.
           </p>
         </Reveal>
         <Reveal>
@@ -54,8 +55,8 @@ export default function AgentsPage() {
             them an agent, and it has spent centuries on the same three
             questions: what were they allowed to do, when can the other side
             rely on it, and what happens if you find out later and say nothing.
-            Whether an AI counts as the agent in that legal sense is unsettled —
-            but the questions are sitting there, unused, while the industry works
+            Whether an AI counts as the agent in that legal sense is unsettled,
+            but the questions are sitting there unused, while the industry works
             it out from scratch in public.
           </p>
         </Reveal>
@@ -71,8 +72,30 @@ export default function AgentsPage() {
         </Reveal>
       </div>
 
-      <section className="mt-14">
+      <section className="mt-16">
+        <Reveal>
+          <h2 className="font-display text-2xl text-ink">
+            Where the controls sit
+          </h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+            A purchase made by an agent passes through six moments. Four of them
+            need a control. Pick a step to see what happens there, what can go
+            wrong, and which control covers it.
+          </p>
+        </Reveal>
+        <Reveal>
+          <div className="mt-8">
+            <AgentFlow />
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="mt-16">
         <h2 className="font-display text-2xl text-ink">The controls</h2>
+        <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          The same four in full, numbered in the order they were written rather
+          than the order a purchase meets them.
+        </p>
         <Stagger className="mt-6 grid gap-4" inView>
           {PUBLISHED_CONTROLS.map((control) => (
             <StaggerItem key={control.slug}>
@@ -107,10 +130,11 @@ export default function AgentsPage() {
 
         <Reveal>
           <p className="mt-6 text-sm leading-relaxed text-muted">
-            More are in progress — how an agent proves who it acts for, what a
-            buyer must see before it commits, and where the boundary sits
-            between content an agent reads and instructions it follows. I would
-            rather publish these properly than announce a list.
+            More are in progress: how a buyer confirms a mandate without being
+            asked to read a contract, what has to be shown on screen before an
+            agent commits, and how a merchant should treat an agent it has never
+            seen before. I would rather publish these properly than announce a
+            list.
           </p>
         </Reveal>
       </section>
@@ -118,8 +142,12 @@ export default function AgentsPage() {
       <Reveal>
         <p className="mt-14 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
           Written in a personal capacity, from public sources. It is not legal
-          advice and does not create any professional relationship. I hold no
-          position on any named company&apos;s compliance.
+          advice and does not create any professional relationship. Where a
+          specification, a piece of research or a set of guidance is named, it is
+          named so a reader can go and check it. Nothing here is a judgement
+          about any company&apos;s conduct or compliance, and where a published
+          specification stops short of something, that is a limit on what the
+          document set out to cover rather than a failing of whoever wrote it.
         </p>
       </Reveal>
     </Container>
