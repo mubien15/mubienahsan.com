@@ -284,6 +284,68 @@ export const CONTROLS: Control[] = [
       },
     ],
   },
+  {
+    slug: "show-before-commit",
+    ref: "C5",
+    title: "Show the buyer the deal before the agent agrees to it",
+    question:
+      "Disclosure law assumes a person is looking at a screen. When the agent is the only thing reading the checkout, who has actually been informed?",
+    tone: "grape",
+    published: "September 2026",
+    lastChecked: "16 September 2026",
+    summary:
+      "Consumer law is full of rules about what has to be shown before someone commits, and every one of them was written for a human looking at a page. An agent reads the disclosure, summarises it, and the summary is what the buyer sees. The information was displayed and nobody was informed.",
+    sections: [
+      {
+        heading: "What goes wrong",
+        body: [
+          "The screen says: booked, $340. Underneath that number is a seat fee, a fare that cannot be changed, and a subscription that renews in thirty days.",
+          "None of it was hidden. The agent read all of it. It read the renewal terms, the cancellation window and the restocking fee, and then it did what it was built to do, which is compress several pages of text into one line a person will actually read. The compression is the problem. An agent that reports everything it read is just a slower browser, so every useful agent throws something away — and what it throws away is chosen by a model, not by the rules about what a buyer has to be told.",
+          "There is a sharper version, which is the shopping form of the attack in C4. Hidden text on a page tells the agent to add something the buyer never asked for. If the confirmation shows a total rather than a full basket, nobody notices until a statement arrives. As in C1, I have not found a documented case of exactly that, so treat it as the predictable shape of the attack rather than something already recorded.",
+          "Both versions end in the same place. The buyer approved a number. They did not approve the thing the number was for.",
+        ],
+      },
+      {
+        heading: "Why this one is about who, not what",
+        body: [
+          "The other controls ask what the agent was allowed to do. This one asks a stranger question: when the agent is the only thing that read the page, which of the two of you was told?",
+          "There is a lot of law about what has to be on the screen. Under the EU Consumer Rights Directive, a trader must make the consumer aware of the main characteristics, the total price and the duration directly before the order is placed, and the ordering button itself has to be labelled so that the consumer acknowledges an obligation to pay. In the United Kingdom, the total price including every mandatory fee has to be given up front in an invitation to purchase, which has applied since April 2025. Ontario's internet agreement rules require that the consumer be given an express opportunity to accept or decline the agreement, and to correct errors, before entering into it.",
+          "Read those three together and a pattern falls out. Each one describes something a person is supposed to see, and something a person is supposed to do about it. None of them contemplates that the seeing and the doing might be carried out by software the buyer switched on that morning.",
+          "Here is where it gets uncomfortable, and I think this is the most interesting thing in the whole set. Agency law has a settled answer to the question of who was told. What an agent learns in the course of its work is generally treated as known by the principal, whether or not the principal was ever actually told. Apply that orthodoxy to agentic commerce and the disclosure duty is discharged the moment the page renders for the agent. The buyer is deemed to know about the renewal, because their agent read it.",
+          "That is a perfectly respectable agency-law answer and a terrible consumer-protection answer, and the two bodies of law have not yet been made to argue it out. I am not going to pretend to know how that resolves. What I will say is that a system designed on the assumption that showing it to the agent counts as showing it to the buyer is a system built on the aggressive reading of an unsettled question.",
+        ],
+      },
+      {
+        heading: "What to build",
+        body: [
+          "Decide in advance which purchases a person has to see before they happen, and write that rule down alongside the permission from C1. Not every purchase: an agent you have to supervise line by line is a browser with extra steps. The useful triggers are the same three as in C4 — spending above a threshold, anything that cannot be undone, and anything outside the pattern of what this buyer normally does.",
+          "When you do show something, show the commitment rather than a description of it. At a minimum that means the total with everything mandatory included, every line item rather than a subtotal, whether it renews, whether it can be cancelled and by when, and who the seller actually is.",
+          "Mark what the buyer did not ask for. If you build only one field, build this one: which items came from the buyer's instruction, and which the agent chose on their behalf. Substitutions and additions are exactly where an unauthorised purchase lives, and they are invisible in a total.",
+          "Do not let the model write the confirmation. If the agent generates the text the buyer approves, then an injected instruction can generate that text too, and the screen becomes part of the attack surface rather than a check on it. Render it from the transaction data, deterministically, the same way every time.",
+          "Make the approval specific and reproducible. Yes to a screen you can rebuild later is evidence; a thumbs-up in a chat log is an anecdote. And record the order of events, because permission asked for before the money moves is consent, and the same words after it has moved are a notification.",
+        ],
+      },
+      {
+        heading: "What proves it worked",
+        body: [
+          "For every purchase over the threshold: exactly what was rendered, when it was rendered, what the buyer did, how long they had to do it, and which stored record it was rendered from.",
+          "A screenshot is not the answer here, because a screenshot proves what somebody kept rather than what the buyer saw. What you want is to be able to regenerate the screen from the data months later and show that it matches what was actually bought.",
+          "The question this is built for is narrow and awkward: can you put the screen in front of someone who thinks you invented it afterwards? If the honest answer is that you would have to reconstruct it from memory, the control is not there.",
+        ],
+      },
+      {
+        heading: "What the rules actually say",
+        body: [
+          "More than anywhere else in this set, because disclosure before purchase is the most heavily regulated part of consumer commerce. And none of it was drafted with an agent in the middle.",
+          "The three obligations above are real, in force, and enforced. What none of them says is who has to be looking when the disclosure is made, because until recently the question could not sensibly be asked.",
+          "The closest thing to an answer came in March 2026, when the UK's Competition and Markets Authority published guidance on complying with consumer law when using AI agents. As far as I can tell it is the first guidance from a major consumer authority anywhere aimed squarely at agents, and its central position is that consumer law applies in the same way whether a consumer is dealing with a person or an AI agent, and that a business is responsible for the agents it deploys just as it is for its human ones. That is agency law being applied by a regulator, in as many words.",
+          "The limit is important and easy to overstate if you are not careful. That guidance is addressed to businesses deploying agents towards their customers — handling queries, processing refunds, recommending products — rather than to the buyer's own shopping agent. So the thing it settles is the merchant's side of the conversation. The buyer's side, where this control lives, has no equivalent yet. The EU's Digital Fairness Act is the obvious place for one, and as of September 2026 the Commission has not yet tabled a proposal.",
+          "One partial safety valve is worth knowing about, along with its hole. Distance selling in the EU carries a right of withdrawal for a period after purchase, which does take some of the sting out of a wrong purchase. It also has exceptions, and several of them cover transport and accommodation tied to a specific date — which is to say the flight in C1 is close to the worst case, not a typical one.",
+          "Nothing I am aware of requires a confirmation screen sized to the risk of the purchase. That makes this the cheapest control in the set to build and the easiest one to skip, which is usually how you can tell which controls are going to matter.",
+        ],
+      },
+    ],
+  },
 ];
 
 export const PUBLISHED_CONTROLS = CONTROLS.filter((c) => c.published);
@@ -341,6 +403,14 @@ export const FLOW_STAGES: FlowStage[] = [
       "A request turns up claiming to be an agent, shopping for a real customer.",
     risk: "There are two claims there, not one. Checking which software is calling says nothing about whether a buyer sent it.",
     controlSlug: "prove-who-it-acts-for",
+  },
+  {
+    id: "shown",
+    label: "You are shown the deal",
+    moment:
+      "The agent has found something and puts it in front of the buyer, in whatever form it chooses.",
+    risk: "Every useful agent compresses what it read, and the disclosure rules were all written for a person looking at the page itself.",
+    controlSlug: "show-before-commit",
   },
   {
     id: "pays",

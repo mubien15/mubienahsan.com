@@ -67,14 +67,14 @@ export function AgentFlow() {
         {/* Horizontal on desktop, vertical on phones. */}
         <span
           aria-hidden
-          className="absolute left-[calc(100%/12)] right-[calc(100%/12)] top-[13px] hidden h-px bg-line sm:block"
+          className="absolute left-[calc(100%/14)] right-[calc(100%/14)] top-[13px] hidden h-px bg-line sm:block"
         />
         <span
           aria-hidden
           className="absolute bottom-6 left-[13px] top-6 w-px bg-line sm:hidden"
         />
 
-        <ol className="relative flex flex-col gap-1 sm:grid sm:grid-cols-6 sm:gap-2">
+        <ol className="relative flex flex-col gap-1 sm:grid sm:grid-cols-7 sm:gap-2">
           {FLOW_STAGES.map((item, i) => {
             const selected = i === active;
             const hasControl = Boolean(item.controlSlug);

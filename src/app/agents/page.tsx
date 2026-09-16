@@ -78,7 +78,7 @@ export default function AgentsPage() {
             Where the controls sit
           </h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-            A purchase made by an agent passes through six moments. Four of them
+            A purchase made by an agent passes through seven moments. Five of them
             need a control. Pick a step to see what happens there, what can go
             wrong, and which control covers it.
           </p>
@@ -130,10 +130,11 @@ export default function AgentsPage() {
 
         <Reveal>
           <p className="mt-6 text-sm leading-relaxed text-muted">
-            More are in progress: how a buyer confirms a mandate without being
-            asked to read a contract, what has to be shown on screen before an
-            agent commits, and how a merchant should treat an agent it has never
-            seen before. I would rather publish these properly than announce a
+            More are in progress: how a buyer withdraws permission in the
+            middle of a task and what happens to the work already in flight, how
+            you rebuild months later why the agent bought this particular thing,
+            and who carries the loss when an agent goes beyond what it was
+            allowed to do. I would rather publish these properly than announce a
             list.
           </p>
         </Reveal>
