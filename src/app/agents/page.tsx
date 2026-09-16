@@ -19,52 +19,50 @@ export default function AgentsPage() {
         title="The protocols settled how an agent pays. Not what it was allowed to buy."
         tone="grape"
       >
-        AI agents are starting to transact for people, and the payment plumbing
-        already exists. What does not exist is a durable record of the authority
-        they were sent out with. This is a working set of controls for that gap.
+        AI agents are starting to buy things for people, and the payment
+        plumbing already works. What is missing is any lasting record of what
+        they were allowed to buy. These are controls for that gap.
       </PageIntro>
 
       <div className="mt-14 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p>
             The Agentic Commerce Protocol, built by OpenAI and Stripe and opened
-            up in 2025, defines how an agent completes a purchase: cart and
-            checkout state, and a delegated payment credential constrained to a
-            single use, a maximum amount and an expiry. It works, and Stripe
-            sells a suite on top of it.
+            up in 2025, sets out how an agent finishes a purchase: the cart, the
+            checkout, and a card credential limited to one use, a maximum amount
+            and an expiry. It works, and Stripe sells a whole suite on top of it.
           </p>
         </Reveal>
         <Reveal>
           <p>
-            What it records is the checkout the buyer is about to complete. What
-            it does not define is{" "}
+            What that records is the checkout a buyer is about to approve. What
+            nobody records is{" "}
             <strong className="text-ink">
-              a durable mandate for what the agent was authorised to go and buy
-              in the first place
+              the standing permission the agent was sent out with
             </strong>{" "}
-            — permitted categories, substitution rules, merchant limits,
-            recurring authority, a ceiling independent of any one basket. Ask for
-            a flight to Toronto and get business class at $4,200, and the stack
-            can tell you the payment was constrained. It cannot tell you the
-            purchase was authorised.
+            — what it may buy, from whom, for how long, and what to do when the
+            thing is out of stock. Ask for a flight to Toronto and get business
+            class at $4,200, and the system can tell you the payment was within
+            its limit. It cannot tell you the purchase was agreed to.
           </p>
         </Reveal>
         <Reveal>
           <p>
-            The problem is not new. Agency law has spent centuries answering the
-            analogous questions: what authority a principal conferred, when a
-            third party may rely on apparent authority, and when an unauthorised
-            act is later ratified. Whether an AI system is itself the legal agent
-            is unsettled — but the vocabulary is sitting there unused while the
-            industry works it out from first principles in public.
+            None of this is new. When one person acts for another, the law calls
+            them an agent, and it has spent centuries on the same three
+            questions: what were they allowed to do, when can the other side
+            rely on it, and what happens if you find out later and say nothing.
+            Whether an AI counts as the agent in that legal sense is unsettled —
+            but the questions are sitting there, unused, while the industry works
+            it out from scratch in public.
           </p>
         </Reveal>
         <Reveal>
           <p>
-            Each control below is written the same way: the failure, the
-            principle that already governs it, what to build, what evidence
-            proves it ran, and an honest note on where regulation actually
-            touches — rather than a stretched claim that it does.
+            Each control below is written the same way: what goes wrong, what
+            the law already says about it, what to build, what proves it worked,
+            and an honest note on what the rules actually require — rather than a
+            stretched claim that they require anything.
           </p>
         </Reveal>
       </div>
@@ -105,9 +103,10 @@ export default function AgentsPage() {
 
         <Reveal>
           <p className="mt-6 text-sm leading-relaxed text-muted">
-            More are in progress — scope enforcement at commit, the untrusted
-            content boundary, and what the buyer must see before an agent
-            commits. I would rather publish one properly than announce eight.
+            More are in progress — how an agent proves who it acts for, what a
+            buyer must see before it commits, and where the boundary sits
+            between content an agent reads and instructions it follows. I would
+            rather publish these properly than announce a list.
           </p>
         </Reveal>
       </section>
