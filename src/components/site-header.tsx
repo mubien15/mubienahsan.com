@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/container";
+import { LogoMark } from "@/components/logo-mark";
 import { NAV_LINKS } from "@/lib/nav";
 import { cn } from "@/lib/cn";
 
@@ -24,11 +25,11 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-lg font-semibold tracking-tight text-ink"
-        >
-          Mubien&nbsp;Ahsan
+        <Link href="/" className="group flex items-center gap-2.5">
+          <LogoMark className="h-7 w-7 text-accent transition-colors group-hover:text-accent-strong" />
+          <span className="font-display text-lg font-semibold tracking-tight text-ink">
+            Mubien
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

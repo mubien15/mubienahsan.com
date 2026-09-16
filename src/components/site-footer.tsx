@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { LogoMark } from "@/components/logo-mark";
 import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/nav";
 import { SubscribeLink } from "@/components/subscribe-link";
 
@@ -12,7 +13,8 @@ export function SiteFooter() {
       <div className="h-1 w-full bg-gradient-to-r from-flame via-grape to-mint" />
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm">
-          <p className="font-display text-lg font-semibold text-ink">
+          <LogoMark className="h-10 w-10 text-accent" />
+          <p className="font-display mt-3 text-lg font-semibold text-ink">
             Mubien Ahsan
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
