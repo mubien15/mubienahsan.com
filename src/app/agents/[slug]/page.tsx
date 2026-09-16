@@ -52,6 +52,12 @@ export default async function ControlPage({
         <p className="mt-5 text-lg leading-relaxed text-grape">
           {control.question}
         </p>
+        <p className="mt-5 text-sm leading-relaxed text-muted">
+          Claims last checked against sources on{" "}
+          <span className="font-medium text-ink">{control.lastChecked}</span>.
+          Protocols and guidance in this area change quickly, so treat anything
+          here as accurate as of that date rather than indefinitely.
+        </p>
       </Reveal>
 
       <div className="mt-12 max-w-2xl space-y-10">

@@ -22,6 +22,12 @@ export type Control = {
   question: string;
   tone: Tone;
   published: string | null;
+  /**
+   * When the factual claims were last verified against sources. This space
+   * moves fast enough that a claim true in March can be wrong by September,
+   * so the date is published rather than kept privately.
+   */
+  lastChecked: string;
   summary: string;
   sections: ControlSection[];
 };
@@ -35,6 +41,7 @@ export const CONTROLS: Control[] = [
       "What did the person actually agree to, and can a machine check it before the money moves?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "The checkout protocols record the purchase a buyer is approving and limit the credential that pays for it. They do not record the standing permission the agent was sent out with — what it may buy, from whom, what to do when the item is gone. The card networks are now building exactly that, which is the strongest sign the gap is real.",
     sections: [
@@ -95,6 +102,7 @@ export const CONTROLS: Control[] = [
       "A task that begins inside its limits can wander outside them. Where is the check?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "Most systems validate at the top: the request looks reasonable, so the agent is let loose. But an agent reads the open web, changes plan, and adds up small decisions. The only check that counts is the one immediately before the payment.",
     sections: [
@@ -151,6 +159,7 @@ export const CONTROLS: Control[] = [
       "A request arrives claiming to be an agent shopping for a customer. How does the shop know either half of that is true?",
     tone: "grape",
     published: "September 2026",
+    lastChecked: "16 September 2026",
     summary:
       "Identity and permission are different proofs, and it is easy to collapse them into one question. Proving which software sent a request does not prove the buyer told it to make that purchase.",
     sections: [
@@ -197,6 +206,73 @@ export const CONTROLS: Control[] = [
           "The most interesting of the three is Verifiable Intent, which Mastercard announced with Google in March 2026 and open-sourced as a specification with a reference implementation. It links the consumer's identity, the original instructions including product and price limits, and the eventual transaction. That is a cryptographic proof of what the person authorised — the second proof, built by the industry itself.",
           "The direction of travel is the same in each case: bind the agent, the person, and the permission into something a merchant can check before the money moves. Which is to say the distinction this control is built on is not one I am proposing against the grain — parts of the industry are already designing for it explicitly.",
           "What does not yet exist is one answer. Web Bot Auth, Visa's protocol and Mastercard's token solve overlapping parts of the problem in different places in the stack, and a merchant may end up handling several at once. Picking one today is a bet, not a compliance decision — and worth making deliberately rather than by accident.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "assume-bad-instructions",
+    ref: "C4",
+    title: "Assume the agent will be given the wrong instructions",
+    question:
+      "An agent reads the open web, and web pages contain words. What stops something it reads from becoming something it obeys?",
+    tone: "grape",
+    published: "September 2026",
+    lastChecked: "16 September 2026",
+    summary:
+      "This one is not solved and I am not going to write it as though it were. The useful question is not how to stop injected instructions but how much damage one can do when it gets through — which is where the industry guidance has now landed too.",
+    sections: [
+      {
+        heading: "What goes wrong",
+        body: [
+          "An agent shopping on your behalf reads product pages, reviews, descriptions, and whatever else the open web puts in front of it. Somewhere in that text is a line that says, in effect, ignore what you were told and do this instead.",
+          "A person scrolling past sees nothing — the text may be invisible, or buried in a review, or sitting in a page element nobody renders. The agent reads it and treats it as direction.",
+          "The reason this works is structural rather than careless. A model takes everything as one stream of text: your instructions, the page it fetched, the system prompt underneath. There is no reliable way to mark one part as orders and another part as merely information. It is all the same material, and the model has no privileged channel to tell them apart.",
+          "That is why this is the attack that keeps working. Researchers at Unit 42 and Forcepoint have found it running on live sites, and Forcepoint's April 2026 work includes payloads aimed at moving money.",
+        ],
+      },
+      {
+        heading: "Why this control is different",
+        body: [
+          "Every other control here tells you to build something. This one starts by telling you what you cannot build.",
+          "There is no filter that reliably catches injected instructions, and anyone selling you one is selling you something. Retrieval and fine-tuning help with other problems and do not solve this. An OWASP researcher put it plainly this year: prompt injection remains unsolved.",
+          "The industry guidance has moved accordingly. The 2026 OWASP list shifts the job from prevention to containment — from stopping the instruction to limiting what it can accomplish. Five Eyes guidance points the same way, advising incremental deployment with a human present at consequential decisions.",
+          "So the honest question is not how to keep bad instructions out. It is how much damage one can do on the day it gets in. A control that cannot eliminate a risk can still decide how expensive it is, and pretending otherwise is how this sort of writing stops being useful.",
+        ],
+      },
+      {
+        heading: "What this changes legally",
+        body: [
+          "Something shifts once a risk is publicly documented, and it is worth naming.",
+          "Where the law asks whether someone behaved reasonably, it tends to care about what was foreseeable. A published attack class, demonstrated on live websites and written up by named research teams, is foreseeable more or less by definition. Not knowing stops being available as a position.",
+          "I would not push that further than it goes. Whether a particular design falls short of reasonable care is fact-specific, varies by jurisdiction, and is not something I can settle here. But the direction is clear enough to plan around: the defensible position is not that you prevented it. It is that you knew, and you built so that it mattered less.",
+        ],
+      },
+      {
+        heading: "What to build",
+        body: [
+          "Design from the assumption that an injected instruction will eventually get through, and put your effort into what happens next.",
+          "Keep reading and acting apart. The pattern that works is two models rather than one: a trusted model that sees only the buyer’s instruction and produces a plan, and a quarantined model that handles fetched pages and returns data rather than direction. The untrusted content never reaches the part of the system that decides to spend.",
+          "Cut down what the agent can do at all. Tools scoped to this task, credentials scoped to this purchase, no standing access to anything it does not need today. Worth knowing the limit of this one: least privilege does not stop an attack that misuses a tool the agent legitimately holds. It shrinks the blast radius rather than preventing the blast.",
+          "Put a person in front of the irreversible things. Spending above a threshold, anything that cannot be undone, anything outside the pattern of what this buyer normally does. A confirmation step is unfashionable and it is the control most likely to actually save you.",
+          "Re-check permission after the agent reads anything it did not control, which is the same point C2 makes from the other direction. The moment it ingests a page is the moment its instructions may have changed.",
+          "Record what it read before it decided. Not for the model’s benefit, for yours: when something goes wrong you will need to know which content was in front of it.",
+        ],
+      },
+      {
+        heading: "What proves it worked",
+        body: [
+          "For any purchase that matters, you should be able to reconstruct what the agent had read before it committed, and show that untrusted content never crossed into the part of the system that acts.",
+          "The second one is the real test. If you cannot point at the boundary on a diagram and say what does and does not cross it, you probably do not have one.",
+          "And as with C2, blocks are evidence. A system that has never refused an action has either never been tested or is not really checking.",
+        ],
+      },
+      {
+        heading: "What the rules actually say",
+        body: [
+          "Nothing binding, and the useful material is guidance rather than law.",
+          "OWASP treats prompt injection as the first item on its list for large language model applications, and its 2026 revision reframes the work around containment rather than prevention. Its prevention guidance and Microsoft’s both converge on layers — architecture, runtime checks at the point of action, and governance above both — rather than one guardrail carrying everything.",
+          "No regulation I am aware of requires any of this specifically. But if a dispute ever turns on whether a system was built with reasonable care, published guidance describing a known attack and the expected response is the sort of thing that gets cited.",
         ],
       },
     ],
