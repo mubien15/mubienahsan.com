@@ -64,7 +64,9 @@ export default function AgentsPage() {
             Each control below is written the same way: what goes wrong, what
             the law already says about it, what to build, what proves it worked,
             and an honest note on what the rules actually require — rather than a
-            stretched claim that they require anything.
+            stretched claim that they require anything. Each one also carries the
+            date its claims were last checked, because this area moves fast
+            enough that some of it will go stale.
           </p>
         </Reveal>
       </div>
@@ -85,7 +87,7 @@ export default function AgentsPage() {
                       {control.title}
                     </span>
                     <span className="ml-auto text-xs text-muted">
-                      {control.published}
+                      Checked {control.lastChecked}
                     </span>
                   </div>
                   <p className="mt-3 text-[0.95rem] font-medium leading-relaxed text-grape">
