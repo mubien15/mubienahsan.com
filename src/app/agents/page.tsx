@@ -8,7 +8,7 @@ import { PUBLISHED_CONTROLS } from "@/content/agents";
 export const metadata: Metadata = {
   title: "Agents that spend",
   description:
-    "Controls for AI agents that transact on someone's behalf. The payment layer is solved; the mandate layer is empty. Agency law already answers more of this than the industry realises.",
+    "Controls for AI agents that transact on someone's behalf. The protocols constrain the checkout; nothing captures the durable authority the agent was sent out with. Agency law offers the vocabulary the industry is working without.",
 };
 
 export default function AgentsPage() {
@@ -19,40 +19,44 @@ export default function AgentsPage() {
         title="The protocols settled how an agent pays. Not what it was allowed to buy."
         tone="grape"
       >
-        AI agents are starting to transact for people — and the plumbing already
-        exists. What does not exist is any record of what the buyer actually
-        authorised. This is a working set of controls for that gap.
+        AI agents are starting to transact for people, and the payment plumbing
+        already exists. What does not exist is a durable record of the authority
+        they were sent out with. This is a working set of controls for that gap.
       </PageIntro>
 
       <div className="mt-14 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p>
             The Agentic Commerce Protocol, built by OpenAI and Stripe and opened
-            up in 2025, defines how an agent completes a purchase: cart,
-            checkout, a narrowly scoped payment token, delegated authentication.
-            It works. Stripe sells a suite on top of it.
+            up in 2025, defines how an agent completes a purchase: cart and
+            checkout state, and a delegated payment credential constrained to a
+            single use, a maximum amount and an expiry. It works, and Stripe
+            sells a suite on top of it.
           </p>
         </Reveal>
         <Reveal>
           <p>
-            None of it captures the mandate — what the person agreed the agent
-            could buy. Ask for a flight to Toronto and get business class at
-            $4,200, and nothing in the stack can say whether that was authorised.
-            The prompt is not a record. The token scope is about the rail, not
-            the purchase.
-          </p>
-        </Reveal>
-        <Reveal>
-          <p>
-            That is not a new class of problem. An agent transacting for a person
-            is, in law, an agent acting for a principal, and{" "}
+            What it records is the checkout the buyer is about to complete. What
+            it does not define is{" "}
             <strong className="text-ink">
-              agency doctrine has answered these questions for centuries
-            </strong>
-            : what authority was actually conferred, when a merchant may rely on
-            the authority an agent appeared to hold, and what a principal&apos;s
-            silence afterwards amounts to. The industry is rediscovering it from
-            first principles, in public, badly.
+              a durable mandate for what the agent was authorised to go and buy
+              in the first place
+            </strong>{" "}
+            — permitted categories, substitution rules, merchant limits,
+            recurring authority, a ceiling independent of any one basket. Ask for
+            a flight to Toronto and get business class at $4,200, and the stack
+            can tell you the payment was constrained. It cannot tell you the
+            purchase was authorised.
+          </p>
+        </Reveal>
+        <Reveal>
+          <p>
+            The problem is not new. Agency law has spent centuries answering the
+            analogous questions: what authority a principal conferred, when a
+            third party may rely on apparent authority, and when an unauthorised
+            act is later ratified. Whether an AI system is itself the legal agent
+            is unsettled — but the vocabulary is sitting there unused while the
+            industry works it out from first principles in public.
           </p>
         </Reveal>
         <Reveal>
