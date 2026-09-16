@@ -102,15 +102,17 @@ export const CONTROLS: Control[] = [
         body: [
           "A buyer sets a limit of $100 for a coffee maker. The agent starts well within it. Then something changes mid-task.",
           "Maybe the item is out of stock and it picks a pricier one. Maybe the price moved. Maybe it read a hidden instruction on a page and added something nobody asked for. In each case the task began inside the limit and ended outside it. If the only check ran at the start, it checked a plan that no longer exists.",
-          "There is a quieter version that catches people out. An agent books a flight, then a bag, then a seat, then a hotel. Each step looks fine on its own. Added together they pass the limit — and nothing was watching the total, because each purchase was judged alone.",
+          "There is a quieter version that catches people out. An agent books a flight, then a bag, then a seat, then a hotel. Each step looks fine on its own. Added together they pass the limit.",
+          "This one is concrete rather than hypothetical. The Agentic Commerce Protocol limits each delegated payment on its own — one use, a maximum amount, an expiry. It does not, by itself, keep a running budget across separate purchases. So an agent can make several individually permitted payments that together go past what the buyer had in mind, unless some other control is tracking the total.",
           "Both failures share a cause. The check ran against intentions rather than against the thing that actually happened.",
         ],
       },
       {
         heading: "Why the timing matters",
         body: [
-          "When the law asks whether an agent had permission, it asks about the moment of the act — not the moment of the briefing. Permission can be narrowed, used up or withdrawn in between.",
+          "When the law asks whether an agent had permission, what matters is when the agent acted — not when the instructions were first given. Permission can change, expire, be withdrawn, or end once its purpose has been served.",
           "That maps cleanly onto software. A limit checked at the start is a statement about what the agent intended. A limit checked at the point of payment is a statement about what it did. Only the second is worth anything in an argument.",
+          "One wrinkle is worth knowing. Permission ending on your side does not automatically end what a shop may reasonably believe. A merchant can sometimes still rely on authority that looks like it is still there, which means withdrawing permission quietly is not the same as withdrawing it effectively.",
           "It also matters for the hidden-instruction attack. An injected instruction works precisely by changing the agent's behaviour after it has started. Any check that ran before it read that page is checking a version of the task that the attacker has since replaced.",
         ],
       },
@@ -135,7 +137,7 @@ export const CONTROLS: Control[] = [
         heading: "What the rules actually say",
         body: [
           "Nothing specific, yet — and this control is mostly about engineering discipline rather than regulation.",
-          "The closest thing is where the card networks are heading. Controls that bind an agent's authority to transaction context assume something is evaluating that context at the point of the transaction. A design that checks only at task creation will not satisfy that, whatever a policy document claims.",
+          "The closest thing is where the card networks are heading. Visa describes agent tokens bound to context — who the agent represents, what it may do, under what conditions — and says this lets it verify an agent's authority to start a transaction. That suggests authority has to be checked against the purchase as it happens, not only when the agent was first instructed. A design that checks at task creation and nowhere else would not meet that bar.",
         ],
       },
     ],
