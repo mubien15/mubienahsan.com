@@ -4,7 +4,11 @@ Working title for a control framework covering AI agents that transact on a
 person's behalf, plus the tool that applies it and the site section that
 publishes it.
 
-**Status:** spec, not started. **Owner:** Mubien Ahsan. **Drafted:** September 2026.
+**Status:** in progress. C1–C5 published at `/agents`, each fact-checked against
+primary sources before merge and carrying the date it was last checked. The flow
+diagram on that page places them on the path a purchase actually takes. Still to
+come: C6 revocation, C7 reconstruction, C8 liability, then the tool and the
+document. **Owner:** Mubien Ahsan. **Drafted:** September 2026. **Updated:** 16 September 2026.
 
 ---
 
@@ -144,12 +148,14 @@ mechanical and can be written quickly.
 
 ## 5. Build order
 
-**Phase 1 — stake the ground.** `/agents` page live with the problem statement
+**Phase 1 — stake the ground.** ✅ `/agents` page live with the problem statement
 and C1 published in full. One control, done properly, beats an announced
-roadmap. A day or two of work.
+roadmap.
 
-**Phase 2 — the spine.** C2, C4, C5. At four controls it reads as a body of
-work rather than a blog post.
+**Phase 2 — the spine.** ✅ C2, C3, C4, C5 published. C3 was pulled forward out of
+sequence because the identity work at the card networks moved faster than
+expected and the material was there. At five controls it reads as a body of work
+rather than a blog post.
 
 **Phase 3 — the tool.** Only once the controls exist, because the tool assesses
 against them and building it first would mean inventing the criteria twice.
