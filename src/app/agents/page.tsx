@@ -36,14 +36,16 @@ export default function AgentsPage() {
         <Reveal>
           <p>
             What that records is the checkout a buyer is about to approve. What
-            nobody records is{" "}
+            it does not record is{" "}
             <strong className="text-ink">
               the standing permission the agent was sent out with
             </strong>{" "}
             — what it may buy, from whom, for how long, and what to do when the
             thing is out of stock. Ask for a flight to Toronto and get business
             class at $4,200, and the system can tell you the payment was within
-            its limit. It cannot tell you the purchase was agreed to.
+            its limit. It cannot tell you the purchase was agreed to. The card
+            networks are now building that missing layer, which is the strongest
+            sign the gap is real.
           </p>
         </Reveal>
         <Reveal>
