@@ -4,7 +4,11 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { Eyebrow, Pill } from "@/components/ui";
 import { Reveal } from "@/components/motion";
-import { CONTROLS, PUBLISHED_CONTROLS } from "@/content/agents";
+import {
+  CONTROLS,
+  FLOW_STAGES,
+  PUBLISHED_CONTROLS,
+} from "@/content/agents";
 
 export function generateStaticParams() {
   return PUBLISHED_CONTROLS.map((c) => ({ slug: c.slug }));
@@ -33,6 +37,14 @@ export default async function ControlPage({
   const control = CONTROLS.find((c) => c.slug === slug && c.published);
   if (!control) notFound();
 
+  const stage = FLOW_STAGES.find((s) => s.controlSlug === control.slug);
+  const index = PUBLISHED_CONTROLS.findIndex((c) => c.slug === control.slug);
+  const previous = index > 0 ? PUBLISHED_CONTROLS[index - 1] : null;
+  const next =
+    index < PUBLISHED_CONTROLS.length - 1
+      ? PUBLISHED_CONTROLS[index + 1]
+      : null;
+
   return (
     <Container className="py-16 sm:py-20">
       <Reveal className="max-w-2xl" y={16}>
@@ -52,6 +64,14 @@ export default async function ControlPage({
         <p className="mt-5 text-lg leading-relaxed text-grape">
           {control.question}
         </p>
+        {stage ? (
+          <p className="mt-5 rounded-xl border border-grape/30 bg-grape-soft/40 px-4 py-3 text-sm leading-relaxed text-ink/85">
+            <span className="font-medium text-ink">
+              Where this sits: {stage.label}.
+            </span>{" "}
+            {stage.moment}
+          </p>
+        ) : null}
         <p className="mt-5 text-sm leading-relaxed text-muted">
           Claims last checked against sources on{" "}
           <span className="font-medium text-ink">{control.lastChecked}</span>.
@@ -77,10 +97,51 @@ export default async function ControlPage({
         ))}
       </div>
 
+      {previous || next ? (
+        <Reveal>
+          <nav
+            aria-label="Other controls"
+            className="mt-14 grid max-w-2xl gap-4 sm:grid-cols-2"
+          >
+            {previous ? (
+              <Link
+                href={`/agents/${previous.slug}`}
+                className="group rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-grape/60"
+              >
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                  ← Previous · {previous.ref}
+                </span>
+                <span className="font-display mt-2 block text-lg leading-snug text-ink group-hover:text-grape">
+                  {previous.title}
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+            {next ? (
+              <Link
+                href={`/agents/${next.slug}`}
+                className="group rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-grape/60 sm:text-right"
+              >
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                  Next · {next.ref} →
+                </span>
+                <span className="font-display mt-2 block text-lg leading-snug text-ink group-hover:text-grape">
+                  {next.title}
+                </span>
+              </Link>
+            ) : null}
+          </nav>
+        </Reveal>
+      ) : null}
+
       <Reveal>
-        <p className="mt-14 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
+        <p className="mt-10 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
           Written in a personal capacity, from public sources. It is not legal
-          advice and does not create any professional relationship.
+          advice and does not create any professional relationship. Where a
+          specification, a piece of research or a set of guidance is named, it is
+          named so a reader can go and check it. Nothing here is a judgement
+          about any company&apos;s conduct or compliance.
         </p>
       </Reveal>
     </Container>
