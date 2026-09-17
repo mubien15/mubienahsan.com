@@ -211,7 +211,7 @@ export const COURSES: Course[] = [
       "The other four courses teach you to build with AI. This one teaches you to decide whether a thing that has been built should be allowed to run. From use-case design through validation to a defensible release decision.",
     outcome:
       "By the end you will have worked a single case from first sketch to release decision: a boundary statement, an accountability map, a validation plan, a control register, and a recommendation you could defend to someone who disagreed with it.",
-    status: "In progress",
+    status: "Available",
     lessons: [
       {
         slug: "capabilities-and-consequences",

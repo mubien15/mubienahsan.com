@@ -1,0 +1,76 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "From pilot to supported service",
+  description:
+    "What has to exist before release, and the trap in shared capabilities: reusing a component is sensible, reusing its approval is not.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" />Lesson 10</span>
+
+# From pilot to supported service
+
+A pilot becomes a product when somebody can operate it, support it, change it, and eventually switch it off.
+
+Until all four of those have an owner, what you have is a demonstration that happens to be running in production — which is a common and uncomfortable place to be.
+
+## Template E — production readiness
+
+Mark each item met, gap, or not applicable. A "not applicable" needs a reason, because that is where things hide.
+
+<Checklist
+  title="Before release"
+  items={[
+    "Purpose, users, data and allowed actions are defined.",
+    "Service owner, release authority and support responsibilities are assigned.",
+    "Data quality, permissions, source versions and retirement are controlled.",
+    "Validation covers the whole system and the relevant failure modes.",
+    "Material findings are resolved, or handled within explicit decision authority.",
+    "Monitoring definitions, thresholds, owners and responses are approved.",
+    "Incident containment and recovery have been exercised, not just written.",
+    "Changes and dependencies are versioned and proportionately tested.",
+    "Users can see the limitations and reach an escalation channel.",
+    "Value baseline, operating cost and benefit owner are documented.",
+    "Third-party dependencies and their available evidence have been reviewed.",
+    "Retirement covers data, access, integrations and what users do instead.",
+  ]}
+/>
+
+That last one is the most skipped and the most revealing. A service nobody has thought about switching off is a service nobody has thought about owning.
+
+<Callout type="important" title="Approval is scoped">
+  You are approving a configuration, a user population, a data set and a set of permitted actions. Not "the AI". Write the scope into the decision so that a future change is visibly outside it rather than arguably inside it.
+</Callout>
+
+## Shared capabilities: the double edge
+
+As more applications appear, common components make obvious sense — document ingestion, an approved model connection, retrieval, identity, logging, evaluation tooling, orchestration. Build once, use everywhere, improve consistency.
+
+The other edge: **a shared component is a shared dependency.** A change to shared retrieval could affect five applications simultaneously, including ones whose owners did not know the change was happening.
+
+What that requires:
+
+- Ownership of the shared component itself, with its own change process.
+- Version control, so an application can state which version it was validated against.
+- Compatibility testing before a shared change lands.
+- A way to notify every consumer.
+
+<Callout type="warning" title="The reuse trap">
+  Reuse the component. Reuse the control evidence where it genuinely applies. Do <em>not</em> reuse the approval. A retrieval service approved for general policy questions is not thereby approved for sensitive personnel decisions — same component, different use, different risk.
+</Callout>
+
+That distinction is subtle enough to get lost in practice, and it is where a well-governed platform starts producing ungoverned applications.
+
+## What can be automated, and what cannot
+
+Some release checks belong in a pipeline. A deployment could require a registered owner, passing evaluations, an approved configuration, and a working audit-log test — all mechanical, all better automated than remembered.
+
+This is roughly what people mean by governance-as-code: encoding *selected* rules and evidence checks into delivery systems.
+
+What it does not mean is automating judgement. Whether the remaining risk is acceptable for this use, for these users, given what the evidence does not cover, is a decision somebody makes and signs. A pipeline can refuse to deploy without that signature. It cannot supply it.
+
+## Your turn
+
+You have a pilot with strong answer quality, no named support owner, and a recovery route nobody has tested. Release or not?
+
+The defensible answer is to defer the production release, or keep it as a tightly bounded pilot, until those two gaps close. Good output quality is evidence about outputs. It says nothing about whether anyone can operate the thing on a bad day.

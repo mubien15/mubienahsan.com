@@ -1,0 +1,92 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Monitoring, change and recovery",
+  description:
+    "A system that passed last month may not pass today. Choosing measures that lead to decisions, and making sure the rollback route is one you have actually tried.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" />Lesson 8</span>
+
+# Monitoring, change and recovery
+
+A system that passed testing last month may behave differently today. Its documents changed. Its model was updated. Employees started asking questions nobody anticipated.
+
+Validation is a snapshot. Monitoring is what tells you the snapshot still resembles reality.
+
+## Measures that lead to decisions
+
+Start with a few, and define them properly. A quality rate needs a numerator and a denominator that someone has agreed on. An alert needs an owner and an action, not a position on a dashboard.
+
+| Signal | Why it matters | What must be defined |
+| --- | --- | --- |
+| Answer quality on sampled cases | The core promise | Sample size, who reviews, against what rubric |
+| Source-version failures | Retired content reaching users | How a retired source is detected in an answer |
+| Denied access events | The control operating, or being probed | Owner, and what a spike means |
+| Abstention rate | Coverage gaps, or over-refusal | Both directions have a threshold |
+| Out-of-scope requests | Users want something you did not build | Whether to expand scope or improve routing |
+| Availability and latency | Whether people can use it at all | The fallback when they cannot |
+
+Two readings worth practising.
+
+**A confirmed unauthorised disclosure is a serious incident even when the overall quality score is excellent.** It goes to the incident process immediately, not into the monthly pack.
+
+**A rise in unanswered questions is ambiguous.** It might be a retrieval defect. It might be that employees started asking about a policy area you never loaded. Those need opposite responses, so the signal alone is not the answer.
+
+<Callout type="important" title="Both directions of abstention">
+  Too little abstention produces confident wrong answers. Too much produces a system nobody uses, which then gets quietly bypassed in ways you cannot see. Monitor both ends.
+</Callout>
+
+## Change management
+
+Record what changed, why, who approved it, which tests ran, and how to get back. The scale of the change determines the scale of the testing:
+
+<Checklist
+  title="Changes that trigger reassessment"
+  items={[
+    "The underlying model, including a provider updating it beneath you.",
+    "Prompts or system instructions.",
+    "The document set, or how documents are prepared and retired.",
+    "Retrieval configuration.",
+    "Any new tool or permission — this one is always a full reassessment.",
+    "A new user population, or a materially different way of working.",
+  ]}
+/>
+
+The one people miss is the first. A provider can change a model under a stable version label, and if nobody is testing periodically, the first sign is a user complaint.
+
+## Recovery has to actually work
+
+This is where plans are weakest, because nobody wants to rehearse.
+
+If the assistant is paused, employees need something usable — a policy search, a help channel, a person. "The service is unavailable" with no alternative means people improvise, and improvisation is where the real risk was always going to be.
+
+And rolling back is not automatically safe. **Rolling back to a configuration that contains expired policy is not a recovery.** Know what state you are returning to.
+
+<Callout type="warning" title="An untested runbook is a document, not a capability">
+  Until somebody has actually paused the service, used the fallback, and restored it, you do not know how long it takes or what breaks. Rehearse it once before you need it.
+</Callout>
+
+## Monitoring is not continuous validation
+
+Worth separating, because the words get used interchangeably.
+
+Continuous monitoring watches defined signals on a live service. Periodic and event-driven validation is a deeper assessment of whether the system still does what it was approved to do. The first complements the second; it does not replace it, and a dashboard is not independent assurance.
+
+## Template D — control and monitoring register
+
+| Risk | Control | Owner | Evidence / metric | Trigger | Response |
+| --- | --- | --- | --- | --- | --- |
+| Retired policy used | Approved-document ingestion and retirement checks | Content owner | Document-version check results | A retired source appears in an answer | Quarantine source, assess impact, fix and retest |
+| Restricted content disclosed | Retrieval authorisation enforced for the actual user | Engineering owner | Allowed/denied access tests; protected incident records | Any confirmed unauthorised disclosure | Contain the access path, run incident response |
+| Unsupported claims | Grounded-answer evaluation and sampled review | Service owner | Unsupported claims over substantive claims reviewed, with sample size | Breach of agreed tolerance, or one severe finding | Diagnose source, retrieval or generation; restrict if needed |
+| Questions outside scope | Scope handling and routed escalation | Service owner | Review of out-of-scope cases and escalations | Repeated unsafe answers, or abandoned escalations | Improve routing, revise scope, retest |
+| Uncontrolled change | Versioned release gate and regression tests | Release owner | Approved change record linked to test results | Unapproved model, prompt, tool or retrieval change | Block or contain the release, assess affected outputs |
+
+Set the numerical tolerances in your own context. Do not import a threshold from a course because it was written down somewhere.
+
+## Your turn
+
+Complete the register for three risks, then write a runbook for one scenario: a confirmed disclosure of restricted information.
+
+Contain, preserve evidence appropriately, establish scope and who was affected, notify the defined incident roles, remediate, rerun the relevant tests, restore under authority. Resist the urge to invent a legal reporting deadline — that depends on jurisdiction and facts you do not have here.

@@ -33,6 +33,32 @@ const components: MDXComponents = {
     </ol>
   ),
   li: ({ children }) => <li className="leading-8">{children}</li>,
+
+  // Tables carry the course templates and registers. They scroll horizontally
+  // on a phone rather than forcing the page wider than the viewport.
+  table: ({ children }) => (
+    <div className="my-6 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <table className="w-full min-w-[34rem] border-collapse text-left text-[0.95rem]">
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children }) => (
+    <thead className="border-b border-line">{children}</thead>
+  ),
+  th: ({ children }) => (
+    <th className="px-3 py-2.5 align-top text-xs font-semibold uppercase tracking-wider text-muted">
+      {children}
+    </th>
+  ),
+  tr: ({ children }) => (
+    <tr className="border-b border-line/60 last:border-0">{children}</tr>
+  ),
+  td: ({ children }) => (
+    <td className="px-3 py-3 align-top leading-relaxed text-ink/85">
+      {children}
+    </td>
+  ),
   a: ({ href = "", children }) => {
     const isInternal = href.startsWith("/");
     if (isInternal) {
