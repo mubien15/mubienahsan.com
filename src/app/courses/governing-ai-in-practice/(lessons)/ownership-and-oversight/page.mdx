@@ -1,0 +1,98 @@
+import { Callout } from "@/components/course/blocks";
+import { Parts } from "@/components/course/fluency";
+
+export const metadata = {
+  title: "Who owns it, who challenges it, who assures it",
+  description:
+    "A system can have a dozen contributors and no owner. Separating delivery, oversight and independent assurance — and why that separation stops being real the moment audit starts operating the controls.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" />Lesson 3</span>
+
+# Who owns it, who challenges it, who assures it
+
+An AI system can have a dozen contributors and still have no owner.
+
+It happens like this. A product person had the idea. An engineer built it. A data team supplied the documents. Risk was consulted. Someone from audit sat in on two workshops. Everybody participated. Then something goes wrong and it turns out nobody was accountable for the service working.
+
+Participation is not ownership. The question that resolves it is not *who was involved* but **who decides**.
+
+## Three different jobs
+
+<Parts
+  title="Roles that must not collapse into each other"
+  tone="accent"
+  parts={[
+    {
+      name: "Operational management",
+      text: "Owns the use case and operates the controls. In our case the service owner is accountable for delivering a usable, controlled policy assistant. Engineering runs the application; the policy owner keeps the source documents current. Delegating the work does not move the accountability.",
+    },
+    {
+      name: "Risk and compliance oversight",
+      text: "Sets expectations, monitors, and challenges the evidence, within its mandate. Its job is to ask whether the evidence supports the claim — not to quietly become the team that fixes every defect it finds.",
+    },
+    {
+      name: "Independent assurance",
+      text: "Internal audit gives an independent opinion on whether the governance and controls work. Different job again, and it depends entirely on not having built the thing being assessed.",
+    },
+  ]}
+/>
+
+## The failure mode worth naming
+
+Oversight functions drift into delivery. It is almost always well-intentioned: risk spots a problem, the delivery team is busy, risk fixes it. Repeat for six months and the function that was supposed to challenge the evidence is now producing it.
+
+The same trap catches internal audit harder, because its entire value is independence. If audit designs the daily control and operates it, it cannot later give an independent opinion on whether that control works. It would be assessing itself.
+
+<Callout type="warning" title="The tell">
+  If the person who would raise the alarm is the same person who would have to admit they built the thing badly, you do not have oversight. You have a second delivery team with a different job title.
+</Callout>
+
+Validation sits in the same territory. The right arrangement depends on the organisation and the risk, and a small team may not be able to staff full independence. But a developer's confidence in their own system is not a substitute for challenge from someone who did not build it, and saying so out loud is usually more productive than pretending the structure is cleaner than it is.
+
+## Decision rights are the real test
+
+A responsibility chart that lists contributors is decoration. A useful one answers questions that only matter under pressure:
+
+- Who can approve the release?
+- Who can pause the service, at 6pm, without convening anyone?
+- Who accepts the risk that remains after the controls?
+- Who decides that a fix is finished?
+
+If those four have no names against them, the chart will not help you on the day you need it.
+
+## Worked example: a stale document
+
+A retired policy turns out to be reachable. Watch how the roles divide:
+
+| Role | What they do |
+| --- | --- |
+| Engineering | Restricts access to the affected source, then corrects how ingestion handles retirement |
+| Policy content owner | Confirms which version is authoritative |
+| Service owner | Assesses who was affected, manages remediation, decides on user communication |
+| Risk oversight | Challenges whether the root cause was addressed and whether it could exist elsewhere |
+| Internal audit | Does not run the incident |
+
+That last row is the point of the table.
+
+## Template B — accountability and evidence map
+
+Fill one of these per activity. The columns that earn their place are the middle three, because they force you to separate doing from checking.
+
+| Activity or issue | Accountable | Performs the work | Challenges or reviews | Escalation authority | Evidence it happened |
+| --- | --- | --- | --- | --- | --- |
+| Keep policies current | Policy content owner | Content administrators | Service owner | Designated management authority | Version and retirement record |
+| Operate application controls | Service owner | Engineering / operations | Risk oversight | Incident or release authority | Control logs and exceptions |
+| Validate a proposed release | Validation owner | Qualified reviewers | Appropriate independent review | Release authority | Validation report with limitations |
+| Approve production scope | Release authority | Service owner submits the pack | Risk and relevant specialists | Higher authority if outside mandate | Recorded scope and decision |
+| Assess governance independently | Internal audit leadership | Internal audit | Per audit governance arrangements | Relevant governing body | Assurance report |
+
+<Callout type="tip" title="How to mark your own answer">
+  A committee name in the accountable column is not an answer. Committees do not get fired, cannot be reached on a Saturday, and rarely hold a decision right that anyone can point to in writing. Name a role.
+</Callout>
+
+## Your turn
+
+Assign responsibilities for four situations: outdated content reaching a user, an unauthorised retrieval, a change to the underlying model, and a release approval.
+
+For each one, the accountable role and the role doing the work should be distinguishable, and there should be somebody whose job is to disagree.

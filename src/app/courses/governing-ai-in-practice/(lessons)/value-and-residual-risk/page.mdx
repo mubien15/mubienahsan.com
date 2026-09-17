@@ -1,0 +1,74 @@
+import { Callout } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Measuring the benefit honestly",
+  description:
+    "Faster is not the same as cheaper, and released capacity is not a saving. Keeping the value case and the risk case on the same page.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" />Lesson 11</span>
+
+# Measuring the benefit honestly
+
+The assistant produces an answer in seconds. That tells you almost nothing about how much work it saves.
+
+Employees may spend the saved time checking references, correcting a subtly wrong answer, or asking a colleague what it meant. The interesting number is not the generation time. It is the **total task time**, including everything the answer causes.
+
+## Measure the whole task
+
+| What to measure | Why it is easy to skip |
+| --- | --- |
+| Task completion rate | Some questions end unanswered, and those disappear from timing samples |
+| Time including review and correction | The review time sits with a different person than the AI cost |
+| Error rate, before and after | Requires a baseline nobody collected |
+| User experience | Adoption failure is a real outcome, not a soft one |
+| Operating cost | Inference, maintenance, support, and the owner's time |
+| Incidents | Belongs in the same conversation as the benefit |
+
+## The worked figure, and how to read it
+
+Our fictional example: the manual process takes eight minutes per question. Assisted, it takes four, including checking and correction. Across a thousand comparable questions:
+
+**(8 − 4) × 1,000 ÷ 60 = 66.7 hours.**
+
+Now the honest reading of that number.
+
+It is an estimate of **capacity released**, not money saved. The two become the same thing only if the released time is used for something valuable, or if there is genuinely less work for someone to do. Most of the time, capacity quietly refills.
+
+It also sits before the costs that were not in the per-question measure: the service itself, maintenance, support, the content owner keeping documents current.
+
+And it rests on a sample of uncomplicated questions, which are exactly the ones an assistant handles best. Extend the measurement to representative tasks before believing it.
+
+<Callout type="important" title="Compare like for like">
+  If the manual baseline covered hard cases and the assisted sample covered easy ones, the comparison is not measuring the assistant. It is measuring which questions you chose.
+</Callout>
+
+## Value and risk belong on one page
+
+A service can be fast, popular, and unacceptable.
+
+If it leaks restricted information or omits material conditions, that is not offset by a productivity figure — they are not denominated in the same units and no amount of hours released buys back a disclosure. Keep both visible in the same review, and resist the pack design where benefits go to the front and incidents go to an appendix.
+
+<Callout type="warning" title="The averaging trap, again">
+  This is the same failure as Lesson 6, in a different costume. There it was a quality score hiding a disclosure. Here it is a benefit figure hiding one. A positive average is not a statement about the worst case.
+</Callout>
+
+## Assign a benefit owner
+
+Somebody should revisit the original business case with real numbers, and have the standing to act on what they find:
+
+- If adoption is low, find out why before adding features. It is often trust, or an unclear boundary, rather than capability.
+- If a simpler approach would do the job, say so. That is a good outcome, not a failed project.
+- If residual risk sits outside approved limits, restrict or pause, whatever the benefit looks like.
+
+## Shared capabilities cut both ways here too
+
+A shared component can spread benefit across several applications at once. It can also concentrate risk in one place, so that a single defect becomes five incidents.
+
+When you assess the value of a platform investment, assess the correlation too. "This component serves five services" is simultaneously the benefit case and the risk case.
+
+## Your turn
+
+Write the value paragraph for the policy assistant. State the capacity estimate, the costs not captured in it, the limitations of the sample, and one sentence on why this is not a cash saving.
+
+If you cannot write that paragraph without qualifying the number twice, the number was not ready to be quoted.

@@ -1,0 +1,81 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+
+export const metadata = {
+  title: "Turning accountability into a loop",
+  description:
+    "Operate, observe, assess, act, verify. Why a dashboard of green indicators proves nothing, and the four questions worth asking about any control.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" />Lesson 4</span>
+
+# Turning accountability into a loop
+
+Accountability that exists only on a chart is a claim. Accountability becomes visible through a repeated sequence:
+
+**Operate → observe → assess → act → verify.**
+
+Most organisations manage the first two and the fourth. They run the thing, they collect logs, and when something breaks they fix it. The steps that get skipped are *assess* and *verify* — deciding what actually deserves attention, and confirming afterwards that the fix worked.
+
+## Follow one issue through
+
+Our assistant cites the retired hotel policy. The 150-unit cap instead of the current 180.
+
+**Observe.** A useful record tells us the question asked, the document version retrieved, the answer shown, and the system configuration that produced it. Note what that record should *not* contain: more personal information than the investigation needs, and it should not be readable by anyone who happens to have a login.
+
+**Assess.** The service owner picks it up and decides it matters. Not every anomaly does, and pretending otherwise produces a backlog nobody reads.
+
+**Act.** The content owner confirms the authoritative version. Engineering corrects how retrieval handles retired documents.
+
+**Verify.** Here is where it usually falls apart. Changing the configuration is not the same as closing the issue. Someone reruns the relevant tests and checks that the fix works *and* has not broken something adjacent.
+
+<Callout type="important" title="Changed is not fixed">
+  A ticket moved to Done means somebody did something. It does not mean the failure cannot recur. The evidence of closure is a rerun test, not a status field.
+</Callout>
+
+## Then somebody challenges it
+
+Once the loop has run, oversight has something to work with. The questions worth asking:
+
+- Was the root cause addressed, or the symptom?
+- Were the users who already got wrong answers considered?
+- Could the same defect exist in other policy categories that nobody checked?
+
+That third question is the one that separates a closed incident from a closed class of incident.
+
+## Why green dashboards prove nothing
+
+A dashboard full of green indicators tells you that some measurements are inside some thresholds. It does not tell you:
+
+- what those indicators actually measure,
+- what they cannot see,
+- or what happens when one turns red.
+
+I have seen all three of those go unanswered on dashboards that were reviewed monthly by senior people. The indicator becomes the object of management rather than the thing it was supposed to represent.
+
+<Checklist
+  title="Four questions for any control"
+  items={[
+    "Who performs it? A named role, not a team name.",
+    "What demonstrates that it ran? Evidence produced by the control operating, not someone's recollection.",
+    "What happens when it fails? A defined response with an owner, not an alert into a channel.",
+    "Who verifies that the response worked? Somebody other than the person who responded.",
+  ]}
+/>
+
+If a control cannot answer all four, it is an intention.
+
+## Evidence should fall out of the work
+
+The best evidence is a by-product of the control operating, not something assembled afterwards for a reviewer. Evidence gathered retrospectively tends to show what people remember rather than what happened, and it takes effort precisely when there is least of it.
+
+For each significant exception, capture: the system version, the control result, the timestamp, who acted, and the exception status. Keep the sensitive content out of the log where you can, and restrict who can read it.
+
+<Callout type="warning" title="Collecting logs is not demonstrating effectiveness">
+  Volume of logging and quality of evidence are unrelated. A system can record everything and still be unable to show that a control worked, because nobody defined what a working control would look like in the record.
+</Callout>
+
+## Your turn
+
+Take the four situations from the previous lesson and, for each, write what the evidence of closure would be.
+
+The test: could someone who does not trust you, and who was not there, tell from the record alone whether the issue was actually resolved?
