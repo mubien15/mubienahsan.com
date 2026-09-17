@@ -202,6 +202,103 @@ export const COURSES: Course[] = [
       },
     ],
   },
+  {
+    slug: "governing-ai-in-practice",
+    title: "Governing AI in Practice",
+    tone: "accent",
+    level: "Intermediate",
+    blurb:
+      "The other four courses teach you to build with AI. This one teaches you to decide whether a thing that has been built should be allowed to run. From use-case design through validation to a defensible release decision.",
+    outcome:
+      "By the end you will have worked a single case from first sketch to release decision: a boundary statement, an accountability map, a validation plan, a control register, and a recommendation you could defend to someone who disagreed with it.",
+    status: "In progress",
+    lessons: [
+      {
+        slug: "capabilities-and-consequences",
+        title: "Capability is not risk",
+        summary:
+          "Three systems, the same model, three completely different problems. Why the risk lives in the deployment rather than in the model.",
+        minutes: 10,
+      },
+      {
+        slug: "define-the-use-case",
+        title: "Write the boundary someone else could test",
+        summary:
+          "What it may do, what it must not do, and what it must escalate. A purpose that cannot be tested is not a purpose.",
+        minutes: 10,
+      },
+      {
+        slug: "ownership-and-oversight",
+        title: "Who owns it, who challenges it, who assures it",
+        summary:
+          "A system can have a dozen contributors and no owner. Separating delivery, oversight and independent assurance, and why that separation stops being real the moment audit starts operating the controls.",
+        minutes: 10,
+      },
+      {
+        slug: "evidence-and-escalation",
+        title: "Turning accountability into a loop",
+        summary:
+          "Operate, observe, assess, act, verify. Why a dashboard of green indicators proves nothing, and the four questions worth asking about any control.",
+        minutes: 10,
+      },
+      {
+        slug: "inputs-and-architecture",
+        title: "Validate the system, not the model",
+        summary:
+          "A benchmark cannot tell you whether the right document reached the right person. Sources, retrieval, prompts, permissions — every component is a place to fail.",
+        minutes: 15,
+      },
+      {
+        slug: "outputs-and-robustness",
+        title: "Testing what actually goes wrong",
+        summary:
+          "Correct, grounded, complete and safe are four different questions. Building tests with observable pass criteria, and reading failures by severity rather than by average.",
+        minutes: 15,
+      },
+      {
+        slug: "oversight-and-guardrails",
+        title: "Controls, and the limits of human review",
+        summary:
+          "\u201CA human will check it\u201D is not a control description. What a reviewer needs to actually exercise judgement, and which restrictions should never depend on the model obeying an instruction.",
+        minutes: 13,
+      },
+      {
+        slug: "monitoring-and-change",
+        title: "Monitoring, change and recovery",
+        summary:
+          "A system that passed last month may not pass today. Choosing measures that lead to decisions, and making sure the rollback route is one you have actually tried.",
+        minutes: 12,
+      },
+      {
+        slug: "implementation-barriers",
+        title: "Why the pilot does not scale",
+        summary:
+          "Demonstrations work on clean data and chosen questions. The barriers are usually ownership, versioning and permissions rather than anything a better prompt would fix.",
+        minutes: 12,
+      },
+      {
+        slug: "release-and-reuse",
+        title: "From pilot to supported service",
+        summary:
+          "What has to exist before release, and the trap in shared capabilities: reusing a component is sensible, reusing its approval is not.",
+        minutes: 13,
+      },
+      {
+        slug: "value-and-residual-risk",
+        title: "Measuring the benefit honestly",
+        summary:
+          "Faster is not the same as cheaper, and released capacity is not a saving. Keeping the value case and the risk case on the same page.",
+        minutes: 15,
+      },
+      {
+        slug: "the-decision",
+        title: "The decision, and defending it",
+        summary:
+          "Bringing scope, accountability, evidence, controls and value into one recommendation \u2014 including what to do when a strong average hides a failure you cannot release with.",
+        minutes: 15,
+      },
+    ],
+  },
 ];
 
 export function getCourse(slug: string): Course | undefined {

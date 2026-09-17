@@ -1,0 +1,101 @@
+import { Callout, Checklist } from "@/components/course/blocks";
+import { Parts } from "@/components/course/fluency";
+
+export const metadata = {
+  title: "Capability is not risk",
+  description:
+    "Three systems, the same model, three completely different problems. Why the risk lives in the deployment rather than in the model.",
+};
+
+<span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent"><span className="h-1.5 w-1.5 rounded-full bg-accent" />Lesson 1</span>
+
+# Capability is not risk
+
+Picture three systems. All three use the same language model.
+
+The first drafts an answer and an employee reads it before anything happens. The second answers employees directly, with nobody in between. The third reads the conversation and changes a business record.
+
+Same model. Same weights. Same benchmark scores. Three completely different problems.
+
+That is the whole lesson, and it is worth sitting with before we go anywhere else, because a great deal of AI governance goes wrong by starting at the model.
+
+## What actually determines the risk
+
+Not the capability. The deployment.
+
+<Parts
+  title="What to ask about any AI application"
+  tone="accent"
+  parts={[
+    {
+      name: "Who relies on the result",
+      text: "An answer a specialist sanity-checks is not the same as an answer an employee acts on immediately. The same output carries different weight depending on who receives it and what they do next.",
+    },
+    {
+      name: "What it can reach",
+      text: "Which data, which systems, which records. Not what it is supposed to reach — what its credentials actually permit.",
+    },
+    {
+      name: "What it can do",
+      text: "Draft, answer, or act. The jump from producing text to changing state is the single biggest step in this list, and it is often the one added last and assessed least.",
+    },
+    {
+      name: "How fast a mistake spreads, and whether it reverses",
+      text: "A wrong answer to one person on a Tuesday is recoverable. The same wrong answer served to four hundred people, or written into a record other systems read, may not be.",
+    },
+  ]}
+/>
+
+Notice that none of these are questions about the model. You could swap in a better one tomorrow and every answer above would stay the same.
+
+## The categories are not a ladder
+
+A brief detour, because the vocabulary causes real confusion.
+
+Predictive machine learning estimates outcomes or spots patterns. Deep learning is a family of methods that sits underneath a lot of things, including many generative systems. Generative AI produces content. Agentic applications coordinate steps and call tools.
+
+These overlap. They are not four rungs that every organisation should be climbing, and treating them as a maturity ladder produces a particular kind of bad decision — the one where a team adds autonomy because it feels like progress rather than because the task needed it.
+
+<Callout type="important" title="The useful framing">
+  Different capabilities suit different tasks. A predictive model might rank alerts. A generative one might explain a policy. An agentic one might look something up, decide what to do next, and call a tool. Pick the one the job needs, not the one that sounds most advanced.
+</Callout>
+
+## The case we will use throughout
+
+Everything in this course runs on one example. It is fictional, deliberately small, and detailed enough to argue about.
+
+An organisation wants an assistant that answers employee questions from approved internal policies. The initial scope is travel and expenses. The pilot serves 60 employees and draws on 120 documents. It retrieves relevant passages and produces an answer with references.
+
+It cannot approve expenses. It cannot change records. It cannot send external messages. It cannot reach personnel files.
+
+That is about as modest as a deployment gets. And it can still cause problems:
+
+<Checklist
+  title="What can go wrong with a system that only answers questions"
+  items={[
+    "An outdated policy is retrieved and an employee books something they will not be reimbursed for.",
+    "Retrieval is not properly scoped and a restricted record surfaces because its text happened to match the question.",
+    "The answer is technically supported by the document it cites, and still wrong for the question that was asked.",
+    "Nobody can reconstruct, four months later, which version of which policy produced a particular answer.",
+  ]}
+/>
+
+None of those are model failures. Three of them are architecture or data failures, and the fourth is a record-keeping failure.
+
+## Describe the consequence before you choose the control
+
+The instinct, once someone raises a risk, is to reach for a control. Add a guardrail. Add a review step. Add a disclaimer.
+
+Resist that for a moment longer than feels comfortable. A control chosen before the failure is described tends to be a control that addresses how the failure *sounds* rather than how it happens. The classic version: telling the model in its instructions not to do something it has the permissions to do anyway.
+
+Describe what you are trying to prevent, concretely enough that someone could test whether it happened. Then choose.
+
+<Callout type="tip" title="A question worth repeating">
+  If two applications use the same model, should they get the same risk rating? No. Their users, data, authority and consequences differ, and every one of those matters more than the model they share.
+</Callout>
+
+## What you should take away
+
+A powerful model does not remove the need for a clear purpose, bounded permissions, and someone accountable for the outcome. If anything it raises the stakes on all three, because a fluent wrong answer travels further than a clumsy one.
+
+Next we turn that into something you can write down — and, more importantly, something another person could test.
