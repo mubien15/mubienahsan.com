@@ -57,14 +57,18 @@ export default function CourseOverviewPage() {
             What this is, and is not
           </h2>
           <p className="mt-2 leading-relaxed text-ink/85">
-            This teaches general governance practice, not the law of any
-            particular jurisdiction and not a certification standard. Every
-            figure, threshold and case outcome in it is a fictional teaching
-            assumption, and none of them should be read as a regulatory
-            requirement or a production benchmark. Written in a personal
-            capacity. For public background on the same ground, the NIST AI Risk
-            Management Framework and its Generative AI Profile are the obvious
-            further reading.
+            Written and published in a personal capacity. It is not derived from
+            any employer&apos;s methodology or from client work, it describes no
+            real organisation, and the policy assistant it runs on is invented
+            for teaching. Every figure, threshold and case outcome is a fictional
+            teaching assumption.
+          </p>
+          <p className="mt-3 leading-relaxed text-ink/85">
+            It covers general governance practice rather than the law of any
+            particular jurisdiction, and it is not a certification or a standard
+            you can be assessed against. For public background on the same
+            ground, the NIST AI Risk Management Framework and its Generative AI
+            Profile are the obvious further reading.
           </p>
         </div>
       </Reveal>

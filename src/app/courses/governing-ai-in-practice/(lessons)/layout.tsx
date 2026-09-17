@@ -28,6 +28,16 @@ export default function LessonLayout({
         </aside>
         <div className="min-w-0">
           <article>{children}</article>
+
+          {/* Every lesson carries this, not just the course page: most readers
+              will arrive on a lesson from search and never see the overview. */}
+          <p className="mt-12 rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
+            Written in a personal capacity, from public sources. Not derived
+            from any employer&apos;s methodology or from client work. The
+            organisation, the policy assistant and every figure in this course
+            are invented for teaching, and none of it is professional advice.
+          </p>
+
           <LessonPager courseSlug={COURSE_SLUG} lessons={lessons} />
         </div>
       </div>
