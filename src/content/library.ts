@@ -50,6 +50,13 @@ export const CERTIFICATIONS: Certification[] = [
     note: "A clear look at the ethical and regulatory questions that come with generative AI. A good grounding for anyone who wants to build or deploy it responsibly.",
   },
   {
+    name: "AI Leadership",
+    issuer: "OpenAI Academy",
+    status: "Completed",
+    tone: "mint",
+    note: "Pitched at the people who decide rather than the people who build, and better for it. Its argument is that the prototype is the easy part and the judgement is the hard part: whether the evidence actually justifies taking something further. The reframe that stuck with me was to start from the workflow worth improving rather than from where AI could be used.",
+  },
+  {
     name: "Programming with Python: The Fundamentals",
     issuer: "University of Toronto",
     status: "Completed",
