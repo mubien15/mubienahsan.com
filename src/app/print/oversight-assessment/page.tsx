@@ -124,7 +124,7 @@ export default function OversightAssessmentPrintPage() {
       </section>
 
       {/* 3 — the five questions */}
-      <section className="print-block print-break mt-10">
+      <section className="print-break mt-10">
         <Part n={3} title="The Meaningful Human Oversight Test" />
         <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
           Five separable conditions. A system can satisfy four and still fail,
@@ -213,7 +213,7 @@ export default function OversightAssessmentPrintPage() {
       </section>
 
       {/* 5 — the dimensions */}
-      <section className="print-block print-break mt-10">
+      <section className="print-break mt-10">
         <Part n={5} title="Governance dimensions against the level" />
         <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
           For the level you ticked in part two, the framework calls for the

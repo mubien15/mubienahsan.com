@@ -41,7 +41,8 @@ export const PAPER_SUBTITLE =
 export const PAPER_ABSTRACT = [
   "Human oversight is the control that most AI governance frameworks lean on hardest. It is named in binding regulation, written into supervisory guidance, and recorded in risk registers as the reason an AI system is considered controlled. This paper argues that the control is load-bearing in exactly the situations where it is weakest, and that the failure is structural rather than a matter of effort.",
   "The argument is this. As an AI system's autonomy and capability rise, the ability of a responsible person to independently verify what it decided falls. The governance intensity the system requires rises at the same time. The two cross. Past that crossing — the oversight threshold — a human approval step still produces a signature and stops producing a check, and nothing visible in the workflow changes when it happens.",
-  "The paper sets out a five-level autonomy scale mapped against eight governance dimensions, a five-part test for whether human oversight is doing real work, and an account of why verification capacity falls that distinguishes the fixable causes from the one that is not. It then argues that above the threshold, governance has to stop resourcing review and start constraining what a system is permitted to become and to reach.",
+  "The paper sets out a five-level autonomy scale mapped against eight governance dimensions, a five-part test for whether human oversight is doing real work, and an account of why verification capacity falls that distinguishes the fixable causes from the one that is not. That account turns on two problems the field has not solved: comprehension, because these systems are grown rather than written and nobody can say where a behaviour lives inside them; and alignment, because no objective can be specified precisely enough to guarantee that a capable system pursues what was intended rather than a proxy for it. The paper then argues that above the threshold, governance has to stop resourcing review and start constraining what a system is permitted to become and to reach.",
+  "The scope is deliberate. Whether these systems end somewhere catastrophic is a machine learning question, argued elsewhere by people better placed to argue it, and this paper does not try to settle it. It works one layer down, on the distance between what these systems can already do and what existing controls can actually establish — a question that is answerable now, about systems already running.",
   "This is an argument and a framework. It is not an empirical study: no survey, incident dataset or client engagement sits behind it, and section 11 states what that limits. It is written in a personal capacity and is not legal, regulatory or professional advice.",
 ];
 
@@ -106,7 +107,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "What this thesis does not claim" },
       {
         kind: "p",
-        text: "It does not claim that AI systems are unusually dangerous, that catastrophe is inevitable, or that the correct response is to stop. It does not claim that human oversight is worthless — below the threshold it is often the strongest control available, and most of the practical recommendations in section 9 are about making it work.",
+        text: "It takes no position on whether advanced AI ends somewhere catastrophic, on what timescale, or on whether the correct response is to slow down. Those are real questions and they are argued elsewhere by people better placed to argue them. Nor does it claim that human oversight is worthless — below the threshold it is often the strongest control available, and most of the practical recommendations in section 9 are about making it work.",
       },
       {
         kind: "p",
@@ -166,30 +167,48 @@ export const PAPER_SECTIONS: PaperSection[] = [
         kind: "p",
         text: "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds the problem: a system that can improve its own capability changes the thing being verified faster than a verification cycle can complete.",
       },
-      { kind: "h3", text: "What I accept, and what I do not" },
+      { kind: "h3", text: "The alignment problem" },
       {
         kind: "p",
-        text: "I accept the mechanism. Grown-not-crafted is an accurate description of how these systems are made, and it is the reason human oversight degrades as a control rather than merely becoming harder work. This is not a fringe position; it is the ordinary understanding of how the training works, and it is why interpretability is a research field rather than a procedure.",
+        text: "Opacity is about whether you can see what the system is doing. There is a second and separate difficulty about whether what it is doing is what you asked for, and the field calls it the alignment problem. The two are routinely merged into one vague worry, which makes both easier to wave away.",
       },
       {
         kind: "p",
-        text: "I also accept the self-improvement point, which governance practitioners underrate. Every assurance method available — testing, validation, independent review, certification — assumes the object holds still long enough to be assessed. A system that meaningfully improves its own capability breaks that assumption, and nothing in existing model risk practice is built for it.",
+        text: "The trouble is specification. You cannot write down everything you mean. Any objective handed to a capable optimiser is a proxy for the intent behind it, and a proxy that holds in the situations you tested can come apart in situations you did not — not through malice, but because it was only ever an approximation of the thing you wanted. A system pursuing a slightly wrong objective competently is a known failure mode with no general solution, and capability makes the consequences larger rather than smaller. A weak system pursuing the wrong goal simply fails at it.",
       },
       {
         kind: "p",
-        text: "I do not accept the conclusion, and the distinction is worth being precise about, because the two claims get conflated in both directions. Their conclusion is about survival. The argument in this paper is about governability. The second does not carry you to the first.",
+        text: "The two problems compound, and that is the part worth holding on to. A specification failure inside a system you cannot inspect is not one you find by looking for it. You find it when the system acts. That is the whole case for constraining what a system may reach rather than trusting that somebody will notice in time.",
+      },
+      { kind: "h3", text: "Why the argument follows" },
+      {
+        kind: "p",
+        text: "I can follow this argument, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is three ordinary observations placed in order.",
       },
       {
         kind: "p",
-        text: "That a person cannot independently verify a system is well supported, and it is sufficient to establish everything this framework asks for. That therefore everyone dies requires several further steps — how a misaligned objective arises, why it would be lethal rather than merely costly, why no intervening constraint holds — and reviewers who take the underlying risk seriously have argued that the book does not make those steps, does not engage the counterarguments, and leans on analogies that do not survive inspection.",
+        text: "One: we do not write these systems, we train them, and nobody can point to where a particular behaviour lives inside the result. Two: we cannot fully specify what we want, so any objective we set is a proxy, and a proxy that holds in tested cases can come apart in untested ones. Three: a system that can improve its own capability changes faster than any verification cycle can complete.",
       },
       {
         kind: "p",
-        text: "So: mechanism convincing, conclusion unestablished. I also do not need the conclusion. The governance problem described here does not wait for superintelligence. It is visible at level 4, in systems nobody claims are superhuman, and the response is the same either way.",
+        text: "Each step is separately unremarkable, and each is the ordinary understanding of how the technology works rather than a contested one. Put in sequence, they describe something that becomes harder to check exactly as it becomes more consequential. The shape of the argument is sound.",
       },
       {
         kind: "p",
-        text: "The error runs in the other direction too, and in governance work I encounter it more often. Concluding that the extinction argument is overheated is not a reason to dismiss the comprehension problem underneath it. The opacity is real whatever you conclude about where it leads.",
+        text: "The self-improvement step deserves particular attention from governance practitioners, because it is the one our methods are least prepared for. Every assurance technique available — testing, validation, independent review, certification — assumes the object holds still long enough to be assessed. A system that meaningfully improves its own capability breaks that assumption, and nothing in existing model risk practice is built for it.",
+      },
+      { kind: "h3", text: "Where I put my work" },
+      {
+        kind: "p",
+        text: "Where the argument ends — whether this leads somewhere catastrophic, and on what timescale — is a question about how capability scales and how systems behave at levels nobody has built. I am not a machine learning researcher, and I am not going to pretend I can settle that from a governance background. Readers who want that question argued should go to the people arguing it, including the book above and the reviewers who have contested parts of it.",
+      },
+      {
+        kind: "p",
+        text: "What I can say is that the question does not need to be settled for the problem in this paper to be real. It does not wait for superintelligence. It is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves.",
+      },
+      {
+        kind: "p",
+        text: "So that is the layer this paper works in: the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing real work in a system running right now is, and unlike the first question, it is answerable this quarter.",
       },
     ],
   },
@@ -602,7 +621,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "One source is of a different kind from the others and is flagged as such. If Anyone Builds It, Everyone Dies is a book making an argument. It carries no authority beyond its reasoning, is included because it states the comprehension mechanism most clearly, and is engaged with in section 3 including the parts of it I do not accept and the criticism it has attracted.",
+        text: "One source is of a different kind from the others and is flagged as such. If Anyone Builds It, Everyone Dies is a book making an argument. It carries no authority beyond its reasoning, and it is included because it states the comprehension mechanism most clearly. Section 3 sets out why I find the reasoning followable, and is explicit that where that reasoning ends is a machine learning question rather than a governance one, and so not a question this paper attempts to settle.",
       },
       { kind: "h3", text: "Declarations" },
       {
