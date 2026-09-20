@@ -138,7 +138,7 @@ export const LEVELS: AutonomyLevel[] = [
     escalation:
       "The moment the output starts flowing into something automatically, or the reviewer becomes a formality, this is no longer level 1 whatever the documentation says.",
     verification: 96,
-    intensity: 18,
+    intensity: 16,
     dimensions: {
       purpose: {
         weight: 1,
@@ -214,8 +214,8 @@ export const LEVELS: AutonomyLevel[] = [
     ],
     escalation:
       "When the system starts choosing between several possible actions rather than executing one, you are at level 3, and the controls above stop being sufficient.",
-    verification: 84,
-    intensity: 34,
+    verification: 86,
+    intensity: 30,
     dimensions: {
       purpose: {
         weight: 2,
@@ -296,8 +296,8 @@ export const LEVELS: AutonomyLevel[] = [
     ],
     escalation:
       "When objectives start spanning long periods, or the system coordinates other agents, or nobody can plausibly inspect the intermediate decisions, treat it as level 4.",
-    verification: 72,
-    intensity: 50,
+    verification: 78,
+    intensity: 40,
     dimensions: {
       purpose: {
         weight: 4,
@@ -379,8 +379,8 @@ export const LEVELS: AutonomyLevel[] = [
     ],
     escalation:
       "When the system can meaningfully improve its own capability, or when a reviewer can no longer reproduce or challenge its reasoning even with time, the assumptions underneath everything above stop holding.",
-    verification: 28,
-    intensity: 84,
+    verification: 30,
+    intensity: 78,
     dimensions: {
       purpose: {
         weight: 5,
