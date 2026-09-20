@@ -783,7 +783,9 @@ export type SourceKind =
   | "Standard"
   | "Framework"
   | "Supervisory guidance"
-  | "Industry commitment";
+  | "Industry commitment"
+  /** A published argument. Carries no authority beyond its own reasoning. */
+  | "Argument";
 
 export type Source = {
   name: string;
@@ -850,7 +852,87 @@ export const SOURCES: Source[] = [
     href: "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024",
     note: "Voluntary commitments made at the 2024 Seoul summit, implemented as published frameworks that define capability thresholds and the safeguards required before crossing them. Self-defined, self-assessed, and the closest existing practice to levels 4 and 5 — which is worth noticing in both directions.",
   },
+  {
+    name: "If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All",
+    org: "Eliezer Yudkowsky and Nate Soares (MIRI), September 2025",
+    kind: "Argument",
+    href: "https://en.wikipedia.org/wiki/If_Anyone_Builds_It,_Everyone_Dies",
+    note: "A book, not a standard, and it carries no authority beyond its reasoning. Included because it states the strongest published version of the comprehension problem: that these systems are grown rather than designed, that nobody understands how their internals produce their behaviour, and that this is why a sufficiently capable system would not be controllable. I take the mechanism seriously and do not accept the conclusion; the section on the comprehension limit says why, and notes that the book's critics contest the same step.",
+  },
 ];
 
 export const METHOD_NOTE =
   "The five levels are mine, built to make one argument testable: that verification capacity falls as autonomy rises, and that governance has to intensify before the two cross. The dimensions borrow their shape from existing risk practice rather than inventing a vocabulary. Where a source is cited it is summarised in my own words and linked, so you can disagree with my reading by going to the original. Voluntary frameworks are labelled as voluntary and binding law as binding, because collapsing the two is the most common error in this area — and the most flattering one, since it makes a governance programme sound more obligatory than it is.";
+
+/* ------------------------------------------------ the comprehension limit */
+
+/**
+ * Why verification capacity falls at all.
+ *
+ * The figure asserts the fall. This section names the mechanism, because the
+ * mechanism determines what governance can do about it: a reviewer who lacks
+ * time can be given time, and a reviewer who cannot understand the artefact
+ * cannot be given comprehension.
+ *
+ * Two disciplines specific to this section:
+ *
+ *  1. It engages the strongest published version of the argument rather than
+ *     a convenient version, and attributes it accurately — including the
+ *     part of the conclusion this framework does not accept, and the fact
+ *     that serious reviewers contest that same step.
+ *  2. Governability and survivability are kept apart. The claim here is that
+ *     human review stops working as a control. That is not a claim about
+ *     human extinction, and the second does not follow from the first.
+ */
+export const COMPREHENSION = {
+  heading: "The comprehension limit",
+
+  intro: [
+    "The figure earlier says verification capacity falls as autonomy rises. It is worth being exact about why, because the reason decides what governance can do about it.",
+    "There are three ordinary reasons a reviewer stops really reviewing. They do not have the time. They do not have the information. They do not have the standing to say no. All three are real, all three are common, and all three are fixable by an organisation that decides to fix them — give the reviewer hours instead of seconds, give them the inputs rather than the conclusion, give them a manager who does not treat a rejection as an obstruction.",
+    "There is a fourth reason, and it is not fixable that way. Modern systems are grown rather than written. Their capabilities emerge from training rather than from a specification somebody authored, and nobody can point to the place inside the model where a particular behaviour lives. Interpretability research is making real progress on the general question, and it is not a deployed method for explaining a specific decision to a reviewer, an auditor or a regulator.",
+    "So a reviewer can be given unlimited time, complete logs and total independence, and still not be able to answer why the system did that in the way they could for a system somebody wrote. Verification capacity does not fall because reviewers become lazy or overloaded. It falls because the thing being checked stops being the kind of thing a person can check.",
+  ],
+
+  /** Stated as the argument's own claim, not as this framework's finding. */
+  strongForm: {
+    heading: "The strongest version of this argument",
+    body: [
+      "The most forceful published statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025. Soares is president of the Machine Intelligence Research Institute.",
+      "Their mechanism is the one described above, put more sharply: AI systems are grown, not crafted. They emerge from opaque training processes rather than being designed like ordinary software, so nobody understands how the enormous number of internal values interact to produce the behaviour. Soares has made the regulatory case in those terms — that a superintelligent system would not be understandable, would not be predictable, and would not have human interests at heart.",
+      "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds it: a system that can improve its own capability changes the thing being verified faster than a verification cycle can complete.",
+    ],
+  },
+
+  agree: {
+    heading: "What I think is right about it",
+    body: [
+      "The mechanism. Grown-not-crafted is an accurate description of how these systems are made, and it is the reason human oversight degrades as a control rather than merely becoming harder work. That is not a fringe observation; it is the ordinary understanding of how the training works, and it is why interpretability is a research field rather than a procedure.",
+      "The self-improvement point is also structurally right, and it is the part governance people underrate. Every assurance method we have — testing, validation, independent review, certification — assumes the object holds still long enough to be assessed. A system that meaningfully improves its own capability breaks that assumption, and nothing in existing model risk practice is built for it.",
+    ],
+  },
+
+  depart: {
+    heading: "Where I stop",
+    body: [
+      "Their conclusion is about survival. The argument on this page is about governability. Those are different claims, and the second does not carry you to the first.",
+      "“A person cannot independently verify this system” is well supported, and it is enough to establish everything this framework asks for. “Therefore everyone dies” requires several further steps — how a misaligned objective arises, why it would be lethal rather than merely costly, why no intervening constraint holds — and reviewers who take the risk seriously have argued that the book does not make those steps, does not engage the counterarguments, and leans on analogies that do not survive inspection.",
+      "So I find the mechanism convincing and the conclusion unestablished. I also do not need the conclusion. The governance problem this page describes does not wait for superintelligence: it is already visible at level 4, in systems nobody claims are superhuman, and the fix is the same either way.",
+      "That cuts both ways, and the other direction is the one I see more often in governance work. Deciding the extinction argument is overheated is not a reason to dismiss the comprehension problem underneath it. The opacity is real whatever you conclude about where it ends.",
+    ],
+  },
+
+  consequence: {
+    heading: "What it does to the governance model",
+    body: [
+      "If verification fails because the artefact is opaque, then more oversight cannot repair it. You cannot resource your way past a comprehension limit. This is the practical consequence of the whole framework, and it reverses what most AI governance programmes are built to do.",
+      "Below the threshold, governance makes review work: better information, more time, genuine independence, real authority to refuse. Those are the right investments and they pay off.",
+      "Above it, governance has to stop leaning on review at all and constrain what the system is permitted to become and to reach. Permissions enforced outside the model rather than requested of it. Actions that are reversible by construction. A blast radius small enough that being wrong is survivable. Capability thresholds that gate deployment before the fact instead of review that audits it afterwards.",
+      "And at level 5 as described, the unit of governance stops being the organisation. If no reviewer inside a company can verify the system, an internal control framework is not the relevant instrument, and the questions become who may build such a thing, under what external verification, and with what ability to stop. That is not a prediction that level 5 exists or is close. It is what the framework would require if it did — which is the entire reason to include a level nobody has built.",
+    ],
+  },
+
+  /** The one-line version, for the page's summary rail. */
+  pullQuote:
+    "You cannot resource your way past a comprehension limit. Above the threshold, governance has to constrain what the system may become rather than review what it did.",
+} as const;
