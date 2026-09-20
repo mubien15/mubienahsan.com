@@ -70,7 +70,7 @@ export default function AutonomyGovernancePage() {
       {/* 1 — the argument */}
       <div className="mt-12 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
-          <p id="argument">
+          <p id="argument" className="scroll-mt-24">
             At what point does human oversight stop being meaningful, because
             the system has become too capable, too fast, too complex or too
             autonomous for a person to understand and verify what it decided?

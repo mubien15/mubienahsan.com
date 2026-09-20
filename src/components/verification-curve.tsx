@@ -24,38 +24,86 @@ const x = (i: number) =>
 const y = (v: number) =>
   PAD.top + (1 - v / 100) * (H - PAD.top - PAD.bottom);
 
-/** Catmull-Rom through the points, so the lines read as trends not readings. */
-function curve(values: number[]) {
-  const pts = values.map((v, i) => [x(i), y(v)] as const);
-  let d = `M ${pts[0][0]} ${pts[0][1]}`;
+type Pt = readonly [number, number];
+/** One cubic segment: start, two controls, end. */
+type Seg = readonly [Pt, Pt, Pt, Pt];
+
+/**
+ * Catmull-Rom through the points, as cubic segments, so the lines read as
+ * trends not readings. Both the drawn path and the threshold marker are built
+ * from this one function, so the marker can never drift off the drawn lines.
+ */
+function segments(values: number[]): Seg[] {
+  const pts: Pt[] = values.map((v, i) => [x(i), y(v)]);
+  const out: Seg[] = [];
   for (let i = 0; i < pts.length - 1; i++) {
     const p0 = pts[i - 1] ?? pts[i];
     const p1 = pts[i];
     const p2 = pts[i + 1];
     const p3 = pts[i + 2] ?? p2;
-    d += ` C ${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6}, ${
-      p2[0] - (p3[0] - p1[0]) / 6
-    } ${p2[1] - (p3[1] - p1[1]) / 6}, ${p2[0]} ${p2[1]}`;
+    out.push([
+      p1,
+      [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6],
+      [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6],
+      p2,
+    ]);
+  }
+  return out;
+}
+
+function curve(values: number[]) {
+  const segs = segments(values);
+  let d = `M ${segs[0][0][0]} ${segs[0][0][1]}`;
+  for (const [, c1, c2, p] of segs) {
+    d += ` C ${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${p[0]} ${p[1]}`;
   }
   return d;
+}
+
+const bezier = (a: number, b: number, c: number, d: number, t: number) => {
+  const u = 1 - t;
+  return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d;
+};
+
+/**
+ * Where the two drawn curves actually meet, in SVG units.
+ *
+ * Both series share the same evenly spaced x positions, so within any segment
+ * the two curves have an identical x(t) and the crossing is just the root of
+ * their y difference. Solving on the curves rather than on a straight line
+ * between the level values matters: the smoothing moves the real intersection
+ * by a few pixels, which is enough for the dashed marker to visibly miss the
+ * point where the lines cross. Bisection, because the difference changes sign
+ * exactly once across the segment we search.
+ */
+function crossingX(verify: number[], govern: number[]): number | null {
+  const a = segments(verify);
+  const b = segments(govern);
+  for (let s = 0; s < a.length; s++) {
+    const diff = (t: number) =>
+      bezier(a[s][0][1], a[s][1][1], a[s][2][1], a[s][3][1], t) -
+      bezier(b[s][0][1], b[s][1][1], b[s][2][1], b[s][3][1], t);
+    if (diff(0) * diff(1) >= 0) continue;
+    let lo = 0;
+    let hi = 1;
+    for (let k = 0; k < 60; k++) {
+      const mid = (lo + hi) / 2;
+      if (diff(lo) * diff(mid) <= 0) hi = mid;
+      else lo = mid;
+    }
+    const t = (lo + hi) / 2;
+    return bezier(a[s][0][0], a[s][1][0], a[s][2][0], a[s][3][0], t);
+  }
+  return null;
 }
 
 export function VerificationCurve() {
   const verify = LEVELS.map((l) => l.verification);
   const govern = LEVELS.map((l) => l.intensity);
 
-  // The true intersection, interpolated between the last level where
-  // verification leads and the first where governance does — so editing the
-  // data moves the marker to wherever the lines genuinely meet.
-  const i = LEVELS.findIndex((l) => l.intensity > l.verification);
-  let crossX: number | null = null;
-  if (i > 0) {
-    const a = LEVELS[i - 1];
-    const bb = LEVELS[i];
-    const denom = bb.verification - a.verification - (bb.intensity - a.intensity);
-    const t = denom === 0 ? 0.5 : (a.intensity - a.verification) / denom;
-    crossX = x(i - 1) + Math.min(Math.max(t, 0), 1) * (x(i) - x(i - 1));
-  }
+  // Derived, never hand-placed: editing the level values in the content file
+  // moves the marker to wherever the lines genuinely meet.
+  const crossX = crossingX(verify, govern);
 
   return (
     <figure className="mt-8">
