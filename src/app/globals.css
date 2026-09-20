@@ -167,3 +167,84 @@
 .glow-mint {
   --glow-rgb: var(--mint-rgb);
 }
+
+/* ---------------------------------------------------------------- print
+
+   Print rules for the downloadable documents under /print. They serve two
+   readers at once: a person hitting Cmd-P on the page, and the Playwright
+   run in scripts/build-pdfs.mjs that produces the PDFs in public/research.
+   Because Playwright renders with print media emulation, what is specified
+   here is exactly what lands in the PDF.
+
+   The PDFs are generated from the same src/content/autonomy.ts the site
+   reads, so a correction to the framework reaches the downloads by
+   re-running the script rather than by editing a binary nobody can diff.
+*/
+@media print {
+  /* Site chrome is navigation. On paper it is a header nobody can click. */
+  body > header,
+  body > footer,
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  /* Paper is white; the warm paper tone would flood a printer's ink. */
+  :root {
+    --paper: #ffffff;
+    --surface: #ffffff;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000;
+  }
+
+  /* Margins live in @page so content can still run edge to edge in boxes. */
+  @page {
+    size: A4;
+    margin: 16mm 14mm 18mm;
+  }
+
+  .print-doc {
+    max-width: none;
+    padding: 0;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  /* A level, a question or a dimension should never straddle two sheets. */
+  .print-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-break {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  /* Keep a heading with at least the start of what it introduces. */
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Borders survive; tints mostly do not, so keep structure in the lines. */
+  .print-rule {
+    border-color: #c9c2b4 !important;
+  }
+
+  /* Writing space has to be a real line, not a tinted box a pen can't see. */
+  .print-field {
+    border-bottom: 1px solid #8c8577 !important;
+    background: none !important;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  }
+}
