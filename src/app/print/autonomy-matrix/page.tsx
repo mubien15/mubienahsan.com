@@ -101,7 +101,7 @@ export default function AutonomyMatrixPrintPage() {
 
       {/* Each level in full. */}
       {LEVELS.map((l) => (
-        <section key={l.id} className="print-block print-break mt-10">
+        <section key={l.id} className="print-break mt-10">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h2 className="font-display text-xl text-ink">
               Level {l.id} — {l.name}
@@ -154,7 +154,7 @@ export default function AutonomyMatrixPrintPage() {
       ))}
 
       {/* The five oversight questions, as a reference card. */}
-      <section className="print-block print-break mt-10">
+      <section className="print-break mt-10">
         <h2 className="font-display text-xl text-ink">
           The Meaningful Human Oversight Test
         </h2>
