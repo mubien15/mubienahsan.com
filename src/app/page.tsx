@@ -236,20 +236,21 @@ export default function Home() {
                 </a>
 
                 <Link
-                  href="/projects"
+                  href="/research/autonomy-governance"
                   className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
                 >
-                  <Pill tone="grape">Tools</Pill>
+                  <Pill tone="grape">Framework</Pill>
                   <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
-                    Built for risk teams
+                    The Oversight Threshold
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    An assessment agent that produces a structured governance
-                    review mapped to real frameworks, and a risk register tool
-                    that drafts its own entries.
+                    As AI gets more autonomous, human approval can stay in the
+                    workflow while disappearing in substance. Five levels of
+                    autonomy, and a test for whether review still means
+                    anything.
                   </span>
                   <span className="mt-3 text-sm font-medium text-grape">
-                    See the projects →
+                    Open the framework →
                   </span>
                 </Link>
 
