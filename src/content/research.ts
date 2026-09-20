@@ -1,5 +1,6 @@
 import type { Tone } from "@/components/ui";
 import { PUBLISHED_CONTROLS } from "@/content/agents";
+import { LAST_CHECKED, LEVELS } from "@/content/autonomy";
 
 /**
  * Original work, as distinct from things built (/projects) and things read
@@ -19,6 +20,18 @@ export type ResearchItem = {
 };
 
 export const RESEARCH: ResearchItem[] = [
+  {
+    title: "The Oversight Threshold",
+    kind: "Interactive framework",
+    href: "/research/autonomy-governance",
+    tone: "grape",
+    question:
+      "At what point does human oversight stop being meaningful, because the system has become too capable, fast or autonomous for a person to verify?",
+    summary:
+      "As autonomy rises, the ability of a person to independently verify a system falls — so governance has to intensify before the two cross. Five levels of autonomy mapped against eight governance dimensions, plus a test for whether human review is still doing real work or has quietly become a signature.",
+    meta: `${LEVELS.length} levels · checked ${LAST_CHECKED}`,
+    cta: "Open the framework",
+  },
   {
     title: "Agents that spend",
     kind: "Control framework",
