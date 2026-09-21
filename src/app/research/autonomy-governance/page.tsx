@@ -6,6 +6,8 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { VerificationCurve } from "@/components/verification-curve";
 import { ComprehensionLimit } from "@/components/comprehension-limit";
 import { DownloadLink } from "@/components/download-link";
+import { IntensityGrid } from "@/components/intensity-grid";
+import { OversightChain } from "@/components/oversight-chain";
 import { AutonomyMatrix } from "@/components/autonomy-matrix";
 import { OversightTest } from "@/components/oversight-test";
 import {
@@ -166,9 +168,19 @@ export default function AutonomyGovernancePage() {
           <H id="matrix">The AI Autonomy Governance Matrix</H>
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
             Five levels, from a system that only drafts to one that could not be
-            meaningfully reviewed. Pick a level to see what the system does,
-            what the human still does, what goes wrong, which controls that
-            level needs, and what would have to be true for the governance model
+            meaningfully reviewed, against eight governance dimensions. The grid
+            is the whole framework at once; the detail behind each column
+            follows it.
+          </p>
+        </Reveal>
+        <Reveal>
+          <IntensityGrid />
+        </Reveal>
+        <Reveal>
+          <p className="mt-10 max-w-2xl leading-relaxed text-muted">
+            That is the shape. Below is the detail behind each column — pick a
+            level to read what the system does, what the human still does, what
+            goes wrong, and what would have to be true for the governance model
             to hold.
           </p>
         </Reveal>
@@ -201,6 +213,9 @@ export default function AutonomyGovernancePage() {
               Answer for one real system you are responsible for.
             </p>
           </div>
+        </Reveal>
+        <Reveal>
+          <OversightChain />
         </Reveal>
         <Reveal>
           <OversightTest />

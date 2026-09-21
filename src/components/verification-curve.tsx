@@ -10,9 +10,13 @@ import { LEVELS, THRESHOLD_NOTE } from "@/content/autonomy";
  * depends on colour, and the caption says plainly that the curves illustrate
  * an argument rather than plotting measurements.
  *
- * One shared axis on purpose: both series are expressed on the same 0–100
- * relative scale, so the crossing means something. Two different scales would
- * make the crossing an artefact of where the axes were pinned.
+ * One shared axis on purpose: both series sit on the same 0–100 relative
+ * scale, because two separate scales would let the crossing be placed
+ * anywhere by pinning them differently. A single relative scale does not make
+ * the crossing a measurement either — rescale one series and it slides — so
+ * what the figure claims is only the part that survives any rescaling: one
+ * line falls, the other rises, therefore they meet. Where they meet is drawn,
+ * not derived, and the caption and the limitations both say so.
  */
 
 const W = 640;
