@@ -50,7 +50,7 @@ const CELLS: Cell[] = [
 
 export function TwoProblems() {
   return (
-    <figure className="mt-8">
+    <figure className="mt-8 max-w-2xl">
       <div className="rounded-2xl border border-line bg-surface p-4 sm:p-6">
         <div className="grid gap-3 sm:grid-cols-2">
           {CELLS.map((c) => (

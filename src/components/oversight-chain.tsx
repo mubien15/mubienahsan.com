@@ -19,45 +19,44 @@ import { OVERSIGHT_TESTS } from "@/content/autonomy";
  */
 export function OversightChain() {
   return (
-    <figure className="mt-6">
-      <ol className="flex flex-col gap-0 sm:flex-row sm:items-stretch sm:gap-0">
+    <figure className="mt-6 max-w-2xl">
+      <ol className="flex flex-col">
         {OVERSIGHT_TESTS.map((t, i) => {
           const isStop = t.id === "stop";
           return (
-            <li key={t.id} className="flex flex-1 flex-col items-stretch sm:flex-row">
+            <li key={t.id} className="flex flex-col">
               <div
-                className={`flex w-full flex-col rounded-xl border px-3 py-3 ${
+                className={`flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5 rounded-xl border px-4 py-2.5 ${
                   isStop
                     ? "border-accent/50 bg-accent-soft/50"
                     : "border-line bg-surface"
                 }`}
               >
-                <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted">
+                <span className="text-[0.7rem] font-semibold text-muted">
                   {i + 1}
                 </span>
                 <span className="font-display text-base leading-tight text-ink">
                   {t.name}
                 </span>
-                <span className="mt-1 text-[0.72rem] leading-snug text-muted">
-                  {DEPENDS[t.id]}
+                <span className="text-[0.8rem] leading-snug text-muted">
+                  — {DEPENDS[t.id]}
                 </span>
               </div>
               {i < OVERSIGHT_TESTS.length - 1 ? (
                 <span
                   aria-hidden="true"
-                  className="flex shrink-0 items-center justify-center py-1 text-muted sm:px-1 sm:py-0"
+                  className="py-0.5 text-center text-sm text-muted"
                 >
-                  {/* Down the column on stacked layouts, along the row on wide
-                      ones, so the connector always points the way the sequence
-                      actually runs. */}
-                  <span className="sm:hidden">↓</span>
-                  <span className="hidden sm:inline">→</span>
+                  {/* The sequence runs downward now that the figure shares the
+                      reading column, so one arrow does for every width. */}
+                  ↓
                 </span>
               ) : null}
             </li>
           );
         })}
       </ol>
+
       <figcaption className="mt-3 max-w-prose text-sm leading-relaxed text-muted">
         They run in order, and each one rests on the one before it. A system
         can satisfy four and still fail, because the one it misses is the one

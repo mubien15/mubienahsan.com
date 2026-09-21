@@ -26,7 +26,7 @@ const WEIGHT_WORD = ["", "Light", "Moderate", "Substantial", "Heavy", "Maximal"]
 
 export function IntensityGrid() {
   return (
-    <figure className="mt-8">
+    <figure className="mt-8 max-w-2xl">
       <div className="rounded-2xl border border-line bg-surface p-4 sm:p-6">
         {/* Below roughly 360px the eight labels and five columns stop fitting
             at a legible size. Scrolling this one figure is better than
