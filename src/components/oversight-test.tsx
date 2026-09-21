@@ -12,6 +12,9 @@ import {
   type OversightAnswer,
 } from "@/content/autonomy";
 
+/** The best band a system with any absent condition can reach. */
+const CAP_MIN = 4;
+
 /**
  * The Meaningful Human Oversight Test. Five questions about one use case,
  * answered yes / partly / no, producing a band rather than a score.
@@ -34,14 +37,25 @@ export function OversightTest() {
   const answered = OVERSIGHT_TESTS.filter((t) => answers[t.id]).length;
   const complete = answered === OVERSIGHT_TESTS.length;
 
-  const { score, result } = useMemo(() => {
+  const { score, result, capped } = useMemo(() => {
     const score = OVERSIGHT_TESTS.reduce((sum, t) => {
       const a = answers[t.id];
       const opt = OVERSIGHT_OPTIONS.find((o) => o.id === a);
       return sum + (opt?.score ?? 0);
     }, 0);
-    const result = OVERSIGHT_RESULTS.find((r) => score >= r.min) ?? null;
-    return { score, result };
+    // The five conditions do not trade off against each other. The text says
+    // a system can satisfy four and still fail, because the one it misses is
+    // the one that mattered — and a plain total contradicts that, since it
+    // lets strength elsewhere buy back a condition that is simply absent. So
+    // a single "no" caps the outcome: however high the total, oversight with
+    // a missing condition is not "possible" and is past "fragile".
+    const answered = OVERSIGHT_TESTS.every((t) => answers[t.id]);
+    const hasAbsent = OVERSIGHT_TESTS.some((t) => answers[t.id] === "no");
+    const byScore = OVERSIGHT_RESULTS.find((r) => score >= r.min) ?? null;
+    const capped = OVERSIGHT_RESULTS.find((r) => r.min === CAP_MIN) ?? byScore;
+    const result =
+      answered && hasAbsent && byScore && byScore.min > CAP_MIN ? capped : byScore;
+    return { score, result, capped: answered && hasAbsent && byScore ? byScore.min > CAP_MIN : false };
   }, [answers]);
 
   const weakest = useMemo(
@@ -137,6 +151,14 @@ export function OversightTest() {
             >
               {result.verdict}
             </h3>
+            {capped ? (
+              <p className="mt-3 rounded-xl border border-line bg-paper/60 p-3 text-sm leading-relaxed text-muted">
+                Your total alone would have placed this a band higher. It is
+                held here because one of the five is answered no, and the five
+                do not trade off against each other — strength in four cannot
+                supply a condition that is simply absent.
+              </p>
+            ) : null}
             <p className="mt-3 leading-relaxed text-ink/85">{result.meaning}</p>
             <p className="mt-3 leading-relaxed text-ink/85">
               <span className="font-medium text-ink">What to do next: </span>

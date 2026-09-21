@@ -1,6 +1,7 @@
 import { COMPREHENSION } from "@/content/autonomy";
 import { Pill } from "@/components/ui";
 import { Reveal } from "@/components/motion";
+import { TwoProblems } from "@/components/two-problems";
 
 /**
  * The comprehension limit — why verification capacity falls.
@@ -50,6 +51,11 @@ export function ComprehensionLimit() {
             ))}
           </div>
         </div>
+      </Reveal>
+
+      {/* The compounding, which is the claim the prose works hardest for. */}
+      <Reveal>
+        <TwoProblems />
       </Reveal>
 
       {/* The claim, attributed and kept at arm's length. */}

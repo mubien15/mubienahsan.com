@@ -58,7 +58,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "The question is usually treated as a question about the future, to be revisited when systems are more advanced than they are now. It is not. It is answerable today, about systems already in production, and the answer is frequently uncomfortable.",
+        text: "The question is usually treated as one about the future, to be revisited when systems are more advanced than they are now. It is not. It is answerable today, about systems already in production, and the answer is frequently uncomfortable.",
       },
       {
         kind: "p",
@@ -111,7 +111,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "It claims something narrower and, I think, harder to dispute: that human oversight has a range of conditions under which it functions, that those conditions are knowable and testable, and that a governance model which does not check them is asserting a control rather than holding one.",
+        text: "It claims something narrower and, I think, harder to dispute: that human oversight works only under conditions that can be named and tested, and that a governance model which does not check them is asserting a control rather than holding one.",
       },
     ],
   },
@@ -127,7 +127,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Three fixable causes" },
       {
         kind: "p",
-        text: "There are three ordinary reasons a reviewer stops really reviewing, and all three are fixable by an organisation that decides to fix them.",
+        text: "There are three ordinary reasons a reviewer stops genuinely reviewing, and all three are fixable by an organisation that decides to fix them.",
       },
       {
         kind: "list",
@@ -148,11 +148,11 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "Interpretability research is making genuine progress on the general question of what structures exist inside these models. It is not, today, a deployed method for explaining a specific decision to a reviewer, an auditor or a regulator. The gap between those two things is where a great deal of governance language currently sits without acknowledging it.",
+        text: "Interpretability research — the work of reading structure out of a model's internals rather than inferring it from behaviour — is making genuine progress on the general question of what those structures are. It is not, today, a deployed method for explaining a specific decision to a reviewer, an auditor or a regulator. The gap between those two things is where a great deal of governance language currently sits without acknowledging it.",
       },
       {
         kind: "p",
-        text: "So a reviewer can be given unlimited time, complete logs and total independence, and still be unable to answer why the system did that in the way they could for a system somebody wrote. Verification capacity does not fall because reviewers become lazy or overloaded. It falls because the thing being checked stops being the kind of thing a person can check.",
+        text: "So verification capacity does not fall because reviewers become lazy or overloaded. Give one of them unlimited time, complete logs and total independence and the answer to why did it do that is still out of reach. It falls because the thing being checked stops being the kind of thing a person can check.",
       },
       { kind: "h3", text: "The strongest published version of this" },
       {
@@ -161,7 +161,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "Their mechanism is the one above, stated more sharply: AI systems are grown, not crafted. They emerge from opaque training processes rather than being designed like ordinary software, so nobody understands how the very large number of internal values interact to produce the behaviour. Soares has put the regulatory case in those terms — that a superintelligent system would not be understandable, would not be predictable, and would not have human interests at heart.",
+        text: "Their phrase for the mechanism above is that AI systems are grown, not crafted. Soares has put the regulatory case in those terms: that a superintelligent system would not be understandable, would not be predictable, and would not have human interests at heart.",
       },
       {
         kind: "p",
@@ -174,7 +174,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "The trouble is specification. You cannot write down everything you mean. Any objective handed to a capable optimiser is a proxy for the intent behind it, and a proxy that holds in the situations you tested can come apart in situations you did not — not through malice, but because it was only ever an approximation of the thing you wanted. A system pursuing a slightly wrong objective competently is a known failure mode with no general solution, and capability makes the consequences larger rather than smaller. A weak system pursuing the wrong goal simply fails at it.",
+        text: "The trouble is specification. You cannot write down everything you mean, so any objective handed to a capable optimiser is a proxy for the intent behind it — not through malice, but because it was only ever an approximation. The literature names three ways the proxy comes apart from the intent. Specification gaming, where a system satisfies the stated objective by a route nobody intended. Reward hacking, where it optimises the measure rather than the thing the measure stood for. Goal misgeneralisation, where behaviour that held up under evaluation turns out, once deployed, to have been pursuing something else. None has a general solution, and capability makes each worse rather than better, because a weak system pursuing the wrong goal simply fails at it.",
       },
       {
         kind: "p",
@@ -183,15 +183,11 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Why the argument follows" },
       {
         kind: "p",
-        text: "I can follow this argument, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is three ordinary observations placed in order.",
+        text: "I can follow this argument, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is the two problems above — we cannot see inside, and we cannot say exactly what we meant — plus a third that compounds both: a system able to improve its own capability changes faster than any verification cycle can complete.",
       },
       {
         kind: "p",
-        text: "One: we do not write these systems, we train them, and nobody can point to where a particular behaviour lives inside the result. Two: we cannot fully specify what we want, so any objective we set is a proxy, and a proxy that holds in tested cases can come apart in untested ones. Three: a system that can improve its own capability changes faster than any verification cycle can complete.",
-      },
-      {
-        kind: "p",
-        text: "Each step is separately unremarkable, and each is the ordinary understanding of how the technology works rather than a contested one. Put in sequence, they describe something that becomes harder to check exactly as it becomes more consequential. The shape of the argument is sound.",
+        text: "Each of the three is unremarkable on its own, and each is the ordinary understanding of how the technology works rather than a contested reading of it. Placed in sequence they describe something that becomes harder to check exactly as it becomes more consequential. The shape of the argument is sound.",
       },
       {
         kind: "p",
@@ -204,11 +200,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "What I can say is that the question does not need to be settled for the problem in this paper to be real. It does not wait for superintelligence. It is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves.",
-      },
-      {
-        kind: "p",
-        text: "So that is the layer this paper works in: the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing real work in a system running right now is, and unlike the first question, it is answerable this quarter.",
+        text: "The question also does not need to be settled for the problem in this paper to be real. It does not wait for superintelligence: it is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves. So this paper works one layer down, on the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing real work in a system running right now is mine — and unlike the first question, it is answerable this quarter.",
       },
     ],
   },
@@ -314,7 +306,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Verification is not review" },
       {
         kind: "p",
-        text: "The third condition carries more weight than the others and is the most frequently conflated. Review asks whether the output looks right. Verification checks it against something the system did not supply. A reviewer working only from the system's own evidence is performing review, and the result is structurally incapable of disagreeing.",
+        text: "The third condition carries more weight than the others, and is the one most often conflated with review. Review asks whether the output looks right. Verification checks it against something the system did not supply. A reviewer working only from the system's own evidence is performing review, and the result is structurally incapable of disagreeing.",
       },
       {
         kind: "p",
@@ -327,7 +319,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "If known-wrong outputs pass review at a rate that does not differ from chance, the organisation has measured that its primary control is documentation. That is an uncomfortable result and a genuinely evidential one, and it converts a question about culture into a number that can be tracked. It is also the only method described here that produces evidence rather than opinion, which is why it belongs in section 9 as well as here.",
+        text: "If seeded errors are caught no more often than they would be by a reviewer approving without looking, the organisation has measured that its primary control is documentation. That is an uncomfortable result and a genuinely evidential one, and it converts a question about culture into a number that can be tracked. It is also the only method described here that produces evidence rather than opinion, which is why it belongs in section 9 as well as here.",
       },
     ],
   },
@@ -389,29 +381,29 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "That is a stronger requirement than most implementations of it. An organisation that can evidence a reviewer, an approval and a procedure has evidenced presence. Effectiveness is a claim about capability under operating conditions, and the five conditions in section 5 are one way of making it testable. I am not aware of a settled method for evidencing it, which is an open question rather than a criticism of the Act.",
+        text: "That is a stronger requirement than most implementations of it acknowledge. An organisation that can evidence a reviewer, an approval and a procedure has evidenced presence. Effectiveness is a claim about capability under operating conditions, and the five conditions in section 5 are one way of making it testable. I am not aware of a settled method for evidencing it, which is an open question rather than a criticism of the Act.",
       },
       {
         kind: "p",
-        text: "The Act also addresses general-purpose AI models presenting systemic risk, whose providers must evaluate, assess and mitigate risk, report serious incidents and maintain cybersecurity. It uses a training-compute threshold of 10^25 floating-point operations as a presumption of systemic risk. A compute threshold is an administrable proxy rather than a measure of how autonomous a deployed system is, and the two can diverge in both directions: a modest model with broad permissions and fast tools can sit further past the oversight threshold than a large one that only drafts.",
+        text: "The Act also addresses general-purpose AI models — GPAI, the broad models adapted to many downstream tasks rather than built for one — where the model presents systemic risk. Providers must then evaluate, assess and mitigate that risk, report serious incidents and maintain cybersecurity. The Act sets a training-compute threshold of 10²⁵ floating-point operations, or FLOP, as a presumption of systemic risk: a count of the raw arithmetic performed in training the model. A compute threshold is an administrable proxy rather than a measure of how autonomous a deployed system is, and the two can diverge in both directions: a modest model with broad permissions and fast tools can sit further past the oversight threshold than a large one that only drafts.",
       },
       { kind: "h3", text: "Supervisory guidance: OSFI E-23" },
       {
         kind: "p",
-        text: "Canada's Office of the Superintendent of Financial Institutions published the final version of Guideline E-23 on model risk management on 11 September 2025, in force 1 May 2027 for federally regulated financial institutions. It expands model risk management to cover AI and machine learning explicitly, with risk-proportionate expectations across the model lifecycle.",
+        text: "Canada's Office of the Superintendent of Financial Institutions (OSFI), the prudential regulator for federally regulated banks and insurers, published the final version of Guideline E-23 on model risk management on 11 September 2025, in force 1 May 2027 for federally regulated financial institutions. It expands model risk management to cover AI and machine learning explicitly, with risk-proportionate expectations across the model lifecycle.",
       },
       {
         kind: "p",
-        text: "Model risk management is the closest existing discipline to what autonomous systems need, and it is the right foundation. Its inherited assumption is worth naming: that the object being governed holds still long enough to be validated, and that validation is a periodic exercise against a documented specification. A system that plans, adapts and acts continuously stresses both halves of that assumption, and a system that improves its own capability breaks them.",
+        text: "Model risk management — MRM, the discipline that governs how an institution develops, validates and monitors the models it relies on — is the closest existing practice to what autonomous systems need, and it is the right foundation. Its inherited assumption is worth naming: that the object being governed holds still long enough to be validated, and that validation is a periodic exercise against a documented specification. A system that plans, adapts and acts continuously stresses both halves of that assumption, and a system that improves its own capability breaks them.",
       },
       { kind: "h3", text: "Voluntary: NIST and ISO/IEC 42001" },
       {
         kind: "p",
-        text: "The NIST AI Risk Management Framework and its Generative AI Profile are voluntary. Neither is a certification and neither is binding. The Govern, Map, Measure, Manage structure is the closest thing the field has to a common vocabulary, which is a real contribution and frequently overstated into an obligation it does not carry.",
+        text: "The AI Risk Management Framework published by NIST, the US National Institute of Standards and Technology, together with its Generative AI Profile, is voluntary. Neither is a certification and neither is binding. The Govern, Map, Measure, Manage structure is the closest thing the field has to a common vocabulary, which is a real contribution and frequently overstated into an obligation it does not carry.",
       },
       {
         kind: "p",
-        text: "ISO/IEC 42001 is a certifiable management-system standard for AI. It governs how an organisation manages AI. That is not the same as evidence that a particular system is safe at a given autonomy level, and a certificate should not be read as though it were. Management-system certification tells you that a process exists and is followed; the question in this paper is whether the control that process describes is operative.",
+        text: "ISO/IEC 42001 — issued jointly by the International Organization for Standardization and the International Electrotechnical Commission — is a certifiable management-system standard for AI. It governs how an organisation manages AI. That is not the same as evidence that a particular system is safe at a given autonomy level, and a certificate should not be read as though it were. Management-system certification tells you that a process exists and is followed; the question in this paper is whether the control that process describes is operative.",
       },
       { kind: "h3", text: "Evaluative bodies and industry commitments" },
       {
