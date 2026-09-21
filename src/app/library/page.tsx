@@ -66,7 +66,7 @@ export default function LibraryPage() {
                   <h3 className="font-display mt-3 text-lg text-ink">
                     {cert.name}
                   </h3>
-                  <p className="mt-3 flex-1 leading-relaxed text-ink/85">
+                  <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
                     {cert.note}
                   </p>
                 </div>
@@ -79,12 +79,12 @@ export default function LibraryPage() {
       {/* Books */}
       <section className="mt-16">
         <h2 className="font-display text-2xl text-ink">Books &amp; essays</h2>
-        <p className="mt-2 max-w-prose text-muted">
+        <p className="mt-2 text-muted">
           Honest takes rather than summaries: what each one actually argues, and
           what it changed for me. Plus my own writing. Read the ones that pull at
           you.
         </p>
-        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" inView>
+        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2" inView>
           {BOOKS.map((book) => (
             <StaggerItem key={book.title}>
               <HoverLift className="h-full">
@@ -109,7 +109,7 @@ export default function LibraryPage() {
                       {book.own ? <Pill tone={book.tone}>Written by me</Pill> : null}
                     </div>
                     <p className="mt-0.5 text-sm text-muted">{book.author}</p>
-                    <p className="mt-3 leading-relaxed text-ink/85">{book.take}</p>
+                    <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">{book.take}</p>
                     {book.href ? (
                       <a
                         href={book.href}

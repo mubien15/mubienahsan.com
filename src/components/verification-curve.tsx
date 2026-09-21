@@ -110,7 +110,7 @@ export function VerificationCurve() {
   const crossX = crossingX(verify, govern);
 
   return (
-    <figure className="mt-8 max-w-2xl">
+    <figure className="mt-8">
       <div className="overflow-hidden rounded-2xl border border-line bg-surface p-4 sm:p-6">
         <svg
           viewBox={`0 0 ${W} ${H}`}
@@ -206,7 +206,7 @@ export function VerificationCurve() {
           </text>
         </svg>
       </div>
-      <figcaption className="mt-3 max-w-prose text-sm leading-relaxed text-muted">
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted">
         {THRESHOLD_NOTE}
       </figcaption>
     </figure>

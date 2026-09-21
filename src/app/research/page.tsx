@@ -23,7 +23,7 @@ export default function ResearchPage() {
         problem from opposite ends.
       </PageIntro>
 
-      <div className="mt-12 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
+      <div className="mt-12 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p>
             As these systems get more capable, the scarce skill stops being the
@@ -55,10 +55,10 @@ export default function ResearchPage() {
                 </span>
                 <span className="ml-auto text-xs text-muted">{item.meta}</span>
               </div>
-              <p className="mt-3 max-w-prose text-[0.98rem] font-medium leading-relaxed text-grape">
+              <p className="mt-3 text-[0.98rem] font-medium leading-relaxed text-grape">
                 {item.question}
               </p>
-              <p className="mt-3 max-w-prose leading-relaxed text-ink/80">{item.summary}</p>
+              <p className="prose-scale-sm mt-3 leading-relaxed text-ink/80">{item.summary}</p>
               <span className="mt-5 text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
                 {item.cta} →
               </span>
@@ -87,7 +87,7 @@ export default function ResearchPage() {
       </Stagger>
 
       <Reveal>
-        <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted">
+        <p className="mt-10 text-sm leading-relaxed text-muted">
           Things I have built are under{" "}
           <Link href="/projects" className="text-grape hover:underline">
             Projects

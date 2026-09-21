@@ -50,7 +50,7 @@ const CELLS: Cell[] = [
 
 export function TwoProblems() {
   return (
-    <figure className="mt-8 max-w-2xl">
+    <figure className="mt-8">
       <div className="rounded-2xl border border-line bg-surface p-4 sm:p-6">
         <div className="grid gap-3 sm:grid-cols-2">
           {CELLS.map((c) => (
@@ -83,7 +83,7 @@ export function TwoProblems() {
           ))}
         </div>
       </div>
-      <figcaption className="mt-3 max-w-prose text-sm leading-relaxed text-muted">
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted">
         Three of these four are tractable, and governance has decades of
         practice in all three. The fourth is not a harder version of the
         others — it is the one where the usual move, look at what it did and

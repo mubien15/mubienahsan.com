@@ -137,7 +137,7 @@ export function PageIntro({
   children?: React.ReactNode;
 }) {
   return (
-    <Reveal className="max-w-2xl" y={16}>
+    <Reveal y={16}>
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h1 className="font-display mt-4 text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
         {title}

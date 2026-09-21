@@ -183,7 +183,7 @@ export default function Home() {
               className="glow glow-mint animate-drift absolute -right-40 -bottom-40 h-[28rem] w-[28rem] rounded-full opacity-50"
             />
             <div className="relative">
-              <div className="max-w-2xl">
+              <div>
                 <Eyebrow tone="grape">Governance &amp; ethics</Eyebrow>
                 <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
                   Building it is only half the job.
@@ -308,7 +308,7 @@ export default function Home() {
                     <span className="font-display block text-xl text-ink">
                       {path.title}
                     </span>
-                    <span className="mt-1.5 block leading-relaxed text-ink/85">
+                    <span className="prose-scale-sm mt-1.5 block leading-relaxed text-ink/85">
                       {path.body}
                     </span>
                     <span
@@ -337,7 +337,7 @@ export default function Home() {
             />
             <div className="relative">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-                <div className="max-w-2xl">
+                <div>
                   <Eyebrow tone="mint">Free courses</Eyebrow>
                   <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
                     Start at zero. Finish with a live app.
@@ -455,7 +455,7 @@ export default function Home() {
                     <p className={cn("mt-2 text-sm font-medium", TONE_TXT[project.tone])}>
                       {project.tagline}
                     </p>
-                    <p className="mt-3 flex-1 leading-relaxed text-ink/85">
+                    <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
                       {project.what}
                     </p>
                     {project.liveUrl ? (
@@ -480,7 +480,7 @@ export default function Home() {
       <Container className="py-8">
         <Reveal>
           <div className="rounded-3xl border border-line bg-surface p-8 sm:p-12">
-            <div className="max-w-2xl">
+            <div>
                 <h2 className="font-display text-3xl tracking-tight text-ink sm:text-4xl">
                   Hey, I&apos;m Mubien 👋
                 </h2>

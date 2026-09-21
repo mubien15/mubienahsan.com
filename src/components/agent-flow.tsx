@@ -144,7 +144,7 @@ export function AgentFlow() {
           <span className="text-sm font-medium text-ink group-hover:text-grape">
             {FLOW_OVERLAY.label}
           </span>
-          <span className="w-full max-w-prose text-sm leading-relaxed text-muted sm:w-auto sm:flex-1">
+          <span className="w-full text-sm leading-relaxed text-muted sm:w-auto sm:flex-1">
             {FLOW_OVERLAY.moment}
           </span>
           <span className="text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
@@ -168,8 +168,8 @@ export function AgentFlow() {
           Step {active + 1} of {FLOW_STAGES.length}
         </p>
         <p className="font-display mt-2 text-xl text-ink">{stage.label}</p>
-        <p className="mt-2 max-w-prose leading-relaxed text-ink/80">{stage.moment}</p>
-        <p className="mt-3 max-w-prose leading-relaxed text-ink/80">
+        <p className="prose-scale-sm mt-2 leading-relaxed text-ink/80">{stage.moment}</p>
+        <p className="prose-scale-sm mt-3 leading-relaxed text-ink/80">
           <span className="font-medium text-ink">What can go wrong: </span>
           {stage.risk}
         </p>
@@ -193,7 +193,7 @@ export function AgentFlow() {
             </Link>
           </div>
         ) : (
-          <p className="mt-5 max-w-prose rounded-xl border border-line bg-paper/60 p-5 text-sm leading-relaxed text-muted">
+          <p className="mt-5 rounded-xl border border-line bg-paper/60 p-5 text-sm leading-relaxed text-muted">
             No control sits on this step. It is where the other controls either pay off or
             turn out to have been missing.
           </p>
