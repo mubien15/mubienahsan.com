@@ -83,7 +83,7 @@ export function TwoProblems() {
           ))}
         </div>
       </div>
-      <figcaption className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted">
         Three of these four are tractable, and governance has decades of
         practice in all three. The fourth is not a harder version of the
         others — it is the one where the usual move, look at what it did and

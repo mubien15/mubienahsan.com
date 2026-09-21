@@ -192,13 +192,13 @@ export function AutonomyMatrix() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted">
               What the system does
             </h4>
-            <p className="mt-2 leading-relaxed text-ink/85">{level.machineDoes}</p>
+            <p className="prose-scale-sm mt-2 leading-relaxed text-ink/85">{level.machineDoes}</p>
           </div>
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted">
               What the human still does
             </h4>
-            <p className="mt-2 leading-relaxed text-ink/85">{level.humanDoes}</p>
+            <p className="prose-scale-sm mt-2 leading-relaxed text-ink/85">{level.humanDoes}</p>
           </div>
         </div>
 
@@ -212,7 +212,7 @@ export function AutonomyMatrix() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted">
               What moves it up a level
             </h4>
-            <p className="mt-2 leading-relaxed text-ink/85">{level.escalation}</p>
+            <p className="prose-scale-sm mt-2 leading-relaxed text-ink/85">{level.escalation}</p>
           </div>
         </div>
 
@@ -257,7 +257,7 @@ export function AutonomyMatrix() {
                       <p className="text-sm italic leading-relaxed text-muted">
                         {d.asks}
                       </p>
-                      <p className="mt-2 leading-relaxed text-ink/85">
+                      <p className="prose-scale-sm mt-2 leading-relaxed text-ink/85">
                         {state.text}
                       </p>
                     </div>

@@ -168,8 +168,8 @@ export function AgentFlow() {
           Step {active + 1} of {FLOW_STAGES.length}
         </p>
         <p className="font-display mt-2 text-xl text-ink">{stage.label}</p>
-        <p className="mt-2 leading-relaxed text-ink/80">{stage.moment}</p>
-        <p className="mt-3 leading-relaxed text-ink/80">
+        <p className="prose-scale-sm mt-2 leading-relaxed text-ink/80">{stage.moment}</p>
+        <p className="prose-scale-sm mt-3 leading-relaxed text-ink/80">
           <span className="font-medium text-ink">What can go wrong: </span>
           {stage.risk}
         </p>

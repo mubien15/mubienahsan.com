@@ -253,3 +253,31 @@
     text-decoration: none;
   }
 }
+
+/* ------------------------------------------------- reading size on desktop
+
+   The single content column (see Container) is wider than a classic reading
+   measure, which only works if the type grows with it: characters per line
+   is what decides whether the eye finds the next line, and that is the ratio
+   of column width to font size, not either one alone.
+
+   Scaling the root font would not help — the column is set in rem too, so
+   both would grow together and the ratio would never move. So this lifts the
+   text only, from 1280px up, taking the column from roughly 99 characters a
+   line down to about 87.
+*/
+@media (min-width: 1280px) {
+  .prose-scale {
+    font-size: 1.2rem;
+  }
+  /* Small running copy — captions, notes, standfirsts. At 14px a full
+     column is over 100 characters, which is worse than the body text it
+     sits beside. Matched on the pairing rather than on text-sm alone:
+     labels, chips and pills use text-sm too, but none of them set
+     leading-relaxed, because none of them is meant to be read as prose. */
+  main .text-sm.leading-relaxed,
+  .prose-scale-sm {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+}

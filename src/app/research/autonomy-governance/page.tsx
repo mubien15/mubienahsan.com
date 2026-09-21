@@ -73,7 +73,7 @@ export default function AutonomyGovernancePage() {
       </PageIntro>
 
       {/* 1 — the argument */}
-      <div className="mt-12 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
+      <div className="mt-12 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p id="argument" className="scroll-mt-24">
             At what point does human oversight stop being meaningful, because
@@ -127,7 +127,7 @@ export default function AutonomyGovernancePage() {
       <Reveal>
         <nav
           aria-label="Sections of this framework"
-          className="mt-10 max-w-2xl rounded-2xl border border-line bg-surface p-5"
+          className="mt-10 rounded-2xl border border-line bg-surface p-5"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             On this page
@@ -152,7 +152,7 @@ export default function AutonomyGovernancePage() {
       <section className="mt-16">
         <Reveal>
           <H id="threshold-figure">Where the lines cross</H>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             Two things move in opposite directions as a system becomes more
             autonomous. The governance question is what happens where they meet.
           </p>
@@ -166,7 +166,7 @@ export default function AutonomyGovernancePage() {
       <section className="mt-16">
         <Reveal>
           <H id="matrix">The AI Autonomy Governance Matrix</H>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             Five levels, from a system that only drafts to one that could not be
             meaningfully reviewed, against eight governance dimensions. The grid
             is the whole framework at once; the detail behind each column
@@ -177,7 +177,7 @@ export default function AutonomyGovernancePage() {
           <IntensityGrid />
         </Reveal>
         <Reveal>
-          <p className="mt-10 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-10 leading-relaxed text-muted">
             That is the shape. Below is the detail behind each column — pick a
             level to read what the system does, what the human still does, what
             goes wrong, and what would have to be true for the governance model
@@ -202,7 +202,7 @@ export default function AutonomyGovernancePage() {
       <section className="mt-16">
         <Reveal>
           <H id="oversight-test">The Meaningful Human Oversight Test</H>
-          <div className="mt-3 max-w-2xl space-y-4 leading-relaxed text-muted">
+          <div className="prose-scale-sm mt-3 space-y-4 leading-relaxed text-muted">
             <p>
               Adding a human approval button does not create oversight. It
               creates a record that somebody was present. Whether that person
@@ -236,7 +236,7 @@ export default function AutonomyGovernancePage() {
         <Reveal>
           <H id="threshold">The threshold itself</H>
         </Reveal>
-        <div className="mt-4 max-w-2xl space-y-5 text-[1.05rem] leading-8 text-ink/85">
+        <div className="mt-4 space-y-5 prose-scale text-[1.05rem] leading-8 text-ink/85">
           <Reveal>
             <p>
               The threshold is not a capability. It is the point where the
@@ -303,7 +303,7 @@ export default function AutonomyGovernancePage() {
             <StaggerItem key={a.role}>
               <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6">
                 <h3 className="font-display text-lg text-ink">{a.role}</h3>
-                <p className="mt-2 flex-1 leading-relaxed text-ink/85">
+                <p className="prose-scale-sm mt-2 flex-1 leading-relaxed text-ink/85">
                   {a.point}
                 </p>
                 <p className="mt-3 border-t border-line pt-3 text-sm leading-relaxed text-grape">
@@ -319,7 +319,7 @@ export default function AutonomyGovernancePage() {
       <section className="mt-16">
         <Reveal>
           <H id="now">What organisations can do now</H>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             None of this requires waiting for a standard, and none of it
             presumes a more capable system than the ones already deployed.
           </p>
@@ -349,7 +349,7 @@ export default function AutonomyGovernancePage() {
       <section className="mt-16">
         <Reveal>
           <H id="limits">What is not solved, and what I am unsure about</H>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             Controls reduce risk. They do not resolve open technical problems,
             and a framework that implies otherwise is worse than no framework.
           </p>
@@ -360,18 +360,18 @@ export default function AutonomyGovernancePage() {
             <Reveal key={n.problem}>
               <div className="py-5">
                 <h3 className="font-medium text-ink">{n.problem}</h3>
-                <p className="mt-1.5 leading-relaxed text-ink/80">{n.state}</p>
+                <p className="prose-scale-sm mt-1.5 leading-relaxed text-ink/80">{n.state}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal>
-          <div className="mt-8 max-w-2xl">
+          <div className="mt-8">
             <h3 className="font-display text-lg text-ink">Open questions</h3>
             <ul className="mt-3 space-y-2.5">
               {OPEN_QUESTIONS.map((q) => (
-                <li key={q} className="flex gap-2.5 leading-relaxed text-ink/85">
+                <li key={q} className="prose-scale-sm flex gap-2.5 leading-relaxed text-ink/85">
                   <span
                     aria-hidden
                     className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-grape"
@@ -384,7 +384,7 @@ export default function AutonomyGovernancePage() {
         </Reveal>
 
         <Reveal>
-          <div className="mt-8 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5">
+          <div className="mt-8 rounded-2xl border border-line bg-surface/60 p-5">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-muted">
               Limitations of this framework
             </h3>
@@ -406,7 +406,7 @@ export default function AutonomyGovernancePage() {
       <section className="mt-16">
         <Reveal>
           <H id="sources">Sources and method</H>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             Each source is summarised in my own words and linked, and labelled
             with what kind of thing it is — because a voluntary framework and a
             binding regulation carry very different weight, and are routinely
@@ -443,7 +443,7 @@ export default function AutonomyGovernancePage() {
         </div>
 
         <Reveal>
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
+          <p className="mt-6 text-sm leading-relaxed text-muted">
             {METHOD_NOTE}
           </p>
         </Reveal>
@@ -451,7 +451,7 @@ export default function AutonomyGovernancePage() {
 
       {/* 11 — disclaimer */}
       <Reveal>
-        <p className="mt-16 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
+        <p className="mt-16 rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
           Written and published in a personal capacity, from public sources. It
           is not derived from any employer&apos;s methodology or from client
           work, it describes no real organisation, and it is not professional,

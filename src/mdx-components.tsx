@@ -20,7 +20,7 @@ const components: MDXComponents = {
     <h3 className="mt-8 mb-3 text-lg font-semibold text-ink">{children}</h3>
   ),
   p: ({ children }) => (
-    <p className="my-4 text-[1.05rem] leading-8 text-ink/85">{children}</p>
+    <p className="my-4 prose-scale text-[1.05rem] leading-8 text-ink/85">{children}</p>
   ),
   ul: ({ children }) => (
     <ul className="my-4 list-disc space-y-2 pl-6 text-ink/85 marker:text-accent">
@@ -55,7 +55,7 @@ const components: MDXComponents = {
     <tr className="border-b border-line/60 last:border-0">{children}</tr>
   ),
   td: ({ children }) => (
-    <td className="px-3 py-3 align-top leading-relaxed text-ink/85">
+    <td className="prose-scale-sm px-3 py-3 align-top leading-relaxed text-ink/85">
       {children}
     </td>
   ),

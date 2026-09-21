@@ -29,7 +29,7 @@ export default function CourseOverviewPage() {
         ← All courses
       </Link>
 
-      <Reveal className="mt-6 max-w-2xl" y={16}>
+      <Reveal className="mt-6" y={16}>
         <Eyebrow tone="flame">{course.level} · Free</Eyebrow>
         <h1 className="font-display mt-4 text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
           {course.title}
@@ -47,7 +47,7 @@ export default function CourseOverviewPage() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-flame">
             What you will walk away with
           </h2>
-          <p className="mt-2 leading-relaxed text-ink/80">{course.outcome}</p>
+          <p className="prose-scale-sm mt-2 leading-relaxed text-ink/80">{course.outcome}</p>
         </div>
       </Reveal>
 
@@ -56,7 +56,7 @@ export default function CourseOverviewPage() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
             Before you start
           </h2>
-          <p className="mt-2 leading-relaxed text-ink/85">
+          <p className="prose-scale-sm mt-2 leading-relaxed text-ink/85">
             This one sits at the top of the ladder, so it assumes you have
             Claude Code installed and have asked it for a change once before. If
             not, start with{" "}
@@ -92,7 +92,7 @@ export default function CourseOverviewPage() {
                       {lesson.minutes} min
                     </span>
                   </span>
-                  <span className="mt-1 block leading-relaxed text-ink/85">
+                  <span className="prose-scale-sm mt-1 block leading-relaxed text-ink/85">
                     {lesson.summary}
                   </span>
                 </span>
