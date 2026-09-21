@@ -54,11 +54,23 @@ export const PAPER_SECTIONS: PaperSection[] = [
     body: [
       {
         kind: "p",
-        text: "At what point does human oversight stop being meaningful, because the system has become too capable, too fast, too complex or too autonomous for a person to understand and verify what it decided?",
+        text: "Somewhere in your organisation, a person clicked approve today. The record will show their name, the time, and that the item was reviewed. What it will not show is whether they could have said no — whether they had the information to disagree, the minutes to check, or the standing to be listened to if they had. Those are separate questions, and only the first one leaves a trace.",
       },
       {
         kind: "p",
-        text: "The question is usually treated as one about the future, to be revisited when systems are more advanced than they are now. It is not. It is answerable today, about systems already in production, and the answer is frequently uncomfortable.",
+        text: "This paper is about the distance between them, and about what happens to that distance as AI systems become more capable.",
+      },
+      {
+        kind: "p",
+        text: "One term is worth settling before going further, because almost everything here turns on it. Human oversight is the control that most AI governance frameworks lean on hardest: the requirement that a person sits between the system and the consequence, able to look at what it proposes and stop it. It appears in binding regulation, in supervisory guidance, and in a great many risk registers as the reason an AI system is considered under control. Put plainly, it is the promise that somebody is watching and can intervene.",
+      },
+      {
+        kind: "p",
+        text: "So the question this paper asks is: at what point does that person stop being able to check what the system decided? Not through carelessness, but because the system has become too fast, too complex or too autonomous for checking to be possible in the time available.",
+      },
+      {
+        kind: "p",
+        text: "That is usually treated as a question about the future, to be revisited when systems are more advanced than they are now. It is not. It is answerable today, about systems already in production, and the answer is frequently uncomfortable.",
       },
       {
         kind: "p",
@@ -79,7 +91,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "The second is that the artefact stopped being inspectable. This is developed in section 3, and it is the reason the problem does not yield to the usual remedies.",
+        text: "The second is that the systems themselves stopped being inspectable — you can no longer open one up and read what it will do. Section 3 explains how that happened, and it is the reason the problem does not yield to the usual remedies.",
       },
     ],
   },
@@ -94,11 +106,11 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "Two quantities move in opposite directions as a system becomes more autonomous. The first is how much a responsible person can independently establish about what the system did and why. The second is how much governance the system needs in order to be run responsibly at all. The first falls. The second rises. Somewhere they cross.",
+        text: "The argument fits in two sentences. The more capable and autonomous an AI system becomes, the harder it gets for a person to check its work — and at the same time, the more governance that system needs in order to be run responsibly. One of those is falling while the other is rising, so somewhere they cross.",
       },
       {
         kind: "p",
-        text: "That crossing point is what this paper calls the oversight threshold. It is not a capability level, a model size or a date. It is the point at which the evidence available to a reviewer stops being sufficient for them to reach a conclusion independent of the system's own.",
+        text: "That crossing point is what this paper calls the oversight threshold. It is not a capability level, a model size or a date on a calendar. It is the point at which a reviewer, working from what is actually in front of them, can no longer reach a conclusion of their own — only agree with the system's. Before that point, review is a check. After it, review is a signature.",
       },
       {
         kind: "p",
@@ -122,7 +134,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
     body: [
       {
         kind: "p",
-        text: "The thesis asserts that verification capacity falls. The reason matters, because the reason determines what governance can do about it.",
+        text: "Section 2 said that a person's ability to check the system falls away as it becomes more capable. This section is about why it falls, and the why matters more than it may appear: it decides whether the problem is one an organisation can fix by trying harder.",
       },
       { kind: "h3", text: "Three fixable causes" },
       {
@@ -144,7 +156,15 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "The cause that is not fixable that way" },
       {
         kind: "p",
-        text: "There is a fourth cause, and resourcing does not touch it. Modern systems are grown rather than written. Their capabilities emerge from training on very large quantities of data rather than from a specification somebody authored, and nobody can point to the location inside the model where a particular behaviour is implemented.",
+        text: "There is a fourth cause, and no amount of resourcing touches it. It is worth spelling out, because everything later in this paper rests on it.",
+      },
+      {
+        kind: "p",
+        text: "Older software was written. Somebody decided what the program should do, expressed that decision as rules, and those rules are still sitting there in the code. You can read them. When the program misbehaves, you can find the line responsible and change it, and you can say with confidence what it will do next time.",
+      },
+      {
+        kind: "p",
+        text: "Modern AI systems are not made that way. They are trained: shown enormous quantities of data, with the behaviour emerging from that exposure rather than from any rule a person wrote. Nobody authored the instruction that produces a given answer, and nobody can point to the place inside the model where that behaviour lives. This is the sense in which these systems are grown rather than written — the phrase is not a metaphor for complexity, it is a description of how they are made.",
       },
       {
         kind: "p",
@@ -152,7 +172,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "So verification capacity does not fall because reviewers become lazy or overloaded. Give one of them unlimited time, complete logs and total independence and the answer to why did it do that is still out of reach. It falls because the thing being checked stops being the kind of thing a person can check.",
+        text: "So verification capacity does not fall because reviewers become lazy or overloaded. Give one of them unlimited time, complete logs and total independence, and they still cannot say why it did what it did. It falls because the thing being checked stops being the kind of thing a person can check.",
       },
       { kind: "h3", text: "The strongest published version of this" },
       {
