@@ -4,6 +4,10 @@ import { Container } from "@/components/container";
 import { PageIntro, Pill } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { VerificationCurve } from "@/components/verification-curve";
+import { ComprehensionLimit } from "@/components/comprehension-limit";
+import { DownloadLink } from "@/components/download-link";
+import { IntensityGrid } from "@/components/intensity-grid";
+import { OversightChain } from "@/components/oversight-chain";
 import { AutonomyMatrix } from "@/components/autonomy-matrix";
 import { OversightTest } from "@/components/oversight-test";
 import {
@@ -30,6 +34,7 @@ const SECTIONS = [
   { id: "matrix", label: "The matrix" },
   { id: "oversight-test", label: "The oversight test" },
   { id: "threshold", label: "The threshold itself" },
+  { id: "comprehension", label: "The comprehension limit" },
   { id: "implications", label: "What it means for you" },
   { id: "now", label: "What to do now" },
   { id: "limits", label: "Limits and open questions" },
@@ -163,14 +168,33 @@ export default function AutonomyGovernancePage() {
           <H id="matrix">The AI Autonomy Governance Matrix</H>
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
             Five levels, from a system that only drafts to one that could not be
-            meaningfully reviewed. Pick a level to see what the system does,
-            what the human still does, what goes wrong, which controls that
-            level needs, and what would have to be true for the governance model
+            meaningfully reviewed, against eight governance dimensions. The grid
+            is the whole framework at once; the detail behind each column
+            follows it.
+          </p>
+        </Reveal>
+        <Reveal>
+          <IntensityGrid />
+        </Reveal>
+        <Reveal>
+          <p className="mt-10 max-w-2xl leading-relaxed text-muted">
+            That is the shape. Below is the detail behind each column — pick a
+            level to read what the system does, what the human still does, what
+            goes wrong, and what would have to be true for the governance model
             to hold.
           </p>
         </Reveal>
         <Reveal>
           <AutonomyMatrix />
+        </Reveal>
+        <Reveal>
+          <div className="mt-6">
+            <DownloadLink
+              href="/research/ai-autonomy-governance-matrix.pdf"
+              title="The matrix as a PDF"
+              detail="All five levels in full, plus the eight dimensions as a single grid — the one view the interactive version cannot show. 12 pages, A4."
+            />
+          </div>
         </Reveal>
       </section>
 
@@ -191,7 +215,19 @@ export default function AutonomyGovernancePage() {
           </div>
         </Reveal>
         <Reveal>
+          <OversightChain />
+        </Reveal>
+        <Reveal>
           <OversightTest />
+        </Reveal>
+        <Reveal>
+          <div className="mt-6">
+            <DownloadLink
+              href="/research/meaningful-human-oversight-assessment.pdf"
+              title="The assessment template"
+              detail="The same five questions as a document to work through with other people, with space for the evidence behind each answer — which is the part that decides whether the result means anything. 7 pages, A4."
+            />
+          </div>
         </Reveal>
       </section>
 
@@ -254,7 +290,10 @@ export default function AutonomyGovernancePage() {
         </div>
       </section>
 
-      {/* 6 — implications */}
+      {/* 6 — the comprehension limit */}
+      <ComprehensionLimit />
+
+      {/* 7 — implications */}
       <section className="mt-16">
         <Reveal>
           <H id="implications">What this means, depending on where you sit</H>
@@ -276,7 +315,7 @@ export default function AutonomyGovernancePage() {
         </Stagger>
       </section>
 
-      {/* 7 — what to do now */}
+      {/* 8 — what to do now */}
       <section className="mt-16">
         <Reveal>
           <H id="now">What organisations can do now</H>
@@ -306,7 +345,7 @@ export default function AutonomyGovernancePage() {
         </Stagger>
       </section>
 
-      {/* 8 — limits */}
+      {/* 9 — limits */}
       <section className="mt-16">
         <Reveal>
           <H id="limits">What is not solved, and what I am unsure about</H>
@@ -363,7 +402,7 @@ export default function AutonomyGovernancePage() {
         </Reveal>
       </section>
 
-      {/* 9 — sources */}
+      {/* 10 — sources */}
       <section className="mt-16">
         <Reveal>
           <H id="sources">Sources and method</H>
@@ -410,7 +449,7 @@ export default function AutonomyGovernancePage() {
         </Reveal>
       </section>
 
-      {/* 10 — disclaimer */}
+      {/* 11 — disclaimer */}
       <Reveal>
         <p className="mt-16 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
           Written and published in a personal capacity, from public sources. It
