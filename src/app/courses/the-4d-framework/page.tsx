@@ -47,7 +47,7 @@ export default function CourseOverviewPage() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-gold">
             What you will walk away with
           </h2>
-          <p className="mt-2 leading-relaxed text-ink/80">{course.outcome}</p>
+          <p className="mt-2 max-w-prose leading-relaxed text-ink/80">{course.outcome}</p>
         </div>
       </Reveal>
 
@@ -56,7 +56,7 @@ export default function CourseOverviewPage() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
             Credit where it is due
           </h2>
-          <p className="mt-2 leading-relaxed text-ink/85">
+          <p className="mt-2 max-w-prose leading-relaxed text-ink/85">
             The 4D framework is not mine. It was developed by Prof. Rick Dakan
             and Prof. Joseph Feller, and Anthropic teaches it in their free
             course{" "}
@@ -102,7 +102,7 @@ export default function CourseOverviewPage() {
                       {lesson.minutes} min
                     </span>
                   </span>
-                  <span className="mt-1 block leading-relaxed text-ink/85">
+                  <span className="mt-1 block max-w-prose leading-relaxed text-ink/85">
                     {lesson.summary}
                   </span>
                 </span>

@@ -71,18 +71,18 @@ export default async function ControlPage({
         <h1 className="font-display mt-4 text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
           {control.title}
         </h1>
-        <p className="mt-5 text-lg leading-relaxed text-grape">
+        <p className="mt-5 max-w-prose text-lg leading-relaxed text-grape">
           {control.question}
         </p>
         {stage ? (
-          <p className="mt-5 rounded-xl border border-grape/30 bg-grape-soft/40 px-4 py-3 text-sm leading-relaxed text-ink/85">
+          <p className="mt-5 max-w-prose rounded-xl border border-grape/30 bg-grape-soft/40 px-4 py-3 text-sm leading-relaxed text-ink/85">
             <span className="font-medium text-ink">
               Where this sits: {stage.label}.
             </span>{" "}
             {stage.moment}
           </p>
         ) : null}
-        <p className="mt-5 text-sm leading-relaxed text-muted">
+        <p className="mt-5 max-w-prose text-sm leading-relaxed text-muted">
           Claims last checked against sources on{" "}
           <span className="font-medium text-ink">{control.lastChecked}</span>.
           Protocols and guidance in this area change quickly, so treat anything
@@ -124,7 +124,7 @@ export default async function ControlPage({
               >
                 {section.heading}
               </h2>
-              <div className="mt-4 space-y-4 text-[1.05rem] leading-8 text-ink/85">
+              <div className="mt-4 max-w-prose space-y-4 text-[1.05rem] leading-8 text-ink/85">
                 {section.body.map((paragraph, i) => (
                   <p key={i}>
                     <RichText text={paragraph} />

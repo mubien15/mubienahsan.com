@@ -55,10 +55,10 @@ export default function ResearchPage() {
                 </span>
                 <span className="ml-auto text-xs text-muted">{item.meta}</span>
               </div>
-              <p className="mt-3 text-[0.98rem] font-medium leading-relaxed text-grape">
+              <p className="mt-3 max-w-prose text-[0.98rem] font-medium leading-relaxed text-grape">
                 {item.question}
               </p>
-              <p className="mt-3 leading-relaxed text-ink/80">{item.summary}</p>
+              <p className="mt-3 max-w-prose leading-relaxed text-ink/80">{item.summary}</p>
               <span className="mt-5 text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
                 {item.cta} →
               </span>

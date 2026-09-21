@@ -298,7 +298,7 @@ export default function AutonomyGovernancePage() {
         <Reveal>
           <H id="implications">What this means, depending on where you sit</H>
         </Reveal>
-        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2" inView>
+        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" inView>
           {IMPLICATIONS.map((a) => (
             <StaggerItem key={a.role}>
               <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6">
@@ -324,7 +324,7 @@ export default function AutonomyGovernancePage() {
             presumes a more capable system than the ones already deployed.
           </p>
         </Reveal>
-        <Stagger className="mt-6 grid gap-3 sm:grid-cols-2" inView>
+        <Stagger className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3" inView>
           {IMPLEMENT_NOW.map((r, i) => (
             <StaggerItem key={r.title}>
               <div className="flex h-full gap-4 rounded-2xl border border-line bg-surface p-5">
@@ -360,7 +360,7 @@ export default function AutonomyGovernancePage() {
             <Reveal key={n.problem}>
               <div className="py-5">
                 <h3 className="font-medium text-ink">{n.problem}</h3>
-                <p className="mt-1.5 leading-relaxed text-ink/80">{n.state}</p>
+                <p className="mt-1.5 max-w-prose leading-relaxed text-ink/80">{n.state}</p>
               </div>
             </Reveal>
           ))}
@@ -443,7 +443,7 @@ export default function AutonomyGovernancePage() {
         </div>
 
         <Reveal>
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
+          <p className="mt-6 max-w-prose text-sm leading-relaxed text-muted">
             {METHOD_NOTE}
           </p>
         </Reveal>
