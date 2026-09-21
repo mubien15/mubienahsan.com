@@ -473,7 +473,7 @@ export const LEVELS: AutonomyLevel[] = [
       },
       oversight: {
         weight: 5,
-        text: "Individual human review is no longer the primary control. Saying so is more honest — and more useful — than keeping a signature that verifies nothing.",
+        text: "The weight here is maximal and it means something different from the other seven. What is maximal is the arrangement — external evaluation, multi-party authorisation, the institutional machinery around the system — not the amount of reliance placed on a person reading an output. Individual review is no longer the primary control at this level, and saying so is more honest, and more useful, than keeping a signature that verifies nothing.",
       },
       testing: {
         weight: 5,
@@ -771,7 +771,8 @@ export const OPEN_QUESTIONS: string[] = [
 export const LIMITATIONS = [
   "This is a framework for thinking, built from public sources and my own experience in risk and assurance. It is not a standard, and nothing here has been validated against outcomes.",
   "The five levels are a simplification. Real systems sit between them, move between them, and sometimes occupy two at once depending on which action you look at.",
-  "The two curves in the figure are illustrative of the argument. They are not measurements and should not be read as quantities.",
+  "The two curves in the figure are illustrative of the argument. They are not measurements and should not be read as quantities. What the figure establishes is that a falling line and a rising line must meet; where they meet is drawn, not derived, and for a real system it would have to be argued case by case.",
+  "The one-to-five intensity scale saturates before the top of the autonomy scale, so levels 4 and 5 differ in a single cell. That is a limit of the instrument rather than a finding about the levels: what changes at level 5 is who the governance runs through, not how much of it there is, and a weight cannot express that.",
   "Level 5 is a scenario used to stress-test the framework. Its inclusion is not a prediction that such a system exists, is imminent, or is inevitable.",
   "The regulatory position summarised here changes quickly. The date at the top of the page is the date it was last checked, not a guarantee it is still current.",
 ];
@@ -783,7 +784,9 @@ export type SourceKind =
   | "Standard"
   | "Framework"
   | "Supervisory guidance"
-  | "Industry commitment";
+  | "Industry commitment"
+  /** A published argument. Carries no authority beyond its own reasoning. */
+  | "Argument";
 
 export type Source = {
   name: string;
@@ -796,21 +799,21 @@ export type Source = {
 export const SOURCES: Source[] = [
   {
     name: "AI Risk Management Framework (AI RMF 1.0) and the Generative AI Profile",
-    org: "NIST",
+    org: "NIST (US National Institute of Standards and Technology)",
     kind: "Framework",
     href: "https://www.nist.gov/itl/ai-risk-management-framework",
     note: "Voluntary. The Govern / Map / Measure / Manage structure is the closest thing to a common vocabulary; the Generative AI Profile adds risks specific to these systems. Not a certification and not binding.",
   },
   {
     name: "ISO/IEC 42001 — AI management systems",
-    org: "ISO/IEC",
+    org: "ISO/IEC (International Organization for Standardization / International Electrotechnical Commission)",
     kind: "Standard",
     href: "https://www.iso.org/standard/42001",
     note: "Certifiable management-system standard. It governs how an organisation manages AI, which is not the same as evidence that a particular system is safe at a given autonomy level.",
   },
   {
     name: "Guideline E-23 — Model Risk Management",
-    org: "OSFI (Canada)",
+    org: "OSFI — Office of the Superintendent of Financial Institutions (Canada)",
     kind: "Supervisory guidance",
     href: "https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/guideline-e-23-model-risk-management-2027",
     note: "Final version published 11 September 2025, in force 1 May 2027 for federally regulated financial institutions. Expands model risk management to cover AI and machine learning explicitly, with risk-proportionate lifecycle expectations.",
@@ -827,7 +830,7 @@ export const SOURCES: Source[] = [
     org: "European Union",
     kind: "Regulation",
     href: "https://artificialintelligenceact.eu/high-level-summary/",
-    note: "Binding. Providers of GPAI models presenting systemic risk must evaluate, assess and mitigate risk, report serious incidents and maintain cybersecurity. The Act uses a training-compute threshold of 10^25 FLOP as a presumption of systemic risk.",
+    note: "Binding. Providers of general-purpose AI models — GPAI, the broad models that are adapted to many downstream tasks rather than built for one — must, where the model presents systemic risk, evaluate, assess and mitigate that risk, report serious incidents and maintain cybersecurity. The Act sets a training-compute threshold of 10²⁵ FLOP, floating-point operations, as a presumption of systemic risk: a measure of the raw arithmetic used to train the model, which is administrable precisely because it can be counted, and which is a proxy for capability rather than a measure of it.",
   },
   {
     name: "AI Security Institute",
@@ -850,7 +853,103 @@ export const SOURCES: Source[] = [
     href: "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024",
     note: "Voluntary commitments made at the 2024 Seoul summit, implemented as published frameworks that define capability thresholds and the safeguards required before crossing them. Self-defined, self-assessed, and the closest existing practice to levels 4 and 5 — which is worth noticing in both directions.",
   },
+  {
+    name: "If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All",
+    org: "Eliezer Yudkowsky and Nate Soares (MIRI), September 2025",
+    kind: "Argument",
+    href: "https://en.wikipedia.org/wiki/If_Anyone_Builds_It,_Everyone_Dies",
+    note: "A book, not a standard, and it carries no authority beyond its reasoning. Included because it states the strongest published version of the comprehension problem: that these systems are grown rather than designed, that nobody understands how their internals produce their behaviour, and that this is why a sufficiently capable system would not be controllable. The reasoning is followable and I follow it. Where it ends is a question about machine learning rather than about governance, and the section on the comprehension limit says which of the two I am writing from.",
+  },
 ];
 
 export const METHOD_NOTE =
   "The five levels are mine, built to make one argument testable: that verification capacity falls as autonomy rises, and that governance has to intensify before the two cross. The dimensions borrow their shape from existing risk practice rather than inventing a vocabulary. Where a source is cited it is summarised in my own words and linked, so you can disagree with my reading by going to the original. Voluntary frameworks are labelled as voluntary and binding law as binding, because collapsing the two is the most common error in this area — and the most flattering one, since it makes a governance programme sound more obligatory than it is.";
+
+/* ------------------------------------------------ the comprehension limit */
+
+/**
+ * Why verification capacity falls at all.
+ *
+ * The figure asserts the fall. This section names the mechanism, because the
+ * mechanism determines what governance can do about it: a reviewer who lacks
+ * time can be given time, and a reviewer who cannot understand the artefact
+ * cannot be given comprehension.
+ *
+ * Two disciplines specific to this section:
+ *
+ *  1. It engages the strongest published version of the argument rather than
+ *     a convenient version, and attributes it accurately — including the
+ *     part of the conclusion this framework does not accept, and the fact
+ *     that serious reviewers contest that same step.
+ *  2. Governability and survivability are kept apart. The claim here is that
+ *     human review stops working as a control. That is not a claim about
+ *     human extinction, and the second does not follow from the first.
+ */
+export const COMPREHENSION = {
+  heading: "The comprehension limit",
+
+  intro: [
+    "The figure earlier says verification capacity falls as autonomy rises. It is worth being exact about why, because the reason decides what governance can do about it.",
+    "There are three ordinary reasons a reviewer stops genuinely reviewing. They do not have the time. They do not have the information. They do not have the standing to say no. All three are real, all three are common, and all three are fixable by an organisation that decides to fix them — give the reviewer hours instead of seconds, give them the inputs rather than the conclusion, give them a manager who does not treat a rejection as an obstruction.",
+    "There is a fourth reason, and it is not fixable that way. Modern systems are grown rather than written. Their capabilities emerge from training rather than from a specification somebody authored, and nobody can point to the place inside the model where a particular behaviour lives. Interpretability research — the work of reading structure out of a model's internals — is making real progress on the general question, but it is not yet a deployed method for explaining a specific decision to a reviewer, an auditor or a regulator.",
+    "So verification capacity does not fall because reviewers become lazy or overloaded. Give one unlimited time, complete logs and total independence, and they still cannot say why it did what it did. It falls because the thing being checked stops being the kind of thing a person can check.",
+  ],
+
+  /**
+   * The second problem. Opacity and alignment are separate difficulties that
+   * are routinely merged into one vague worry, which makes both easier to
+   * dismiss. Kept apart here, and kept at the level of the established
+   * problem statement rather than any particular researcher's prediction.
+   */
+  alignment: {
+    heading: "And a second problem, sitting next to it",
+    body: [
+      "Opacity is about whether you can see what the system is doing. There is a separate difficulty about whether what it is doing is what you asked for, and the field calls it the alignment problem.",
+      "The trouble is specification. You cannot write down everything you mean, so any objective handed to a capable optimiser is a proxy for the intent behind it — not through malice, but because it was only ever an approximation. The literature names three ways the proxy comes apart from the intent: specification gaming, where a system satisfies the stated objective by a route nobody intended; reward hacking, where it optimises the measure rather than the thing the measure stood for; and goal misgeneralisation, where behaviour that held up under evaluation turns out, once deployed, to have been pursuing something else. None has a general solution, and capability makes each worse rather than better, because a weak system pursuing the wrong goal simply fails at it.",
+      "The two problems compound, and that is the part worth holding on to. A specification failure inside a system you cannot inspect is not one you find by looking for it. You find it when the system acts. That is the case for constraining what a system may reach, rather than trusting that you will notice in time.",
+    ],
+  },
+
+  /** Stated as the argument's own claim, not as this framework's finding. */
+  strongForm: {
+    heading: "The strongest version of this argument",
+    body: [
+      "The most forceful published statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025. Soares is president of the Machine Intelligence Research Institute.",
+      "Their phrase for the mechanism above is that AI systems are grown, not crafted. Soares has made the regulatory case in those terms: that a superintelligent system would not be understandable, would not be predictable, and would not have human interests at heart.",
+      "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds it: a system that can improve its own capability changes the thing being verified faster than a verification cycle can complete.",
+    ],
+  },
+
+  follow: {
+    heading: "Why the argument follows",
+    body: [
+      "I can follow it, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is three ordinary observations placed in order.",
+      "It is the two problems above — we cannot see inside, and we cannot say exactly what we meant — plus a third that compounds both: a system able to improve its own capability changes faster than any verification cycle can complete.",
+      "Each step is unremarkable on its own, and each is the ordinary understanding of how the technology works rather than a contested reading of it. Put in sequence, they describe something that gets harder to check exactly as it gets more consequential. That is the shape of the argument, and the shape is sound.",
+    ],
+  },
+
+  position: {
+    heading: "Where I put my work",
+    body: [
+      "Where the argument ends — whether this leads somewhere catastrophic, and on what timescale — is a question about how capability scales and how systems behave at levels nobody has built. I am not a machine learning researcher, and I am not going to pretend I can settle that from a governance background.",
+      "What I can say is that the question does not need to be settled for the problem on this page to be real. It does not wait for superintelligence. It is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves.",
+      "So that is the layer I work in: the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing real work in a system running right now is mine — and unlike the first question, it is answerable this quarter.",
+    ],
+  },
+
+  consequence: {
+    heading: "What it does to the governance model",
+    body: [
+      "If verification fails because the artefact is opaque, then more oversight cannot repair it. You cannot resource your way past a comprehension limit. This is the practical consequence of the whole framework, and it reverses what most AI governance programmes are built to do.",
+      "Below the threshold, governance makes review work: better information, more time, genuine independence, real authority to refuse. Those are the right investments and they pay off.",
+      "Above it, governance has to stop leaning on review at all and constrain what the system is permitted to become and to reach. Permissions enforced outside the model rather than requested of it. Actions that are reversible by construction. A blast radius small enough that being wrong is survivable. Capability thresholds that gate deployment in advance, rather than review that audits it after the fact.",
+      "The self-improvement point does the same thing to the rest of the toolkit, and it is the part governance people underrate. Every assurance method available — testing, validation, independent review, certification — assumes the object holds still long enough to be assessed. A system that meaningfully improves its own capability breaks that assumption, and nothing in existing model risk practice is built for it. That is a gap in method, not a failure of diligence, and pretending otherwise is how an assurance programme ends up certifying a snapshot of something that has already moved.",
+      "And at level 5 as described, the unit of governance stops being the organisation. If no reviewer inside a company can verify the system, an internal control framework is not the relevant instrument, and the questions become who may build such a thing, under what external verification, and with what ability to stop. That is not a prediction that level 5 exists or is close. It is what the framework would require if it did — which is the entire reason to include a level nobody has built.",
+    ],
+  },
+
+  /** The one-line version, for the page's summary rail. */
+  pullQuote:
+    "You cannot resource your way past a comprehension limit. Above the threshold, governance has to constrain what the system may become rather than review what it did.",
+} as const;
