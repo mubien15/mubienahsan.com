@@ -124,10 +124,10 @@ export default function AgentsPage() {
                       Checked {control.lastChecked}
                     </span>
                   </div>
-                  <p className="mt-3 text-[0.95rem] font-medium leading-relaxed text-grape">
+                  <p className="mt-3 max-w-prose text-[0.95rem] font-medium leading-relaxed text-grape">
                     {control.question}
                   </p>
-                  <p className="mt-2 leading-relaxed text-ink/80">
+                  <p className="mt-2 max-w-prose leading-relaxed text-ink/80">
                     {control.summary}
                   </p>
                   <span className="mt-4 text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
@@ -140,7 +140,7 @@ export default function AgentsPage() {
         </Stagger>
 
         <Reveal>
-          <p className="mt-6 text-sm leading-relaxed text-muted">
+          <p className="mt-6 max-w-prose text-sm leading-relaxed text-muted">
             Two more are in progress: how you rebuild, months later, why the
             agent bought this particular thing, and who carries the loss when an
             agent goes beyond what it was allowed to do. I would rather publish

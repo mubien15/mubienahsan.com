@@ -67,7 +67,7 @@ export default function CoursesPage() {
                   </h2>
                   {!available ? <Pill tone={course.tone}>{course.status}</Pill> : null}
                 </div>
-                <p className="mt-2 leading-relaxed text-ink/85">{course.blurb}</p>
+                <p className="mt-2 max-w-prose leading-relaxed text-ink/85">{course.blurb}</p>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <Pill tone={course.tone}>{course.level}</Pill>
                   {available ? (

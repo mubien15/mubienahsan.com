@@ -206,7 +206,7 @@ export function VerificationCurve() {
           </text>
         </svg>
       </div>
-      <figcaption className="mt-3 text-sm leading-relaxed text-muted">
+      <figcaption className="mt-3 max-w-prose text-sm leading-relaxed text-muted">
         {THRESHOLD_NOTE}
       </figcaption>
     </figure>

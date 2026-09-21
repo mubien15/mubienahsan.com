@@ -178,7 +178,7 @@ export default function AboutPage() {
                     <h3 className="font-display mt-3 text-lg text-ink">
                       {item.title}
                     </h3>
-                    <p className="mt-2 leading-relaxed text-ink/85">
+                    <p className="mt-2 max-w-prose leading-relaxed text-ink/85">
                       {item.body}
                     </p>
                   </div>

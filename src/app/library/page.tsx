@@ -79,12 +79,12 @@ export default function LibraryPage() {
       {/* Books */}
       <section className="mt-16">
         <h2 className="font-display text-2xl text-ink">Books &amp; essays</h2>
-        <p className="mt-2 text-muted">
+        <p className="mt-2 max-w-prose text-muted">
           Honest takes rather than summaries: what each one actually argues, and
           what it changed for me. Plus my own writing. Read the ones that pull at
           you.
         </p>
-        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2" inView>
+        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" inView>
           {BOOKS.map((book) => (
             <StaggerItem key={book.title}>
               <HoverLift className="h-full">

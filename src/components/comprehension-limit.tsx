@@ -67,12 +67,12 @@ export function ComprehensionLimit() {
               {strongForm.heading}
             </h3>
           </div>
-          <div className="mt-4 space-y-4 leading-relaxed text-ink/85">
+          <div className="mt-4 max-w-prose space-y-4 leading-relaxed text-ink/85">
             {strongForm.body.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
           </div>
-          <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-muted">
+          <p className="mt-4 max-w-prose border-t border-line pt-3 text-sm leading-relaxed text-muted">
             Summarised in my own words from the book and its authors&rsquo;
             public statements of it, and linked in the sources below so you can
             check my reading against the original. It is included because it is

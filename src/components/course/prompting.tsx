@@ -120,7 +120,7 @@ export function PromptAnatomy({
               >
                 {part.label}
               </span>
-              <p className="mt-1 text-[0.98rem] leading-7 text-ink/85">
+              <p className="mt-1 max-w-prose text-[0.98rem] leading-7 text-ink/85">
                 {part.text}
               </p>
             </div>
