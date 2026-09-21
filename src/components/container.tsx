@@ -1,16 +1,19 @@
 import { cn } from "@/lib/cn";
 
 /**
- * The page gutter.
+ * The one content column.
  *
- * Mobile-first up to 1280px, then wider: the site was built with no
- * breakpoint above lg, so a large monitor rendered the tablet layout inside
- * a 1024px column with the rest of the screen empty. The extra width goes to
- * layout — more columns, roomier figures — and never to line length, which
- * stays capped by max-w-2xl on prose because a 1900px line of text is harder
- * to read, not easier.
+ * Every page, and the header and footer with them, sit in this single
+ * width — so nothing on the site is ever wider than anything else. It is
+ * set a little wider than a classic reading measure and paired with a type
+ * bump above 1280px (see globals.css), because the constraint that matters
+ * is characters per line, not pixels: widening the column without growing
+ * the text would just make the lines harder to track back.
+ *
+ * Deliberately not responsive above its cap. A large monitor gets generous
+ * margins rather than a stretched layout, which is the trade this site
+ * chose: alignment and readability over filling the glass.
  */
-
 export function Container({
   className,
   children,
@@ -19,10 +22,7 @@ export function Container({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn(
-        "mx-auto w-full max-w-5xl px-5 sm:px-8 xl:max-w-6xl 2xl:max-w-7xl",
-        className
-      )}>
+    <div className={cn("mx-auto w-full max-w-[52rem] px-5 sm:px-8", className)}>
       {children}
     </div>
   );

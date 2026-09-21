@@ -126,7 +126,7 @@ export function BuildLoop({
               >
                 {step.title}
               </span>
-              <p className="mt-1 max-w-prose text-[0.98rem] leading-7 text-ink/85">
+              <p className="mt-1 text-[0.98rem] leading-7 text-ink/85">
                 {step.body}
               </p>
             </div>

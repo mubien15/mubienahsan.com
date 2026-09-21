@@ -114,7 +114,7 @@ export function Parts({
               >
                 {p.name}
               </span>
-              <p className="mt-1 max-w-prose text-[0.98rem] leading-7 text-ink/85">
+              <p className="mt-1 text-[0.98rem] leading-7 text-ink/85">
                 {p.text}
               </p>
             </div>
@@ -132,7 +132,7 @@ export function Credit() {
       <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted">
         Where this comes from
       </p>
-      <p className="max-w-prose text-[0.98rem] leading-7 text-ink/80">
+      <p className="text-[0.98rem] leading-7 text-ink/80">
         The 4D framework is not mine. It was developed by{" "}
         <strong className="text-ink">Prof. Rick Dakan</strong> of Ringling
         College of Art and Design and{" "}

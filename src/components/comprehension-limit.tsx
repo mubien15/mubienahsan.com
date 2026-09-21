@@ -33,7 +33,7 @@ export function ComprehensionLimit() {
         </h2>
       </Reveal>
 
-      <div className="mt-4 max-w-2xl space-y-5 text-[1.05rem] leading-8 text-ink/85">
+      <div className="mt-4 space-y-5 prose-scale text-[1.05rem] leading-8 text-ink/85">
         {intro.map((para) => (
           <Reveal key={para.slice(0, 32)}>
             <p>{para}</p>
@@ -43,9 +43,9 @@ export function ComprehensionLimit() {
 
       {/* The second problem, given its own weight rather than a clause. */}
       <Reveal>
-        <div className="mt-8 max-w-2xl">
+        <div className="mt-8">
           <h3 className="font-display text-xl text-ink">{alignment.heading}</h3>
-          <div className="mt-3 space-y-5 text-[1.05rem] leading-8 text-ink/85">
+          <div className="mt-3 space-y-5 prose-scale text-[1.05rem] leading-8 text-ink/85">
             {alignment.body.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
@@ -67,12 +67,12 @@ export function ComprehensionLimit() {
               {strongForm.heading}
             </h3>
           </div>
-          <div className="mt-4 max-w-prose space-y-4 leading-relaxed text-ink/85">
+          <div className="prose-scale-sm mt-4 space-y-4 leading-relaxed text-ink/85">
             {strongForm.body.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
           </div>
-          <p className="mt-4 max-w-prose border-t border-line pt-3 text-sm leading-relaxed text-muted">
+          <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-muted">
             Summarised in my own words from the book and its authors&rsquo;
             public statements of it, and linked in the sources below so you can
             check my reading against the original. It is included because it is
@@ -108,11 +108,11 @@ export function ComprehensionLimit() {
 
       {/* The consequence, which is the part that changes what anyone does. */}
       <Reveal>
-        <div className="mt-8 max-w-2xl">
+        <div className="mt-8">
           <h3 className="font-display text-xl text-ink">
             {consequence.heading}
           </h3>
-          <div className="mt-3 space-y-5 text-[1.05rem] leading-8 text-ink/85">
+          <div className="mt-3 space-y-5 prose-scale text-[1.05rem] leading-8 text-ink/85">
             {consequence.body.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
@@ -121,7 +121,7 @@ export function ComprehensionLimit() {
       </Reveal>
 
       <Reveal>
-        <blockquote className="mt-8 max-w-2xl border-l-2 border-accent pl-5 font-display text-lg leading-relaxed text-ink sm:text-xl">
+        <blockquote className="mt-8 border-l-2 border-accent pl-5 font-display text-lg leading-relaxed text-ink sm:text-xl">
           {pullQuote}
         </blockquote>
       </Reveal>

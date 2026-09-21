@@ -79,12 +79,12 @@ export function OversightTest() {
                 </span>
               </div>
               <p
-                className="mt-2 max-w-prose text-[1.05rem] font-medium leading-relaxed text-ink"
+                className="mt-2 prose-scale-sm text-[1.05rem] font-medium leading-relaxed text-ink"
                 id={`q-${t.id}`}
               >
                 {t.question}
               </p>
-              <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted">{t.why}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{t.why}</p>
 
               <div
                 role="radiogroup"
@@ -117,7 +117,7 @@ export function OversightTest() {
               </div>
 
               {chosen === "no" || chosen === "partly" ? (
-                <p className="mt-3 max-w-prose border-l-2 border-flame/50 pl-3 text-sm leading-relaxed text-muted">
+                <p className="mt-3 border-l-2 border-flame/50 pl-3 text-sm leading-relaxed text-muted">
                   <span className="font-medium text-ink">
                     What failing this looks like:{" "}
                   </span>
@@ -152,21 +152,21 @@ export function OversightTest() {
               {result.verdict}
             </h3>
             {capped ? (
-              <p className="mt-3 max-w-prose rounded-xl border border-line bg-paper/60 p-3 text-sm leading-relaxed text-muted">
+              <p className="mt-3 rounded-xl border border-line bg-paper/60 p-3 text-sm leading-relaxed text-muted">
                 Your total alone would have placed this a band higher. It is
                 held here because one of the five is answered no, and the five
                 do not trade off against each other — strength in four cannot
                 supply a condition that is simply absent.
               </p>
             ) : null}
-            <p className="mt-3 max-w-prose leading-relaxed text-ink/85">{result.meaning}</p>
-            <p className="mt-3 max-w-prose leading-relaxed text-ink/85">
+            <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">{result.meaning}</p>
+            <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">
               <span className="font-medium text-ink">What to do next: </span>
               {result.next}
             </p>
 
             {weakest.length ? (
-              <p className="mt-4 max-w-prose border-t border-line pt-4 text-sm leading-relaxed text-muted">
+              <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-muted">
                 You answered no to{" "}
                 <span className="font-medium text-ink">
                   {weakest.map((w) => w.name).join(", ")}
@@ -189,7 +189,7 @@ export function OversightTest() {
             </button>
           </motion.div>
         ) : (
-          <p className="max-w-prose rounded-2xl border border-dashed border-line bg-surface/50 p-5 text-sm leading-relaxed text-muted">
+          <p className="rounded-2xl border border-dashed border-line bg-surface/50 p-5 text-sm leading-relaxed text-muted">
             {answered === 0
               ? "Answer all five for a result. Pick one real system you are responsible for rather than a hypothetical one — the questions only bite when the answers have consequences."
               : `${OVERSIGHT_TESTS.length - answered} to go.`}
@@ -197,7 +197,7 @@ export function OversightTest() {
         )}
       </div>
 
-      <p className="mt-4 max-w-prose text-sm leading-relaxed text-muted">
+      <p className="mt-4 text-sm leading-relaxed text-muted">
         {OVERSIGHT_CAVEAT}
       </p>
     </div>

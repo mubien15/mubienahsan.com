@@ -19,7 +19,7 @@ import { OVERSIGHT_TESTS } from "@/content/autonomy";
  */
 export function OversightChain() {
   return (
-    <figure className="mt-6 max-w-2xl">
+    <figure className="mt-6">
       <ol className="flex flex-col">
         {OVERSIGHT_TESTS.map((t, i) => {
           const isStop = t.id === "stop";
@@ -57,7 +57,7 @@ export function OversightChain() {
         })}
       </ol>
 
-      <figcaption className="mt-3 max-w-prose text-sm leading-relaxed text-muted">
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted">
         They run in order, and each one rests on the one before it. A system
         can satisfy four and still fail, because the one it misses is the one
         that mattered. Stopping is set apart because it is the only condition

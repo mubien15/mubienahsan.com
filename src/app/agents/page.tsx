@@ -32,7 +32,7 @@ export default function AgentsPage() {
         they were allowed to buy. These are controls for that gap.
       </PageIntro>
 
-      <div className="mt-14 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
+      <div className="mt-14 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p>
             The Agentic Commerce Protocol, published in 2025, sets out how an
@@ -84,7 +84,7 @@ export default function AgentsPage() {
           <h2 className="font-display text-2xl text-ink">
             Where the controls sit
           </h2>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             A purchase made by an agent passes through seven moments. Five of
             them need a control, and those are the steps shown in colour. Pick a
             step to see what happens there, what can go wrong, and which control
@@ -101,7 +101,7 @@ export default function AgentsPage() {
 
       <section className="mt-16">
         <h2 className="font-display text-2xl text-ink">The controls</h2>
-        <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+        <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
           All six in full. The numbers run in the order the controls were
           written, which is deliberately not the order above — a purchase runs
           into them as C1, C4, C3, C5, C2, with C6 cutting across the lot. The
@@ -124,10 +124,10 @@ export default function AgentsPage() {
                       Checked {control.lastChecked}
                     </span>
                   </div>
-                  <p className="mt-3 max-w-prose text-[0.95rem] font-medium leading-relaxed text-grape">
+                  <p className="mt-3 text-[0.95rem] font-medium leading-relaxed text-grape">
                     {control.question}
                   </p>
-                  <p className="mt-2 max-w-prose leading-relaxed text-ink/80">
+                  <p className="prose-scale-sm mt-2 leading-relaxed text-ink/80">
                     {control.summary}
                   </p>
                   <span className="mt-4 text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
@@ -140,7 +140,7 @@ export default function AgentsPage() {
         </Stagger>
 
         <Reveal>
-          <p className="mt-6 max-w-prose text-sm leading-relaxed text-muted">
+          <p className="mt-6 text-sm leading-relaxed text-muted">
             Two more are in progress: how you rebuild, months later, why the
             agent bought this particular thing, and who carries the loss when an
             agent goes beyond what it was allowed to do. I would rather publish
@@ -150,7 +150,7 @@ export default function AgentsPage() {
       </section>
 
       <Reveal>
-        <p className="mt-14 max-w-2xl rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
+        <p className="mt-14 rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
           Written in a personal capacity, from public sources. It is not legal
           advice and does not create any professional relationship. Where a
           specification, a piece of research or a set of guidance is named, it is

@@ -32,7 +32,7 @@ export function PrintHeader({
       <h1 className="font-display mt-2 text-3xl leading-tight text-ink sm:text-4xl">
         {title}
       </h1>
-      <p className="mt-3 max-w-2xl leading-relaxed text-ink/80">{standfirst}</p>
+      <p className="prose-scale-sm mt-3 leading-relaxed text-ink/80">{standfirst}</p>
       <p className="mt-4 text-xs text-muted">
         Mubien Ahsan · mubienahsan.com/research/autonomy-governance · Sources
         last checked {LAST_CHECKED}

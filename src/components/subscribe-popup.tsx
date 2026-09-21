@@ -161,7 +161,7 @@ export function SubscribePopup() {
             Take The First Build with you
           </h2>
 
-          <p className="mt-3 leading-relaxed text-muted">
+          <p className="prose-scale-sm mt-3 leading-relaxed text-muted">
             A step-by-step guide to the AI morning brief I actually use — no
             code, buildable in an evening. Tell me where to send it and it&apos;s
             yours.

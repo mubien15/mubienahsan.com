@@ -17,7 +17,7 @@ export default function LessonLayout({
   }));
 
   return (
-    <Container className="py-12 sm:py-16">
+    <Container className="py-12 sm:py-16 lg:max-w-[70rem]">
       <div className="grid gap-10 lg:grid-cols-[15rem_1fr]">
         <aside className="lg:pt-1">
           <LessonSidebar
