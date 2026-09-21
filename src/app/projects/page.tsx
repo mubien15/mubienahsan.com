@@ -137,7 +137,7 @@ function Detail({
       <h3 className="text-xs font-semibold uppercase tracking-wider text-muted">
         {label}
       </h3>
-      <p className="mt-1.5 leading-relaxed text-ink/85">{children}</p>
+      <p className="prose-scale-sm mt-1.5 leading-relaxed text-ink/85">{children}</p>
     </div>
   );
 }

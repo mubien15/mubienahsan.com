@@ -50,7 +50,7 @@ export default function LegalPage() {
         address and nothing else.
       </PageIntro>
 
-      <div className="mt-14 max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
+      <div className="mt-14 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p className="text-sm text-muted">
             Last updated {UPDATED}. This site is run by me, Mubien Ahsan, as an

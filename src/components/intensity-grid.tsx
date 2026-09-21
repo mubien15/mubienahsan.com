@@ -113,7 +113,7 @@ export function IntensityGrid() {
           </span>
         </div>
       </div>
-      <figcaption className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted">
         Every dimension climbs and none of them comes back down: there is no
         level at which some part of governance gets easier. Two things in the
         grid are worth reading closely. Human oversight is the only dimension

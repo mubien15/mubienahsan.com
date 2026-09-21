@@ -113,7 +113,7 @@ export function CourseQuiz() {
                     {winner.lessons.length} lessons
                   </Pill>
                 </div>
-                <p className="mt-3 leading-relaxed text-ink/85">
+                <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">
                   {RESULT_NOTES[winner.slug as CourseSlug]}
                 </p>
                 <div className="mt-5">

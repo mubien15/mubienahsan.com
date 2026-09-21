@@ -79,7 +79,7 @@ export function OversightTest() {
                 </span>
               </div>
               <p
-                className="mt-2 text-[1.05rem] font-medium leading-relaxed text-ink"
+                className="mt-2 prose-scale-sm text-[1.05rem] font-medium leading-relaxed text-ink"
                 id={`q-${t.id}`}
               >
                 {t.question}
@@ -159,8 +159,8 @@ export function OversightTest() {
                 supply a condition that is simply absent.
               </p>
             ) : null}
-            <p className="mt-3 leading-relaxed text-ink/85">{result.meaning}</p>
-            <p className="mt-3 leading-relaxed text-ink/85">
+            <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">{result.meaning}</p>
+            <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">
               <span className="font-medium text-ink">What to do next: </span>
               {result.next}
             </p>

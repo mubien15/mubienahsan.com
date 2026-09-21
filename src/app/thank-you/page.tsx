@@ -46,7 +46,7 @@ export default async function ThankYou({
   return (
     <Container className="py-20 sm:py-28">
       <Reveal>
-        <div className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-line bg-surface px-7 py-12 text-center sm:px-12">
+        <div className="relative mx-auto overflow-hidden rounded-3xl border border-line bg-surface px-7 py-12 text-center sm:px-12">
           <div
             aria-hidden
             className={`glow pointer-events-none absolute -left-40 -top-40 h-96 w-96 rounded-full opacity-70 ${

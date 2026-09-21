@@ -48,7 +48,7 @@ export default function AboutPage() {
       </PageIntro>
 
       <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_18rem]">
-        <div className="max-w-2xl space-y-6 text-[1.05rem] leading-8 text-ink/85">
+        <div className="space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
           <Reveal>
             <h2 className="font-display text-2xl text-ink">How I got here</h2>
           </Reveal>
@@ -178,7 +178,7 @@ export default function AboutPage() {
                     <h3 className="font-display mt-3 text-lg text-ink">
                       {item.title}
                     </h3>
-                    <p className="mt-2 leading-relaxed text-ink/85">
+                    <p className="prose-scale-sm mt-2 leading-relaxed text-ink/85">
                       {item.body}
                     </p>
                   </div>

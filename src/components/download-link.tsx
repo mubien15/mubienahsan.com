@@ -19,7 +19,7 @@ export function DownloadLink({
     <a
       href={href}
       download
-      className="group inline-flex max-w-2xl items-start gap-3 rounded-2xl border border-line bg-surface px-5 py-4 transition-colors hover:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      className="group inline-flex items-start gap-3 rounded-2xl border border-line bg-surface px-5 py-4 transition-colors hover:border-accent/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       <svg
         viewBox="0 0 24 24"

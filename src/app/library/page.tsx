@@ -66,7 +66,7 @@ export default function LibraryPage() {
                   <h3 className="font-display mt-3 text-lg text-ink">
                     {cert.name}
                   </h3>
-                  <p className="mt-3 flex-1 leading-relaxed text-ink/85">
+                  <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
                     {cert.note}
                   </p>
                 </div>
@@ -109,7 +109,7 @@ export default function LibraryPage() {
                       {book.own ? <Pill tone={book.tone}>Written by me</Pill> : null}
                     </div>
                     <p className="mt-0.5 text-sm text-muted">{book.author}</p>
-                    <p className="mt-3 leading-relaxed text-ink/85">{book.take}</p>
+                    <p className="prose-scale-sm mt-3 leading-relaxed text-ink/85">{book.take}</p>
                     {book.href ? (
                       <a
                         href={book.href}
