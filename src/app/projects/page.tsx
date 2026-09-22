@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/container";
 import { PageIntro, Pill, TONE_TEXT } from "@/components/ui";
 import { Reveal, HoverLift } from "@/components/motion";
@@ -12,7 +13,7 @@ import type { Tone } from "@/components/ui";
 export const metadata: Metadata = pageMetadata("/projects", {
   title: "Projects",
   description:
-    "Useful tools and personal experiments built with AI. What I made, why I made it, and what I learned along the way.",
+    "AI products and experiments by Mubien, with case studies covering the problem, product decisions, limitations, and next tests.",
 });
 
 const LEFT_BAR: Record<Tone, string> = {
@@ -24,16 +25,27 @@ const LEFT_BAR: Record<Tone, string> = {
 };
 
 export default function ProjectsPage() {
+  const orderedProjects = [
+    ...PROJECTS.filter((project) => project.slug === "ai-governance-agent"),
+    ...PROJECTS.filter((project) => project.slug === "fable"),
+    ...PROJECTS.filter((project) => project.slug === "northbound-notes"),
+    ...PROJECTS.filter(
+      (project) =>
+        !["ai-governance-agent", "fable", "northbound-notes"].includes(project.slug)
+    ),
+  ];
+
   return (
     <Container className="py-16 sm:py-20">
-      <PageIntro eyebrow="Built with AI" title="Useful ideas, built with AI." tone="flame">
-        These are my personal builds: things I use, ideas I wanted to try, and
-        questions I wanted to explore by making something. Some are live and
-        others are still taking shape. Here is what each one is teaching me.
+      <PageIntro eyebrow="Selected builds" title="Ideas tested by making them real." tone="flame">
+        I use small products to examine practical questions about AI: where it
+        helps, where the surrounding experience matters, and what evidence is
+        needed before trusting the result. The case studies show the decisions,
+        limitations, and next tests behind the strongest work.
       </PageIntro>
 
       <div className="mt-14 space-y-6">
-        {PROJECTS.map((project, i) => (
+        {orderedProjects.map((project, i) => (
           <Reveal key={project.slug} delay={i * 0.05}>
             <HoverLift>
               <article
@@ -113,6 +125,17 @@ export default function ProjectsPage() {
                       >
                         {project.liveLabel} ↗
                       </a>
+                    ) : null}
+                    {project.caseStudy ? (
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className={cn(
+                          "mt-4 ml-4 inline-block text-sm font-medium hover:underline",
+                          TONE_TEXT[project.tone]
+                        )}
+                      >
+                        Read case study →
+                      </Link>
                     ) : null}
                   </div>
 

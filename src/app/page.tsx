@@ -25,31 +25,31 @@ const PATHS: {
   tone: Tone;
 }[] = [
   {
-    emoji: "🧑‍💻",
-    title: "Learn to build with AI",
-    body: "Four free courses that take you from absolute zero to a live app. No coding background needed.",
-    href: "/courses",
-    tone: "mint",
+    emoji: "🧭",
+    title: "Explore original research",
+    body: "Frameworks and explainers on autonomy, oversight, agent permissions, and how AI systems change.",
+    href: "/research",
+    tone: "grape",
   },
   {
     emoji: "🛠️",
-    title: "See what I've built",
-    body: "Useful tools, personal experiments, and the lessons from building them with AI.",
+    title: "Review the case studies",
+    body: "The problem, approach, product decisions, limitations, and next tests behind my strongest builds.",
     href: "/projects",
     tone: "flame",
   },
   {
-    emoji: "📚",
-    title: "Find what's worth learning",
-    body: "The courses, books, and essays helping me make sense of AI.",
-    href: "/library",
-    tone: "grape",
+    emoji: "🧑‍💻",
+    title: "Learn practical AI",
+    body: "Free, plain-language guides for using AI deliberately, evaluating its output, and shipping useful work.",
+    href: "/courses",
+    tone: "mint",
   },
   {
-    emoji: "👋",
-    title: "Get to know me",
-    body: "A little about me, what makes me curious, and why this space exists.",
-    href: "/about",
+    emoji: "📚",
+    title: "Follow the source trail",
+    body: "The courses, books, standards, and essays that have changed or sharpened my thinking.",
+    href: "/library",
     tone: "gold",
   },
 ];
@@ -83,7 +83,11 @@ export default function Home() {
   const ladder = COURSES.filter((c) => c.status === "Available").slice(0, 4);
   const ladderCols =
     ladder.length >= 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
-  const featuredProjects = PROJECTS.slice(0, 2);
+  const featuredProjects = [
+    PROJECTS.find((project) => project.slug === "ai-governance-agent"),
+    PROJECTS.find((project) => project.slug === "fable"),
+    PROJECTS.find((project) => project.slug === "northbound-notes"),
+  ].filter((project): project is (typeof PROJECTS)[number] => Boolean(project));
 
   return (
     <>
@@ -106,6 +110,7 @@ export default function Home() {
               <PhotoBlob src="/me-v9.webp" />
 
               <div>
+                <Eyebrow tone="accent">Building, testing, and questioning AI</Eyebrow>
                 <h1 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
                   Hey, I&apos;m{" "}
                   <span className="relative inline-block">
@@ -115,9 +120,10 @@ export default function Home() {
                   <span className="inline-block">👋</span>
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
-                  I use AI every day, build useful tools with it, and explore
-                  how it works and where it reaches its limits. This is where
-                  I share the projects, questions, and lessons along the way.
+                  I build useful tools with AI and study what happens when these
+                  systems begin to make decisions, take actions, or change the
+                  way work gets done. This is where I share the products,
+                  frameworks, and evidence behind that work.
                 </p>
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
                   Right now, I&apos;m deep down a research rabbit hole: how
@@ -135,11 +141,11 @@ export default function Home() {
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
                   My aim is simple: <span className="font-medium text-ink">bring
                   calm, clarity, and depth to the noisiest topic there is.</span>{" "}
-                  A little structure to help you learn, build, and find your own
-                  footing as things move quickly.
+                  That means building things, testing the assumptions around
+                  them, and being precise about what is known and what is not.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <CtaLink href="/projects">Explore my projects</CtaLink>
+                  <CtaLink href="/projects">Review the case studies</CtaLink>
                   <CtaLink href="/research" variant="secondary">
                     Explore the questions
                   </CtaLink>
@@ -184,13 +190,13 @@ export default function Home() {
         </Reveal>
       </Container>
 
-      {/* Stuff I've built */}
+      {/* Selected builds */}
       <Container className="py-16">
         <Reveal className="mb-8 flex items-end justify-between">
           <div>
-            <Eyebrow tone="flame">Built with AI</Eyebrow>
+            <Eyebrow tone="flame">Selected builds</Eyebrow>
             <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-              Stuff I&apos;ve actually built
+              Ideas tested by making them real
             </h2>
           </div>
           <Link
@@ -200,7 +206,7 @@ export default function Home() {
             All projects →
           </Link>
         </Reveal>
-        <Stagger className="grid gap-4 sm:grid-cols-2" inView>
+        <Stagger className="grid gap-4 md:grid-cols-3" inView>
           {featuredProjects.map((project) => (
             <StaggerItem key={project.slug}>
               <HoverLift className="h-full">
@@ -240,15 +246,13 @@ export default function Home() {
                     <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
                       {project.what}
                     </p>
-                    {project.liveUrl ? (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 text-sm font-medium text-ink hover:underline"
+                    {project.caseStudy ? (
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className={cn("mt-4 text-sm font-medium hover:underline", TONE_TXT[project.tone])}
                       >
-                        {project.liveLabel} ↗
-                      </a>
+                        Read the case study →
+                      </Link>
                     ) : null}
                   </div>
                 </div>
@@ -258,7 +262,7 @@ export default function Home() {
         </Stagger>
       </Container>
 
-      {/* Governance & ethics — the other half of the work */}
+      {/* Flagship research */}
       <Container className="py-16 sm:py-20">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-grape-soft p-8 sm:p-12">
@@ -268,15 +272,15 @@ export default function Home() {
             />
             <div className="relative">
               <div>
-                <Eyebrow tone="grape">Understanding AI</Eyebrow>
+                <Eyebrow tone="grape">Flagship research</Eyebrow>
                 <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-                  What can it do, and what can we trust?
+                  Useful AI becomes consequential AI
                 </h2>
                 <p className="mt-3 text-lg leading-relaxed text-ink/70">
-                  Building with AI keeps bringing me back to the same questions:
-                  how does it learn, what counts as improvement, and how do we
-                  stay in control as it becomes more capable? These are my notes
-                  and frameworks for thinking them through.
+                  I am interested in the point where an AI system stops merely
+                  drafting and begins acting: making decisions, using tools, or
+                  spending resources on someone&apos;s behalf. These projects ask
+                  what meaningful permission, evidence, and human control look like.
                 </p>
               </div>
 
@@ -358,12 +362,12 @@ export default function Home() {
         </Reveal>
       </Container>
 
-      {/* How can I help you? */}
+      {/* Ways into the work */}
       <Container className="py-16 sm:py-20">
         <Reveal className="mb-8 text-center">
-          <Eyebrow tone="flame">Start here</Eyebrow>
+          <Eyebrow tone="flame">Explore the work</Eyebrow>
           <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-            How can I help you?
+            Choose the question you came with
           </h2>
         </Reveal>
         <Stagger className="grid gap-4 sm:grid-cols-2" gap={0.08} inView>
@@ -399,7 +403,7 @@ export default function Home() {
                         TONE_TXT[path.tone]
                       )}
                     >
-                      Get started →
+                      Explore →
                     </span>
                   </span>
                 </Link>
@@ -420,13 +424,14 @@ export default function Home() {
             <div className="relative">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                  <Eyebrow tone="mint">Free courses</Eyebrow>
-                  <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-                    Start at zero. Finish with a live app.
-                  </h2>
-                  <p className="mt-3 text-lg leading-relaxed text-ink/70">
-                    Each course picks up where the last one left off. Take them
-                    in order, or jump in wherever you already are.
+                <Eyebrow tone="mint">Practical learning</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+                    Use AI deliberately. Then build with it.
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed text-ink/70">
+                    Free guides on prompting, judgment, responsible delegation,
+                    and turning an idea into a working product. Start where the
+                    gap in your own practice is.
                   </p>
                 </div>
                 <CtaLink href="/courses" tone="mint">

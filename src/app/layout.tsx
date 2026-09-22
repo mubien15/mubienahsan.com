@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s · Mubien",
   },
   description:
-    "I use AI every day, build useful tools, and explore how it works and where it reaches its limits. Projects, free courses, and personal research with calm, clarity, and depth.",
+    "Independent work by Mubien on building with AI, evaluating its limits, and designing meaningful oversight as systems become more capable.",
   keywords: [
     "AI",
     "Claude Code",
@@ -57,14 +57,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Mubien · A calmer way to explore AI",
     description:
-      "Using AI daily, building useful things, and exploring its governance and limits. A personal space for calm, clarity, and depth.",
+      "Building useful AI, testing its assumptions, and exploring meaningful oversight with calm, clarity, and depth.",
     siteName: "Mubien",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mubien · A calmer way to explore AI",
     description:
-      "Using AI daily, building useful things, and exploring its governance and limits. A personal space for calm, clarity, and depth.",
+      "Building useful AI, testing its assumptions, and exploring meaningful oversight with calm, clarity, and depth.",
   },
 };
 

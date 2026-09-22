@@ -9,7 +9,7 @@ export const NAV_LINKS: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/research", label: "Research", owns: ["/agents"] },
-  { href: "/courses", label: "Courses" },
+  { href: "/courses", label: "Learn" },
   { href: "/library", label: "Library" },
   { href: "/about", label: "About" },
 ];
