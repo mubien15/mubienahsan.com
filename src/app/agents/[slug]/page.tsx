@@ -87,7 +87,12 @@ export default async function ControlPage({
           Claims last checked against sources on{" "}
           <span className="font-medium text-ink">{control.lastChecked}</span>.
           Protocols and guidance in this area change quickly, so treat anything
-          here as accurate as of that date rather than indefinitely.
+          here as accurate as of that date rather than indefinitely. The{" "}
+          <Link href="/agents#sources" className="text-grape hover:underline">
+            primary source registry
+          </Link>{" "}
+          shows the main specifications and payment programs used across the
+          framework.
         </p>
       </Reveal>
 

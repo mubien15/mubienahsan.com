@@ -459,6 +459,72 @@ export const CONTROLS: Control[] = [
 
 export const PUBLISHED_CONTROLS = CONTROLS.filter((c) => c.published);
 
+/** Shared summary used anywhere the flagship research is introduced. */
+export const AGENTS_FEATURE = {
+  title: "Agents that spend",
+  question:
+    "When an AI agent buys something, how does permission survive the whole journey from a human request to money moving?",
+  summary:
+    "A six-control framework for recording delegated authority, checking the final purchase, preserving evidence, and making stop mean stop.",
+  thesis:
+    "Authorisation is not a one-time approval. It is a live state that has to be captured, checked, evidenced, exhausted, expired, and revoked.",
+  href: "/agents",
+  cta: "Test a purchase",
+  checked: "22 September 2026",
+};
+
+/** Primary materials that define the current payment-agent landscape. */
+export const AGENT_SOURCES = [
+  {
+    name: "Agent Payments Protocol v0.2 specification",
+    owner: "Google · FIDO Alliance contribution",
+    href: "https://github.com/google-agentic-commerce/AP2/blob/main/docs/ap2/specification.md",
+    scope:
+      "Signed checkout and payment mandates, autonomous payments, deterministic validation, and receipts.",
+    status: "Current specification",
+  },
+  {
+    name: "Agentic Commerce Protocol",
+    owner: "OpenAI · Stripe",
+    href: "https://www.agenticcommerce.dev/docs",
+    scope:
+      "Programmatic checkout and secure credential relay between buyers, agents, and merchants.",
+    status: "Beta specification",
+  },
+  {
+    name: "Shared Payment Tokens",
+    owner: "Stripe",
+    href: "https://docs.stripe.com/agentic-commerce/concepts/shared-payment-tokens?agent-seller=agent",
+    scope:
+      "Seller-specific credentials with amount, currency, expiry, lifecycle status, and revocation controls.",
+    status: "Private preview",
+  },
+  {
+    name: "Visa Intelligent Commerce",
+    owner: "Visa",
+    href: "https://developer.visa.com/capabilities/visa-intelligent-commerce",
+    scope:
+      "Agent-specific tokens, authenticated payment instructions, and network checks for merchant and amount.",
+    status: "In development and deployment",
+  },
+  {
+    name: "Agent Pay",
+    owner: "Mastercard",
+    href: "https://newsroom.mastercard.com/news/press/2025/april/mastercard-unveils-agent-pay-pioneering-agentic-payments-technology-to-power-commerce-in-the-age-of-ai/",
+    scope:
+      "Registered agents, agentic tokens, consumer-set authority, transaction visibility, and dispute support.",
+    status: "Controlled deployments",
+  },
+  {
+    name: "Draft Agentic Payments Framework",
+    owner: "EMVCo",
+    href: "https://www.emvco.com/news/emvco-requests-feedback-on-framework-for-secure-interoperable-and-scalable-card-based-agentic-payments/",
+    scope:
+      "A proposed shared intent state for recurring purchases, cumulative budgets, amendments, and post-transaction activity.",
+    status: "Draft for public review",
+  },
+] as const;
+
 /*
   The same controls, placed on the path a purchase actually takes.
 

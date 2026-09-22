@@ -16,7 +16,7 @@ import { CONTROLS, FLOW_OVERLAY, FLOW_STAGES } from "@/content/agents";
  * stages, Home and End jump to the ends.
  */
 export function AgentFlow() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
   const reduce = useReducedMotion();
 
@@ -72,18 +72,16 @@ export function AgentFlow() {
           aria-hidden
           className="absolute left-[calc(100%/14)] right-[calc(100%/14)] top-[13px] hidden h-px bg-line sm:block"
         />
-        <span
-          aria-hidden
-          className="absolute bottom-6 left-[13px] top-6 w-px bg-line sm:hidden"
-        />
-
-        <ol className="relative flex flex-col gap-1 sm:grid sm:grid-cols-7 sm:gap-2">
+        <ol className="relative flex snap-x gap-2 overflow-x-auto pb-2 sm:grid sm:grid-cols-7 sm:overflow-visible sm:pb-0">
           {FLOW_STAGES.map((item, i) => {
             const selected = i === active;
             const hasControl = Boolean(item.controlSlug);
 
             return (
-              <li key={item.id} className="min-w-0">
+              <li
+                key={item.id}
+                className="min-w-[7.5rem] snap-start sm:min-w-0"
+              >
                 <button
                   ref={(el) => {
                     buttons.current[i] = el;
@@ -95,8 +93,8 @@ export function AgentFlow() {
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setActive(i)}
                   className={cn(
-                    "group flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors",
-                    "sm:flex-col sm:items-center sm:gap-2 sm:px-1 sm:text-center",
+                    "group flex min-h-20 w-full flex-col items-center gap-2 rounded-xl px-2 py-2 text-center transition-colors",
+                    "sm:min-h-0 sm:gap-2 sm:px-1",
                     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grape",
                     selected ? "bg-grape-soft/60" : "hover:bg-grape-soft/40"
                   )}
