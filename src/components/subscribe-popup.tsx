@@ -1,44 +1,21 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 import {
   DISMISSED_KEY,
-  SUBSCRIBED_KEY,
   SubscribeForm,
-  readFlag,
   writeFlag,
 } from "@/components/subscribe-form";
 
-/*
-  The one-time popup. It opens after a delay, or when the pointer leaves the top
-  of the window (which reads as "about to close the tab"), whichever comes first.
-
-  It asks ONCE. Subscribe or dismiss it and the choice is remembered, so the site
-  never nags a returning reader. That restraint matters more here than a few
-  extra signups would: the whole site is built on not wasting people's attention.
-*/
-
-const DELAY_MS = 25_000;
+/* Opened only when a reader asks for the guide. */
 
 /** Dispatched on window to open the popup deliberately (e.g. the footer link). */
 export const OPEN_SUBSCRIBE_EVENT = "mah:open-subscribe";
 
 export function SubscribePopup() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
-
-  // Never interrupt someone on the page that hands over the PDF, and never
-  // re-ask anyone who has already answered.
-  const eligible = pathname !== "/thank-you";
-
-  const show = useCallback(() => {
-    if (readFlag(SUBSCRIBED_KEY) || readFlag(DISMISSED_KEY)) return;
-    restoreFocusRef.current = document.activeElement as HTMLElement | null;
-    setOpen(true);
-  }, []);
 
   const dismiss = useCallback(() => {
     writeFlag(DISMISSED_KEY);
@@ -46,8 +23,7 @@ export function SubscribePopup() {
     restoreFocusRef.current?.focus?.();
   }, []);
 
-  // A deliberate click ignores suppression: someone asking for the popup should
-  // get it, even if they dismissed the timed one earlier.
+  // The footer invitation opens the guide without interrupting reading.
   useEffect(() => {
     const onRequest = () => {
       restoreFocusRef.current = document.activeElement as HTMLElement | null;
@@ -56,28 +32,6 @@ export function SubscribePopup() {
     window.addEventListener(OPEN_SUBSCRIBE_EVENT, onRequest);
     return () => window.removeEventListener(OPEN_SUBSCRIBE_EVENT, onRequest);
   }, []);
-
-  // Arm the timer and exit intent. The flags are read here rather than held in
-  // state because localStorage does not exist during SSR: this effect only runs
-  // on the client, so it is the first honest chance to look.
-  useEffect(() => {
-    if (!eligible || open) return;
-    if (readFlag(SUBSCRIBED_KEY) || readFlag(DISMISSED_KEY)) return;
-
-    const timer = window.setTimeout(show, DELAY_MS);
-
-    // Desktop only by nature — touch devices never fire mouseout, which is why
-    // the timer above does the real work on phones.
-    const onMouseOut = (event: MouseEvent) => {
-      if (event.clientY <= 0 && !event.relatedTarget) show();
-    };
-    document.addEventListener("mouseout", onMouseOut);
-
-    return () => {
-      window.clearTimeout(timer);
-      document.removeEventListener("mouseout", onMouseOut);
-    };
-  }, [eligible, open, show]);
 
   // Escape to close, and keep Tab inside the dialog. Without the trap, tabbing
   // walks out into the page behind and strands keyboard and screen reader users.

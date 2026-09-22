@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -32,10 +33,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const control = CONTROLS.find((c) => c.slug === slug);
   if (!control) return {};
-  return {
+  return pageMetadata(`/agents/${slug}`, {
     title: `${control.ref} · ${control.title}`,
     description: control.summary,
-  };
+  });
 }
 
 export default async function ControlPage({

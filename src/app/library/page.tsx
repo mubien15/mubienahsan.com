@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { PageIntro, Pill, TONE_TEXT } from "@/components/ui";
@@ -6,11 +7,11 @@ import { cn } from "@/lib/cn";
 import { BOOKS, CERTIFICATIONS } from "@/content/library";
 import type { Tone } from "@/components/ui";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/library", {
   title: "Library",
   description:
-    "The certifications and books that were actually worth the time. What I took, what it cost, and whether I would recommend it.",
-};
+    "Courses, books, and essays that have shaped how I think about AI, building, and living with a little more intention.",
+});
 
 const TOP_BAR: Record<Tone, string> = {
   accent: "before:bg-accent",
@@ -29,7 +30,7 @@ export default function LibraryPage() {
         tone="grape"
       >
         There is an infinite amount of AI content and a finite amount of your
-        attention. Here is what earned mine: the certifications I took, the
+        attention. Here is what earned mine: the courses I took, the
         essays on governance and safety worth your time, and the books that
         shaped how I think.
       </PageIntro>
@@ -37,7 +38,7 @@ export default function LibraryPage() {
       {/* Certifications */}
       <section className="mt-14">
         <h2 className="font-display text-2xl text-ink">
-          Certifications &amp; courses
+          Courses I have taken
         </h2>
         <Stagger className="mt-6 grid gap-4 sm:grid-cols-3" inView>
           {CERTIFICATIONS.map((cert) => (

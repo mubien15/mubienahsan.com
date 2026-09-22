@@ -1,12 +1,13 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout, Checklist } from "@/components/course/blocks";
 import { MythList } from "@/components/course/prompting";
 import { ScopeCompare } from "@/components/course/ship";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/ship-your-first-app/pick-something-you-can-finish", {
   title: "Pick something you can finish",
   description:
     "Almost no first app dies for technical reasons. It dies because it was too big on day one. How to cut an idea down to something that actually reaches the internet.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 1</span>
 

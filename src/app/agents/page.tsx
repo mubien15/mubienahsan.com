@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -6,11 +7,11 @@ import { Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
 import { AgentFlow } from "@/components/agent-flow";
 import { PUBLISHED_CONTROLS } from "@/content/agents";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/agents", {
   title: "Agents that spend",
   description:
-    "Controls for AI agents that transact on someone's behalf. The protocols constrain the checkout; nothing captures the durable authority the agent was sent out with. Agency law offers the vocabulary the industry is working without.",
-};
+    "Personal research into permission, evidence, and revocation for AI agents that make purchases on someone's behalf.",
+});
 
 export default function AgentsPage() {
   return (
@@ -24,47 +25,28 @@ export default function AgentsPage() {
       <div className="mt-6" />
       <PageIntro
         eyebrow="Agents that spend"
-        title="The protocols settled how an agent pays. Not what it was allowed to buy."
+        title="When an agent buys something, what did we actually authorise?"
         tone="grape"
       >
-        AI agents are starting to buy things for people, and the payment
-        plumbing already works. What is missing is any lasting record of what
-        they were allowed to buy. These are controls for that gap.
+        AI agents can turn an instruction into a purchase. I am interested in
+        how permission survives that journey: what is recorded, what is checked,
+        and what happens when someone changes their mind.
       </PageIntro>
 
       <div className="mt-14 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p>
-            The Agentic Commerce Protocol, published in 2025, sets out how an
-            agent finishes a purchase: the cart, the checkout, and a card
-            credential limited to one use, a maximum amount and an expiry. It
-            works, and commercial tooling now sits on top of it.
+            Payment protocols address different parts of this problem. Google&apos;s <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol" className="text-grape underline">AP2 includes Intent Mandates and Cart Mandates</a> to record authorisation. The question for these controls is how a particular implementation carries that permission through the whole task.
           </p>
         </Reveal>
         <Reveal>
           <p>
-            What that records is the checkout a buyer is about to approve. What
-            it does not record is{" "}
-            <strong className="text-ink">
-              the standing permission the agent was sent out with
-            </strong>{" "}
-            — what it may buy, from whom, for how long, and what to do when the
-            thing is out of stock. Ask for a flight to Toronto and get business
-            class at $4,200, and the system can tell you the payment was within
-            its limit. It cannot tell you the purchase was agreed to. The card
-            networks are now building that missing layer, which is the strongest
-            sign the gap is real.
+            A spending limit alone does not describe every condition a buyer cares about. Ask for a flight to Toronto and get business class at $4,200: the payment could fit a limit while the choice still falls outside the intended task. A useful review checks the actual mandate, how it was enforced, and what happened when the plan changed.
           </p>
         </Reveal>
         <Reveal>
           <p>
-            None of this is new. When one person acts for another, the law calls
-            them an agent, and it has spent centuries on the same three
-            questions: what were they allowed to do, when can the other side
-            rely on it, and what happens if you find out later and say nothing.
-            Whether an AI counts as the agent in that legal sense is unsettled,
-            but the questions are sitting there unused, while the industry works
-            it out from scratch in public.
+            Agency law offers useful questions about acting on another person&apos;s behalf: what was authorised, what could a third party reasonably rely on, and what happens after the fact? Applying those doctrines to software depends on the facts and jurisdiction. I use them here as a way to structure the questions, rather than as a settled legal answer.
           </p>
         </Reveal>
         <Reveal>

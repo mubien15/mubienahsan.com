@@ -1,12 +1,13 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Terminal } from "@/components/course/interactive";
 import { Callout, PromptToClaude } from "@/components/course/blocks";
 import { BuildLoop } from "@/components/course/ship";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/ship-your-first-app/build-in-slices", {
   title: "Build it in slices",
   description:
     "The mistake is describing the whole app in one giant request. The fix is one small piece at a time, checked in the browser before you move on.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 3</span>
 

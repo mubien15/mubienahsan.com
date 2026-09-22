@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Terminal } from "@/components/course/interactive";
 import { Callout, PromptToClaude, Checklist } from "@/components/course/blocks";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/ship-your-first-app/put-it-on-the-internet", {
   title: "Put it on the internet",
   description:
     "From a page only you can see to a link you can text someone, in about five minutes. Then a proper domain if you want one.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 5</span>
 

@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Terminal } from "@/components/course/interactive";
 import { Callout, PromptToClaude, ClaudeSession } from "@/components/course/blocks";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/getting-started-with-claude-code/your-first-change", {
   title: "Your first real change",
   description:
     "Point Claude Code at a real project, ask for a change in plain English, and watch it happen. The moment building with AI clicks.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-mint"><span className="h-1.5 w-1.5 rounded-full bg-mint" />Lesson 3</span>
 

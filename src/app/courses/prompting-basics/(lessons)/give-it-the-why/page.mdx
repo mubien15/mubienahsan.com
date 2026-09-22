@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout } from "@/components/course/blocks";
 import { PromptCompare } from "@/components/course/prompting";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/prompting-basics/give-it-the-why", {
   title: "Give it the why, not just the what",
   description:
     "Explaining the reason behind an instruction lets the model generalise to the cases you forgot to mention. The most underrated habit in prompting.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 3</span>
 

@@ -17,7 +17,7 @@
  */
 export function PhotoBlob({
   src,
-  alt = "Mubien Ahsan",
+  alt = "Mubien",
   monogram = "M",
 }: {
   src?: string;

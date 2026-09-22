@@ -10,6 +10,36 @@ type Idea = { idea: string; why: string };
  * Two versions of the same ambition: the one that stalls in week two, and the
  * one that reaches a live URL. The whole first lesson turns on this contrast.
  */
+const Card = ({
+  item,
+  label,
+  icon,
+  wrap,
+  text,
+}: {
+  item: Idea;
+  label: string;
+  icon: string;
+  wrap: string;
+  text: string;
+}) => (
+  <div className={`flex flex-col rounded-2xl border p-5 ${wrap}`}>
+    <p
+      className={`mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${text}`}
+    >
+      <span aria-hidden>{icon}</span>
+      {label}
+    </p>
+    <div className="rounded-xl border border-line bg-surface p-4">
+      <p className="text-[0.95rem] leading-7 text-ink/85">{item.idea}</p>
+    </div>
+    <p className="mt-4 mb-1.5 text-xs font-medium uppercase tracking-wider text-muted">
+      What actually happens
+    </p>
+    <p className="text-sm leading-7 text-ink/75">{item.why}</p>
+  </div>
+);
+
 export function ScopeCompare({
   tooBig,
   rightSized,
@@ -21,36 +51,6 @@ export function ScopeCompare({
   tooBigLabel?: string;
   rightSizedLabel?: string;
 }) {
-  const Card = ({
-    item,
-    label,
-    icon,
-    wrap,
-    text,
-  }: {
-    item: Idea;
-    label: string;
-    icon: string;
-    wrap: string;
-    text: string;
-  }) => (
-    <div className={`flex flex-col rounded-2xl border p-5 ${wrap}`}>
-      <p
-        className={`mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${text}`}
-      >
-        <span aria-hidden>{icon}</span>
-        {label}
-      </p>
-      <div className="rounded-xl border border-line bg-surface p-4">
-        <p className="text-[0.95rem] leading-7 text-ink/85">{item.idea}</p>
-      </div>
-      <p className="mt-4 mb-1.5 text-xs font-medium uppercase tracking-wider text-muted">
-        What actually happens
-      </p>
-      <p className="text-sm leading-7 text-ink/75">{item.why}</p>
-    </div>
-  );
-
   return (
     <div className="my-8 grid gap-4 md:grid-cols-2">
       <Card

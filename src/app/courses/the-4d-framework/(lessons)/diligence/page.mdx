@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout, Checklist } from "@/components/course/blocks";
 import { Parts, FourD, Credit } from "@/components/course/fluency";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/the-4d-framework/diligence", {
   title: "Diligence: owning what you ship",
   description:
     "The competency people skip because it is the least fun. Where your work came from, who you tell, and who carries it when it goes wrong.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 5</span>
 
