@@ -13,18 +13,18 @@ export const metadata: Metadata = pageMetadata("/about", {
 
 const EXPECT = [
   {
-    title: "Courses that assume nothing",
-    body: "Beginner first, jargon last. If a step looks scary, I name it and walk through it slowly.",
+    title: "Work you can inspect",
+    body: "The reasoning, sources, limitations, and open questions stay visible so you can judge the conclusion for yourself.",
     tone: "mint" as const,
   },
   {
-    title: "Honest build write ups",
-    body: "What I made, why, and what broke along the way. The messy parts are the useful parts.",
+    title: "Builds with evidence",
+    body: "What I made, which product decisions mattered, what the result does not prove, and how I would test it next.",
     tone: "flame" as const,
   },
   {
-    title: "Only what earned its place",
-    body: "Thoughtful reading, clear sources, and room to change my mind.",
+    title: "Clear points of view",
+    body: "Original frameworks, thoughtful disagreement, and room to change my mind when the evidence warrants it.",
     tone: "grape" as const,
   },
 ];
@@ -43,9 +43,10 @@ export default function AboutPage() {
         title="Hey, I’m Mubien."
         tone="gold"
       >
-        I&apos;m based in Toronto, curious about how things work, and happiest
-        when an idea becomes something useful. AI has become part of my everyday
-        life. This is my personal corner of it.
+        I&apos;m based in Toronto and work at the intersection of AI, product
+        decisions, and risk. I build useful tools, examine how they behave, and
+        explore what meaningful human control looks like as systems become more
+        capable. This is my personal, independent work.
       </PageIntro>
 
       <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16">
@@ -150,7 +151,11 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p>
-              If something here helped, raised a question, or gave you an idea for something to build, I would like to hear about it. I welcome thoughtful disagreement too; it is one of the ways this space gets better.
+              I am especially interested in difficult questions where AI,
+              product decisions, and risk meet. If you are working on one, if
+              something here raised a useful disagreement, or if you see a way
+              to test one of these ideas more rigorously, I would like to hear
+              from you.
             </p>
           </Reveal>
           <Reveal>
