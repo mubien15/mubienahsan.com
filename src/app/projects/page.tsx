@@ -40,28 +40,33 @@ export default function ProjectsPage() {
                 className={cn(
                   "relative overflow-hidden rounded-3xl border border-line bg-surface",
                   "before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-1.5 before:content-['']",
-                  LEFT_BAR[project.tone]
+                  LEFT_BAR[project.tone],
+                  project.image && "lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
                 )}
               >
                 {project.image ? (
-                  project.frame === "phone" ? (
-                    <PhoneShowcase
-                      src={project.image}
-                      video={project.video}
-                      alt={`${project.name} screenshot`}
-                      label={project.imageNote}
-                    />
-                  ) : (
-                    <BrowserFrame
-                      src={project.image}
-                      alt={`${project.name} screenshot`}
-                      label={project.liveLabel}
-                      sizes="(max-width: 1024px) 100vw, 900px"
-                    />
-                  )
+                  <div className="min-w-0 lg:flex lg:items-center lg:border-r lg:border-line lg:bg-sunken/40">
+                    <div className="w-full">
+                      {project.frame === "phone" ? (
+                        <PhoneShowcase
+                          src={project.image}
+                          video={project.video}
+                          alt={`${project.name} screenshot`}
+                          label={project.imageNote}
+                        />
+                      ) : (
+                        <BrowserFrame
+                          src={project.image}
+                          alt={`${project.name} screenshot`}
+                          label={project.liveLabel}
+                          sizes="(max-width: 1023px) 100vw, (max-width: 1535px) 45vw, 620px"
+                        />
+                      )}
+                    </div>
+                  </div>
                 ) : null}
-                <div className="flex flex-col gap-6 p-7 sm:p-9 lg:flex-row lg:gap-10">
-                  <div className="lg:w-64 lg:shrink-0">
+                <div className="flex min-w-0 flex-col gap-6 p-7 sm:p-9">
+                  <div>
                     <span
                       className={cn(
                         "font-display text-sm font-semibold",
@@ -111,7 +116,7 @@ export default function ProjectsPage() {
                     ) : null}
                   </div>
 
-                  <div className="flex-1 space-y-5 border-t border-line pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+                  <div className="flex-1 space-y-5 border-t border-line pt-6">
                     <Detail label="What it is">{project.what}</Detail>
                     <Detail label="Why I built it">{project.why}</Detail>
                     <Detail label="What it taught me">{project.lessons}</Detail>

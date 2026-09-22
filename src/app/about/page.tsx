@@ -48,7 +48,7 @@ export default function AboutPage() {
         life. This is my personal corner of it.
       </PageIntro>
 
-      <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_18rem]">
+      <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16">
         <div className="space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
           <Reveal>
             <h2 className="font-display text-2xl text-ink">How I got here</h2>
