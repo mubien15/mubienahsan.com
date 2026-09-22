@@ -48,11 +48,11 @@ export default function CoursesPage() {
         All four courses
       </h2>
 
-      <div className="mt-6 space-y-4">
+      <div className="mt-6 space-y-4 lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
         {COURSES.map((course, i) => {
           const available = course.status === "Available";
           const inner = (
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between lg:h-full lg:flex-col lg:items-start">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span
@@ -97,12 +97,12 @@ export default function CoursesPage() {
           );
 
           return (
-            <Reveal key={course.slug} delay={i * 0.05}>
+            <Reveal key={course.slug} delay={i * 0.05} className="lg:h-full">
               {available ? (
-                <HoverLift>
+                <HoverLift className="lg:h-full">
                   <Link
                     href={`/courses/${course.slug}`}
-                    className={cn(barClass, "block transition-colors hover:border-transparent")}
+                    className={cn(barClass, "block transition-colors hover:border-transparent lg:h-full")}
                   >
                     {inner}
                   </Link>

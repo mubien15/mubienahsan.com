@@ -30,7 +30,7 @@ export function PhotoBlob({
     "absolute bottom-0 left-1/2 h-[122%] w-auto max-w-none -translate-x-1/2 select-none";
 
   return (
-    <div className="relative isolate mx-auto w-44 sm:w-52">
+    <div className="relative isolate mx-auto w-44 sm:w-52 lg:w-64 xl:w-72">
       {/* Gold disc, a little larger than the photo circle and sitting low so the
           head clears the top of it. */}
       <div

@@ -17,8 +17,8 @@ export default function LessonLayout({
   }));
 
   return (
-    <Container className="py-12 sm:py-16 lg:max-w-[70rem]">
-      <div className="grid gap-10 lg:grid-cols-[15rem_1fr]">
+    <Container className="py-12 sm:py-16">
+      <div className="grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)]">
         <aside className="lg:pt-1">
           <LessonSidebar
             courseSlug={COURSE_SLUG}
@@ -26,7 +26,7 @@ export default function LessonLayout({
             lessons={lessons}
           />
         </aside>
-        <div className="min-w-0">
+        <div className="min-w-0 lg:max-w-[54rem]">
           <article>{children}</article>
           <LessonPager courseSlug={COURSE_SLUG} lessons={lessons} />
         </div>

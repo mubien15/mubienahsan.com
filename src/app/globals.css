@@ -254,18 +254,15 @@
   }
 }
 
-/* ------------------------------------------------- reading size on desktop
+/* Desktop layouts can be wide while running text keeps a readable measure.
+   Screen-only rules leave the existing printable documents untouched. */
+@media screen and (min-width: 1024px) {
+  main p {
+    max-width: 72ch;
+  }
+}
 
-   The single content column (see Container) is wider than a classic reading
-   measure, which only works if the type grows with it: characters per line
-   is what decides whether the eye finds the next line, and that is the ratio
-   of column width to font size, not either one alone.
-
-   Scaling the root font would not help — the column is set in rem too, so
-   both would grow together and the ratio would never move. So this lifts the
-   text only, from 1280px up, taking the column from roughly 99 characters a
-   line down to about 87.
-*/
+/* Retain the existing larger reading type on desktop. */
 @media (min-width: 1280px) {
   .prose-scale {
     font-size: 1.2rem;

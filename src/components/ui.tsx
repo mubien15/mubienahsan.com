@@ -143,7 +143,7 @@ export function PageIntro({
         {title}
       </h1>
       {children ? (
-        <div className="mt-5 text-lg leading-relaxed text-muted">{children}</div>
+        <div className="mt-5 text-lg leading-relaxed text-muted lg:max-w-[72ch]">{children}</div>
       ) : null}
     </Reveal>
   );
