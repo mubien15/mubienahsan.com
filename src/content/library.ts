@@ -36,7 +36,7 @@ export const CERTIFICATIONS: Certification[] = [
     note: "The clearest mental model I have found for working with AI deliberately rather than reactively. Free, short, and worth it for anyone starting out.",
   },
   {
-    name: "Certified in Auditing Generative AI",
+    name: "Auditing Generative AI",
     issuer: "ISACA",
     status: "Completed",
     tone: "grape",
@@ -68,7 +68,7 @@ export const CERTIFICATIONS: Certification[] = [
 export const BOOKS: BookNote[] = [
   {
     title: "The Verification Gap",
-    author: "Mubien Ahsan",
+    author: "Mubien",
     tone: "accent",
     own: true,
     href: "/essays/the-verification-gap.pdf",

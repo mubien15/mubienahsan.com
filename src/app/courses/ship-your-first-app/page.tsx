@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -8,11 +9,11 @@ import { notFound } from "next/navigation";
 
 const COURSE_SLUG = "ship-your-first-app";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/courses/ship-your-first-app", {
   title: "Ship your first small app",
   description:
     "Go from an idea to a live URL you can send to a friend. Scoping, building in slices, surviving the errors, and deploying for real.",
-};
+});
 
 export default function CourseOverviewPage() {
   const course = getCourse(COURSE_SLUG);

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
@@ -9,11 +10,11 @@ import { cn } from "@/lib/cn";
 import { COURSES } from "@/content/courses";
 import type { Tone } from "@/components/ui";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/courses", {
   title: "Courses",
   description:
     "Beginner first courses on using and building with AI. A ladder from absolute zero to shipping your first real app. Free.",
-};
+});
 
 const LEFT_BAR: Record<Tone, string> = {
   accent: "before:bg-accent",

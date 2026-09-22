@@ -1,14 +1,15 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { CtaLink, Eyebrow, PageIntro } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
 import { SOCIAL_LINKS } from "@/lib/nav";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/about", {
   title: "About",
   description:
-    "From business law in Germany to building with AI in Toronto. How I got here, why I build in public, and what you can expect from this site.",
-};
+    "Meet Mubien: curious about AI, building useful tools, and sharing a calmer way to understand a fast-moving field.",
+});
 
 const EXPECT = [
   {
@@ -23,7 +24,7 @@ const EXPECT = [
   },
   {
     title: "Only what earned its place",
-    body: "The certifications and books worth your time, and the ones I would skip.",
+    body: "Thoughtful reading, clear sources, and room to change my mind.",
     tone: "grape" as const,
   },
 ];
@@ -39,12 +40,12 @@ export default function AboutPage() {
     <Container className="py-16 sm:py-20">
       <PageIntro
         eyebrow="About"
-        title="From business law in Germany to building with AI in Toronto."
+        title="Hey, I’m Mubien."
         tone="gold"
       >
-        I&apos;m Mubien Ahsan. I build things with AI around a full time job,
-        and this site is where I write down what I learn doing it. In public, in
-        the open, for free.
+        I&apos;m based in Toronto, curious about how things work, and happiest
+        when an idea becomes something useful. AI has become part of my everyday
+        life. This is my personal corner of it.
       </PageIntro>
 
       <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_18rem]">
@@ -54,42 +55,23 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p>
-              I grew up in Germany and studied business law. Not the background
-              most people expect from someone who builds software, but the
-              interest was always there. As a teenager I built my own computer,
-              piece by piece. The career just went a different way.
+              I grew up in Germany and studied business law. My interest in technology started much earlier: as a teenager, I built my own computer, piece by piece. I still like taking things apart, understanding the pieces, and seeing what I can make with them.
             </p>
           </Reveal>
           <Reveal>
             <p>
-              I worked in Frankfurt am Main for seven years, then moved to
-              Toronto, where I am now.
+              I spent seven years in Frankfurt am Main before moving to Toronto, where I am now.
             </p>
           </Reveal>
 
           <Reveal>
             <p>
-              Law leaves you with a particular reflex. You do not ask first
-              whether something works, you ask who is answerable when it does
-              not, what the rules already require, and what evidence would
-              satisfy someone who is not inclined to take your word for it.
-              Applied to AI, that reflex turns into governance: auditing,
-              assurance, and the unglamorous question of how a claim about a
-              model is actually verified. It is why I hold ISACA&apos;s
-              Certified in Auditing Generative AI and Microsoft&apos;s course on
-              the ethical and regulatory implications of the technology, and why
-              most of what I have built seriously is for risk teams rather than
-              consumers.
+              My background in law left me curious about responsibility and evidence: who makes a decision, what supports it, and who can challenge it. Those questions travel with me as I explore AI, alongside a much simpler one: can I make something that is useful in everyday life?
             </p>
           </Reveal>
           <Reveal>
             <p>
-              Then I opened Claude Code for the first time. I typed a few
-              sentences in plain English and watched it produce a working app out
-              of thin air. Not a mockup, not a tutorial, an actual thing that
-              ran. That was the moment the curiosity took over and I went
-              straight down the rabbit hole. Everything on this site came out of
-              it.
+              AI made it possible to turn more of those ideas into working tools. A daily briefing helps me start the morning informed. Fable lets people practise difficult conversations. My governance agent explores how to turn an open question into a structured assessment. Building them gives me a reason to look beneath the interface: at prompts, context, model behaviour, and the checks around an answer.
             </p>
           </Reveal>
 
@@ -98,21 +80,12 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p>
-              The world feels rushed, reactive, and shallow, and nothing is more
-              rushed and reactive right now than AI. Everyone is sprinting.
-              Almost no one is stopping to understand. My whole reason for
-              building this is to bring a little of the opposite:{" "}
-              <strong className="text-ink">calm, clarity, and depth</strong> to
-              the most breathless topic there is.
+              AI can make everything feel urgent: another model, another breakthrough, another thing to keep up with. I made this space to bring <strong className="text-ink">calm, clarity, and depth</strong> to that noise. Somewhere to slow down, understand an idea properly, and leave with a useful next step.
             </p>
           </Reveal>
           <Reveal>
             <p>
-              If someone with a business law degree can ship a communication
-              coach, a governance agent and small tools people actually use, on
-              nights and weekends, then the barrier is far lower than it looks
-              from the outside. That is the part I want to show rather than just
-              talk about.
+              The questions matter as much as the builds. I am especially interested in how AI learns, what recursive self-improvement would involve, and how we could check a system that changes over time. I want to be precise about what is demonstrated, what is a useful hypothesis, and what remains unknown.
             </p>
           </Reveal>
 
@@ -123,33 +96,18 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p>
-              Every product idea I had kept failing the same test:{" "}
-              <em>could someone get this by asking a chatbot for five minutes?</em>{" "}
-              A platform built around me actually doing the work, learning,
-              building, shipping, and writing it all down, cannot be replaced by
-              a prompt. So that is what this is. My essay{" "}
-              <a
-                href="/essays/the-verification-gap.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-accent underline decoration-accent/30 hover:decoration-accent"
-              >
-                The Verification Gap
-              </a>{" "}
-              is the clearest example of where those two worlds meet.
+              Writing things down forces me to make sense of them. Sharing a build means explaining the choices, the limitations, and what I would do differently. The courses turn those lessons into steps someone else can follow. The research is where I work through the harder questions about capability, governance, and trust.
             </p>
           </Reveal>
           <Reveal>
             <p>
-              Everything here is free. Full stop. Not as a marketing
-              funnel, but because charging before there is trust and a real
-              community would undercut the whole point.
+              The courses and writing here are free. I want curiosity to have an easy starting point, and I hope what I share helps you build your own understanding.
             </p>
           </Reveal>
 
           <Reveal>
             <h2 className="font-display pt-4 text-2xl text-ink">
-              Outside of work
+              Away from the screen
             </h2>
           </Reveal>
           <Reveal>
@@ -192,10 +150,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p>
-              If something here was useful, or you are building something and
-              want a second pair of eyes on it, I would genuinely like to hear
-              about it. Questions about a course, an idea you are stuck on, or
-              just what you are working on are all welcome.
+              If something here helped, raised a question, or gave you an idea for something to build, I would like to hear about it. I welcome thoughtful disagreement too; it is one of the ways this space gets better.
             </p>
           </Reveal>
           <Reveal>
@@ -234,10 +189,10 @@ export default function AboutPage() {
                 <Eyebrow tone="gold">The short version</Eyebrow>
                 <ul className="mt-4 space-y-3 text-sm text-ink/85">
                   <li>📍 Toronto, by way of Frankfurt</li>
-                  <li>🧭 Building around a full time job</li>
-                  <li>🛠️ Shipping on nights and weekends</li>
-                  <li>🎓 Certified in auditing &amp; governing GenAI</li>
-                  <li>🌊 Chasing depth over speed</li>
+                  <li>🛠️ Using AI daily and building with it</li>
+                  <li>🔎 Curious about how it works</li>
+                  <li>🧭 Exploring governance and limits</li>
+                  <li>🌊 Making room for calm and depth</li>
                 </ul>
                 <div className="mt-6 flex flex-col gap-2">
                   <CtaLink href={SOCIAL_LINKS.linkedin} external tone="gold">

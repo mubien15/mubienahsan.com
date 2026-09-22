@@ -891,8 +891,8 @@ export const COMPREHENSION = {
   intro: [
     "The figure earlier says verification capacity falls as autonomy rises. It is worth being exact about why, because the reason decides what governance can do about it.",
     "There are three ordinary reasons a reviewer stops genuinely reviewing. They do not have the time. They do not have the information. They do not have the standing to say no. All three are real, all three are common, and all three are fixable by an organisation that decides to fix them — give the reviewer hours instead of seconds, give them the inputs rather than the conclusion, give them a manager who does not treat a rejection as an obstruction.",
-    "There is a fourth reason, and it is not fixable that way. Modern systems are grown rather than written. Their capabilities emerge from training rather than from a specification somebody authored, and nobody can point to the place inside the model where a particular behaviour lives. Interpretability research — the work of reading structure out of a model's internals — is making real progress on the general question, but it is not yet a deployed method for explaining a specific decision to a reviewer, an auditor or a regulator.",
-    "So verification capacity does not fall because reviewers become lazy or overloaded. Give one unlimited time, complete logs and total independence, and they still cannot say why it did what it did. It falls because the thing being checked stops being the kind of thing a person can check.",
+    "There is a fourth reason, and it is not fixable that way. Many model behaviours emerge from training rather than an explicit rule for each decision. Interpretability research can reveal aspects of those mechanisms, but it does not give a complete, reliable explanation of every output. That makes the scope of a review important: checking a result and explaining its internal cause are different tasks.",
+    "Opacity limits some kinds of explanation; it does not make every output impossible to verify. Code can be tested, a calculation independently repeated, and a claim checked against evidence. The harder question is whether those checks cover the failures that matter in the actual use case.",
   ],
 
   /**
@@ -905,7 +905,7 @@ export const COMPREHENSION = {
     heading: "And a second problem, sitting next to it",
     body: [
       "Opacity is about whether you can see what the system is doing. There is a separate difficulty about whether what it is doing is what you asked for, and the field calls it the alignment problem.",
-      "The trouble is specification. You cannot write down everything you mean, so any objective handed to a capable optimiser is a proxy for the intent behind it — not through malice, but because it was only ever an approximation. The literature names three ways the proxy comes apart from the intent: specification gaming, where a system satisfies the stated objective by a route nobody intended; reward hacking, where it optimises the measure rather than the thing the measure stood for; and goal misgeneralisation, where behaviour that held up under evaluation turns out, once deployed, to have been pursuing something else. None has a general solution, and capability makes each worse rather than better, because a weak system pursuing the wrong goal simply fails at it.",
+      "The trouble is specification. You cannot write down everything you mean, so any objective handed to a capable optimiser is a proxy for the intent behind it — not through malice, but because it was only ever an approximation. The literature names three ways the proxy comes apart from the intent: specification gaming, where a system satisfies the stated objective by a route nobody intended; reward hacking, where it optimises the measure rather than the thing the measure stood for; and goal misgeneralisation, where behaviour that held up under evaluation turns out, once deployed, to have been pursuing something else. More capability can increase the consequences of a misspecified objective. It does not establish that every stronger model is less aligned; the task, training, evaluation, and constraints all matter.",
       "The two problems compound, and that is the part worth holding on to. A specification failure inside a system you cannot inspect is not one you find by looking for it. You find it when the system acts. That is the case for constraining what a system may reach, rather than trusting that you will notice in time.",
     ],
   },
@@ -916,16 +916,16 @@ export const COMPREHENSION = {
     body: [
       "The most forceful published statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025. Soares is president of the Machine Intelligence Research Institute.",
       "Their phrase for the mechanism above is that AI systems are grown, not crafted. Soares has made the regulatory case in those terms: that a superintelligent system would not be understandable, would not be predictable, and would not have human interests at heart.",
-      "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds it: a system that can improve its own capability changes the thing being verified faster than a verification cycle can complete.",
+      "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds it: a system permitted to deploy its own changes could change faster than its checks can keep up. Whether that happens depends on its rate of improvement and the controls around deployment.",
     ],
   },
 
   follow: {
-    heading: "Why the argument follows",
+    heading: "What the argument depends on",
     body: [
       "I can follow it, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is three ordinary observations placed in order.",
-      "It is the two problems above — we cannot see inside, and we cannot say exactly what we meant — plus a third that compounds both: a system able to improve its own capability changes faster than any verification cycle can complete.",
-      "Each step is unremarkable on its own, and each is the ordinary understanding of how the technology works rather than a contested reading of it. Put in sequence, they describe something that gets harder to check exactly as it gets more consequential. That is the shape of the argument, and the shape is sound.",
+      "It is the two problems above — we cannot see inside, and we cannot say exactly what we meant — plus a third that compounds both: a system permitted to deploy its own changes might change faster than a particular review process can keep up. That is a conditional risk, not an established property of every improvement loop.",
+      "The argument raises a serious governance question, but its strongest conclusion depends on contested assumptions about capability growth, the pace of self-improvement, and the effectiveness of future safeguards. It is a scenario to examine, not a demonstrated trajectory.",
     ],
   },
 
@@ -934,7 +934,7 @@ export const COMPREHENSION = {
     body: [
       "Where the argument ends — whether this leads somewhere catastrophic, and on what timescale — is a question about how capability scales and how systems behave at levels nobody has built. I am not a machine learning researcher, and I am not going to pretend I can settle that from a governance background.",
       "What I can say is that the question does not need to be settled for the problem on this page to be real. It does not wait for superintelligence. It is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves.",
-      "So that is the layer I work in: the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing real work in a system running right now is mine — and unlike the first question, it is answerable this quarter.",
+      "So that is the layer I work in: the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing useful work in a particular system is a more concrete question, and one I want to keep exploring.",
     ],
   },
 
@@ -944,7 +944,7 @@ export const COMPREHENSION = {
       "If verification fails because the artefact is opaque, then more oversight cannot repair it. You cannot resource your way past a comprehension limit. This is the practical consequence of the whole framework, and it reverses what most AI governance programmes are built to do.",
       "Below the threshold, governance makes review work: better information, more time, genuine independence, real authority to refuse. Those are the right investments and they pay off.",
       "Above it, governance has to stop leaning on review at all and constrain what the system is permitted to become and to reach. Permissions enforced outside the model rather than requested of it. Actions that are reversible by construction. A blast radius small enough that being wrong is survivable. Capability thresholds that gate deployment in advance, rather than review that audits it after the fact.",
-      "The self-improvement point does the same thing to the rest of the toolkit, and it is the part governance people underrate. Every assurance method available — testing, validation, independent review, certification — assumes the object holds still long enough to be assessed. A system that meaningfully improves its own capability breaks that assumption, and nothing in existing model risk practice is built for it. That is a gap in method, not a failure of diligence, and pretending otherwise is how an assurance programme ends up certifying a snapshot of something that has already moved.",
+      "An improvement loop needs a clear account of what changes: the context, stored memory, tools, code, model weights, or the process that produces the next version. Existing practices such as versioning, staged release, change approval, monitoring, and rollback remain useful. The open question is whether they provide enough coverage and independence when the system itself proposes increasingly consequential changes.",
       "And at level 5 as described, the unit of governance stops being the organisation. If no reviewer inside a company can verify the system, an internal control framework is not the relevant instrument, and the questions become who may build such a thing, under what external verification, and with what ability to stop. That is not a prediction that level 5 exists or is close. It is what the framework would require if it did — which is the entire reason to include a level nobody has built.",
     ],
   },

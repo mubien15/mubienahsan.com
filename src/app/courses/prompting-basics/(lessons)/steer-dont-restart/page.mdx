@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout } from "@/components/course/blocks";
 import { PromptCompare, PromptAnatomy } from "@/components/course/prompting";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/prompting-basics/steer-dont-restart", {
   title: "Steer, don't restart",
   description:
     "The first answer is a draft, not a verdict. How to give feedback that actually lands, when to edit the prompt instead, and the draft then critique then refine loop.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 5</span>
 

@@ -10,7 +10,7 @@ import { LOGO_SHAPES } from "@/lib/logo-shapes";
  */
 export function LogoMark({
   className,
-  title = "Mubien Ahsan",
+  title = "Mubien",
 }: {
   className?: string;
   title?: string;

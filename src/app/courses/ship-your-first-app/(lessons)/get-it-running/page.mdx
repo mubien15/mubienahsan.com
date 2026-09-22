@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Terminal } from "@/components/course/interactive";
 import { Callout, Checklist } from "@/components/course/blocks";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/ship-your-first-app/get-it-running", {
   title: "Get a real app running",
   description:
     "Three commands and you have a working app on your own machine. What each one does, and the four files that matter out of the hundreds you just created.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 2</span>
 

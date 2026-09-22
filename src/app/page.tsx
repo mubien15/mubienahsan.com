@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { CtaLink, Eyebrow, Pill, type Tone } from "@/components/ui";
@@ -12,6 +13,10 @@ import { COURSES } from "@/content/courses";
 import { QUESTIONS } from "@/content/quiz";
 import { PROJECTS } from "@/content/projects";
 
+export const metadata = pageMetadata("/", {
+  title: { absolute: "Mubien · A calmer way to explore AI" },
+});
+
 const PATHS: {
   emoji: string;
   title: string;
@@ -22,28 +27,28 @@ const PATHS: {
   {
     emoji: "🧑‍💻",
     title: "Learn to build with AI",
-    body: "Three free courses that take you from absolute zero to a live app. No coding background needed.",
+    body: "Four free courses that take you from absolute zero to a live app. No coding background needed.",
     href: "/courses",
     tone: "mint",
   },
   {
     emoji: "🛠️",
     title: "See what I've built",
-    body: "Real apps I have shipped on nights and weekends, with the story, the stack, and the lessons.",
+    body: "Useful tools, personal experiments, and the lessons from building them with AI.",
     href: "/projects",
     tone: "flame",
   },
   {
     emoji: "📚",
     title: "Find what's worth learning",
-    body: "The certifications and books that actually earned their place, and the ones I would skip.",
+    body: "The courses, books, and essays helping me make sense of AI.",
     href: "/library",
     tone: "grape",
   },
   {
     emoji: "👋",
     title: "Get to know me",
-    body: "The why behind all of this, and how someone with no technical background ended up building with AI.",
+    body: "A little about me, what makes me curious, and why this space exists.",
     href: "/about",
     tone: "gold",
   },
@@ -102,36 +107,28 @@ export default function Home() {
 
               <div>
                 <h1 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
-                  Hey{" "}
+                  Hey, I&apos;m{" "}
                   <span className="relative inline-block">
-                    <span className="text-accent">Friends</span>
+                    <span className="text-accent">Mubien</span>
                     <Squiggle className="text-accent/50" />
                   </span>{" "}
                   <span className="inline-block">👋</span>
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                  The hard part of AI is not the technology. It is working out
-                  what deserves your attention, and what deserves your caution.
-                  I came to this from a business law degree and I still think
-                  like it: what the rules actually require, where accountability
-                  sits when a system gets it wrong, and how you would prove any
-                  of it. So this site runs on two tracks. Free courses that take
-                  you from your first command to a deployed app, and the
-                  governance side — AI auditing and assurance, the frameworks
-                  organisations are now being held to, and tools I build for
-                  risk teams. The aim is{" "}
-                  <span className="font-medium text-ink">
-                    calm and rigour in the noisiest topic there is
-                  </span>
-                  . I worked all of this out myself: evenings spent pushing
-                  these models to find where they hold and where they break,
-                  certifications where they earned it, and a great deal of noise
-                  filtered by hand. What is on this site is what survived that.
+                  I use AI every day, build useful tools with it, and explore
+                  how it works and where it reaches its limits. This is where
+                  I share the projects, questions, and lessons along the way.
+                </p>
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+                  My aim is simple: <span className="font-medium text-ink">bring
+                  calm, clarity, and depth to the noisiest topic there is.</span>{" "}
+                  A little structure to help you learn, build, and find your own
+                  footing as things move quickly.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <CtaLink href="/courses">Start with a course</CtaLink>
-                  <CtaLink href="/projects" variant="secondary">
-                    See what I&apos;ve built
+                  <CtaLink href="/projects">Explore my projects</CtaLink>
+                  <CtaLink href="/research" variant="secondary">
+                    Explore the questions
                   </CtaLink>
                 </div>
               </div>
@@ -140,38 +137,78 @@ export default function Home() {
         </Reveal>
       </Container>
 
-      {/* Free guide — email capture */}
-      <Container className="pt-10 sm:pt-12">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-accent-soft p-8 sm:p-12">
-            <div
-              aria-hidden
-              className="glow glow-gold animate-drift absolute -left-32 -bottom-40 h-[26rem] w-[26rem] rounded-full"
-            />
-            <div className="relative grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-              <div>
-                <Eyebrow tone="accent">Free guide</Eyebrow>
-                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-                  Build a morning brief that writes itself
-                </h2>
-                <p className="mt-3 text-lg leading-relaxed text-ink/70">
-                  <span className="font-medium text-ink">The First Build</span>{" "}
-                  is the whole thing: the actual instructions I use, every
-                  decision behind them, and the parts I got wrong. No code, and
-                  you can have it running by the end of an evening.
-                </p>
-              </div>
-
-              <div>
-                <SubscribeForm source="home-band" />
-                <p className="mt-3 text-sm leading-relaxed text-ink/60">
-                  I&apos;ll send it straight to your inbox, plus new builds as I
-                  publish them. Free, always — unsubscribe anytime.
-                </p>
-              </div>
-            </div>
+      {/* Stuff I've built */}
+      <Container className="py-16">
+        <Reveal className="mb-8 flex items-end justify-between">
+          <div>
+            <Eyebrow tone="flame">Built with AI</Eyebrow>
+            <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+              Stuff I&apos;ve actually built
+            </h2>
           </div>
+          <Link
+            href="/projects"
+            className="hidden text-sm font-medium text-flame hover:underline sm:block"
+          >
+            All projects →
+          </Link>
         </Reveal>
+        <Stagger className="grid gap-4 sm:grid-cols-2" inView>
+          {featuredProjects.map((project) => (
+            <StaggerItem key={project.slug}>
+              <HoverLift className="h-full">
+                <div
+                  className={cn(
+                    "relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface",
+                    "before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-1 before:content-['']",
+                    TONE_BAR[project.tone]
+                  )}
+                >
+                  {project.image ? (
+                    project.frame === "phone" ? (
+                      <PhoneShowcase
+                        src={project.image}
+                        alt={`${project.name} screenshot`}
+                        peek
+                      />
+                    ) : (
+                      <BrowserFrame
+                        src={project.image}
+                        alt={`${project.name} screenshot`}
+                        label={project.liveLabel}
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    )
+                  ) : null}
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-display text-xl text-ink">
+                        {project.name}
+                      </h3>
+                      <Pill tone={project.tone}>{project.status}</Pill>
+                    </div>
+                    <p className={cn("mt-2 text-sm font-medium", TONE_TXT[project.tone])}>
+                      {project.tagline}
+                    </p>
+                    <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
+                      {project.what}
+                    </p>
+                    {project.liveUrl ? (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 text-sm font-medium text-ink hover:underline"
+                      >
+                        {project.liveLabel} ↗
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+              </HoverLift>
+            </StaggerItem>
+          ))}
+        </Stagger>
       </Container>
 
       {/* Governance & ethics — the other half of the work */}
@@ -184,15 +221,15 @@ export default function Home() {
             />
             <div className="relative">
               <div>
-                <Eyebrow tone="grape">Governance &amp; ethics</Eyebrow>
+                <Eyebrow tone="grape">Understanding AI</Eyebrow>
                 <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-                  Building it is only half the job.
+                  What can it do, and what can we trust?
                 </h2>
                 <p className="mt-3 text-lg leading-relaxed text-ink/70">
-                  The other half is asking whether it should be built that way,
-                  who is accountable when it fails, and how anyone outside the
-                  room could verify the answer. That question came with me from
-                  law, and it is where most of my serious work sits.
+                  Building with AI keeps bringing me back to the same questions:
+                  how does it learn, what counts as improvement, and how do we
+                  stay in control as it becomes more capable? These are my notes
+                  and frameworks for thinking them through.
                 </p>
               </div>
 
@@ -206,9 +243,8 @@ export default function Home() {
                     Agents that spend
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    AI agents are starting to transact for people. The protocols
-                    constrain the checkout; nothing records the authority the
-                    agent was sent out with. Controls for that gap.
+                    When an agent spends on someone&apos;s behalf, how do we
+                    record permission, check it, and make it possible to stop?
                   </span>
                   <span className="mt-3 text-sm font-medium text-grape">
                     Read the work →
@@ -226,9 +262,8 @@ export default function Home() {
                     The Verification Gap
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    Whether independent assurance can make AI trustworthy to the
-                    institutions now betting on it. Built on OSFI&apos;s model
-                    risk guideline, the EU AI Act and ISO 42001.
+                    What would count as convincing evidence that an AI system
+                    deserves our trust? An essay on assurance and its limits.
                   </span>
                   <span className="mt-3 text-sm font-medium text-grape">
                     Read the essay →
@@ -255,19 +290,19 @@ export default function Home() {
                 </Link>
 
                 <Link
-                  href="/library"
+                  href="/research/learning-and-self-improvement"
                   className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
                 >
-                  <Pill tone="grape">Credentials</Pill>
+                  <Pill tone="grape">Explainer</Pill>
                   <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
-                    Auditing and ethics
+                    When AI “learns”
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    Certified in Auditing Generative AI (ISACA), and Microsoft&apos;s
-                    Ethical &amp; Regulatory Implications of Generative AI.
+                    Context, memory, training, and recursive self-improvement:
+                    what changes in each, and what a better answer can tell us.
                   </span>
                   <span className="mt-3 text-sm font-medium text-grape">
-                    What else earned its place →
+                    Untangle the terms →
                   </span>
                 </Link>
               </div>
@@ -402,101 +437,26 @@ export default function Home() {
         </Reveal>
       </Container>
 
-      {/* Stuff I've built */}
-      <Container className="py-16">
-        <Reveal className="mb-8 flex items-end justify-between">
-          <div>
-            <Eyebrow tone="flame">Built with AI</Eyebrow>
-            <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-              Stuff I&apos;ve actually built
-            </h2>
-          </div>
-          <Link
-            href="/projects"
-            className="hidden text-sm font-medium text-flame hover:underline sm:block"
-          >
-            All projects →
-          </Link>
-        </Reveal>
-        <Stagger className="grid gap-4 sm:grid-cols-2" inView>
-          {featuredProjects.map((project) => (
-            <StaggerItem key={project.slug}>
-              <HoverLift className="h-full">
-                <div
-                  className={cn(
-                    "relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface",
-                    "before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-1 before:content-['']",
-                    TONE_BAR[project.tone]
-                  )}
-                >
-                  {project.image ? (
-                    project.frame === "phone" ? (
-                      <PhoneShowcase
-                        src={project.image}
-                        alt={`${project.name} screenshot`}
-                        peek
-                      />
-                    ) : (
-                      <BrowserFrame
-                        src={project.image}
-                        alt={`${project.name} screenshot`}
-                        label={project.liveLabel}
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                      />
-                    )
-                  ) : null}
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-display text-xl text-ink">
-                        {project.name}
-                      </h3>
-                      <Pill tone={project.tone}>{project.status}</Pill>
-                    </div>
-                    <p className={cn("mt-2 text-sm font-medium", TONE_TXT[project.tone])}>
-                      {project.tagline}
-                    </p>
-                    <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
-                      {project.what}
-                    </p>
-                    {project.liveUrl ? (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 text-sm font-medium text-ink hover:underline"
-                      >
-                        {project.liveLabel} ↗
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              </HoverLift>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </Container>
-
       {/* My story */}
       <Container className="py-8">
         <Reveal>
           <div className="rounded-3xl border border-line bg-surface p-8 sm:p-12">
             <div>
                 <h2 className="font-display text-3xl tracking-tight text-ink sm:text-4xl">
-                  Hey, I&apos;m Mubien 👋
+                  Why I keep coming back to this
                 </h2>
                 <div className="mt-5 space-y-4 text-lg leading-relaxed text-muted">
                   <p>
-                    I got curious about AI, started building around a full time
-                    job, and somewhere along the way shipped real things: a
-                    communication coach, a governance agent, small tools people
-                    actually use.
+                    Curiosity turned into a morning briefing I use every day,
+                    a communication coach, and experiments with AI governance.
+                    Each build gives me something concrete to question, improve,
+                    and explain.
                   </p>
                   <p>
-                    I taught myself the whole of it, on nights and weekends,
-                    by testing these systems until I understood what they could
-                    and could not be trusted to do. The path exists and it is
-                    walkable — I want to show it rather than talk about it.
-                    Everything here is free, and I hope to keep it that way.
+                    I want this to be a place where you can slow down and
+                    understand what you are using. I share the steps, the useful
+                    discoveries, and the limits I am still trying to understand.
+                    The courses and writing here are free.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -512,13 +472,47 @@ export default function Home() {
         </Reveal>
       </Container>
 
+      {/* Free guide — email capture */}
+      <Container className="pt-10 sm:pt-12">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-accent-soft p-8 sm:p-12">
+            <div
+              aria-hidden
+              className="glow glow-gold animate-drift absolute -left-32 -bottom-40 h-[26rem] w-[26rem] rounded-full"
+            />
+            <div className="relative grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+              <div>
+                <Eyebrow tone="accent">Free guide</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+                  Build a morning brief that writes itself
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed text-ink/70">
+                  <span className="font-medium text-ink">The First Build</span>{" "}
+                  is the whole thing: the actual instructions I use, every
+                  decision behind them, and the parts I got wrong. No code, and
+                  you can have it running by the end of an evening.
+                </p>
+              </div>
+
+              <div>
+                <SubscribeForm source="home-band" />
+                <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                  I&apos;ll send it straight to your inbox, plus new builds as I
+                  publish them. Free, always — unsubscribe anytime.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Container>
+
       {/* Closing */}
       <Container className="py-20">
         <Reveal>
           <figure className="mx-auto max-w-3xl text-center">
             <blockquote className="font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl">
-              &ldquo;The goal isn&apos;t to move fast. It&apos;s to understand
-              deeply, and then explain it plainly to whoever comes next.&rdquo;
+              &ldquo;Understand deeply. Explain plainly. Make room for a
+              little calm along the way.&rdquo;
             </blockquote>
           </figure>
         </Reveal>

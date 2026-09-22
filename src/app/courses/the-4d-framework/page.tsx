@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -8,11 +9,11 @@ import { notFound } from "next/navigation";
 
 const COURSE_SLUG = "the-4d-framework";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/courses/the-4d-framework", {
   title: "The 4D Framework",
   description:
     "Delegation, Description, Discernment and Diligence. A plain explanation of the AI fluency framework by Rick Dakan and Joseph Feller, and how to actually use it.",
-};
+});
 
 export default function CourseOverviewPage() {
   const course = getCourse(COURSE_SLUG);

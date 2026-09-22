@@ -1,14 +1,15 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { CtaLink, Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/motion";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/thank-you", {
   title: "You're confirmed",
   description: "Your copy of The First Build is ready to download.",
   // Nothing links here and it only means anything to someone who just confirmed.
   robots: { index: false, follow: false },
-};
+});
 
 /*
   /api/confirm redirects here, adding ?status= when something went wrong. Without

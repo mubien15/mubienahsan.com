@@ -21,6 +21,16 @@ export type ResearchItem = {
 
 export const RESEARCH: ResearchItem[] = [
   {
+    title: "When AI learns: what actually changes?",
+    kind: "Explainer",
+    href: "/research/learning-and-self-improvement",
+    tone: "mint",
+    question: "Does a better second answer mean the model learned? And when does an improvement loop become recursive?",
+    summary: "A practical distinction between context, memory, training, and self-improvement. What each changes, where the limits are, and the checks I would want around a system that can change itself.",
+    meta: "Concepts & open questions",
+    cta: "Read the explainer",
+  },
+  {
     title: "The Oversight Threshold",
     kind: "Interactive framework",
     href: "/research/autonomy-governance",
@@ -28,7 +38,7 @@ export const RESEARCH: ResearchItem[] = [
     question:
       "At what point does human oversight stop being meaningful, because the system has become too capable, fast or autonomous for a person to verify?",
     summary:
-      "As autonomy rises, the ability of a person to independently verify a system falls — so governance has to intensify before the two cross. Five levels of autonomy mapped against eight governance dimensions, plus a test for whether human review is still doing real work or has quietly become a signature.",
+      "A conceptual framework for asking when a system becomes too fast, complex, or autonomous for its human review process. Five levels of autonomy mapped against eight governance dimensions, plus a test for whether human review is still doing real work or has quietly become a signature.",
     meta: `${LEVELS.length} levels · checked ${LAST_CHECKED}`,
     cta: "Open the framework",
   },
@@ -40,7 +50,7 @@ export const RESEARCH: ResearchItem[] = [
     question:
       "AI agents are starting to buy things for people. What were they actually allowed to buy?",
     summary:
-      "The payment protocols settled how an agent pays and left open what it was permitted to buy. Agency law has spent centuries on exactly that question, and the vocabulary is sitting there unused. This is a control framework built on it — a failure nobody can argue with, the principle that already governs it, the control to build, and the evidence that proves it ran.",
+      "Payment and permission need to stay connected throughout a task. A proposed set of controls for recording delegated authority, checking purchases against it, and making withdrawal effective, informed by agency-law concepts and evolving payment protocols.",
     meta: `${PUBLISHED_CONTROLS.length} controls · checked ${PUBLISHED_CONTROLS[0]?.lastChecked ?? ""}`,
     cta: "Read the controls",
   },

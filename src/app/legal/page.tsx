@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -5,11 +6,11 @@ import { PageIntro } from "@/components/ui";
 import { Reveal } from "@/components/motion";
 import { SOCIAL_LINKS } from "@/lib/nav";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/legal", {
   title: "Privacy Policy & Disclaimer",
   description:
     "What this site collects, which is your email only if you ask for the newsletter, which Canadian and other privacy laws apply, and the honest limits of what you read here.",
-};
+});
 
 const UPDATED = "3 September 2026";
 const EMAIL = "hello@mubienahsan.com";
@@ -53,7 +54,7 @@ export default function LegalPage() {
       <div className="mt-14 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
         <Reveal>
           <p className="text-sm text-muted">
-            Last updated {UPDATED}. This site is run by me, Mubien Ahsan, as an
+            Last updated {UPDATED}. This site is run by me, Mubien, as an
             individual, from Toronto, Ontario, Canada. You can reach me at{" "}
             <a
               href={`mailto:${EMAIL}`}
@@ -67,16 +68,10 @@ export default function LegalPage() {
 
         <Section id="views" title="Views are my own">
           <p>
-            Everything on this site is written by me in a personal capacity. It
-            represents my own opinions and experience, not those of my employer,
-            my colleagues, or any client, and nothing here should be read as an
-            official position of any organisation I work for or with.
+            This is my personal website. The opinions, projects, and writing here are my own and do not represent any organisation.
           </p>
           <p>
-            I write here in a personal capacity and in my own time, drawing only
-            on publicly available material. I do not write about my
-            employer&apos;s work, my colleagues, my clients, or anything
-            internal to where I work.
+            I draw on public sources and my own personal experiments. This site contains no confidential organisational material.
           </p>
         </Section>
 
@@ -186,7 +181,7 @@ export default function LegalPage() {
           <p>
             Email is not a secure channel. Please do not send me anything
             confidential, and particularly not anything belonging to your
-            employer or your clients.
+            organisation or anyone whose information you are responsible for.
           </p>
         </Section>
 

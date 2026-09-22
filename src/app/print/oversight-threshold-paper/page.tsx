@@ -37,7 +37,7 @@ export default function OversightThresholdPaperPage() {
           {PAPER_SUBTITLE}
         </p>
         <p className="mt-6 text-sm text-muted">
-          Mubien Ahsan · mubienahsan.com/research/autonomy-governance
+          Mubien · mubienahsan.com/research/autonomy-governance
           <br />
           Sources last checked {LAST_CHECKED}
         </p>
@@ -156,7 +156,7 @@ export default function OversightThresholdPaperPage() {
 
       <section className="print-block mt-10 border-t border-line pt-5 text-xs leading-relaxed text-muted print-rule">
         <p>
-          © {new Date().getFullYear()} Mubien Ahsan. Free to use and share
+          © {new Date().getFullYear()} Mubien. Free to use and share
           within your organisation with attribution. Version {PAPER_VERSION},{" "}
           {PAPER_DATE}.
         </p>

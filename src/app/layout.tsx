@@ -31,41 +31,40 @@ const SITE_URL = "https://mubienahsan.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Mubien Ahsan · Learning & building with AI, in public",
-    template: "%s · Mubien Ahsan",
+    default: "Mubien · A calmer way to explore AI",
+    template: "%s · Mubien",
   },
   description:
-    "You do not need a computer science degree to build with AI. Free guides that start from zero, the apps I have shipped, and my work on AI governance — auditing, assurance and the ethics of deploying these systems.",
-  alternates: { canonical: "/" },
+    "I use AI every day, build useful tools, and explore how it works and where it reaches its limits. Projects, free courses, and personal research with calm, clarity, and depth.",
   keywords: [
     "AI",
     "Claude Code",
     "learn AI",
     "build with AI",
     "AI governance",
-    "AI auditing",
-    "AI assurance",
+    "AI learning",
+    "AI limitations",
     "AI ethics",
     "responsible AI",
-    "EU AI Act",
-    "ISO 42001",
-    "Mubien Ahsan",
+    "recursive self-improvement",
+    "AI tools",
+    "Mubien",
   ],
-  authors: [{ name: "Mubien Ahsan" }],
+  authors: [{ name: "Mubien" }],
   openGraph: {
     type: "website",
     url: SITE_URL,
     locale: "en_US",
-    title: "Mubien Ahsan · Learning & building with AI, in public",
+    title: "Mubien · A calmer way to explore AI",
     description:
-      "AI courses made for beginners, the apps I've shipped, and serious work on AI governance, auditing and ethics.",
-    siteName: "Mubien Ahsan",
+      "Using AI daily, building useful things, and exploring its governance and limits. A personal space for calm, clarity, and depth.",
+    siteName: "Mubien",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mubien Ahsan · Learning & building with AI, in public",
+    title: "Mubien · A calmer way to explore AI",
     description:
-      "AI courses made for beginners, the apps I've shipped, and serious work on AI governance, auditing and ethics.",
+      "Using AI daily, building useful things, and exploring its governance and limits. A personal space for calm, clarity, and depth.",
   },
 };
 

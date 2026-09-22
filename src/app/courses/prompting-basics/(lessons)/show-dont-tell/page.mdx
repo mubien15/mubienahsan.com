@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout, Checklist } from "@/components/course/blocks";
 import { PromptCompare } from "@/components/course/prompting";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/prompting-basics/show-dont-tell", {
   title: "Show, don't tell",
   description:
     "One good example beats a paragraph of description. How to use examples to lock in tone, format and structure, and how many you actually need.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 4</span>
 

@@ -1,12 +1,13 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout, Checklist, PromptToClaude } from "@/components/course/blocks";
 import { PromptCompare } from "@/components/course/prompting";
 import { Parts } from "@/components/course/fluency";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/the-4d-framework/description", {
   title: "Description: saying what you want",
   description:
     "Three things you can describe and most people only ever describe one: the product you want, the process to get there, and the manner it should work in.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 3</span>
 

@@ -1,10 +1,11 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout } from "@/components/course/blocks";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/getting-started-with-claude-code/what-is-claude-code", {
   title: "What Claude Code actually is",
   description:
     "A plain explanation of what Claude Code is, what it isn't, and why it is the friendliest way into building with AI.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-mint"><span className="h-1.5 w-1.5 rounded-full bg-mint" />Lesson 1</span>
 

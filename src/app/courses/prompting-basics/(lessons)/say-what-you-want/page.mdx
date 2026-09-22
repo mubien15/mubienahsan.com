@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout, Checklist } from "@/components/course/blocks";
 import { PromptCompare, PromptAnatomy } from "@/components/course/prompting";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/prompting-basics/say-what-you-want", {
   title: "Say exactly what you want",
   description:
     "Specificity is the biggest lever in prompting. What to include, what to leave out, and the reframing that fixes most bad prompts on its own.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 2</span>
 
