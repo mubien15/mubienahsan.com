@@ -12,6 +12,7 @@ import { cn } from "@/lib/cn";
 import { COURSES } from "@/content/courses";
 import { QUESTIONS } from "@/content/quiz";
 import { PROJECTS } from "@/content/projects";
+import { AGENTS_FEATURE } from "@/content/agents";
 
 export const metadata = pageMetadata("/", {
   title: { absolute: "Mubien · A calmer way to explore AI" },
@@ -190,6 +191,100 @@ export default function Home() {
         </Reveal>
       </Container>
 
+      {/* Flagship research */}
+      <Container className="pb-16 pt-10 sm:pb-20 sm:pt-12">
+        <Reveal>
+          <div
+            id="flagship-research"
+            className="relative scroll-mt-24 overflow-hidden rounded-3xl bg-grape-soft p-7 sm:p-10 lg:p-12"
+          >
+            <div
+              aria-hidden
+              className="glow glow-mint animate-drift absolute -bottom-44 -right-36 h-[30rem] w-[30rem] rounded-full opacity-50"
+            />
+            <div className="relative">
+              <Eyebrow tone="grape">Flagship research</Eyebrow>
+              <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <h2 className="font-display text-3xl tracking-tight text-ink sm:text-4xl">
+                    Useful AI becomes consequential AI
+                  </h2>
+                  <p className="mt-3 text-lg leading-relaxed text-ink/70">
+                    What should happen when an AI system stops drafting and
+                    begins acting, deciding, or spending on someone&apos;s behalf?
+                  </p>
+                </div>
+                <Link
+                  href="/research"
+                  className="text-sm font-medium text-grape hover:underline"
+                >
+                  All research →
+                </Link>
+              </div>
+
+              <div className="mt-8 grid gap-4 lg:grid-cols-[1.45fr_0.85fr]">
+                <Link
+                  href="/agents#permission-test"
+                  className="group flex min-h-[24rem] flex-col justify-between rounded-3xl border border-grape/30 bg-surface p-6 transition-colors hover:border-grape/75 sm:p-8"
+                >
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Pill tone="grape">6 published controls</Pill>
+                      <span className="text-xs font-medium uppercase tracking-[0.13em] text-muted">
+                        Interactive framework
+                      </span>
+                    </div>
+                    <h3 className="font-display mt-5 text-3xl leading-tight text-ink group-hover:text-grape sm:text-4xl">
+                      {AGENTS_FEATURE.title}
+                    </h3>
+                    <p className="mt-4 text-lg font-medium leading-relaxed text-grape">
+                      {AGENTS_FEATURE.question}
+                    </p>
+                    <p className="mt-4 leading-relaxed text-ink/75">
+                      {AGENTS_FEATURE.summary}
+                    </p>
+                  </div>
+                  <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
+                    <span className="text-sm text-muted">
+                      Permission test · architecture · evaluation pack
+                    </span>
+                    <span className="text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
+                      {AGENTS_FEATURE.cta} →
+                    </span>
+                  </div>
+                </Link>
+
+                <div className="rounded-3xl border border-grape/20 bg-surface/65 p-5 sm:p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                    More research
+                  </p>
+                  <div className="mt-3 divide-y divide-line">
+                    <ResearchLink
+                      href="/research/autonomy-governance"
+                      kind="Framework"
+                      title="The Oversight Threshold"
+                      body="When does human review become a signature rather than a safeguard?"
+                    />
+                    <ResearchLink
+                      href="/research/learning-and-self-improvement"
+                      kind="Explainer"
+                      title="When AI ‘learns’"
+                      body="Context, memory, training, and recursive self-improvement untangled."
+                    />
+                    <ResearchLink
+                      href="/essays/the-verification-gap.pdf"
+                      kind="Essay"
+                      title="The Verification Gap"
+                      body="What would count as evidence that an AI system deserves trust?"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Container>
+
       {/* Selected builds */}
       <Container className="py-16">
         <Reveal className="mb-8 flex items-end justify-between">
@@ -260,106 +355,6 @@ export default function Home() {
             </StaggerItem>
           ))}
         </Stagger>
-      </Container>
-
-      {/* Flagship research */}
-      <Container className="py-16 sm:py-20">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-grape-soft p-8 sm:p-12">
-            <div
-              aria-hidden
-              className="glow glow-mint animate-drift absolute -right-40 -bottom-40 h-[28rem] w-[28rem] rounded-full opacity-50"
-            />
-            <div className="relative">
-              <div>
-                <Eyebrow tone="grape">Flagship research</Eyebrow>
-                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-                  Useful AI becomes consequential AI
-                </h2>
-                <p className="mt-3 text-lg leading-relaxed text-ink/70">
-                  I am interested in the point where an AI system stops merely
-                  drafting and begins acting: making decisions, using tools, or
-                  spending resources on someone&apos;s behalf. These projects ask
-                  what meaningful permission, evidence, and human control look like.
-                </p>
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                <Link
-                  href="/agents"
-                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
-                >
-                  <Pill tone="grape">In progress</Pill>
-                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
-                    Agents that spend
-                  </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    When an agent spends on someone&apos;s behalf, how do we
-                    record permission, check it, and make it possible to stop?
-                  </span>
-                  <span className="mt-3 text-sm font-medium text-grape">
-                    Read the work →
-                  </span>
-                </Link>
-
-                <a
-                  href="/essays/the-verification-gap.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
-                >
-                  <Pill tone="grape">Writing</Pill>
-                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
-                    The Verification Gap
-                  </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    What would count as convincing evidence that an AI system
-                    deserves our trust? An essay on assurance and its limits.
-                  </span>
-                  <span className="mt-3 text-sm font-medium text-grape">
-                    Read the essay →
-                  </span>
-                </a>
-
-                <Link
-                  href="/research/autonomy-governance"
-                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
-                >
-                  <Pill tone="grape">Framework</Pill>
-                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
-                    The Oversight Threshold
-                  </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    As AI gets more autonomous, human approval can stay in the
-                    workflow while disappearing in substance. Five levels of
-                    autonomy, and a test for whether review still means
-                    anything.
-                  </span>
-                  <span className="mt-3 text-sm font-medium text-grape">
-                    Open the framework →
-                  </span>
-                </Link>
-
-                <Link
-                  href="/research/learning-and-self-improvement"
-                  className="group flex h-full flex-col rounded-2xl border border-grape/25 bg-surface/70 p-5 transition-colors hover:border-grape/70"
-                >
-                  <Pill tone="grape">Explainer</Pill>
-                  <span className="font-display mt-3 block text-lg leading-snug text-ink group-hover:text-grape">
-                    When AI “learns”
-                  </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-ink/75">
-                    Context, memory, training, and recursive self-improvement:
-                    what changes in each, and what a better answer can tell us.
-                  </span>
-                  <span className="mt-3 text-sm font-medium text-grape">
-                    Untangle the terms →
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Reveal>
       </Container>
 
       {/* Ways into the work */}
@@ -536,5 +531,31 @@ export default function Home() {
         </Reveal>
       </Container>
     </>
+  );
+}
+
+function ResearchLink({
+  href,
+  kind,
+  title,
+  body,
+}: {
+  href: string;
+  kind: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <Link href={href} className="group block py-5 first:pt-3 last:pb-2">
+      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-grape">
+        {kind}
+      </span>
+      <span className="font-display mt-1 block text-lg leading-snug text-ink group-hover:text-grape">
+        {title}
+      </span>
+      <span className="mt-1.5 block text-sm leading-relaxed text-ink/70">
+        {body}
+      </span>
+    </Link>
   );
 }

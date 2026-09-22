@@ -1,5 +1,9 @@
 import type { Tone } from "@/components/ui";
-import { PUBLISHED_CONTROLS } from "@/content/agents";
+import {
+  AGENTS_FEATURE,
+  FLOW_STAGES,
+  PUBLISHED_CONTROLS,
+} from "@/content/agents";
 import { LAST_CHECKED, LEVELS } from "@/content/autonomy";
 
 /**
@@ -21,6 +25,16 @@ export type ResearchItem = {
 
 export const RESEARCH: ResearchItem[] = [
   {
+    title: AGENTS_FEATURE.title,
+    kind: "Flagship · Interactive framework",
+    href: AGENTS_FEATURE.href,
+    tone: "grape",
+    question: AGENTS_FEATURE.question,
+    summary: AGENTS_FEATURE.summary,
+    meta: `${PUBLISHED_CONTROLS.length} controls · ${FLOW_STAGES.length} stages`,
+    cta: AGENTS_FEATURE.cta,
+  },
+  {
     title: "When AI learns: what actually changes?",
     kind: "Explainer",
     href: "/research/learning-and-self-improvement",
@@ -41,18 +55,6 @@ export const RESEARCH: ResearchItem[] = [
       "A conceptual framework for asking when a system becomes too fast, complex, or autonomous for its human review process. Five levels of autonomy mapped against eight governance dimensions, plus a test for whether human review is still doing real work or has quietly become a signature.",
     meta: `${LEVELS.length} levels · checked ${LAST_CHECKED}`,
     cta: "Open the framework",
-  },
-  {
-    title: "Agents that spend",
-    kind: "Control framework",
-    href: "/agents",
-    tone: "grape",
-    question:
-      "AI agents are starting to buy things for people. What were they actually allowed to buy?",
-    summary:
-      "Payment and permission need to stay connected throughout a task. A proposed set of controls for recording delegated authority, checking purchases against it, and making withdrawal effective, informed by agency-law concepts and evolving payment protocols.",
-    meta: `${PUBLISHED_CONTROLS.length} controls · checked ${PUBLISHED_CONTROLS[0]?.lastChecked ?? ""}`,
-    cta: "Read the controls",
   },
   {
     title: "The Verification Gap",

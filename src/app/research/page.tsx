@@ -13,6 +13,8 @@ export const metadata: Metadata = pageMetadata("/research", {
 });
 
 export default function ResearchPage() {
+  const [featured, ...otherResearch] = RESEARCH;
+
   return (
     <Container className="py-16 sm:py-20">
       <PageIntro
@@ -38,8 +40,51 @@ export default function ResearchPage() {
         </Reveal>
       </div>
 
-      <Stagger className="mt-14 grid gap-5 lg:grid-cols-2" inView>
-        {RESEARCH.map((item) => {
+      {featured ? (
+        <Reveal>
+          <Link
+            href={featured.href}
+            className="group relative mt-14 block overflow-hidden rounded-3xl border border-grape/25 bg-grape-soft p-7 transition-colors hover:border-grape/60 sm:p-10"
+          >
+            <div
+              aria-hidden
+              className="glow glow-mint absolute -bottom-48 -right-40 h-[28rem] w-[28rem] rounded-full opacity-45"
+            />
+            <div className="relative grid gap-8 lg:grid-cols-[1.4fr_0.7fr] lg:items-end">
+              <div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Pill tone="grape">{featured.kind}</Pill>
+                  <span className="text-xs text-muted">{featured.meta}</span>
+                </div>
+                <h2 className="font-display mt-4 text-3xl text-ink group-hover:text-grape sm:text-4xl">
+                  {featured.title}
+                </h2>
+                <p className="mt-4 text-lg font-medium leading-relaxed text-grape">
+                  {featured.question}
+                </p>
+                <p className="mt-3 leading-relaxed text-ink/75">
+                  {featured.summary}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-grape/20 bg-surface/75 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">
+                  Includes
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink/75">
+                  An interactive permission test, system architecture, control
+                  matrix, adversarial cases, launch gates, and primary sources.
+                </p>
+                <span className="mt-4 inline-block text-sm font-medium text-grape transition-transform group-hover:translate-x-1">
+                  {featured.cta} →
+                </span>
+              </div>
+            </div>
+          </Link>
+        </Reveal>
+      ) : null}
+
+      <Stagger className="mt-5 grid gap-5 lg:grid-cols-2" inView>
+        {otherResearch.map((item) => {
           const inner = (
             <>
               <div className="flex flex-wrap items-center gap-3">
