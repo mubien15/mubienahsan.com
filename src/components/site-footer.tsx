@@ -18,8 +18,8 @@ export function SiteFooter() {
             Mubien
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Using AI, building useful things, and exploring the questions it
-            raises. A little calm, clarity, and depth in a noisy field.
+            Building useful AI, testing the assumptions around it, and exploring
+            what meaningful human control looks like as systems become more capable.
           </p>
         </div>
 

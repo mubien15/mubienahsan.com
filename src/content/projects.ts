@@ -21,6 +21,13 @@ export type Project = {
   imageNote?: string;
   status: "Live" | "Archived" | "In progress";
   lessons: string;
+  caseStudy?: {
+    context: string;
+    approach: string;
+    decisions: { title: string; body: string }[];
+    limits: string[];
+    next: string[];
+  };
 };
 
 /**
@@ -42,6 +49,36 @@ export const PROJECTS: Project[] = [
     status: "Live",
     lessons:
       "Editing is the product. Pulling the news in was the easy half. The hard half was deciding what to cut so the whole thing still reads in two minutes, and writing it so it sounds like a person rather than a feed.",
+    caseStudy: {
+      context:
+        "The problem was not access to information. It was beginning each morning with too many sources, no clear order, and no reliable stopping point. I wanted one short briefing that could tell me what happened, preserve the source trail, and leave me to decide what deserved a deeper read.",
+      approach:
+        "A scheduled workflow gathers a small set of recurring inputs, researches the day, drafts a briefing, and delivers it by email. The format is deliberately constrained: local context first, then important developments, then a short selection rather than an exhaustive feed. I use the result myself, which makes weak selection and awkward writing visible quickly.",
+      decisions: [
+        {
+          title: "Constrain the output",
+          body: "A fixed structure and short reading time create a real editorial standard. More stories would make the automation look busier while making the product less useful.",
+        },
+        {
+          title: "Keep sources close",
+          body: "A summary is only useful when I can inspect the underlying reporting. The briefing is a map into the news, not a replacement for it.",
+        },
+        {
+          title: "Treat tone as part of quality",
+          body: "A technically correct feed can still be exhausting. The draft has to sound like a calm briefing rather than a pile of search results stitched together.",
+        },
+      ],
+      limits: [
+        "Selection is subjective and can reflect the biases of the sources and instructions.",
+        "A fluent summary can still omit context or state a claim too confidently.",
+        "Daily personal use is useful feedback, but it is not evidence that the format works for a wider audience.",
+      ],
+      next: [
+        "Record which items lead to a deeper read and which are consistently skipped.",
+        "Add clearer handling for disagreement between sources.",
+        "Test whether a second reader would make the same keep-or-cut decisions.",
+      ],
+    },
   },
   {
     slug: "fable",
@@ -57,14 +94,44 @@ export const PROJECTS: Project[] = [
     status: "Live",
     lessons:
       "The surrounding experience matters: the scenario, the instructions, and the way feedback is presented. A model-generated score is a prompt for reflection; its usefulness still needs to be judged against the conversation you actually want to have.",
+    caseStudy: {
+      context:
+        "Difficult conversations are often hard to practise. A blank chatbot gives the user no stakes, no consistent counterpart, and no useful way to reflect on what happened. I wanted to see whether a structured simulation could make rehearsal feel specific enough to be useful.",
+      approach:
+        "Fable gives each session a scenario, a role for the simulated counterpart, and a clear objective for the user. The model stays inside that situation during the conversation and then produces feedback. The product wraps the model in a deliberate experience instead of treating an open chat box as the product.",
+      decisions: [
+        {
+          title: "Start with a situation",
+          body: "A named relationship, source of tension, and desired outcome give the conversation something concrete to push against.",
+        },
+        {
+          title: "Separate simulation from reflection",
+          body: "The counterpart should behave like a person in the moment. Feedback belongs after the exchange, when the user can step out of the scene and examine it.",
+        },
+        {
+          title: "Avoid pretending the score is objective",
+          body: "Model feedback is a prompt for reflection, not a validated assessment of communication skill. The interface and language need to preserve that distinction.",
+        },
+      ],
+      limits: [
+        "The feedback rubric has not been validated against expert coaching or real-world outcomes.",
+        "A simulated counterpart cannot reproduce the history, emotion, or consequences of a real relationship.",
+        "Users may give undue weight to confident feedback produced by the model.",
+      ],
+      next: [
+        "Compare feedback across repeated runs of the same conversation.",
+        "Ask communication practitioners to critique the feedback rubric.",
+        "Test whether users can name a concrete change they would make in the real conversation.",
+      ],
+    },
   },
   {
     slug: "ai-governance-agent",
     name: "AI Governance Assessment Agent",
     tone: "grape",
     tagline: "Automated first pass AI risk and governance reviews",
-    what: "An AI tool that asks questions about a system and drafts a structured governance assessment. It is a way to explore risks, missing information, and questions worth following up.",
-    why: "I wanted to test whether AI could make an open-ended governance question easier to work through. The challenge is making its reasoning and gaps visible enough for a person to check.",
+    what: "An AI tool that reviews supplied system documentation against a selected governance framework and drafts a structured assessment. It surfaces risks, missing information, and questions worth following up.",
+    why: "I wanted to test whether AI could make a document-heavy governance review easier to begin. The challenge is making its reasoning, sources, and gaps visible enough for a person to check.",
     stack: ["Next.js", "Anthropic API", "Vercel"],
     liveUrl: "https://ai-governance-agent-xi.vercel.app",
     liveLabel: "ai-governance-agent-xi.vercel.app",
@@ -72,6 +139,36 @@ export const PROJECTS: Project[] = [
     status: "Live",
     lessons:
       "A tidy assessment can look more certain than the evidence behind it. Clear questions, traceable inputs, and room to say that information is missing matter as much as the generated answer.",
+    caseStudy: {
+      context:
+        "AI governance reviews often begin with a vague request to assess a system and a large set of uneven documentation. That invites generic conclusions before the evidence has been organized. I built this prototype to test whether a framework-led first pass could make the material easier to review without disguising the result as a final assessment.",
+      approach:
+        "The tool takes supplied system documentation, applies the governance framework chosen by the user, and drafts a control-by-control assessment. The useful output is not a risk label on its own. It is a clearer record of what the documentation supports, what is missing, and what a reviewer should examine next.",
+      decisions: [
+        {
+          title: "Choose the framework first",
+          body: "The assessment should follow a named set of requirements or controls. Selecting the framework before analysis gives the output a structure that a reviewer can inspect.",
+        },
+        {
+          title: "Make missing information visible",
+          body: "An unanswered question should remain a gap. The model should not quietly complete the story with a plausible assumption.",
+        },
+        {
+          title: "Draft, not determination",
+          body: "The output is designed as material for a responsible reviewer to challenge. It cannot determine compliance or certify that a system is safe.",
+        },
+      ],
+      limits: [
+        "The assessment depends on the accuracy and completeness of the information entered.",
+        "The current prototype has not been benchmarked against assessments produced by experienced reviewers.",
+        "A structured answer can create false confidence even when caveats are present.",
+      ],
+      next: [
+        "Create a set of expert-reviewed scenarios and compare the tool against them.",
+        "Trace every material conclusion back to the answer or source that supports it.",
+        "Measure unsupported claims, missed risks, and unnecessary escalations separately.",
+      ],
+    },
   },
   {
     slug: "risk-register-agent",

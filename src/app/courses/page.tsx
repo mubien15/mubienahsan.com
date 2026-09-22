@@ -11,9 +11,9 @@ import { COURSES } from "@/content/courses";
 import type { Tone } from "@/components/ui";
 
 export const metadata: Metadata = pageMetadata("/courses", {
-  title: "Courses",
+  title: "Learn",
   description:
-    "Beginner first courses on using and building with AI. A ladder from absolute zero to shipping your first real app. Free.",
+    "Free practical guides on using AI deliberately, evaluating its output, and turning an idea into a working product.",
 });
 
 const LEFT_BAR: Record<Tone, string> = {
@@ -28,13 +28,14 @@ export default function CoursesPage() {
   return (
     <Container className="py-16 sm:py-20">
       <PageIntro
-        eyebrow="Courses & workshops"
-        title="Start from wherever you are."
+        eyebrow="Practical learning"
+        title="Use AI with more intention."
         tone="mint"
       >
-        A ladder, not a firehose: absolute beginner, then prompting that
-        actually works, then the framework that names the whole skill, then
-        shipping a real app. Written to assume nothing.
+        These guides move from effective use to careful judgment and then to
+        building. They are written in plain language, but the standard is not
+        basic: understand the task, examine the output, and know what still
+        needs a human decision.
       </PageIntro>
 
       {/* Optional finder. The full list below is never gated behind it. */}
@@ -45,7 +46,7 @@ export default function CoursesPage() {
       </div>
 
       <h2 className="font-display mt-14 text-2xl tracking-tight text-ink">
-        All four courses
+        All practical guides
       </h2>
 
       <div className="mt-6 space-y-4 lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
