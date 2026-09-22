@@ -38,7 +38,7 @@ export default function ResearchPage() {
         </Reveal>
       </div>
 
-      <Stagger className="mt-14 grid gap-5" inView>
+      <Stagger className="mt-14 grid gap-5 lg:grid-cols-2" inView>
         {RESEARCH.map((item) => {
           const inner = (
             <>
@@ -60,11 +60,11 @@ export default function ResearchPage() {
           );
 
           const className =
-            "group flex flex-col rounded-2xl border border-line bg-surface p-7 transition-colors hover:border-grape/60";
+            "group flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-colors hover:border-grape/60";
 
           return (
             <StaggerItem key={item.href}>
-              <HoverLift>
+              <HoverLift className="h-full">
                 {item.external ? (
                   <a href={item.href} className={className}>
                     {inner}

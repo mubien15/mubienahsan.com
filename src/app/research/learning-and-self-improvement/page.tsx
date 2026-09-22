@@ -50,7 +50,7 @@ export default function LearningPage() {
         <section>
           <h2 className="font-display text-2xl text-ink">Start with the thing that changes</h2>
           <p className="mt-3">These distinctions help me ask a more useful question than whether a system is “getting smarter”: what changed, where does it persist, and what evidence supports the improvement?</p>
-          <div className="mt-6 grid gap-5">
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
             {DISTINCTIONS.map((item, i) => (
               <section key={item.title} className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
                 <Pill tone="mint">0{i + 1}</Pill>

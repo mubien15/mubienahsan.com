@@ -102,7 +102,7 @@ export default function Home() {
               <div className="glow glow-mint absolute -bottom-52 left-[15%] h-[30rem] w-[30rem] rounded-full opacity-60" />
             </div>
 
-            <div className="relative grid items-center gap-10 md:grid-cols-[auto_1fr]">
+            <div className="relative grid items-center gap-10 md:grid-cols-[auto_1fr] lg:grid-cols-[minmax(15rem,0.8fr)_minmax(0,1.5fr)] lg:gap-16">
               <PhotoBlob src="/me-v9.webp" />
 
               <div>
@@ -114,12 +114,12 @@ export default function Home() {
                   </span>{" "}
                   <span className="inline-block">👋</span>
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
                   I use AI every day, build useful tools with it, and explore
                   how it works and where it reaches its limits. This is where
                   I share the projects, questions, and lessons along the way.
                 </p>
-                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
                   Right now, I&apos;m deep down a research rabbit hole: how
                   neural networks are &ldquo;grown&rdquo; through training, why
                   their behaviour isn&apos;t coded rule by rule, and what the
@@ -132,7 +132,7 @@ export default function Home() {
                   </Link>{" "}
                   could mean for us down the line.
                 </p>
-                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
                   My aim is simple: <span className="font-medium text-ink">bring
                   calm, clarity, and depth to the noisiest topic there is.</span>{" "}
                   A little structure to help you learn, build, and find your own
