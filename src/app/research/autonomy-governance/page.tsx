@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -21,11 +22,11 @@ import {
   METHOD_NOTE,
 } from "@/content/autonomy";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/research/autonomy-governance", {
   title: "The Oversight Threshold",
   description:
     "As AI autonomy rises, the ability of a person to independently verify the system falls. An interactive framework mapping five levels of autonomy against eight governance dimensions, with a test for whether human oversight is still doing real work.",
-};
+});
 
 /** Stable anchors, so the section list keeps working if headings are edited. */
 const SECTIONS = [
@@ -452,10 +453,9 @@ export default function AutonomyGovernancePage() {
       {/* 11 — disclaimer */}
       <Reveal>
         <p className="mt-16 rounded-2xl border border-line bg-surface/60 p-5 text-sm leading-relaxed text-muted">
-          Written and published in a personal capacity, from public sources. It
-          is not derived from any employer&apos;s methodology or from client
-          work, it describes no real organisation, and it is not professional,
-          legal or compliance advice. The framework, the five levels and the
+          Independent personal work based on public sources. The examples
+          describe no real organisation. This is educational material, not
+          professional, legal or compliance advice. The framework, the five levels and the
           oversight test are my own; nothing here is a certification, a standard
           or a regulatory interpretation you should rely on without your own
           advice.

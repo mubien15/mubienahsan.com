@@ -1,12 +1,13 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout } from "@/components/course/blocks";
 import { MythList } from "@/components/course/prompting";
 import { FourD, Credit } from "@/components/course/fluency";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/the-4d-framework/why-a-framework", {
   title: "Why bother with a framework",
   description:
     "Most of us use AI reactively and get results we cannot explain or repeat. Where the 4D framework came from, and the honest case for having a model in your head.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 1</span>
 

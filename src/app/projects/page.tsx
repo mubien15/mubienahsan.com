@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { PageIntro, Pill, TONE_TEXT } from "@/components/ui";
@@ -8,11 +9,11 @@ import { cn } from "@/lib/cn";
 import { PROJECTS } from "@/content/projects";
 import type { Tone } from "@/components/ui";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/projects", {
   title: "Projects",
   description:
-    "Built with AI. A showcase of real apps I have shipped, with the stack, the story, and the lessons learned. Proof, not portfolio.",
-};
+    "Useful tools and personal experiments built with AI. What I made, why I made it, and what I learned along the way.",
+});
 
 const LEFT_BAR: Record<Tone, string> = {
   accent: "before:bg-accent",
@@ -25,10 +26,10 @@ const LEFT_BAR: Record<Tone, string> = {
 export default function ProjectsPage() {
   return (
     <Container className="py-16 sm:py-20">
-      <PageIntro eyebrow="Built with AI" title="Proof, not portfolio." tone="flame">
-        Everything here is something I actually shipped, on nights and weekends,
-        without a CS degree. Each one taught me something a chatbot cannot hand
-        you: what it takes to finish.
+      <PageIntro eyebrow="Built with AI" title="Useful ideas, built with AI." tone="flame">
+        These are my personal builds: things I use, ideas I wanted to try, and
+        questions I wanted to explore by making something. Some are live and
+        others are still taking shape. Here is what each one is teaching me.
       </PageIntro>
 
       <div className="mt-14 space-y-6">

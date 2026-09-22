@@ -34,7 +34,7 @@ export function PrintHeader({
       </h1>
       <p className="prose-scale-sm mt-3 leading-relaxed text-ink/80">{standfirst}</p>
       <p className="mt-4 text-xs text-muted">
-        Mubien Ahsan · mubienahsan.com/research/autonomy-governance · Sources
+        Mubien · mubienahsan.com/research/autonomy-governance · Sources
         last checked {LAST_CHECKED}
       </p>
     </header>
@@ -49,9 +49,8 @@ export function PrintFooterNote({ extra }: { extra?: string }) {
   return (
     <section className="print-block mt-10 border-t border-line pt-5 text-xs leading-relaxed text-muted print-rule">
       <p>
-        Written in a personal capacity. It is not the position of any employer,
-        is not derived from any employer&rsquo;s methodology or client work, and
-        is not legal, regulatory or professional advice. Nothing here is a
+        Independent personal work based on public sources. It is educational
+        material, not legal, regulatory or professional advice. Nothing here is a
         certification, an audit opinion or a compliance conclusion.
       </p>
       <p className="mt-2">
@@ -61,7 +60,7 @@ export function PrintFooterNote({ extra }: { extra?: string }) {
       </p>
       {extra ? <p className="mt-2">{extra}</p> : null}
       <p className="mt-3">
-        © {new Date().getFullYear()} Mubien Ahsan. Free to use and share within
+        © {new Date().getFullYear()} Mubien. Free to use and share within
         your organisation with attribution.
       </p>
     </section>

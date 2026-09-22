@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -8,11 +9,11 @@ import { notFound } from "next/navigation";
 
 const COURSE_SLUG = "prompting-basics";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/courses/prompting-basics", {
   title: "Prompting, without the hype",
   description:
     "Most prompt engineering advice is noise. Here is the small handful of ideas that actually change your results, checked against Anthropic's own guidance.",
-};
+});
 
 export default function CourseOverviewPage() {
   const course = getCourse(COURSE_SLUG);

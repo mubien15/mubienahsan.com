@@ -172,7 +172,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "So verification capacity does not fall because reviewers become lazy or overloaded. Give one of them unlimited time, complete logs and total independence, and they still cannot say why it did what it did. It falls because the thing being checked stops being the kind of thing a person can check.",
+        text: "Opacity limits some kinds of explanation; it does not make every output impossible to verify. Code can be tested, a calculation independently repeated, and a claim checked against evidence. The harder question is whether those checks cover the failures that matter in the actual use case.",
       },
       { kind: "h3", text: "The strongest published version of this" },
       {
@@ -185,7 +185,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds the problem: a system that can improve its own capability changes the thing being verified faster than a verification cycle can complete.",
+        text: "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds the problem: a system permitted to deploy its own changes could change faster than its checks can keep up. Whether that happens depends on its rate of improvement and the controls around deployment.",
       },
       { kind: "h3", text: "The alignment problem" },
       {
@@ -194,24 +194,24 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "The trouble is specification. You cannot write down everything you mean, so any objective handed to a capable optimiser is a proxy for the intent behind it — not through malice, but because it was only ever an approximation. The literature names three ways the proxy comes apart from the intent. Specification gaming, where a system satisfies the stated objective by a route nobody intended. Reward hacking, where it optimises the measure rather than the thing the measure stood for. Goal misgeneralisation, where behaviour that held up under evaluation turns out, once deployed, to have been pursuing something else. None has a general solution, and capability makes each worse rather than better, because a weak system pursuing the wrong goal simply fails at it.",
+        text: "The trouble is specification. You cannot write down everything you mean, so any objective handed to a capable optimiser is a proxy for the intent behind it — not through malice, but because it was only ever an approximation. The literature names three ways the proxy comes apart from the intent. Specification gaming, where a system satisfies the stated objective by a route nobody intended. Reward hacking, where it optimises the measure rather than the thing the measure stood for. Goal misgeneralisation, where behaviour that held up under evaluation turns out, once deployed, to have been pursuing something else. More capability can increase the consequences of a misspecified objective. It does not establish that every stronger model is less aligned; the task, training, evaluation, and constraints all matter.",
       },
       {
         kind: "p",
         text: "The two problems compound, and that is the part worth holding on to. A specification failure inside a system you cannot inspect is not one you find by looking for it. You find it when the system acts. That is the whole case for constraining what a system may reach rather than trusting that somebody will notice in time.",
       },
-      { kind: "h3", text: "Why the argument follows" },
+      { kind: "h3", text: "What the argument depends on" },
       {
         kind: "p",
-        text: "I can follow this argument, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is the two problems above — we cannot see inside, and we cannot say exactly what we meant — plus a third that compounds both: a system able to improve its own capability changes faster than any verification cycle can complete.",
+        text: "I can follow this argument, and I think anyone working in governance should be able to. It is not a mystical claim about machines waking up. It is the two problems above — we cannot see inside, and we cannot say exactly what we meant — plus a third that compounds both: a system permitted to deploy its own changes might change faster than a particular review process can keep up. That is a conditional risk, not an established property of every improvement loop.",
       },
       {
         kind: "p",
-        text: "Each of the three is unremarkable on its own, and each is the ordinary understanding of how the technology works rather than a contested reading of it. Placed in sequence they describe something that becomes harder to check exactly as it becomes more consequential. The shape of the argument is sound.",
+        text: "The strongest conclusion depends on contested assumptions about capability growth, the pace of self-improvement, and the effectiveness of future safeguards. It is a scenario to examine, not a demonstrated trajectory.",
       },
       {
         kind: "p",
-        text: "The self-improvement step deserves particular attention from governance practitioners, because it is the one our methods are least prepared for. Every assurance technique available — testing, validation, independent review, certification — assumes the object holds still long enough to be assessed. A system that meaningfully improves its own capability breaks that assumption, and nothing in existing model risk practice is built for it.",
+        text: "An improvement loop needs a clear account of what changes: context, memory, tools, code, weights, or the process producing the next version. Versioning, staged release, change approval, monitoring, and rollback remain useful. The open question is whether those checks provide enough coverage and independence when the system proposes increasingly consequential changes.",
       },
       { kind: "h3", text: "Where I put my work" },
       {
@@ -220,7 +220,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "The question also does not need to be settled for the problem in this paper to be real. It does not wait for superintelligence: it is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves. So this paper works one layer down, on the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing real work in a system running right now is mine — and unlike the first question, it is answerable this quarter.",
+        text: "The question also does not need to be settled for the problem in this paper to be real. It does not wait for superintelligence: it is already visible at level 4, in systems nobody claims are superhuman, and the response is the same whichever way the larger argument resolves. So this paper works one layer down, on the distance between what these systems can already do and what our existing controls can actually establish. Whether the endpoint is the one Soares describes is not mine to adjudicate. Whether human review is doing useful work in a particular system is a more concrete question, and one I want to keep exploring.",
       },
     ],
   },
@@ -638,7 +638,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Declarations" },
       {
         kind: "p",
-        text: "Written in a personal capacity. This is not the position of any employer, is not derived from any employer's methodology or client work, and describes no client, engagement or internal material. It is not legal, regulatory or professional advice, and it is not a certification, an audit opinion or a compliance conclusion. No compensation was received for writing it and no organisation reviewed it before publication.",
+        text: "Independent personal work based on public sources. The examples describe no real organisation. It is not legal, regulatory or professional advice, and it is not a certification, an audit opinion or a compliance conclusion. No compensation was received for writing it and no organisation reviewed it before publication.",
       },
       {
         kind: "p",

@@ -15,11 +15,11 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <LogoMark className="h-10 w-10 text-accent" />
           <p className="font-display mt-3 text-lg font-semibold text-ink">
-            Mubien Ahsan
+            Mubien
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Learning and building with AI, in public. Free courses, honest
-            notes, and the things I have actually shipped.
+            Using AI, building useful things, and exploring the questions it
+            raises. A little calm, clarity, and depth in a noisy field.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export function SiteFooter() {
       <Container className="border-t border-line/60 py-6">
         <div className="flex flex-col gap-2 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
-            {`© ${year} Mubien Ahsan. Built in public with Next.js & Claude Code.`}
+            {`© ${year} Mubien. Built in public with Next.js & Claude Code.`}
           </p>
           <Link href="/legal" className="hover:text-accent">
             Privacy Policy &amp; Disclaimer

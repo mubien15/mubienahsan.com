@@ -24,8 +24,7 @@ export type Project = {
 };
 
 /**
- * "Built With AI" showcase. Positioning: proof, not portfolio.
- * Someone with no CS degree built these on nights and weekends.
+ * Personal builds, with their purpose and the lessons from making them.
  */
 export const PROJECTS: Project[] = [
   {
@@ -33,13 +32,13 @@ export const PROJECTS: Project[] = [
     name: "Northbound Notes",
     tone: "accent",
     tagline: "A morning briefing that writes itself",
-    what: "A daily email that is waiting for me before I start work. Toronto weather in plain language, the world news that actually matters, Canadian financial services headlines on rates, banks and AI adoption, what moved in AI, market movers like the Nasdaq and Nvidia, anything touching the consulting world I work in, and a conversation starter I can actually use that day.",
-    why: "I was starting every morning stitching together five different sources, and still walking into meetings without a good opening line. This assembles the whole brief once, automatically, so I begin the day informed instead of catching up. It is the project I use most, because I use it every single day.",
+    what: "A daily email I use to start the morning: Toronto weather, news, developments in AI, and a small selection of stories worth a closer look. Built with AI to bring some structure to a noisy information feed.",
+    why: "I was piecing together the morning from several different sources. I wanted one readable starting point, with enough context to decide what deserves more attention. It is the project I use every day.",
     stack: ["Claude Code", "Scheduled task", "Web search", "Gmail"],
     image: "/projects/northbound-notes-v2.webp",
     video: "/projects/northbound-notes.mp4",
     frame: "phone",
-    imageNote: "Delivered every morning, before work",
+    imageNote: "A calmer start to the morning",
     status: "Live",
     lessons:
       "Editing is the product. Pulling the news in was the easy half. The hard half was deciding what to cut so the whole thing still reads in two minutes, and writing it so it sounds like a person rather than a feed.",
@@ -49,38 +48,38 @@ export const PROJECTS: Project[] = [
     name: "Fable",
     tone: "flame",
     tagline: "An AI communication coach for hard conversations",
-    what: "A web app that runs you through realistic workplace scenarios, like a tough client, a skeptical exec, or a difficult teammate, and coaches your delivery in real time, then scores it.",
-    why: "I wanted to see how far a solo builder could take a genuinely useful AI product: real personas, tiered access, live feedback. It taught me more about shipping than any course.",
+    what: "An AI communication coach for practising difficult conversations. Work through scenarios, try a different approach, and get feedback on your delivery.",
+    why: "I wanted a place to rehearse a conversation before having it for real. Building Fable let me explore how personas, prompts, and feedback can make an AI interaction useful beyond an open chat box.",
     stack: ["Next.js", "TypeScript", "Anthropic API", "Vercel"],
     liveUrl: "https://scenariolab.quest",
     liveLabel: "scenariolab.quest",
     image: "/projects/fable.png",
     status: "Live",
     lessons:
-      "Building the whole loop, from auth to tiering to prompt design to evals, is where the real learning was. General chatbots can imitate the pitch. They cannot imitate having shipped it.",
+      "The surrounding experience matters: the scenario, the instructions, and the way feedback is presented. A model-generated score is a prompt for reflection; its usefulness still needs to be judged against the conversation you actually want to have.",
   },
   {
     slug: "ai-governance-agent",
     name: "AI Governance Assessment Agent",
     tone: "grape",
     tagline: "Automated first pass AI risk and governance reviews",
-    what: "An agent that interviews you about an AI system and produces a structured governance assessment, mapped to real frameworks, that a risk team can actually use as a starting point.",
-    why: "Governance work is slow and repetitive at the intake stage, so an agent handles the first 80 percent and humans spend their time on judgment instead of boilerplate. The interesting constraint was making the output structured enough that a real team could pick it up and finish it.",
+    what: "An AI tool that asks questions about a system and drafts a structured governance assessment. It is a way to explore risks, missing information, and questions worth following up.",
+    why: "I wanted to test whether AI could make an open-ended governance question easier to work through. The challenge is making its reasoning and gaps visible enough for a person to check.",
     stack: ["Next.js", "Anthropic API", "Vercel"],
     liveUrl: "https://ai-governance-agent-xi.vercel.app",
     liveLabel: "ai-governance-agent-xi.vercel.app",
     image: "/projects/ai-governance-agent.png",
     status: "Live",
     lessons:
-      "Domain expertise is the moat. The value was not the model. It was knowing which questions a real assessment has to ask and how to structure the output.",
+      "A tidy assessment can look more certain than the evidence behind it. Clear questions, traceable inputs, and room to say that information is missing matter as much as the generated answer.",
   },
   {
     slug: "risk-register-agent",
     name: "GRC Risk Register Tool",
     tone: "mint",
     tagline: "A lightweight risk register that drafts itself",
-    what: "A tool for governance, risk and compliance teams that turns a plain description of a risk into a properly structured register entry, with likelihood, impact, controls and owner.",
-    why: "Small teams live in spreadsheets. I wanted to see if an agent could remove the blank page problem of risk documentation without forcing anyone into heavyweight GRC software.",
+    what: "An experiment that turns a plain-language risk description into a draft register entry, with fields for likelihood, impact, controls, and ownership.",
+    why: "I wanted to explore how a small tool could make risk documentation easier to begin. The draft gives someone a structure to question and refine; it cannot establish the risk on its own.",
     stack: ["Python", "Anthropic API"],
     status: "In progress",
     lessons:

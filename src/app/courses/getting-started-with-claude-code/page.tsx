@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -8,11 +9,11 @@ import { notFound } from "next/navigation";
 
 const COURSE_SLUG = "getting-started-with-claude-code";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata("/courses/getting-started-with-claude-code", {
   title: "Getting Started with Claude Code",
   description:
     "The friendliest way into building with AI. Install Claude Code and make your first real change, with no coding experience required.",
-};
+});
 
 export default function CourseOverviewPage() {
   const course = getCourse(COURSE_SLUG);

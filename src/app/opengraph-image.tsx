@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { logoDataUri } from "@/lib/logo-shapes";
 
-export const alt = "Mubien Ahsan · Learning and building with AI, in public";
+export const alt = "Mubien · A calmer way to explore AI";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -56,7 +56,7 @@ export default function Image() {
               flexWrap: "wrap",
             }}
           >
-            Learning &amp; building with AI, in public.
+            A calmer way to explore AI.
           </div>
 
           <div
@@ -69,8 +69,8 @@ export default function Image() {
               display: "flex",
             }}
           >
-            Free guides that start from zero, real apps, and honest notes on what
-            is worth learning.
+            Useful builds. Clear explanations. Thoughtful questions about
+            governance and the limits of AI.
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export default function Image() {
               fontWeight: 600,
             }}
           >
-            Mubien Ahsan
+            Mubien
           </div>
           <div
             style={{

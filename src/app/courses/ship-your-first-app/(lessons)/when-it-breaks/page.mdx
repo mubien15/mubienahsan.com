@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Terminal } from "@/components/course/interactive";
 import { Callout, PromptToClaude, Checklist } from "@/components/course/blocks";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/ship-your-first-app/when-it-breaks", {
   title: "When it breaks",
   description:
     "It will break, and that is the job rather than a sign you are bad at this. How to read an error, hand it over well, and never take the word fixed on trust.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 4</span>
 

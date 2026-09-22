@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout } from "@/components/course/blocks";
 import { MythList, PromptCompare } from "@/components/course/prompting";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/prompting-basics/why-most-advice-is-noise", {
   title: "Why most prompting advice is noise",
   description:
     "Magic words, secret phrases and threats do not work. The techniques that do are unglamorous and few. Here is the honest list.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 1</span>
 

@@ -40,6 +40,40 @@ type Side = { prompt: string; result: string };
  * The workhorse of this course: a weak prompt and a strong one, side by side,
  * each with the kind of answer it earns you.
  */
+const Card = ({
+  side,
+  tone,
+  label,
+  icon,
+}: {
+  side: Side;
+  tone: Tone;
+  label: string;
+  icon: string;
+}) => (
+  <div
+    className={`flex flex-col rounded-2xl border p-5 ${BORDER[tone]} ${SOFT_BG[tone]}`}
+  >
+    <p
+      className={`mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${TEXT[tone]}`}
+    >
+      <span aria-hidden>{icon}</span>
+      {label}
+    </p>
+
+    <div className="rounded-xl border border-line bg-surface p-4">
+      <p className="text-[0.95rem] italic leading-7 text-ink/85">
+        {side.prompt}
+      </p>
+    </div>
+
+    <p className="mt-4 mb-1.5 text-xs font-medium uppercase tracking-wider text-muted">
+      What you get back
+    </p>
+    <p className="text-sm leading-7 text-ink/75">{side.result}</p>
+  </div>
+);
+
 export function PromptCompare({
   weak,
   strong,
@@ -51,40 +85,6 @@ export function PromptCompare({
   weakLabel?: string;
   strongLabel?: string;
 }) {
-  const Card = ({
-    side,
-    tone,
-    label,
-    icon,
-  }: {
-    side: Side;
-    tone: Tone;
-    label: string;
-    icon: string;
-  }) => (
-    <div
-      className={`flex flex-col rounded-2xl border p-5 ${BORDER[tone]} ${SOFT_BG[tone]}`}
-    >
-      <p
-        className={`mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${TEXT[tone]}`}
-      >
-        <span aria-hidden>{icon}</span>
-        {label}
-      </p>
-
-      <div className="rounded-xl border border-line bg-surface p-4">
-        <p className="text-[0.95rem] italic leading-7 text-ink/85">
-          {side.prompt}
-        </p>
-      </div>
-
-      <p className="mt-4 mb-1.5 text-xs font-medium uppercase tracking-wider text-muted">
-        What you get back
-      </p>
-      <p className="text-sm leading-7 text-ink/75">{side.result}</p>
-    </div>
-  );
-
   return (
     <div className="my-8 grid gap-4 md:grid-cols-2">
       <Card side={weak} tone="flame" label={weakLabel} icon="😐" />

@@ -6,7 +6,7 @@
 
 const BREVO_SMTP_ENDPOINT = "https://api.brevo.com/v3/smtp/email";
 
-export const SENDER = { name: "Mubien Ahsan", email: "hello@mubienahsan.com" };
+export const SENDER = { name: "Mubien", email: "hello@mubienahsan.com" };
 
 /*
   A one-click unsubscribe address, used both in the footer and in the
@@ -77,7 +77,7 @@ export function emailShell(body: string, { unsubscribe = true } = {}): string {
     ? `<p style="margin:28px 0 0;padding-top:20px;border-top:1px solid #eaddc6;font-size:13px;line-height:1.6;color:#8a827a;">
          You are getting this because you asked for The First Build at mubienahsan.com.
          Don&rsquo;t want these? <a href="mailto:${UNSUBSCRIBE_MAILTO}" style="color:#8a827a;">Unsubscribe here</a> and I&rsquo;ll take you off straight away.
-         ${address ? `<br>Mubien Ahsan, ${address}` : ""}
+         ${address ? `<br>Mubien, ${address}` : ""}
        </p>`
     : "";
 

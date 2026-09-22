@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container } from "@/components/container";
 import { LogoMark } from "@/components/logo-mark";
 import { NAV_LINKS } from "@/lib/nav";
@@ -12,10 +12,11 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Close the mobile menu whenever the route changes.
-  useEffect(() => {
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   const isActive = (link: { href: string; owns?: string[] }) =>
     link.href === "/"

@@ -87,7 +87,7 @@ export const CONTROLS: Control[] = [
     published: "September 2026",
     lastChecked: "16 September 2026",
     summary:
-      "The checkout protocols record the purchase a buyer is approving and limit the credential that pays for it. They do not record the standing permission the agent was sent out with — what it may buy, from whom, and what to do when the item is gone. The card networks are now building exactly that, which is the strongest sign the gap is real.",
+      "A purchase needs to be checked against the permission behind it. Protocols such as AP2 already provide mandate mechanisms; the practical question is whether an implementation captures the relevant conditions and enforces them throughout the task.",
     sections: [
       {
         heading: "What goes wrong",

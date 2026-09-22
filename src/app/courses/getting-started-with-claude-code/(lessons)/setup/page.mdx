@@ -1,11 +1,12 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Terminal, PlatformTabs } from "@/components/course/interactive";
 import { Callout, Checklist } from "@/components/course/blocks";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/getting-started-with-claude-code/setup", {
   title: "Getting set up",
   description:
     "Install Claude Code once, with every step named. The native installer needs no coding tools and no prior setup knowledge.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-mint"><span className="h-1.5 w-1.5 rounded-full bg-mint" />Lesson 2</span>
 

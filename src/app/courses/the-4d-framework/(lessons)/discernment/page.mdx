@@ -1,12 +1,13 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Callout, Checklist } from "@/components/course/blocks";
 import { Parts } from "@/components/course/fluency";
 import { BuildLoop } from "@/components/course/ship";
 
-export const metadata = {
+export const metadata = pageMetadata("/courses/the-4d-framework/discernment", {
   title: "Discernment: judging what comes back",
   description:
     "Fluent writing feels correct, which is exactly the trap. How to evaluate the output, the reasoning behind it, and the way the tool is behaving.",
-};
+});
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold"><span className="h-1.5 w-1.5 rounded-full bg-gold" />Lesson 4</span>
 
