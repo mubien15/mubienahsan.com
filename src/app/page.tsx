@@ -120,6 +120,19 @@ export default function Home() {
                   I share the projects, questions, and lessons along the way.
                 </p>
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+                  Right now, I&apos;m deep down a research rabbit hole: how
+                  neural networks are &ldquo;grown&rdquo; through training, why
+                  their behaviour isn&apos;t coded rule by rule, and what the
+                  alignment problem and{" "}
+                  <Link
+                    href="/research/learning-and-self-improvement"
+                    className="text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent"
+                  >
+                    recursive learning and self-improvement
+                  </Link>{" "}
+                  could mean for us down the line.
+                </p>
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
                   My aim is simple: <span className="font-medium text-ink">bring
                   calm, clarity, and depth to the noisiest topic there is.</span>{" "}
                   A little structure to help you learn, build, and find your own
@@ -131,6 +144,40 @@ export default function Home() {
                     Explore the questions
                   </CtaLink>
                 </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Container>
+
+      {/* Free guide — email capture */}
+      <Container className="pt-10 sm:pt-12">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-accent-soft p-8 sm:p-12">
+            <div
+              aria-hidden
+              className="glow glow-gold animate-drift absolute -left-32 -bottom-40 h-[26rem] w-[26rem] rounded-full"
+            />
+            <div className="relative grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+              <div>
+                <Eyebrow tone="accent">Free guide</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+                  Build a morning brief that writes itself
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed text-ink/70">
+                  <span className="font-medium text-ink">The First Build</span>{" "}
+                  is the whole thing: the actual instructions I use, every
+                  decision behind them, and the parts I got wrong. No code, and
+                  you can have it running by the end of an evening.
+                </p>
+              </div>
+
+              <div>
+                <SubscribeForm source="home-band" />
+                <p className="mt-3 text-sm leading-relaxed text-ink/60">
+                  I&apos;ll send it straight to your inbox, plus new builds as I
+                  publish them. Free, always — unsubscribe anytime.
+                </p>
               </div>
             </div>
           </div>
@@ -467,40 +514,6 @@ export default function Home() {
                     See my projects
                   </CtaLink>
                 </div>
-            </div>
-          </div>
-        </Reveal>
-      </Container>
-
-      {/* Free guide — email capture */}
-      <Container className="pt-10 sm:pt-12">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-accent-soft p-8 sm:p-12">
-            <div
-              aria-hidden
-              className="glow glow-gold animate-drift absolute -left-32 -bottom-40 h-[26rem] w-[26rem] rounded-full"
-            />
-            <div className="relative grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-              <div>
-                <Eyebrow tone="accent">Free guide</Eyebrow>
-                <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-                  Build a morning brief that writes itself
-                </h2>
-                <p className="mt-3 text-lg leading-relaxed text-ink/70">
-                  <span className="font-medium text-ink">The First Build</span>{" "}
-                  is the whole thing: the actual instructions I use, every
-                  decision behind them, and the parts I got wrong. No code, and
-                  you can have it running by the end of an evening.
-                </p>
-              </div>
-
-              <div>
-                <SubscribeForm source="home-band" />
-                <p className="mt-3 text-sm leading-relaxed text-ink/60">
-                  I&apos;ll send it straight to your inbox, plus new builds as I
-                  publish them. Free, always — unsubscribe anytime.
-                </p>
-              </div>
             </div>
           </div>
         </Reveal>
