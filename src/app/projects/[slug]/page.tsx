@@ -73,6 +73,13 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   </CtaLink>
                 </div>
               ) : null}
+              {project.internalUrl ? (
+                <div className="mt-8">
+                  <CtaLink href={project.internalUrl} tone={project.tone}>
+                    Open the interactive product →
+                  </CtaLink>
+                </div>
+              ) : null}
             </div>
 
             <aside className="rounded-2xl border border-line bg-surface p-6">
