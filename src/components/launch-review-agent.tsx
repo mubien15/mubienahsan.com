@@ -21,6 +21,7 @@ import {
 type ResultTab = "overview" | "claims" | "tests" | "gates";
 
 const STEPS = ["Purpose", "Boundaries", "Oversight"] as const;
+const RESULT_TABS: ResultTab[] = ["overview", "claims", "tests", "gates"];
 
 const LEVEL_STYLE: Record<ReviewLevel, string> = {
   "Standard review": "border-mint/30 bg-mint-soft text-mint",
@@ -41,7 +42,7 @@ export function LaunchReviewAgent() {
   const [tab, setTab] = useState<ResultTab>("overview");
   const [error, setError] = useState("");
   const [completedGates, setCompletedGates] = useState<string[]>([]);
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
 
   const review = useMemo(() => generateLaunchReview(input), [input]);
   const isResult = step === STEPS.length;
@@ -125,23 +126,63 @@ export function LaunchReviewAgent() {
     );
   }
 
-  function copyReview() {
+  async function copyReview() {
     const markdown = reviewToMarkdown(input, review, completedGates);
-    const textArea = document.createElement("textarea");
-    textArea.value = markdown;
-    textArea.setAttribute("readonly", "");
-    textArea.style.position = "fixed";
-    textArea.style.opacity = "0";
-    document.body.appendChild(textArea);
-    textArea.select();
-    const copiedSynchronously = document.execCommand("copy");
-    textArea.remove();
+    let succeeded = false;
 
-    if (!copiedSynchronously && navigator.clipboard) {
-      void navigator.clipboard.writeText(markdown).catch(() => undefined);
+    if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(markdown);
+        succeeded = true;
+      } catch {
+        /* Fall back for browsers that expose the API but block the write. */
+      }
     }
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
+
+    if (!succeeded) {
+      const previousFocus = document.activeElement as HTMLElement | null;
+      const textArea = document.createElement("textarea");
+      textArea.value = markdown;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        succeeded = document.execCommand("copy");
+      } catch {
+        succeeded = false;
+      }
+      textArea.remove();
+      previousFocus?.focus();
+    }
+
+    setCopyStatus(succeeded ? "copied" : "failed");
+    window.setTimeout(() => setCopyStatus("idle"), 1800);
+  }
+
+  function moveResultTab(event: React.KeyboardEvent<HTMLButtonElement>, current: ResultTab) {
+    const currentIndex = RESULT_TABS.indexOf(current);
+    let nextIndex = currentIndex;
+
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      nextIndex = (currentIndex + 1) % RESULT_TABS.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      nextIndex = (currentIndex - 1 + RESULT_TABS.length) % RESULT_TABS.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = RESULT_TABS.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    const next = RESULT_TABS[nextIndex];
+    setTab(next);
+    window.requestAnimationFrame(() => {
+      document.getElementById(`launch-review-tab-${next}`)?.focus();
+    });
   }
 
   function downloadReview() {
@@ -324,9 +365,14 @@ export function LaunchReviewAgent() {
               <button
                 type="button"
                 onClick={copyReview}
+                aria-live="polite"
                 className="rounded-full border border-line bg-surface px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-grape/50 hover:text-grape"
               >
-                {copied ? "Copied" : "Copy as Markdown"}
+                {copyStatus === "copied"
+                  ? "Copied"
+                  : copyStatus === "failed"
+                    ? "Copy failed"
+                    : "Copy as Markdown"}
               </button>
               <button
                 type="button"
@@ -346,31 +392,43 @@ export function LaunchReviewAgent() {
           </div>
 
           <div className="border-b border-line bg-paper/45 px-4 sm:px-8" data-print-hide>
-            <div className="flex snap-x gap-1 overflow-x-auto py-2" role="tablist">
+            <div
+              className="flex snap-x gap-1 overflow-x-auto py-2"
+              role="tablist"
+              aria-label="Review sections"
+            >
               <ResultTabButton
+                tabKey="overview"
                 active={tab === "overview"}
                 onClick={() => setTab("overview")}
+                onKeyDown={(event) => moveResultTab(event, "overview")}
                 count={review.openQuestions.length}
               >
                 Review brief
               </ResultTabButton>
               <ResultTabButton
+                tabKey="claims"
                 active={tab === "claims"}
                 onClick={() => setTab("claims")}
+                onKeyDown={(event) => moveResultTab(event, "claims")}
                 count={review.claims.length}
               >
                 Claims
               </ResultTabButton>
               <ResultTabButton
+                tabKey="tests"
                 active={tab === "tests"}
                 onClick={() => setTab("tests")}
+                onKeyDown={(event) => moveResultTab(event, "tests")}
                 count={review.tests.length}
               >
                 Test pack
               </ResultTabButton>
               <ResultTabButton
+                tabKey="gates"
                 active={tab === "gates"}
                 onClick={() => setTab("gates")}
+                onKeyDown={(event) => moveResultTab(event, "gates")}
                 count={review.gates.length}
               >
                 Launch gates
@@ -378,7 +436,13 @@ export function LaunchReviewAgent() {
             </div>
           </div>
 
-          <div className="p-5 sm:p-8 lg:p-10">
+          <div
+            id="launch-review-panel"
+            role="tabpanel"
+            aria-labelledby={`launch-review-tab-${tab}`}
+            tabIndex={0}
+            className="p-5 sm:p-8 lg:p-10"
+          >
             {tab === "overview" ? (
               <OverviewResult input={input} review={review} />
             ) : null}
@@ -1001,13 +1065,17 @@ function Metric({ value, label }: { value: string | number; label: string }) {
 }
 
 function ResultTabButton({
+  tabKey,
   active,
   onClick,
+  onKeyDown,
   count,
   children,
 }: {
+  tabKey: ResultTab;
   active: boolean;
   onClick: () => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
   count: number;
   children: React.ReactNode;
 }) {
@@ -1015,8 +1083,12 @@ function ResultTabButton({
     <button
       type="button"
       role="tab"
+      id={`launch-review-tab-${tabKey}`}
       aria-selected={active}
+      aria-controls="launch-review-panel"
+      tabIndex={active ? 0 : -1}
       onClick={onClick}
+      onKeyDown={onKeyDown}
       className={cn(
         "flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
         active ? "bg-grape text-white" : "text-muted hover:bg-surface hover:text-ink"

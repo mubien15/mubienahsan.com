@@ -12,7 +12,7 @@ const SITE_URL = "https://mubienahsan.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   // Use the date the content was actually revised. Generating a fresh timestamp
   // on every request tells crawlers that every page changed when it did not.
-  const lastUpdated = new Date("2026-09-22");
+  const lastUpdated = new Date("2026-09-23");
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: lastUpdated, changeFrequency: "weekly", priority: 1 },

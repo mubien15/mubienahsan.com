@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata("/legal", {
     "What this site collects, which is your email only if you ask for the newsletter, which Canadian and other privacy laws apply, and the honest limits of what you read here.",
 });
 
-const UPDATED = "3 September 2026";
+const UPDATED = "23 September 2026";
 const EMAIL = "hello@mubienahsan.com";
 
 /** Small helper so every section on this page looks the same. */
@@ -194,7 +194,7 @@ export default function LegalPage() {
             express consent.
           </p>
           <p>
-            All I hold is your email address, which of the two forms you used,
+            All I hold is your email address, which signup placement you used,
             and the date you confirmed. No name, and nothing I have inferred
             about you.
           </p>
@@ -212,11 +212,11 @@ export default function LegalPage() {
             GDPR and they process it only on my instructions.
           </p>
           <p>
-            Every email carries a working unsubscribe link, and unsubscribing is
-            immediate. If you would rather be deleted outright than merely
-            unsubscribed, email me and I will remove you. I will not import
-            addresses from people who emailed me, and I will not pass the list
-            to anyone.
+            Every newsletter email after confirmation carries a working
+            unsubscribe link, and unsubscribing is immediate. If you would
+            rather be deleted outright than merely unsubscribed, email me and I
+            will remove you. I will not import addresses from people who emailed
+            me, and I will not pass the list to anyone.
           </p>
         </Section>
 
