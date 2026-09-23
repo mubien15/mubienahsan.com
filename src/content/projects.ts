@@ -10,6 +10,8 @@ export type Project = {
   stack: string[];
   liveUrl?: string;
   liveLabel?: string;
+  /** Internal product route when the build lives on this site. */
+  internalUrl?: string;
   image?: string;
   /** Looping video shown inside the phone, with `image` as its poster. */
   video?: string;
@@ -34,6 +36,51 @@ export type Project = {
  * Personal builds, with their purpose and the lessons from making them.
  */
 export const PROJECTS: Project[] = [
+  {
+    slug: "ai-launch-review",
+    name: "AI Launch Review",
+    tone: "grape",
+    tagline: "Turn an AI idea into a launch decision you can test",
+    what: "An interactive product review that turns a system description into explicit claims, boundary tests, evidence requirements, and launch gates. The output is designed to be challenged, checked, and exported.",
+    why: "AI product reviews often begin with broad promises and end with polished documents. I wanted to move the hard part earlier: define what must be true, how it will be tested, and who needs to see the evidence before launch.",
+    stack: ["Next.js", "TypeScript", "Decision rules", "Evaluation design"],
+    internalUrl: "/launch-review",
+    liveLabel: "Try the launch review",
+    image: "/projects/ai-launch-review.png",
+    status: "Live",
+    lessons:
+      "A useful review should make claims falsifiable. The product becomes more trustworthy when its decision rules and limitations are visible, and when the output names evidence rather than manufacturing confidence.",
+    caseStudy: {
+      context:
+        "Teams can describe an AI feature as helpful, accurate, or safe without agreeing on what any of those claims would look like in a test. The gap appears later, when a launch review has to connect the product promise to system boundaries, evaluation evidence, and operational ownership.",
+      approach:
+        "The prototype asks for the intended use, autonomy, data sensitivity, possible actions, human review model, success condition, and primary concern. Transparent rules then assemble a draft claims register, evaluation pack, evidence checklist, and set of launch gates. The result can be edited and exported as Markdown.",
+      decisions: [
+        {
+          title: "Start with the product claim",
+          body: "A review needs a specific user, task, and consequence. The tool avoids a generic AI risk score and instead asks what the team intends to put into the world.",
+        },
+        {
+          title: "Keep the first engine inspectable",
+          body: "The public prototype uses explicit decision rules rather than an opaque model call. That keeps the relationship between an input and a proposed control visible while the evaluation method is still being tested.",
+        },
+        {
+          title: "Export decisions, not decoration",
+          body: "The useful artifact is a portable review with claims, pass conditions, test cases, owners, and open questions. It should be usable in a repository or product review after the browser tab closes.",
+        },
+      ],
+      limits: [
+        "The prototype does not inspect the product or execute the generated evaluation cases.",
+        "Its output depends on the completeness and accuracy of the system description entered by the user.",
+        "The suggested controls are decision support, not a safety certification or legal determination.",
+      ],
+      next: [
+        "Allow teams to attach traces, test results, and review records to each launch claim.",
+        "Benchmark generated test packs against reviews produced by experienced AI product and risk practitioners.",
+        "Add specialized packs for agentic commerce, customer support, and multi-agent delegation.",
+      ],
+    },
+  },
   {
     slug: "northbound-notes",
     name: "Northbound Notes",

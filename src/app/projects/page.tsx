@@ -26,12 +26,13 @@ const LEFT_BAR: Record<Tone, string> = {
 
 export default function ProjectsPage() {
   const orderedProjects = [
+    ...PROJECTS.filter((project) => project.slug === "ai-launch-review"),
     ...PROJECTS.filter((project) => project.slug === "ai-governance-agent"),
     ...PROJECTS.filter((project) => project.slug === "fable"),
     ...PROJECTS.filter((project) => project.slug === "northbound-notes"),
     ...PROJECTS.filter(
       (project) =>
-        !["ai-governance-agent", "fable", "northbound-notes"].includes(project.slug)
+        !["ai-launch-review", "ai-governance-agent", "fable", "northbound-notes"].includes(project.slug)
     ),
   ];
 
@@ -126,11 +127,23 @@ export default function ProjectsPage() {
                         {project.liveLabel} ↗
                       </a>
                     ) : null}
+                    {project.internalUrl ? (
+                      <Link
+                        href={project.internalUrl}
+                        className={cn(
+                          "mt-4 inline-block text-sm font-medium hover:underline",
+                          TONE_TEXT[project.tone]
+                        )}
+                      >
+                        {project.liveLabel ?? "Open the project"} →
+                      </Link>
+                    ) : null}
                     {project.caseStudy ? (
                       <Link
                         href={`/projects/${project.slug}`}
                         className={cn(
-                          "mt-4 ml-4 inline-block text-sm font-medium hover:underline",
+                          "mt-4 inline-block text-sm font-medium hover:underline",
+                          (project.liveUrl || project.internalUrl) && "ml-4",
                           TONE_TEXT[project.tone]
                         )}
                       >

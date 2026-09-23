@@ -85,9 +85,9 @@ export default function Home() {
   const ladderCols =
     ladder.length >= 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
   const featuredProjects = [
+    PROJECTS.find((project) => project.slug === "ai-launch-review"),
     PROJECTS.find((project) => project.slug === "ai-governance-agent"),
     PROJECTS.find((project) => project.slug === "fable"),
-    PROJECTS.find((project) => project.slug === "northbound-notes"),
   ].filter((project): project is (typeof PROJECTS)[number] => Boolean(project));
 
   return (
@@ -146,9 +146,9 @@ export default function Home() {
                   them, and being precise about what is known and what is not.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <CtaLink href="/projects">Review the case studies</CtaLink>
-                  <CtaLink href="/research" variant="secondary">
-                    Explore the questions
+                  <CtaLink href="/launch-review">Try the launch review</CtaLink>
+                  <CtaLink href="/projects" variant="secondary">
+                    Review the case studies
                   </CtaLink>
                 </div>
               </div>
@@ -341,7 +341,14 @@ export default function Home() {
                     <p className="prose-scale-sm mt-3 flex-1 leading-relaxed text-ink/85">
                       {project.what}
                     </p>
-                    {project.caseStudy ? (
+                    {project.internalUrl ? (
+                      <Link
+                        href={project.internalUrl}
+                        className={cn("mt-4 text-sm font-medium hover:underline", TONE_TXT[project.tone])}
+                      >
+                        Try the interactive product →
+                      </Link>
+                    ) : project.caseStudy ? (
                       <Link
                         href={`/projects/${project.slug}`}
                         className={cn("mt-4 text-sm font-medium hover:underline", TONE_TXT[project.tone])}
