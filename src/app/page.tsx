@@ -111,7 +111,6 @@ export default function Home() {
               <PhotoBlob src="/me-v9.webp" />
 
               <div>
-                <Eyebrow tone="accent">Building, testing, and questioning AI</Eyebrow>
                 <h1 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
                   Hey, I&apos;m{" "}
                   <span className="relative inline-block">
