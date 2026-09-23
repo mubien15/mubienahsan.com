@@ -21,21 +21,29 @@
   --line: #eaddc6;
 
   /* Brand / primary accent (friendly orange) */
-  --accent: #ee6a3a;
-  --accent-strong: #d5561f;
+  --accent: #b94013;
+  --accent-strong: #963109;
   --accent-soft: #fbe4d5;
 
   /* Category colors — warm & friendly */
-  --mint: #10a396; /* teal */
+  --mint: #08756d; /* teal */
   --mint-soft: #cdece8;
-  --flame: #f2603f; /* coral */
+  --flame: #c44229; /* coral */
   --flame-soft: #fde0d5;
-  --grape: #6a6cf2; /* friendly blue-violet */
+  --grape: #5759d5; /* friendly blue-violet */
   --grape-soft: #e6e5fd;
-  --gold: #e9a80c; /* warm yellow */
+  --gold: #8c6400; /* warm yellow */
   --gold-soft: #faeac0;
 
-  /* Same colours as RGB triplets, so a gradient can vary their alpha. */
+  /* Bright brand colours remain available for decoration. The darker tokens
+     above keep small text and buttons readable against light backgrounds. */
+  --accent-bright: #ee6a3a;
+  --mint-bright: #10a396;
+  --flame-bright: #f2603f;
+  --grape-bright: #6a6cf2;
+  --gold-bright: #e9a80c;
+
+  /* RGB triplets let ambient gradients vary alpha. */
   --gold-rgb: 233 168 12;
   --mint-rgb: 16 163 150;
 }
@@ -60,6 +68,12 @@
   --color-grape-soft: var(--grape-soft);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
+
+  --color-accent-bright: var(--accent-bright);
+  --color-mint-bright: var(--mint-bright);
+  --color-flame-bright: var(--flame-bright);
+  --color-grape-bright: var(--grape-bright);
+  --color-gold-bright: var(--gold-bright);
 
   --font-display: var(--font-figtree);
   --font-sans: var(--font-geist-sans);
@@ -91,6 +105,10 @@
   }
   a {
     text-underline-offset: 3px;
+  }
+  :where(a, button, input, textarea, select):focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
   }
 }
 

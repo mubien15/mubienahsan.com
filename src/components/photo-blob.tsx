@@ -35,7 +35,7 @@ export function PhotoBlob({
           head clears the top of it. */}
       <div
         aria-hidden
-        className="absolute left-1/2 top-1/2 z-0 h-[124%] w-[124%] -translate-x-1/2 -translate-y-[44%] rounded-full bg-gold/70"
+        className="absolute left-1/2 top-1/2 z-0 h-[124%] w-[124%] -translate-x-1/2 -translate-y-[44%] rounded-full bg-gold-bright/70"
       />
 
       {/* The sweep, its coral tail, and two small marks. */}
@@ -47,24 +47,24 @@ export function PhotoBlob({
       >
         <path
           d="M150 34 A116 116 0 1 1 70 248"
-          stroke="var(--gold)"
+          stroke="var(--gold-bright)"
           strokeWidth="10"
           strokeLinecap="round"
         />
         <path
           d="M236 206 A104 104 0 0 1 182 256"
-          stroke="var(--accent)"
+          stroke="var(--accent-bright)"
           strokeWidth="8"
           strokeLinecap="round"
         />
         <path
           d="M44 104 A116 116 0 0 1 66 68"
-          stroke="var(--grape)"
+          stroke="var(--grape-bright)"
           strokeWidth="7"
           strokeLinecap="round"
           opacity="0.8"
         />
-        <circle cx="52" cy="232" r="8" fill="var(--mint)" />
+        <circle cx="52" cy="232" r="8" fill="var(--mint-bright)" />
       </svg>
 
       <div className="relative z-10 aspect-square">
