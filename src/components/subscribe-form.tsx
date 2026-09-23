@@ -40,7 +40,7 @@ export function SubscribeForm({
   onSuccess,
 }: {
   /** Recorded on the contact in Brevo, so you can see which placement works. */
-  source: "home-band" | "popup";
+  source: "home-band" | "popup" | "launch-review";
   className?: string;
   autoFocus?: boolean;
   onSuccess?: () => void;
