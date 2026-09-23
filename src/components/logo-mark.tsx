@@ -10,17 +10,14 @@ import { LOGO_SHAPES } from "@/lib/logo-shapes";
  */
 export function LogoMark({
   className,
-  title = "Mubien",
 }: {
   className?: string;
-  title?: string;
 }) {
   return (
     <svg
       viewBox="0 0 64 64"
       className={className}
-      role="img"
-      aria-label={title}
+      aria-hidden="true"
       fill="currentColor"
     >
       {LOGO_SHAPES.map((points) => (

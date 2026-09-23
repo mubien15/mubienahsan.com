@@ -85,7 +85,7 @@ export function CourseQuiz() {
       aria-labelledby="quiz-heading"
       className="overflow-hidden rounded-3xl border border-line bg-surface"
     >
-      <div className="h-1 w-full bg-gradient-to-r from-mint via-grape to-flame" />
+      <div className="h-1 w-full bg-gradient-to-r from-mint-bright via-grape-bright to-flame-bright" />
 
       <div className="grid gap-8 p-6 sm:p-8 md:grid-cols-[1fr_16rem] md:gap-10">
         {/* Question, or the result */}
@@ -281,7 +281,7 @@ export function CourseQuizFallback() {
       aria-hidden
       className="overflow-hidden rounded-3xl border border-line bg-surface"
     >
-      <div className="h-1 w-full bg-gradient-to-r from-mint via-grape to-flame" />
+      <div className="h-1 w-full bg-gradient-to-r from-mint-bright via-grape-bright to-flame-bright" />
       <div className="grid gap-8 p-6 sm:p-8 md:grid-cols-[1fr_16rem] md:gap-10">
         <div className="min-w-0">
           <Eyebrow tone="accent">Not sure where to start</Eyebrow>

@@ -10,7 +10,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-24 bg-surface/40">
       {/* Colorful accent strip */}
-      <div className="h-1 w-full bg-gradient-to-r from-flame via-grape to-mint" />
+      <div className="h-1 w-full bg-gradient-to-r from-flame-bright via-grape-bright to-mint-bright" />
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm">
           <LogoMark className="h-10 w-10 text-accent" />
@@ -24,7 +24,7 @@ export function SiteFooter() {
         </div>
 
         <div className="flex gap-14">
-          <nav className="flex flex-col gap-2 text-sm">
+          <nav aria-label="Footer navigation" className="flex flex-col gap-2 text-sm">
             <span className="mb-1 text-xs font-medium uppercase tracking-wider text-muted">
               Explore
             </span>
@@ -40,7 +40,7 @@ export function SiteFooter() {
             <SubscribeLink>Get the free guide</SubscribeLink>
           </nav>
 
-          <nav className="flex flex-col gap-2 text-sm">
+          <nav aria-label="External profiles" className="flex flex-col gap-2 text-sm">
             <span className="mb-1 text-xs font-medium uppercase tracking-wider text-muted">
               Elsewhere
             </span>

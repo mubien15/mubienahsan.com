@@ -17,6 +17,26 @@ export const metadata: Metadata = pageMetadata("/agents", {
   title: "AI agent payment controls",
   description:
     "An interactive six-control framework for permission, evidence, and revocation when AI agents make purchases on someone's behalf.",
+  openGraph: {
+    images: [
+      {
+        url: "/agents/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Agents that spend · An interactive framework for AI agent permission, evidence, and revocation",
+      },
+    ],
+  },
+  twitter: {
+    images: [
+      {
+        url: "/agents/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Agents that spend · An interactive framework for AI agent permission, evidence, and revocation",
+      },
+    ],
+  },
 });
 
 const CONTROL_DETAILS: Record<

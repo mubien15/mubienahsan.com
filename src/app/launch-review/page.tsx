@@ -80,7 +80,7 @@ export default function LaunchReviewPage() {
                   What must be true before this system deserves to reach a real user?
                 </p>
                 <dl className="mt-6 grid grid-cols-3 gap-2 border-t border-line pt-5">
-                  <HeroFact value="3" label="inputs" />
+                  <HeroFact value="3" label="steps" />
                   <HeroFact value="4" label="outputs" />
                   <HeroFact value="0" label="uploads" />
                 </dl>

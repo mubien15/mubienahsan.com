@@ -26,18 +26,19 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2.5">
+        <Link href="/" aria-label="Mubien home" className="group flex items-center gap-2.5">
           <LogoMark className="h-7 w-7 text-accent transition-colors group-hover:text-accent-strong" />
           <span className="font-display text-lg font-semibold tracking-tight text-ink">
             Mubien
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
               className={cn(
                 "rounded-full px-3.5 py-1.5 text-sm transition-colors",
                 isActive(link)
@@ -52,8 +53,9 @@ export function SiteHeader() {
 
         <button
           type="button"
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((v) => !v)}
           className="inline-flex h-9 w-9 items-center justify-center rounded-full text-ink hover:bg-sunken md:hidden"
         >
@@ -84,22 +86,26 @@ export function SiteHeader() {
 
       {open && (
         <div className="border-t border-line bg-paper md:hidden">
-          <Container className="flex flex-col py-2">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "rounded-lg px-3 py-2.5 text-base",
-                  isActive(link)
-                    ? "text-accent-strong"
-                    : "text-ink hover:bg-sunken"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </Container>
+          <nav id="mobile-navigation" aria-label="Mobile navigation">
+            <Container className="flex flex-col py-2">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={pathname === link.href ? "page" : undefined}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "rounded-lg px-3 py-2.5 text-base",
+                    isActive(link)
+                      ? "text-accent-strong"
+                      : "text-ink hover:bg-sunken"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </Container>
+          </nav>
         </div>
       )}
     </header>
