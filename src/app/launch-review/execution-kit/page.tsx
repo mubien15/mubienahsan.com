@@ -111,67 +111,61 @@ export default function ExecutionKitPage() {
               </h2>
             </div>
             <p className="text-lg leading-8 text-muted">
-              These are direct previews of the workbook and field guide included in the download.
-              The workbook is editable; the guide explains how to use each part of the process.
+              These selected previews show the workbook structure and the field guide included in
+              the download. Detailed rows, formulas, templates, and guidance remain in the paid kit.
             </p>
           </div>
         </Reveal>
 
         <Reveal>
           <figure className="mt-8 overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_22px_70px_rgba(73,64,40,0.1)]">
-            <a
-              href="/images/execution-kit/workbook-overview.png"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
-              aria-label="Open the full workbook overview preview"
-            >
+            <div className="relative">
               <Image
                 src="/images/execution-kit/workbook-overview.png"
                 alt="The workbook overview showing the six-step launch review workflow, current review status, and evidence standards"
                 width={1309}
                 height={828}
-                className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
+                className="h-auto w-full"
                 priority
               />
-            </a>
+              <span className="absolute bottom-3 right-3 rounded-full border border-line bg-surface/95 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted shadow-sm">
+                Selected preview
+              </span>
+            </div>
             <figcaption className="flex flex-col gap-1 border-t border-line px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
               <span className="font-medium text-ink">Workbook overview and live status dashboard</span>
-              <span className="text-xs text-muted">Actual Excel workbook · click to enlarge</span>
+              <span className="text-xs text-muted">Actual Excel workbook · seven editable tabs</span>
             </figcaption>
           </figure>
         </Reveal>
 
         <div className="mt-5 grid gap-5 md:grid-cols-3">
           <PreviewCard
-            href="/images/execution-kit/risk-register.png"
-            src="/images/execution-kit/risk-register.png"
-            width={2488}
-            height={5451}
+            src="/images/execution-kit/risk-register-preview.png"
+            width={319}
+            height={700}
             alt="AI risk register with failure modes, harms, controls, mitigations, evidence, owners, scoring, status, and reference prompts"
             eyebrow="Editable workbook"
             title="Risk register"
             body="Starter risks with scoring, mitigations, evidence requirements, owners, and framework prompts."
           />
           <PreviewCard
-            href="/images/execution-kit/applicability-screen.png"
-            src="/images/execution-kit/applicability-screen.png"
-            width={1876}
-            height={3203}
+            src="/images/execution-kit/applicability-preview.png"
+            width={410}
+            height={700}
             alt="Framework and regulation applicability screen covering NIST, ISO, OWASP, the EU AI Act, GDPR, PIPEDA, and sector rules"
             eyebrow="Editable workbook"
             title="Applicability screen"
             body="Fact-based prompts for frameworks, security references, regulations, privacy laws, and sector review."
           />
           <PreviewCard
-            href="/images/execution-kit/guide-frameworks.png"
-            src="/images/execution-kit/guide-frameworks.png"
-            width={993}
-            height={1404}
-            alt="A field guide page explaining how NIST, ISO, and OWASP references are used throughout the execution kit"
+            src="/images/execution-kit/guide-cover.png"
+            width={636}
+            height={900}
+            alt="Cover of the 11-page AI Product Launch Execution Kit field guide"
             eyebrow="11-page field guide"
-            title="Reference layer"
-            body="Plain-language guidance for using the workbook and understanding what each reference contributes."
+            title="Execution field guide"
+            body="Plain-language instructions, evidence standards, framework mapping, and a worked example."
           />
         </div>
       </Container>
@@ -276,7 +270,6 @@ function ListItem({ children }: { children: React.ReactNode }) {
 }
 
 function PreviewCard({
-  href,
   src,
   width,
   height,
@@ -285,7 +278,6 @@ function PreviewCard({
   title,
   body,
 }: {
-  href: string;
   src: string;
   width: number;
   height: number;
@@ -297,28 +289,25 @@ function PreviewCard({
   return (
     <Reveal>
       <figure className="h-full overflow-hidden rounded-2xl border border-line bg-surface">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group block h-64 overflow-hidden border-b border-line bg-paper sm:h-72"
-          aria-label={`Open the full ${title.toLowerCase()} preview`}
-        >
+        <div className="relative h-64 overflow-hidden border-b border-line bg-paper sm:h-72">
           <Image
             src={src}
             alt={alt}
             width={width}
             height={height}
-            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            className="h-full w-full object-cover object-top"
           />
-        </a>
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/45 to-transparent" />
+          <span className="absolute bottom-3 left-3 rounded-full border border-white/30 bg-ink/75 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white">
+            Selected preview
+          </span>
+        </div>
         <figcaption className="p-5">
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-accent">
             {eyebrow}
           </p>
           <h3 className="font-display mt-2 text-xl text-ink">{title}</h3>
           <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
-          <p className="mt-3 text-xs font-medium text-accent">Click to enlarge →</p>
         </figcaption>
       </figure>
     </Reveal>
