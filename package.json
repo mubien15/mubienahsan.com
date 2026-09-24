@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:launch-review": "node --experimental-strip-types --test src/lib/launch-review.test.ts",
+    "test:execution-kit": "node --experimental-strip-types --test src/lib/execution-kit-access.test.ts",
     "pdfs": "node scripts/build-pdfs.mjs"
   },
   "dependencies": {

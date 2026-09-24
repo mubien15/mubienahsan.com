@@ -89,7 +89,8 @@ export default function ExecutionKitPage() {
                 </p>
                 <p className="font-display mt-2 text-5xl text-ink">{EXECUTION_KIT.price}</p>
                 <p className="mt-2 text-sm leading-6 text-muted">
-                  Immediate access to the workbook, guide, and reusable templates. No subscription.
+                  A secure download link for the workbook, guide, and reusable templates is sent to
+                  your checkout email. No subscription.
                 </p>
                 <ExecutionKitBuyLink className="mt-6 w-full" />
                 <p className="mt-3 text-center text-xs leading-5 text-muted">

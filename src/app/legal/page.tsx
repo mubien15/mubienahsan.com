@@ -238,14 +238,16 @@ export default function LegalPage() {
             >
               privacy policy
             </a>
-            . After successful payment, Stripe redirects you to a private download page on this
-            site. No site account is created and the payment does not add you to the newsletter.
+            . After successful payment, Stripe confirms the purchase to this site and I use the
+            checkout email only to send a signed, time-limited download link. No site account is
+            created and the payment does not add you to the newsletter.
           </p>
           <p>
-            Digital access is provided immediately, so purchases are generally final once access is
-            delivered. If you were charged twice, a file is broken, or the product is materially
-            different from its description, email me at {EMAIL} and I will make it right. Nothing
-            here limits a consumer right that cannot be excluded under applicable law.
+            Digital access is provided by email shortly after payment, so purchases are generally
+            final once access is delivered. If you were charged twice, a file is broken, the email
+            does not arrive, or the product is materially different from its description, email me
+            at {EMAIL} and I will make it right. Nothing here limits a consumer right that cannot be
+            excluded under applicable law.
           </p>
           <p>
             The included single-purchaser licence allows your own work and internal work within one

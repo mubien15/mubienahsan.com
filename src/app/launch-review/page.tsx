@@ -123,7 +123,7 @@ export default function LaunchReviewPage() {
                   See what is included →
                 </Link>
                 <p className="text-xs leading-5 text-muted">
-                  One-time purchase · immediate digital access · no subscription
+                  One-time purchase · secure email delivery · no subscription
                 </p>
               </div>
             </div>

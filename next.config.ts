@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   // Let .md / .mdx files act as pages and routes
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
 
+  // The paid ZIP is committed only as ciphertext. Include it in the download
+  // function bundle so the server can decrypt it after a signed-link check.
+  outputFileTracingIncludes: {
+    "/api/execution-kit/download": ["./private-assets/execution-kit-v1.enc"],
+  },
+
   // Send any www visitor to the bare apex, the one canonical home. This keeps a
   // single clean address and avoids routing through any URL forwarder.
   async redirects() {
