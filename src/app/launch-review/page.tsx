@@ -204,17 +204,18 @@ export default function LaunchReviewPage() {
             />
             <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
               <div>
-                <Eyebrow tone="accent">Follow the build</Eyebrow>
+                <Eyebrow tone="accent">Newsletter</Eyebrow>
                 <h2 className="font-display mt-3 text-3xl text-ink">
-                  Get new test packs as the product develops.
+                  Follow the product and get The First Build.
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-muted">
-                  I share the reasoning, failures, and useful parts of what I build. Joining also
-                  gets you The First Build, my practical guide to creating an AI morning brief.
+                  I share occasional notes on AI Product Launch Review and the other things I am
+                  building. The download you receive is The First Build, my step-by-step guide to
+                  creating an AI morning brief.
                 </p>
               </div>
               <div>
-                <SubscribeForm source="launch-review" />
+                <SubscribeForm source="launch-review" submitLabel="Get The First Build" />
                 <p className="mt-3 text-xs leading-relaxed text-muted">
                   Free, occasional, and written by me. Unsubscribe whenever you want.
                 </p>

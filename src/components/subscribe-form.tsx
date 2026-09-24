@@ -38,12 +38,14 @@ export function SubscribeForm({
   className,
   autoFocus = false,
   onSuccess,
+  submitLabel = "Send me the guide",
 }: {
   /** Recorded on the contact in Brevo, so you can see which placement works. */
   source: "home-band" | "popup" | "launch-review";
   className?: string;
   autoFocus?: boolean;
   onSuccess?: () => void;
+  submitLabel?: string;
 }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
@@ -142,7 +144,7 @@ export function SubscribeForm({
           disabled={state === "sending"}
           className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-accent-strong disabled:translate-y-0 disabled:opacity-60"
         >
-          {state === "sending" ? "Sending…" : "Send me the guide"}
+          {state === "sending" ? "Sending…" : submitLabel}
         </button>
       </div>
 
