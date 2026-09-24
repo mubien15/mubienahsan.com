@@ -387,7 +387,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="mailto:mubien.ahsan@gmail.com"
+                href="mailto:hello@mubienahsan.com"
                 className="inline-flex items-center justify-center rounded-full bg-grape px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-95"
               >
                 Email me
