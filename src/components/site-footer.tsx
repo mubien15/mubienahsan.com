@@ -13,10 +13,15 @@ export function SiteFooter() {
       <div className="h-1 w-full bg-gradient-to-r from-flame-bright via-grape-bright to-mint-bright" />
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm">
-          <LogoMark className="h-10 w-10 text-accent" />
-          <p className="font-display mt-3 text-lg font-semibold text-ink">
-            Mubien
-          </p>
+          <div className="flex items-center gap-3">
+            <LogoMark className="h-10 w-10 text-accent" />
+            <div>
+              <p className="font-display text-lg font-semibold text-ink">Mubien</p>
+              <p className="mt-0.5 text-xs leading-5 text-muted">
+                clarity for what comes next
+              </p>
+            </div>
+          </div>
           <p className="mt-2 text-sm leading-relaxed text-muted">
             Building useful AI, testing the assumptions around it, and exploring
             what meaningful human control looks like as systems become more capable.

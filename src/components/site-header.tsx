@@ -31,6 +31,10 @@ export function SiteHeader() {
           <span className="font-display text-lg font-semibold tracking-tight text-ink">
             Mubien
           </span>
+          <span aria-hidden className="h-4 w-px bg-line" />
+          <span className="max-w-28 text-[0.68rem] leading-[1.15] text-muted sm:max-w-none sm:text-xs">
+            clarity for what comes next
+          </span>
         </Link>
 
         <nav aria-label="Primary navigation" className="hidden items-center gap-1 md:flex">
