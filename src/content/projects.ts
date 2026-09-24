@@ -27,6 +27,14 @@ export type Project = {
     context: string;
     approach: string;
     decisions: { title: string; body: string }[];
+    evidence?: {
+      checked: string;
+      summary: string;
+      metrics: { value: string; label: string }[];
+      findings: string[];
+      artifact?: { label: string; href: string };
+      limitation: string;
+    };
     limits: string[];
     next: string[];
   };
@@ -38,7 +46,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: "ai-launch-review",
-    name: "AI Launch Review",
+    name: "AI Product Launch Review",
     tone: "grape",
     tagline: "Turn an AI idea into a launch decision you can test",
     what: "An interactive product review that turns a system description into explicit claims, boundary tests, evidence requirements, and launch gates. The output is designed to be challenged, checked, and exported.",
@@ -69,6 +77,29 @@ export const PROJECTS: Project[] = [
           body: "The useful artifact is a portable review with claims, pass conditions, test cases, owners, and open questions. It should be usable in a repository or product review after the browser tab closes.",
         },
       ],
+      evidence: {
+        checked: "24 September 2026",
+        summary:
+          "I ran the transparent rule engine against the three published product profiles: a refund agent, a research copilot, and a shopping agent. The check verified that review levels and capability-specific claims, tests, and gates changed with the stated authority, data, impact, and tools.",
+        metrics: [
+          { value: "3", label: "product profiles checked" },
+          { value: "19", label: "claims generated" },
+          { value: "22", label: "evaluation cases generated" },
+          { value: "20", label: "launch gates generated" },
+        ],
+        findings: [
+          "The refund and shopping agents moved to high scrutiny because they can commit money and create material consequences.",
+          "The lower-authority research copilot stayed at standard review while still receiving source, untrusted-input, and human-oversight checks.",
+          "Financial, communication, data, and browsing capabilities each introduced their corresponding claims and adversarial cases.",
+          "The same inputs produced stable outputs, which makes the current decision logic inspectable and repeatable.",
+        ],
+        artifact: {
+          label: "Open the worked shopping-agent review",
+          href: "/downloads/ai-product-launch-review-sample.md",
+        },
+        limitation:
+          "This establishes deterministic rule coverage for the public prototype. It does not show that the recommendations are complete, expert-equivalent, or effective in a live product review; those require practitioner comparison and real product evidence.",
+      },
       limits: [
         "The prototype does not inspect the product or execute the generated evaluation cases.",
         "Its output depends on the completeness and accuracy of the system description entered by the user.",

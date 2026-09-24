@@ -213,7 +213,7 @@ export function LaunchReviewAgent() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-grape">
-              AI Launch Review · Public prototype
+              AI Product Launch Review · Public prototype
             </p>
             <h2 className="font-display mt-1.5 text-2xl text-ink sm:text-3xl">
               {isResult ? `${input.productName} launch review` : "Define what must be true before launch"}

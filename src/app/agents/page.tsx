@@ -213,18 +213,34 @@ export default function AgentsPage() {
 
       <section id="permission-test" className="scroll-mt-24 pt-20">
         <Reveal className="mb-8">
-          <Eyebrow tone="grape">Try the framework</Eyebrow>
+          <Eyebrow tone="grape">Applied scenario</Eyebrow>
           <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
             A budget check catches only one kind of wrong purchase.
           </h2>
           <p className="mt-3 text-lg leading-relaxed text-muted">
-            This example keeps the mandate fixed and changes the cart. It is a
-            product prototype for the decision logic, not a claim that a live
-            payment system was tested.
+            This example keeps the mandate fixed and changes the cart. It is an
+            interactive illustration of the research framework, not evidence
+            from a live payment system.
           </p>
         </Reveal>
         <Reveal>
           <PermissionTest />
+        </Reveal>
+        <Reveal>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <BoundaryNote
+              label="What stays constant"
+              body="One buyer mandate, including product, total cost, seller, substitution, and timing."
+            />
+            <BoundaryNote
+              label="What changes"
+              body="The final cart, seller of record, product substitution, or live permission state."
+            />
+            <BoundaryNote
+              label="Research outcome"
+              body="The same budget can still require allow, ask, or block decisions when another condition changes."
+            />
+          </div>
         </Reveal>
       </section>
 
