@@ -65,13 +65,6 @@ export default function LaunchReviewExamplePage() {
                   <CtaLink href="/launch-review#launch-review-tool" tone="grape">
                     Start your own review
                   </CtaLink>
-                  <a
-                    href="/downloads/ai-product-launch-review-sample.md"
-                    download
-                    className="inline-flex items-center justify-center rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-grape/50 hover:text-grape"
-                  >
-                    Download Markdown
-                  </a>
                 </div>
               </div>
 
