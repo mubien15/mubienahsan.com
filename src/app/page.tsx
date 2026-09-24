@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/metadata";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { CtaLink, Eyebrow, Pill, type Tone } from "@/components/ui";
@@ -315,18 +316,36 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {[
-                  ["12", "starter AI risk areas"],
-                  ["14", "evaluation patterns"],
-                  ["13", "applicability prompts"],
-                  ["10", "launch gates"],
-                ].map(([value, label]) => (
-                  <div key={label} className="rounded-2xl border border-line bg-paper/70 p-5">
-                    <p className="font-display text-3xl text-accent">{value}</p>
-                    <p className="mt-1 text-sm leading-6 text-muted">{label}</p>
-                  </div>
-                ))}
+              <div>
+                <Link
+                  href="/launch-review/execution-kit"
+                  className="group block overflow-hidden rounded-2xl border border-line bg-paper shadow-sm"
+                >
+                  <Image
+                    src="/images/execution-kit/workbook-overview.png"
+                    alt="The actual AI Product Launch Execution Workbook overview and status dashboard"
+                    width={1309}
+                    height={828}
+                    className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.015]"
+                  />
+                  <span className="flex items-center justify-between gap-3 border-t border-line px-4 py-3 text-xs text-muted">
+                    <span>Actual workbook preview</span>
+                    <span className="font-medium text-accent">Look inside →</span>
+                  </span>
+                </Link>
+                <div className="mt-3 grid grid-cols-2 gap-3">
+                  {[
+                    ["12", "starter risk areas"],
+                    ["7", "editable workbook tabs"],
+                    ["13", "applicability prompts"],
+                    ["11", "guide pages"],
+                  ].map(([value, label]) => (
+                    <div key={label} className="rounded-xl border border-line bg-paper/70 px-4 py-3">
+                      <p className="font-display text-2xl text-accent">{value}</p>
+                      <p className="mt-0.5 text-xs leading-5 text-muted">{label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </section>

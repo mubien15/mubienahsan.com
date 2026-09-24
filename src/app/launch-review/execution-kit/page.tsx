@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { ExecutionKitBuyLink } from "@/components/execution-kit-buy-link";
@@ -104,6 +105,81 @@ export default function ExecutionKitPage() {
         <Reveal>
           <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
+              <Eyebrow tone="accent">A look inside</Eyebrow>
+              <h2 className="font-display mt-3 text-3xl leading-tight text-ink sm:text-4xl">
+                See the actual files before you buy.
+              </h2>
+            </div>
+            <p className="text-lg leading-8 text-muted">
+              These are direct previews of the workbook and field guide included in the download.
+              The workbook is editable; the guide explains how to use each part of the process.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <figure className="mt-8 overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_22px_70px_rgba(73,64,40,0.1)]">
+            <a
+              href="/images/execution-kit/workbook-overview.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+              aria-label="Open the full workbook overview preview"
+            >
+              <Image
+                src="/images/execution-kit/workbook-overview.png"
+                alt="The workbook overview showing the six-step launch review workflow, current review status, and evidence standards"
+                width={1309}
+                height={828}
+                className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
+                priority
+              />
+            </a>
+            <figcaption className="flex flex-col gap-1 border-t border-line px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+              <span className="font-medium text-ink">Workbook overview and live status dashboard</span>
+              <span className="text-xs text-muted">Actual Excel workbook · click to enlarge</span>
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <div className="mt-5 grid gap-5 md:grid-cols-3">
+          <PreviewCard
+            href="/images/execution-kit/risk-register.png"
+            src="/images/execution-kit/risk-register.png"
+            width={2488}
+            height={5451}
+            alt="AI risk register with failure modes, harms, controls, mitigations, evidence, owners, scoring, status, and reference prompts"
+            eyebrow="Editable workbook"
+            title="Risk register"
+            body="Starter risks with scoring, mitigations, evidence requirements, owners, and framework prompts."
+          />
+          <PreviewCard
+            href="/images/execution-kit/applicability-screen.png"
+            src="/images/execution-kit/applicability-screen.png"
+            width={1876}
+            height={3203}
+            alt="Framework and regulation applicability screen covering NIST, ISO, OWASP, the EU AI Act, GDPR, PIPEDA, and sector rules"
+            eyebrow="Editable workbook"
+            title="Applicability screen"
+            body="Fact-based prompts for frameworks, security references, regulations, privacy laws, and sector review."
+          />
+          <PreviewCard
+            href="/images/execution-kit/guide-frameworks.png"
+            src="/images/execution-kit/guide-frameworks.png"
+            width={993}
+            height={1404}
+            alt="A field guide page explaining how NIST, ISO, and OWASP references are used throughout the execution kit"
+            eyebrow="11-page field guide"
+            title="Reference layer"
+            body="Plain-language guidance for using the workbook and understanding what each reference contributes."
+          />
+        </div>
+      </Container>
+
+      <Container className="pb-14 sm:pb-18">
+        <Reveal>
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+            <div>
               <Eyebrow tone="grape">What you receive</Eyebrow>
               <h2 className="font-display mt-3 text-3xl leading-tight text-ink sm:text-4xl">
                 A working system, not a static checklist.
@@ -196,5 +272,55 @@ function ListItem({ children }: { children: React.ReactNode }) {
       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mint" />
       <span>{children}</span>
     </li>
+  );
+}
+
+function PreviewCard({
+  href,
+  src,
+  width,
+  height,
+  alt,
+  eyebrow,
+  title,
+  body,
+}: {
+  href: string;
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <Reveal>
+      <figure className="h-full overflow-hidden rounded-2xl border border-line bg-surface">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block h-64 overflow-hidden border-b border-line bg-paper sm:h-72"
+          aria-label={`Open the full ${title.toLowerCase()} preview`}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </a>
+        <figcaption className="p-5">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-accent">
+            {eyebrow}
+          </p>
+          <h3 className="font-display mt-2 text-xl text-ink">{title}</h3>
+          <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
+          <p className="mt-3 text-xs font-medium text-accent">Click to enlarge →</p>
+        </figcaption>
+      </figure>
+    </Reveal>
   );
 }
