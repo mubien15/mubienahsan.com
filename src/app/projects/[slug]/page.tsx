@@ -150,6 +150,64 @@ export default async function ProjectCaseStudy({ params }: Props) {
               </section>
             </Reveal>
 
+            {caseStudy.evidence ? (
+              <Reveal>
+                <section id="evidence" className="scroll-mt-24">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <Eyebrow tone="mint">Evidence so far</Eyebrow>
+                    <span className="text-xs text-muted">
+                      Checked {caseStudy.evidence.checked}
+                    </span>
+                  </div>
+                  <h2 className="font-display mt-3 text-3xl text-ink">
+                    What I have actually checked
+                  </h2>
+                  <p className="prose-scale mt-5 text-[1.05rem] leading-8 text-ink/85">
+                    {caseStudy.evidence.summary}
+                  </p>
+
+                  <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+                    {caseStudy.evidence.metrics.map((metric) => (
+                      <div
+                        key={metric.label}
+                        className="rounded-2xl border border-mint/25 bg-mint-soft/45 p-5"
+                      >
+                        <dt className="font-display text-3xl text-mint">{metric.value}</dt>
+                        <dd className="mt-1 text-sm leading-6 text-ink/75">{metric.label}</dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <ul className="mt-6 space-y-3 text-sm leading-7 text-ink/80">
+                    {caseStudy.evidence.findings.map((finding) => (
+                      <li key={finding} className="flex gap-3">
+                        <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mint" />
+                        <span>{finding}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {caseStudy.evidence.artifact ? (
+                    <a
+                      href={caseStudy.evidence.artifact.href}
+                      className="mt-6 inline-flex text-sm font-medium text-mint hover:underline"
+                    >
+                      {caseStudy.evidence.artifact.label} →
+                    </a>
+                  ) : null}
+
+                  <div className="mt-6 rounded-2xl border border-line bg-sunken/50 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                      What this does not establish
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-ink/75">
+                      {caseStudy.evidence.limitation}
+                    </p>
+                  </div>
+                </section>
+              </Reveal>
+            ) : null}
+
             <section>
               <Reveal>
                 <Eyebrow tone={project.tone}>Product judgment</Eyebrow>

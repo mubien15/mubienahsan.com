@@ -604,7 +604,7 @@ export function reviewToMarkdown(
 ) {
   const completed = new Set(completedGates);
   const lines = [
-    `# ${input.productName.trim()} — AI launch review`,
+    `# ${input.productName.trim()} — AI product launch review`,
     "",
     `Generated ${new Date().toLocaleDateString("en-CA", {
       year: "numeric",
@@ -666,7 +666,7 @@ export function reviewToMarkdown(
     ...review.openQuestions.map((question) => `- ${question}`),
     "",
     "---",
-    "Prepared with AI Launch Review by Mubien.",
+    "Prepared with AI Product Launch Review by Mubien.",
   ];
 
   return lines.join("\n");

@@ -8,9 +8,9 @@ import { CtaLink, Eyebrow, Pill } from "@/components/ui";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata("/launch-review", {
-  title: "AI Launch Review",
+  title: "AI Product Launch Review",
   description:
-    "Turn an AI product idea into testable claims, evaluation cases, evidence requirements, and launch gates with Mubien's interactive AI Launch Review.",
+    "Turn an AI product idea into testable claims, evaluation cases, evidence requirements, and launch gates with Mubien's interactive AI Product Launch Review.",
 });
 
 const OUTPUTS = [
@@ -51,14 +51,14 @@ export default function LaunchReviewPage() {
             <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
               <div>
                 <div className="flex flex-wrap items-center gap-3">
-                  <Eyebrow tone="grape">Interactive product</Eyebrow>
+                  <Eyebrow tone="grape">AI Product Launch Review</Eyebrow>
                   <Pill tone="mint">Public prototype</Pill>
                 </div>
                 <h1 className="font-display mt-5 max-w-4xl text-4xl leading-[1.03] tracking-tight text-ink sm:text-5xl lg:text-6xl">
                   Turn an AI idea into a launch decision you can test.
                 </h1>
                 <p className="mt-6 max-w-[68ch] text-lg leading-relaxed text-ink/75 sm:text-xl">
-                  AI Launch Review translates a product description into testable claims,
+                  AI Product Launch Review translates a product description into testable claims,
                   adversarial scenarios, evidence requirements, and launch gates. It is designed
                   to make the reasoning visible before a polished demo creates false confidence.
                 </p>
@@ -154,6 +154,45 @@ export default function LaunchReviewPage() {
               </p>
             </section>
           </div>
+        </Reveal>
+
+        <Reveal>
+          <section id="worked-example" className="mt-12 rounded-3xl border border-line bg-surface p-7 sm:p-9">
+            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+              <div>
+                <Eyebrow tone="mint">Worked example</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl text-ink">
+                  Inspect a complete review before starting your own.
+                </h2>
+                <p className="mt-4 text-base leading-7 text-muted">
+                  The sample applies the current rules to a shopping agent that can complete a
+                  purchase within a user mandate. It shows the generated claims, adversarial
+                  cases, evidence requirements, launch gates, and open decisions in one portable
+                  artifact.
+                </p>
+                <a
+                  href="/downloads/ai-product-launch-review-sample.md"
+                  className="mt-6 inline-flex items-center justify-center rounded-full bg-mint px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-95"
+                >
+                  Open the sample review →
+                </a>
+              </div>
+              <div className="rounded-2xl border border-mint/25 bg-mint-soft/45 p-5 sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">
+                  What the example establishes
+                </p>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-ink/80">
+                  <ListItem>The rule engine produces stable output from the same inputs</ListItem>
+                  <ListItem>Money, browsing, and independent action trigger specific controls</ListItem>
+                  <ListItem>Every launch gate names evidence and a suggested owner</ListItem>
+                </ul>
+                <p className="mt-5 border-t border-mint/20 pt-4 text-xs leading-5 text-muted">
+                  This is a worked prototype output, not evidence that the reviewed product is
+                  safe or ready to launch.
+                </p>
+              </div>
+            </div>
+          </section>
         </Reveal>
 
         <Reveal>
