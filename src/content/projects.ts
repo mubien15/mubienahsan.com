@@ -94,8 +94,8 @@ export const PROJECTS: Project[] = [
           "The same inputs produced stable outputs, which makes the current decision logic inspectable and repeatable.",
         ],
         artifact: {
-          label: "Open the worked shopping-agent review",
-          href: "/downloads/ai-product-launch-review-sample.md",
+          label: "View the worked shopping-agent review",
+          href: "/launch-review/example",
         },
         limitation:
           "This establishes deterministic rule coverage for the public prototype. It does not show that the recommendations are complete, expert-equivalent, or effective in a live product review; those require practitioner comparison and real product evidence.",

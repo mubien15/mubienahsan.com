@@ -170,12 +170,13 @@ export default function LaunchReviewPage() {
                   cases, evidence requirements, launch gates, and open decisions in one portable
                   artifact.
                 </p>
-                <a
-                  href="/downloads/ai-product-launch-review-sample.md"
+                <CtaLink
+                  href="/launch-review/example"
+                  tone="mint"
                   className="mt-6 inline-flex items-center justify-center rounded-full bg-mint px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-95"
                 >
-                  Open the sample review →
-                </a>
+                  View the worked review →
+                </CtaLink>
               </div>
               <div className="rounded-2xl border border-mint/25 bg-mint-soft/45 p-5 sm:p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-mint">
