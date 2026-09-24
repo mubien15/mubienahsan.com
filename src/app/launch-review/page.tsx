@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { ExecutionKitBuyLink } from "@/components/execution-kit-buy-link";
 import { LaunchReviewAgent } from "@/components/launch-review-agent";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { SubscribeForm } from "@/components/subscribe-form";
@@ -92,6 +93,42 @@ export default function LaunchReviewPage() {
 
       <Container className="py-12 sm:py-16">
         <LaunchReviewAgent />
+      </Container>
+
+      <Container className="pb-12 sm:pb-16">
+        <Reveal>
+          <section className="relative overflow-hidden rounded-3xl border border-accent/20 bg-accent-soft/45 p-7 sm:p-9">
+            <div
+              aria-hidden
+              className="glow glow-gold absolute -bottom-44 -right-36 h-[27rem] w-[27rem] rounded-full opacity-45"
+            />
+            <div className="relative grid gap-7 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div>
+                <Eyebrow tone="accent">Execution kit · CA$39</Eyebrow>
+                <h2 className="font-display mt-3 text-3xl leading-tight text-ink sm:text-4xl">
+                  Turn the draft review into an owned launch process.
+                </h2>
+                <p className="mt-4 max-w-[65ch] text-base leading-7 text-muted">
+                  Use the editable workbook to manage risks, evaluations, evidence, launch gates,
+                  and a framework and regulation applicability screen. The guide and templates
+                  help a team run the review and record the decision.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 lg:items-start">
+                <ExecutionKitBuyLink />
+                <Link
+                  href="/launch-review/execution-kit"
+                  className="text-sm font-medium text-accent hover:underline"
+                >
+                  See what is included →
+                </Link>
+                <p className="text-xs leading-5 text-muted">
+                  One-time purchase · immediate digital access · no subscription
+                </p>
+              </div>
+            </div>
+          </section>
+        </Reveal>
       </Container>
 
       <section id="method" className="scroll-mt-24">

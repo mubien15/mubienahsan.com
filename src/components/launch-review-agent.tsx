@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ExecutionKitOffer } from "@/components/execution-kit-offer";
 import { cn } from "@/lib/cn";
 import {
   CAPABILITIES,
@@ -43,6 +44,7 @@ export function LaunchReviewAgent() {
   const [error, setError] = useState("");
   const [completedGates, setCompletedGates] = useState<string[]>([]);
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
+  const [offerOpen, setOfferOpen] = useState(false);
 
   const review = useMemo(() => generateLaunchReview(input), [input]);
   const isResult = step === STEPS.length;
@@ -90,6 +92,7 @@ export function LaunchReviewAgent() {
 
   function continueReview() {
     if (!validateCurrentStep()) return;
+    if (step === STEPS.length - 1) setOfferOpen(true);
     setStep((current) => Math.min(current + 1, STEPS.length));
     setError("");
     window.setTimeout(() => {
@@ -205,10 +208,11 @@ export function LaunchReviewAgent() {
   }
 
   return (
-    <div
-      id="launch-review-tool"
-      className="scroll-mt-24 overflow-hidden rounded-[2rem] border border-grape/25 bg-surface shadow-[0_24px_80px_rgba(73,64,40,0.1)]"
-    >
+    <>
+      <div
+        id="launch-review-tool"
+        className="scroll-mt-24 overflow-hidden rounded-[2rem] border border-grape/25 bg-surface shadow-[0_24px_80px_rgba(73,64,40,0.1)]"
+      >
       <div className="border-b border-line bg-grape-soft/45 px-5 py-5 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -466,7 +470,9 @@ export function LaunchReviewAgent() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+      <ExecutionKitOffer open={offerOpen} onClose={() => setOfferOpen(false)} />
+    </>
   );
 }
 

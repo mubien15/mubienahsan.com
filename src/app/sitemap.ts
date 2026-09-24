@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/courses`, lastModified: lastUpdated, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/projects`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/launch-review`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/launch-review/execution-kit`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/launch-review/example`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/research`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/research/autonomy-governance`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.9 },

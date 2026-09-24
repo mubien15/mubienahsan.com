@@ -8,6 +8,7 @@ import { PhoneShowcase } from "@/components/phone-frame";
 import { PhotoBlob } from "@/components/photo-blob";
 import { Squiggle } from "@/components/doodle";
 import { SubscribeForm } from "@/components/subscribe-form";
+import { ExecutionKitBuyLink } from "@/components/execution-kit-buy-link";
 import { cn } from "@/lib/cn";
 import { COURSES } from "@/content/courses";
 import { QUESTIONS } from "@/content/quiz";
@@ -281,6 +282,54 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </Reveal>
+      </Container>
+
+      {/* Paid execution kit */}
+      <Container className="pb-8 sm:pb-12">
+        <Reveal>
+          <section className="relative overflow-hidden rounded-3xl border border-accent/20 bg-surface p-7 sm:p-10 lg:p-12">
+            <div
+              aria-hidden
+              className="glow glow-gold absolute -bottom-48 -right-40 h-[30rem] w-[30rem] rounded-full opacity-55"
+            />
+            <div className="relative grid gap-9 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+              <div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Eyebrow tone="accent">AI Product Launch Execution Kit</Eyebrow>
+                  <Pill tone="gold">CA$39 · one time</Pill>
+                </div>
+                <h2 className="font-display mt-4 text-3xl leading-tight text-ink sm:text-4xl">
+                  Move from a promising AI demo to an accountable launch decision.
+                </h2>
+                <p className="mt-4 max-w-[66ch] text-lg leading-8 text-muted">
+                  I turned the free launch review into a practical operating kit: an editable risk
+                  register, evaluation plan, launch gates, decision memo, and a professional
+                  applicability screen for major AI frameworks and regulations.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <ExecutionKitBuyLink />
+                  <CtaLink href="/launch-review/execution-kit" variant="secondary">
+                    See what is inside
+                  </CtaLink>
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  ["12", "starter AI risk areas"],
+                  ["14", "evaluation patterns"],
+                  ["13", "applicability prompts"],
+                  ["10", "launch gates"],
+                ].map(([value, label]) => (
+                  <div key={label} className="rounded-2xl border border-line bg-paper/70 p-5">
+                    <p className="font-display text-3xl text-accent">{value}</p>
+                    <p className="mt-1 text-sm leading-6 text-muted">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </Reveal>
       </Container>
 

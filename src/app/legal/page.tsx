@@ -7,12 +7,12 @@ import { Reveal } from "@/components/motion";
 import { SOCIAL_LINKS } from "@/lib/nav";
 
 export const metadata: Metadata = pageMetadata("/legal", {
-  title: "Privacy Policy & Disclaimer",
+  title: "Privacy, Sales Terms & Disclaimer",
   description:
-    "What this site collects, which is your email only if you ask for the newsletter, which Canadian and other privacy laws apply, and the honest limits of what you read here.",
+    "How this site handles newsletter and purchase information, the terms for digital products, which privacy laws may apply, and the limits of the material published here.",
 });
 
-const UPDATED = "23 September 2026";
+const UPDATED = "24 September 2026";
 const EMAIL = "hello@mubienahsan.com";
 
 /** Small helper so every section on this page looks the same. */
@@ -42,13 +42,13 @@ export default function LegalPage() {
     <Container className="py-16 sm:py-20">
       <PageIntro
         eyebrow="The small print"
-        title="Privacy Policy & Disclaimer."
+        title="Privacy, sales terms & disclaimer."
         tone="accent"
       >
         Written in plain language, because a policy nobody can read is not
-        transparency. The short version: this site collects nothing about you
-        unless you ask for the newsletter, in which case it is your email
-        address and nothing else.
+        transparency. Reading remains private. If you request the newsletter or
+        buy a digital product, the information needed to deliver that service is
+        handled as described below.
       </PageIntro>
 
       <div className="mt-14 space-y-6 prose-scale text-[1.05rem] leading-8 text-ink/85">
@@ -77,7 +77,7 @@ export default function LegalPage() {
 
         <Section id="advice" title="This is not professional advice">
           <p>
-            The courses, projects and writing here are educational. They are not
+            The courses, projects, writing, and digital products here are educational and operational planning materials. They are not
             legal, regulatory, compliance, audit, financial or investment
             advice, and they do not create any professional relationship between
             us.
@@ -110,28 +110,27 @@ export default function LegalPage() {
         <Section id="collect" title="What this site collects">
           <p>
             <strong className="text-ink">
-              Reading this site collects nothing about you.
+              I do not add analytics, advertising trackers, or profiling to ordinary reading.
             </strong>{" "}
-            The one exception is the newsletter, which is covered below and only
-            ever happens because you asked for it. To be specific:
+            The exceptions are the newsletter and a purchase you choose to make,
+            both covered below. To be specific:
           </p>
           <ul className="my-4 list-disc space-y-2 pl-6 marker:text-accent">
             <li>No analytics of any kind, and no tracking pixels</li>
-            <li>No accounts, and no comments</li>
             <li>
               No cookies. The one thing kept in your browser is a note that you
               have already seen the newsletter box, so it does not ask you
               twice. It stays on your device and is never sent anywhere
             </li>
             <li>
-              One form, for the newsletter. Nothing is sent anywhere unless you
+              One form on this site, for the newsletter. Nothing is sent anywhere unless you
               type your address and submit it
             </li>
-            <li>No advertising, and nothing sold or shared with anyone</li>
+            <li>No advertising and no sale of personal information</li>
             <li>
-              No third party requests while you read. Fonts are served from this
-              site rather than loaded from Google, so visiting a page contacts
-              nobody but this domain
+              No third party requests while you read ordinary pages. Fonts are served from this
+              site rather than loaded from Google. Choosing the purchase button takes
+              you to Stripe, under the purchase terms below
             </li>
           </ul>
           <p>
@@ -220,6 +219,41 @@ export default function LegalPage() {
           </p>
         </Section>
 
+        <Section id="purchases" title="Buying a digital product">
+          <p>
+            The AI Product Launch Execution Kit is a one-time digital purchase priced in Canadian
+            dollars. The purchase button opens a Stripe-hosted checkout. Stripe collects the email,
+            payment method, billing information, IP address, and technical details needed to process
+            the payment, prevent fraud, provide receipts, and meet its legal obligations. I receive
+            the transaction record and customer email needed to support the purchase. I do not see
+            or store your full card number.
+          </p>
+          <p>
+            Stripe handles that information under its{" "}
+            <a
+              href="https://stripe.com/ca/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-accent underline decoration-accent/30 hover:decoration-accent"
+            >
+              privacy policy
+            </a>
+            . After successful payment, Stripe redirects you to a private download page on this
+            site. No site account is created and the payment does not add you to the newsletter.
+          </p>
+          <p>
+            Digital access is provided immediately, so purchases are generally final once access is
+            delivered. If you were charged twice, a file is broken, or the product is materially
+            different from its description, email me at {EMAIL} and I will make it right. Nothing
+            here limits a consumer right that cannot be excluded under applicable law.
+          </p>
+          <p>
+            The included single-purchaser licence allows your own work and internal work within one
+            organisation. It does not permit public sharing, resale, sublicensing, or distribution of
+            the reusable source files. The complete licence is included with the download.
+          </p>
+        </Section>
+
         <Section id="law" title="Which privacy laws apply">
           <p>
             I am in Ontario, Canada, so the relevant federal law is the{" "}
@@ -227,16 +261,17 @@ export default function LegalPage() {
               Personal Information Protection and Electronic Documents Act
             </strong>{" "}
             (PIPEDA). PIPEDA governs how organisations handle personal
-            information in the course of commercial activity. This site is free,
-            sells nothing and runs no commercial operation, so it sits outside
-            that threshold. Ontario has no separate private sector privacy law
-            of its own, so nothing further applies at the provincial level.
+            information in the course of commercial activity. Because this site
+            sells a digital product, I treat purchase-related personal information
+            as commercial activity and apply the accountability, purpose,
+            consent, safeguarding, access, and retention principles relevant to it.
+            Ontario has no separate private-sector privacy law of general application.
           </p>
           <p>
             I have written this policy to the PIPEDA standard regardless.
-            Whether a technical exemption applies is far less useful to you than
-            simply knowing what happens to your information, which is the point
-            of the page.
+            The practical commitment is simple: collect only what is needed for
+            delivery, payment records, support, fraud prevention, and legal duties;
+            protect it; and do not reuse purchase data for marketing without consent.
           </p>
           <p>
             Readers elsewhere are welcome and their law travels with them. If
@@ -244,9 +279,8 @@ export default function LegalPage() {
             the GDPR give you rights over your personal information regardless
             of where I am. If you are in Quebec, British Columbia or Alberta,
             those provinces have their own private sector privacy statutes. In
-            every case the practical answer is the same, because the only
-            personal information I am ever likely to hold is an email you chose
-            to send me.
+            each case, email me to exercise a right and I will respond based on
+            the law and the information actually held by me or my service providers.
           </p>
         </Section>
 
