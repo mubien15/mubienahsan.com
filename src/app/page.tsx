@@ -246,25 +246,25 @@ export default function Home() {
             </StaggerItem>
           ))}
         </Stagger>
-        <Reveal className="mt-4">
-          <HoverLift>
+        <Reveal className="mt-4 sm:mx-auto sm:w-[calc(50%_-_0.5rem)]">
+          <HoverLift className="h-full">
             <Link
               href="/library"
-              className="group relative grid gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:bg-accent before:content-[''] hover:border-transparent sm:grid-cols-[auto_1fr_auto] sm:items-center"
+              className="group relative flex min-h-44 items-start gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:bg-accent before:content-[''] hover:border-transparent"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-2xl">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-soft text-2xl">
                 📚
               </span>
-              <span>
+              <span className="flex min-h-32 flex-1 flex-col">
                 <span className="font-display block text-xl text-ink">
                   Follow the source trail
                 </span>
                 <span className="prose-scale-sm mt-1.5 block leading-relaxed text-ink/85">
                   The books, standards, courses, and essays that have changed or sharpened my thinking.
                 </span>
-              </span>
-              <span className="text-sm font-medium text-accent transition-transform group-hover:translate-x-1">
-                Open the library →
+                <span className="mt-auto pt-3 text-sm font-medium text-accent transition-transform group-hover:translate-x-1">
+                  Open the library →
+                </span>
               </span>
             </Link>
           </HoverLift>
