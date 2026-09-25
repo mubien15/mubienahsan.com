@@ -28,31 +28,31 @@ const PATHS: {
   tone: Tone;
 }[] = [
   {
-    emoji: "🧭",
-    title: "Explore original research",
-    body: "Frameworks and explainers on autonomy, oversight, agent permissions, and how AI systems change.",
-    href: "/research",
-    tone: "grape",
-  },
-  {
     emoji: "🛠️",
-    title: "Review the case studies",
-    body: "The problem, approach, product decisions, limitations, and next tests behind my strongest builds.",
+    title: "See what I have built",
+    body: "Working AI products and case studies showing the problem, decisions, evidence, limitations, and next tests.",
     href: "/projects",
     tone: "flame",
   },
   {
+    emoji: "🧭",
+    title: "Explore the research",
+    body: "Frameworks and explainers on autonomy, oversight, alignment, agent permissions, and how AI systems change.",
+    href: "/research",
+    tone: "grape",
+  },
+  {
     emoji: "🧑‍💻",
-    title: "Learn practical AI",
-    body: "Free, plain-language guides for using AI deliberately, evaluating its output, and shipping useful work.",
+    title: "Learn to use and build with AI",
+    body: "Free guides for working with AI deliberately, judging its output, and turning an idea into something useful.",
     href: "/courses",
     tone: "mint",
   },
   {
-    emoji: "📚",
-    title: "Follow the source trail",
-    body: "The courses, books, standards, and essays that have changed or sharpened my thinking.",
-    href: "/library",
+    emoji: "👋",
+    title: "Get to know me",
+    body: "My story, how I approach difficult AI questions, the contribution I try to make, and how to reach me.",
+    href: "/about",
     tone: "gold",
   },
 ];
@@ -148,8 +148,8 @@ export default function Home() {
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <CtaLink href="/launch-review">Try the launch review</CtaLink>
-                  <CtaLink href="/projects" variant="secondary">
-                    Review the case studies
+                  <CtaLink href="#start-here" variant="secondary">
+                    Explore the site
                   </CtaLink>
                 </div>
               </div>
@@ -191,6 +191,70 @@ export default function Home() {
           </div>
         </Reveal>
       </Container>
+
+      {/* First-visit overview */}
+      <section id="start-here" className="scroll-mt-24">
+      <Container className="py-14 sm:py-16">
+        <Reveal className="mb-8 text-center">
+          <Eyebrow tone="flame">Start here</Eyebrow>
+          <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
+            Choose where you want to begin
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-muted">
+            The site is organized around four simple paths. Pick the one that
+            best matches what brought you here.
+          </p>
+        </Reveal>
+        <Stagger className="grid gap-4 sm:grid-cols-2" gap={0.08} inView>
+          {PATHS.map((path) => (
+            <StaggerItem key={path.href}>
+              <HoverLift className="h-full">
+                <Link
+                  href={path.href}
+                  className={cn(
+                    "group relative flex h-full items-start gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-transparent",
+                    "before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:content-['']",
+                    TONE_BAR[path.tone]
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl",
+                      TONE_SOFT_BG[path.tone]
+                    )}
+                  >
+                    {path.emoji}
+                  </span>
+                  <span className="flex-1">
+                    <span className="font-display block text-xl text-ink">
+                      {path.title}
+                    </span>
+                    <span className="prose-scale-sm mt-1.5 block leading-relaxed text-ink/85">
+                      {path.body}
+                    </span>
+                    <span
+                      className={cn(
+                        "mt-3 inline-block text-sm font-medium transition-transform group-hover:translate-x-1",
+                        TONE_TXT[path.tone]
+                      )}
+                    >
+                      Open this section →
+                    </span>
+                  </span>
+                </Link>
+              </HoverLift>
+            </StaggerItem>
+          ))}
+        </Stagger>
+        <p className="mt-5 text-center text-sm leading-relaxed text-muted">
+          Looking for the books, standards, and essays behind the work? Visit the{" "}
+          <Link href="/library" className="font-medium text-gold hover:underline">
+            library
+          </Link>
+          .
+        </p>
+      </Container>
+      </section>
 
       {/* Flagship research */}
       <Container className="pb-16 pt-10 sm:pb-20 sm:pt-12">
@@ -425,57 +489,6 @@ export default function Home() {
                     ) : null}
                   </div>
                 </div>
-              </HoverLift>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </Container>
-
-      {/* Ways into the work */}
-      <Container className="py-16 sm:py-20">
-        <Reveal className="mb-8 text-center">
-          <Eyebrow tone="flame">Explore the work</Eyebrow>
-          <h2 className="font-display mt-3 text-3xl tracking-tight text-ink sm:text-4xl">
-            Choose the question you came with
-          </h2>
-        </Reveal>
-        <Stagger className="grid gap-4 sm:grid-cols-2" gap={0.08} inView>
-          {PATHS.map((path) => (
-            <StaggerItem key={path.href}>
-              <HoverLift className="h-full">
-                <Link
-                  href={path.href}
-                  className={cn(
-                    "group relative flex h-full items-start gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-transparent",
-                    "before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:content-['']",
-                    TONE_BAR[path.tone]
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl",
-                      TONE_SOFT_BG[path.tone]
-                    )}
-                  >
-                    {path.emoji}
-                  </span>
-                  <span className="flex-1">
-                    <span className="font-display block text-xl text-ink">
-                      {path.title}
-                    </span>
-                    <span className="prose-scale-sm mt-1.5 block leading-relaxed text-ink/85">
-                      {path.body}
-                    </span>
-                    <span
-                      className={cn(
-                        "mt-3 inline-block text-sm font-medium transition-transform group-hover:translate-x-1",
-                        TONE_TXT[path.tone]
-                      )}
-                    >
-                      Explore →
-                    </span>
-                  </span>
-                </Link>
               </HoverLift>
             </StaggerItem>
           ))}

@@ -42,7 +42,8 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              aria-current={pathname === link.href ? "page" : undefined}
+              title={link.summary}
+              aria-current={isActive(link) ? "page" : undefined}
               className={cn(
                 "rounded-full px-3.5 py-1.5 text-sm transition-colors",
                 isActive(link)
@@ -96,16 +97,24 @@ export function SiteHeader() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  aria-current={pathname === link.href ? "page" : undefined}
+                  aria-current={isActive(link) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "rounded-lg px-3 py-2.5 text-base",
+                    "rounded-xl px-3 py-3",
                     isActive(link)
-                      ? "text-accent-strong"
+                      ? "bg-accent-soft/70 text-accent-strong"
                       : "text-ink hover:bg-sunken"
                   )}
                 >
-                  {link.label}
+                  <span className="block text-base font-medium">{link.label}</span>
+                  <span
+                    className={cn(
+                      "mt-0.5 block text-xs leading-5",
+                      isActive(link) ? "text-accent-strong/75" : "text-muted"
+                    )}
+                  >
+                    {link.summary}
+                  </span>
                 </Link>
               ))}
             </Container>
