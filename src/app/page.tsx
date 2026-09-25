@@ -246,13 +246,29 @@ export default function Home() {
             </StaggerItem>
           ))}
         </Stagger>
-        <p className="mt-5 text-center text-sm leading-relaxed text-muted">
-          Looking for the books, standards, and essays behind the work? Visit the{" "}
-          <Link href="/library" className="font-medium text-gold hover:underline">
-            library
-          </Link>
-          .
-        </p>
+        <Reveal className="mt-4">
+          <HoverLift>
+            <Link
+              href="/library"
+              className="group relative grid gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-colors before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:bg-accent before:content-[''] hover:border-transparent sm:grid-cols-[auto_1fr_auto] sm:items-center"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-2xl">
+                📚
+              </span>
+              <span>
+                <span className="font-display block text-xl text-ink">
+                  Follow the source trail
+                </span>
+                <span className="prose-scale-sm mt-1.5 block leading-relaxed text-ink/85">
+                  The books, standards, courses, and essays that have changed or sharpened my thinking.
+                </span>
+              </span>
+              <span className="text-sm font-medium text-accent transition-transform group-hover:translate-x-1">
+                Open the library →
+              </span>
+            </Link>
+          </HoverLift>
+        </Reveal>
       </Container>
       </section>
 
