@@ -17,7 +17,7 @@ import { PROJECTS } from "@/content/projects";
 import { AGENTS_FEATURE } from "@/content/agents";
 
 export const metadata = pageMetadata("/", {
-  title: { absolute: "Mubien · A calmer way to explore AI" },
+  title: { absolute: "Mubien · clarity for what comes next" },
 });
 
 const PATHS: {

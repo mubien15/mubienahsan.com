@@ -31,7 +31,7 @@ const SITE_URL = "https://mubienahsan.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Mubien · A calmer way to explore AI",
+    default: "Mubien · clarity for what comes next",
     template: "%s · Mubien",
   },
   description:
@@ -55,14 +55,14 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     locale: "en_US",
-    title: "Mubien · A calmer way to explore AI",
+    title: "Mubien · clarity for what comes next",
     description:
       "Building useful AI, testing its assumptions, and exploring meaningful oversight with calm, clarity, and depth.",
     siteName: "Mubien",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mubien · A calmer way to explore AI",
+    title: "Mubien · clarity for what comes next",
     description:
       "Building useful AI, testing its assumptions, and exploring meaningful oversight with calm, clarity, and depth.",
   },

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { logoDataUri } from "@/lib/logo-shapes";
 
-export const alt = "Mubien · A calmer way to explore AI";
+export const alt = "Mubien · clarity for what comes next";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -56,7 +56,7 @@ export default function Image() {
               flexWrap: "wrap",
             }}
           >
-            A calmer way to explore AI.
+            clarity for what comes next
           </div>
 
           <div

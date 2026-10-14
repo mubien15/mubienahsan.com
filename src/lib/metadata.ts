@@ -4,12 +4,12 @@ const DEFAULT_SHARE_IMAGE = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "Mubien · A calmer way to explore AI",
+  alt: "Mubien · clarity for what comes next",
 };
 
 /** Give every page its own canonical URL and text when shared. */
 export function pageMetadata(path: string, page: Metadata): Metadata {
-  const title = typeof page.title === "string" ? `${page.title} · Mubien` : "Mubien · A calmer way to explore AI";
+  const title = typeof page.title === "string" ? `${page.title} · Mubien` : "Mubien · clarity for what comes next";
   const description = page.description ?? "Using AI daily, building useful things, and exploring how it works and where it reaches its limits.";
   return {
     ...page,
