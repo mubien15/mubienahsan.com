@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const accessSecret = process.env.EXECUTION_KIT_ACCESS_SECRET;
-  const encryptionKey = process.env.EXECUTION_KIT_FILE_KEY;
+  const encryptionKey = process.env.EXECUTION_KIT_V1_1_FILE_KEY;
   const token = new URL(request.url).searchParams.get("token");
 
   if (!accessSecret || !encryptionKey) {
@@ -20,14 +20,14 @@ export async function GET(request: Request) {
 
   try {
     const encrypted = await readFile(
-      join(process.cwd(), "private-assets", "execution-kit-v1.enc")
+      join(process.cwd(), "private-assets", "execution-kit-v1.1.enc")
     );
     const zip = decryptExecutionKit(encrypted, encryptionKey);
     return new Response(new Uint8Array(zip), {
       headers: {
         "Cache-Control": "private, no-store, max-age=0",
         "Content-Disposition":
-          'attachment; filename="AI-Product-Launch-Execution-Kit-v1.0.zip"',
+          'attachment; filename="AI-Product-Launch-Execution-Kit-v1.1.zip"',
         "Content-Length": String(zip.length),
         "Content-Type": "application/zip",
         "X-Content-Type-Options": "nosniff",

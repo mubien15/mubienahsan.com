@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   // The paid ZIP is committed only as ciphertext. Include it in the download
   // function bundle so the server can decrypt it after a signed-link check.
   outputFileTracingIncludes: {
-    "/api/execution-kit/download": ["./private-assets/execution-kit-v1.enc"],
+    "/api/execution-kit/download": ["./private-assets/execution-kit-v1.1.enc"],
   },
 
   // Send any www visitor to the bare apex, the one canonical home. This keeps a

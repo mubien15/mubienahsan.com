@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastUpdated = new Date("2026-09-24");
   const reviewed = new Date("2026-11-23");
   const refreshedPaths = new Set([
-    "", "/projects", "/projects/ai-launch-review", "/research", "/research/autonomy-governance",
+    "", "/launch-review/execution-kit", "/projects", "/projects/ai-launch-review", "/research", "/research/autonomy-governance",
     "/research/learning-and-self-improvement", "/agents", "/courses",
     "/courses/getting-started-with-claude-code",
     "/courses/getting-started-with-claude-code/setup",

@@ -71,7 +71,7 @@ export default function ExecutionKitPage() {
               <div>
                 <div className="flex flex-wrap items-center gap-3">
                   <Eyebrow tone="accent">Execution kit</Eyebrow>
-                  <Pill tone="mint">Version 1.0</Pill>
+                  <Pill tone="mint">Version {EXECUTION_KIT.version}</Pill>
                 </div>
                 <h1 className="font-display mt-5 max-w-4xl text-4xl leading-[1.03] tracking-tight text-ink sm:text-5xl lg:text-6xl">
                   Move from an AI review to a launch decision.
@@ -160,7 +160,7 @@ export default function ExecutionKitPage() {
             body="Fact-based prompts for frameworks, security references, regulations, privacy laws, and sector review."
           />
           <PreviewCard
-            src="/images/execution-kit/guide-cover.png"
+            src="/images/execution-kit/guide-cover-v1.1.png"
             width={636}
             height={900}
             alt="Cover of the 11-page AI Product Launch Execution Kit field guide"
@@ -215,6 +215,10 @@ export default function ExecutionKitPage() {
                   The kit separates voluntary frameworks, security references, laws, and regulatory
                   guidance. It records the product facts that determine applicability and leaves the
                   legal conclusion with a qualified reviewer.
+                </p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  References checked {EXECUTION_KIT.referencesChecked}. Includes OWASP 2026 mappings
+                  and the AI Act&apos;s phased application dates.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
