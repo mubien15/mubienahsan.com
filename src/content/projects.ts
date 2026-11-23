@@ -78,9 +78,9 @@ export const PROJECTS: Project[] = [
         },
       ],
       evidence: {
-        checked: "24 September 2026",
+        checked: "23 November 2026",
         summary:
-          "I ran the transparent rule engine against the three published product profiles: a refund agent, a research copilot, and a shopping agent. The check verified that review levels and capability-specific claims, tests, and gates changed with the stated authority, data, impact, and tools.",
+          "I repeated the rule-engine checks on 23 November 2026 against the same three published product profiles: a refund agent, a research copilot, and a shopping agent. The check verified that review levels and capability-specific claims, tests, and gates changed with the stated authority, data, impact, and tools.",
         metrics: [
           { value: "3", label: "product profiles checked" },
           { value: "19", label: "claims generated" },

@@ -87,6 +87,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <a
+          data-print-hide
           href="#main-content"
           className="fixed left-4 top-3 z-[100] -translate-y-20 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white shadow-lg transition-transform focus:translate-y-0"
         >

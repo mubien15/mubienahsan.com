@@ -46,6 +46,7 @@ export default function LearningPage() {
         assumption: it learned. That word can mean several different things.
         Separating them makes both the possibilities and the limits easier to see.
       </PageIntro>
+      <p className="mt-5 text-sm text-muted">Sources checked 23 November 2026. The examples distinguish bounded improvements from claims of open-ended self-improvement.</p>
       <article className="mt-12 space-y-10 text-lg leading-relaxed text-ink/85">
         <section>
           <h2 className="font-display text-2xl text-ink">Start with the thing that changes</h2>
@@ -61,7 +62,7 @@ export default function LearningPage() {
               </section>
             ))}
           </div>
-          <p className="mt-4 text-sm text-muted">For the distinction between in-context learning and training, see <a className="underline" href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a>. For context and persistent notes in agents, see <a className="underline" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic’s context engineering guide</a>.</p>
+          <p className="mt-4 text-sm text-muted">For the distinction between in-context learning and training, see <a className="underline" href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a>. For context and persistent notes in agents, see <a className="underline" href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents">Anthropic’s context engineering guide</a>.</p>
         </section>
         <section>
           <h2 className="font-display text-2xl text-ink">Where recursive self-improvement enters the picture</h2>

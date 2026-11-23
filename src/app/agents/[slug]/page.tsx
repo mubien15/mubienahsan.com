@@ -143,6 +143,22 @@ export default async function ControlPage({
         ))}
       </div>
 
+      {control.sources?.length ? (
+        <Reveal>
+          <section className="mt-12 rounded-2xl border border-line bg-surface p-6">
+            <h2 className="font-display text-xl text-ink">Primary sources</h2>
+            <p className="mt-2 text-sm text-muted">Sources checked {control.lastChecked}. Drafts, guidance, and applicable law have different status.</p>
+            <ul className="mt-4 space-y-3 text-sm leading-6">
+              {control.sources.map((source) => (
+                <li key={source.href}>
+                  <a href={source.href} className="text-grape underline decoration-grape/30 underline-offset-4 hover:decoration-grape">{source.label} ↗</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </Reveal>
+      ) : null}
+
       {previous || next ? (
         <Reveal>
           <nav

@@ -166,7 +166,7 @@ export default function AgentsPage() {
             <dl className="mt-8 grid gap-3 sm:grid-cols-3 lg:max-w-3xl">
               <Fact value={`${PUBLISHED_CONTROLS.length}`} label="published controls" />
               <Fact value={`${FLOW_STAGES.length}`} label="purchase stages" />
-              <Fact value="22 Sep 2026" label="source review" />
+              <Fact value="23 Nov 2026" label="source review" />
             </dl>
 
             <div className="mt-8 flex flex-wrap gap-3">

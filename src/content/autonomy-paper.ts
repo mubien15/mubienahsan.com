@@ -18,8 +18,8 @@
  *     rather than leaving a reader to assume otherwise.
  */
 
-export const PAPER_VERSION = "1.0";
-export const PAPER_DATE = "20 September 2026";
+export const PAPER_VERSION = "1.1";
+export const PAPER_DATE = "23 November 2026";
 
 export type PaperSection = {
   id: string;
@@ -177,7 +177,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "The strongest published version of this" },
       {
         kind: "p",
-        text: "The most forceful statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025. Soares is president of the Machine Intelligence Research Institute.",
+        text: "The most forceful statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025.",
       },
       {
         kind: "p",
@@ -397,7 +397,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Binding: the EU AI Act" },
       {
         kind: "p",
-        text: "Article 14 of the EU Artificial Intelligence Act requires that high-risk systems be designed and developed so that they can be effectively overseen by natural persons while in use. The word doing the work is effectively. The obligation attaches to whether oversight works, not to whether a reviewer is present — which is precisely the distinction this paper is built on, and it is already law rather than a proposal.",
+        text: "Article 14 of the EU AI Act requires high-risk systems to be designed for effective oversight by natural persons. Effective oversight, rather than a reviewer's presence, is the distinction this paper examines. This is adopted law with phased application: the Commission lists 2 December 2027 for Annex III high-risk systems and 2 August 2028 for high-risk AI embedded in Annex I products. Transparency and general-purpose-model duties have separate schedules.",
       },
       {
         kind: "p",
@@ -410,7 +410,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Supervisory guidance: OSFI E-23" },
       {
         kind: "p",
-        text: "Canada's Office of the Superintendent of Financial Institutions (OSFI), the prudential regulator for federally regulated banks and insurers, published the final version of Guideline E-23 on model risk management on 11 September 2025, in force 1 May 2027 for federally regulated financial institutions. It expands model risk management to cover AI and machine learning explicitly, with risk-proportionate expectations across the model lifecycle.",
+        text: "Canada's Office of the Superintendent of Financial Institutions (OSFI), the prudential regulator for federally regulated banks and insurers, published the final version of Guideline E-23 on model risk management on 11 September 2025, effective from 1 May 2027 for federally regulated financial institutions. It expands model risk management to cover AI and machine learning explicitly, with risk-proportionate expectations across the model lifecycle.",
       },
       {
         kind: "p",
@@ -419,7 +419,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Voluntary: NIST and ISO/IEC 42001" },
       {
         kind: "p",
-        text: "The AI Risk Management Framework published by NIST, the US National Institute of Standards and Technology, together with its Generative AI Profile, is voluntary. Neither is a certification and neither is binding. The Govern, Map, Measure, Manage structure is the closest thing the field has to a common vocabulary, which is a real contribution and frequently overstated into an obligation it does not carry.",
+        text: "NIST's AI Risk Management Framework and Generative AI Profile are voluntary frameworks, not certifications or binding law. Govern, Map, Measure and Manage provide a common risk vocabulary. AI RMF 1.0 is being revised; published criteria and draft revisions should be identified separately.",
       },
       {
         kind: "p",
@@ -428,7 +428,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       { kind: "h3", text: "Evaluative bodies and industry commitments" },
       {
         kind: "p",
-        text: "The United Kingdom's AI Security Institute was renamed from the AI Safety Institute in February 2025, with a stated shift towards security-relevant risks. In the United States, the Center for AI Standards and Innovation was renamed from the US AI Safety Institute in June 2025, with a stated focus on demonstrable risks and on standards. Both publish evaluations and research. Neither is a regulator and neither issues binding requirements, and both are sometimes cited in governance material as though they did.",
+        text: "The UK's AI Security Institute researches advanced AI capabilities, risks and mitigations. NIST now identifies its US counterpart as the Center for Advancing Innovation and Standards for Super Intelligence (CAISSI), previously CAISI. Its remit includes capability and security evaluations, collaborative research and voluntary standards. These organisations do not provide general regulatory approval of a product.",
       },
       {
         kind: "p",
@@ -629,7 +629,7 @@ export const PAPER_SECTIONS: PaperSection[] = [
       },
       {
         kind: "p",
-        text: "Names and dates were checked rather than recalled: the UK body was renamed the AI Security Institute in February 2025; the US body became the Center for AI Standards and Innovation in June 2025; OSFI E-23 was finalised on 11 September 2025 and comes into force on 1 May 2027. Sources were last checked on the date shown on the cover of this paper. In this field that date matters, and a reader finding this later should treat the regulatory sections as a starting point rather than a current position.",
+        text: "Version 1.1 updates the regulatory application dates and institutional references against the primary sources on 23 November 2026. It distinguishes the AI Act's adopted Article 14 requirement from its future high-risk application dates, records NIST's current CAISSI name and AI RMF revision status, and confirms OSFI E-23's 1 May 2027 effective date. This is a source refresh, not new empirical validation of the framework. A later reader should recheck the regulatory position.",
       },
       {
         kind: "p",

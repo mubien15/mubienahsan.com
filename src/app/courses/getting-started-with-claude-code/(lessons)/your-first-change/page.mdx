@@ -36,10 +36,13 @@ Press Enter and watch. Here is roughly what that looks like, so it feels familia
 
 <ClaudeSession />
 
-Notice the middle box. **Claude asks before it changes anything.** It shows you what it wants to do and waits for you to approve, usually by choosing &ldquo;Yes&rdquo; and pressing Enter. Nothing happens to your files until you say so.
+The example shows an approval prompt, but **when Claude asks depends on its permission mode and the permissions you have already granted**. Some actions can run without another prompt. Before starting, check the session's mode and use `/permissions` to review access. Work in a new practice folder and keep a backup or Git history for existing work.
 
 <Callout type="note" title="Why the approval step matters">
-  That little Yes or No prompt is your steering wheel. You stay in control of every change. As you get comfortable you can loosen it, but starting out, reading each step before you approve is exactly the right habit.
+  Read permission requests before approving them. Permission settings control
+  which actions can run, but they do not establish that a change is correct.
+  Inspect the diff and test the result, including changes made under an existing
+  permission. See Anthropic's <a href="https://code.claude.com/docs/en/permissions">permissions guide</a>, checked on 23 November 2026.
 </Callout>
 
 You didn't write a single line of HTML. You described an outcome.
@@ -56,7 +59,7 @@ Now the loop that is the entire skill. Try:
   Make the heading dark green and add a short sentence underneath introducing myself.
 </PromptToClaude>
 
-Claude edits the same file and asks you to approve again. Look at the result. Notice how you are steering: describe, look, adjust, repeat. That rhythm is everything. The rest is just bigger versions of it.
+Claude edits the same file. It may ask again, depending on the permission already granted. Look at the change and the rendered result before continuing: describe, inspect, test, and adjust.
 
 ## Step 5. See it for real
 

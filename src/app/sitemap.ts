@@ -13,6 +13,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Use the date the content was actually revised. Generating a fresh timestamp
   // on every request tells crawlers that every page changed when it did not.
   const lastUpdated = new Date("2026-09-24");
+  const reviewed = new Date("2026-11-23");
+  const refreshedPaths = new Set([
+    "", "/projects", "/projects/ai-launch-review", "/research", "/research/autonomy-governance",
+    "/research/learning-and-self-improvement", "/agents", "/courses",
+    "/courses/getting-started-with-claude-code",
+    "/courses/getting-started-with-claude-code/setup",
+    "/courses/getting-started-with-claude-code/what-is-claude-code",
+    "/courses/getting-started-with-claude-code/your-first-change",
+    "/courses/prompting-basics/why-most-advice-is-noise",
+    "/courses/ship-your-first-app/put-it-on-the-internet",
+  ]);
+
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: lastUpdated, changeFrequency: "weekly", priority: 1 },
@@ -63,5 +75,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...projectPages, ...coursePages, ...controlPages];
+  return [...staticPages, ...projectPages, ...coursePages, ...controlPages].map((page) => ({
+    ...page,
+    lastModified: refreshedPaths.has(page.url.slice(SITE_URL.length)) || page.url.startsWith(`${SITE_URL}/agents/`)
+      ? reviewed
+      : page.lastModified,
+  }));
 }

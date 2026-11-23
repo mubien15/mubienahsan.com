@@ -108,7 +108,7 @@ export default function AutonomyGovernancePage() {
           <p>
             This connects two conversations that are usually held in separate
             rooms. Practical AI governance deals with systems in production now.
-            Alignment research deals with systems that may arrive later. The
+            Alignment research examines whether systems behave as intended, including in systems already used today. The
             connection is that both are asking what happens when verification
             becomes impossible, and only one of them has to answer it this
             quarter. Level 5 below is a stress test, not a forecast: if today&apos;s

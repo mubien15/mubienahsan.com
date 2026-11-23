@@ -136,7 +136,7 @@ export default function Home() {
                     href="/research/learning-and-self-improvement"
                     className="text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent"
                   >
-                    recursive learning and self-improvement
+                    recursive self-improvement
                   </Link>{" "}
                   could mean for us down the line.
                 </p>

@@ -5,7 +5,7 @@ import { Callout, PromptToClaude, Checklist } from "@/components/course/blocks";
 export const metadata = pageMetadata("/courses/ship-your-first-app/put-it-on-the-internet", {
   title: "Put it on the internet",
   description:
-    "From a page only you can see to a link you can text someone, in about five minutes. Then a proper domain if you want one.",
+    "From a local app to a link you can share. Check the build, deploy it, and add a domain if you want one.",
 });
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-flame"><span className="h-1.5 w-1.5 rounded-full bg-flame" />Lesson 5</span>
@@ -14,7 +14,9 @@ export const metadata = pageMetadata("/courses/ship-your-first-app/put-it-on-the
 
 Everything so far has happened at `localhost:3000`, and it is worth being clear about what that address actually is: a door that only opens from inside your own machine. Close the laptop and it is gone. Send the link to a friend and they get an error.
 
-This lesson closes that gap. It genuinely takes about five minutes.
+This lesson closes that gap. A simple app can be quick to deploy; account setup or build errors can take longer.
+
+Deployment guidance checked on **23 November 2026** against the official [CLI](https://vercel.com/docs/cli/deploy), [Git deployment](https://vercel.com/docs/git), and [deployment protection](https://vercel.com/docs/deployment-protection) documentation.
 
 ## First, build it once yourself
 
@@ -30,28 +32,28 @@ If it fails, that is the system doing its job. Hand it over the way you learned 
   npm run build failed. Here is the full output: [paste everything]. Can you fix the errors so it builds?
 </PromptToClaude>
 
-When it finishes without errors, you are ready.
+When it finishes without errors, try the app locally and check its main interactions before deploying.
 
-<Callout type="tip" title="A green build is the whole gate">
-  If `npm run build` passes locally, deployment almost always succeeds. If it fails locally, deployment will definitely fail. This one command saves you from debugging through a build log.
+<Callout type="tip" title="A build is one check">
+  A successful build does not prove the deployed app works. Hosting settings, environment variables, and connected services can differ. After deployment, test the real URL and check that private keys stay on the server.
 </Callout>
 
 ## Deploy it
 
-We are using Vercel. They make Next.js, the free tier is genuinely free for something like this, and it needs no configuration at all.
+We are using Vercel. Its Hobby plan is free within its limits for personal, non-commercial projects. Check the current [plan](https://vercel.com/docs/plans/hobby) and [Hobby terms](https://vercel.com/legal/terms) before hosting a commercial app. Connected services may need environment variables and their own billing.
 
 From your project folder, in the terminal that is **not** running the dev server:
 
 <Terminal command="npx vercel" />
 
-The first time, it opens your browser to sign in. Signing in with GitHub is the easiest route and pays off in a minute. Then it asks a handful of setup questions: which account, what to call the project, which folder. **Press Enter through all of them.** The defaults are correct, because it recognises a Next.js app and configures itself.
+The first time, it opens your browser to sign in. Signing in with GitHub is the easiest route and pays off in a minute. Then it asks a handful of setup questions: which account, what to call the project, which folder. **Review each answer before confirming.** Make sure the account, project, and folder are correct. Vercel can detect Next.js, but you should still check the proposed settings.
 
 Then it uploads, builds, and prints a URL.
 
 Open it. That is your app, on the internet, reachable by anyone. That first load is a good moment and I would not rush past it.
 
 <Callout type="note" title="Preview versus production">
-  That first URL is a preview deployment, which is a private working copy. To publish the real one, run the same command with `--prod` on the end. Every deploy gets its own permanent URL, so nothing overwrites anything and you can always go back to an earlier one.
+  The CLI creates a preview by default. Preview does not automatically mean private: check Deployment Protection before putting sensitive content there. Use `--prod` to deploy to your production domain. Deployment URLs and rollback options depend on retention and project settings.
 </Callout>
 
 <Terminal command="npx vercel --prod" />
@@ -74,16 +76,16 @@ Running a command every time gets old. Since your project already had git set up
   Help me push this project to a new GitHub repository.
 </PromptToClaude>
 
-Then on [vercel.com](https://vercel.com), import that repository. From then on, every change you push goes live on its own. Push, wait a minute, refresh. That is the loop I use for this site.
+Then on [vercel.com](https://vercel.com), import that repository. With automatic deployments enabled, pushes to the configured production branch update the live site; other branches normally create previews. Check which branch is production before pushing. That is the loop I use for this site.
 
 ## Give it a real name, if you want one
 
-`my-first-app-a1b2c3.vercel.app` is a perfectly good address. But a real domain costs a few pounds a year and changes how the thing feels, both for you and for anyone you send it to.
+`my-first-app-a1b2c3.vercel.app` is a perfectly good address. A custom domain can make it easier to remember. Check both the introductory price and the renewal price before buying.
 
 The path is short: buy a domain from any registrar, add it to your project in the Vercel dashboard under Settings and then Domains, and copy the DNS records it gives you back to the registrar. Then wait. DNS changes are usually live in minutes but are allowed to take up to a couple of days, and refreshing furiously does not help.
 
-<Callout type="warning" title="One thing that catches everyone">
-  A new domain can look broken on strict networks, particularly corporate laptops, for the first week or two. Some security filters block domains simply for being newly registered, with nothing wrong on your end. If it works on your phone but not at the office, that is usually what is happening. It clears up on its own.
+<Callout type="note" title="If the domain does not load">
+  Check the domain status and DNS records in Vercel first. If it works on mobile data but fails on another network, a security filter may be involved. Read the browser error and investigate; waiting alone will not fix a configuration error.
 </Callout>
 
 ## What you can do now

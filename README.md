@@ -9,7 +9,7 @@ product, governance, and human questions that follow.
 - **[AI Product Launch Review](https://mubienahsan.com/launch-review)** — a browser-based review
   that turns an AI product description into explicit risks, evidence gaps, launch conditions,
   and a decision path.
-- **[Agents That Spend](https://mubienahsan.com/research/autonomy-governance)** — original research
+- **[Agents That Spend](https://mubienahsan.com/agents)** — original research
   on authority, oversight, and accountability when software can take consequential actions.
 - **[AI Product Launch Execution Kit](https://mubienahsan.com/launch-review/execution-kit)** — a paid
   operating kit with risk, evaluation, framework-applicability, and decision artifacts.

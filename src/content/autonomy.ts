@@ -14,7 +14,7 @@
  */
 
 /** When the claims and links below were last checked against their sources. */
-export const LAST_CHECKED = "20 September 2026";
+export const LAST_CHECKED = "23 November 2026";
 
 /* ------------------------------------------------------------ dimensions */
 
@@ -784,6 +784,7 @@ export type SourceKind =
   | "Standard"
   | "Framework"
   | "Supervisory guidance"
+  | "Research body"
   | "Industry commitment"
   /** A published argument. Carries no authority beyond its own reasoning. */
   | "Argument";
@@ -802,7 +803,7 @@ export const SOURCES: Source[] = [
     org: "NIST (US National Institute of Standards and Technology)",
     kind: "Framework",
     href: "https://www.nist.gov/itl/ai-risk-management-framework",
-    note: "Voluntary. The Govern / Map / Measure / Manage structure is the closest thing to a common vocabulary; the Generative AI Profile adds risks specific to these systems. Not a certification and not binding.",
+    note: "Voluntary. The Govern / Map / Measure / Manage structure provides a common risk vocabulary; the Generative AI Profile adds risks specific to these systems. NIST says AI RMF 1.0 is being revised. These published frameworks are voluntary, not certifications.",
   },
   {
     name: "ISO/IEC 42001 — AI management systems",
@@ -816,35 +817,42 @@ export const SOURCES: Source[] = [
     org: "OSFI — Office of the Superintendent of Financial Institutions (Canada)",
     kind: "Supervisory guidance",
     href: "https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/guideline-e-23-model-risk-management-2027",
-    note: "Final version published 11 September 2025, in force 1 May 2027 for federally regulated financial institutions. Expands model risk management to cover AI and machine learning explicitly, with risk-proportionate lifecycle expectations.",
+    note: "Final version published 11 September 2025, effective from 1 May 2027 for federally regulated financial institutions. Expands model risk management to cover AI and machine learning explicitly, with risk-proportionate lifecycle expectations.",
   },
   {
     name: "Artificial Intelligence Act — Article 14, human oversight",
     org: "European Union",
     kind: "Regulation",
-    href: "https://artificialintelligenceact.eu/article/14/",
-    note: "Binding. High-risk systems must be designed so that they can be effectively overseen by natural persons while in use. The obligation attaches to effectiveness, not to the presence of a reviewer — which is the distinction this whole framework turns on.",
+    href: "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-14",
+    note: "Article 14 is an adopted legal requirement for effective human oversight of high-risk systems. Application is phased: the Commission lists 2 December 2027 for Annex III high-risk systems and 2 August 2028 for high-risk AI embedded in Annex I products. It should not be described as already applicable to every high-risk deployment. The requirement concerns effective oversight, not simply the presence of a reviewer.",
+  },
+  {
+    name: "Artificial Intelligence Act — implementation timeline",
+    org: "European Commission AI Office",
+    kind: "Regulation",
+    href: "https://ai-act-service-desk.ec.europa.eu/en/ai-act/eu-ai-act-implementation-timeline",
+    note: "Official phased application dates after the Digital Omnibus on AI. Transparency duties began applying on 2 August 2026; a transition for certain existing synthetic-content systems ends on 2 December 2026. The high-risk deadlines are separate. Check the system's role, category and transition provisions before determining which duty applies.",
   },
   {
     name: "Artificial Intelligence Act — general-purpose AI with systemic risk",
     org: "European Union",
     kind: "Regulation",
-    href: "https://artificialintelligenceact.eu/high-level-summary/",
+    href: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
     note: "Binding. Providers of general-purpose AI models — GPAI, the broad models that are adapted to many downstream tasks rather than built for one — must, where the model presents systemic risk, evaluate, assess and mitigate that risk, report serious incidents and maintain cybersecurity. The Act sets a training-compute threshold of 10²⁵ FLOP, floating-point operations, as a presumption of systemic risk: a measure of the raw arithmetic used to train the model, which is administrable precisely because it can be counted, and which is a proxy for capability rather than a measure of it.",
   },
   {
     name: "AI Security Institute",
     org: "United Kingdom",
-    kind: "Framework",
+    kind: "Research body",
     href: "https://www.aisi.gov.uk/",
     note: "Renamed from the AI Safety Institute in February 2025, with a stated shift towards security-relevant risks. Publishes evaluations and research; it is not a regulator and issues no binding requirements.",
   },
   {
-    name: "Center for AI Standards and Innovation (CAISI)",
+    name: "Center for Advancing Innovation and Standards for Super Intelligence (CAISSI)",
     org: "NIST / US Department of Commerce",
-    kind: "Framework",
-    href: "https://www.nist.gov/caisi",
-    note: "Renamed from the US AI Safety Institute in June 2025, with a stated focus on demonstrable risks and on standards. Evaluative and standards-setting rather than regulatory.",
+    kind: "Research body",
+    href: "https://www.nist.gov/caissi",
+    note: "NIST now identifies this centre as CAISSI; earlier publications used CAISI. Its published remit includes capability and security evaluations, collaborative research, and voluntary standards. These activities should not be presented as a general regulatory approval or certification of a product.",
   },
   {
     name: "Frontier safety frameworks",
@@ -914,7 +922,7 @@ export const COMPREHENSION = {
   strongForm: {
     heading: "The strongest version of this argument",
     body: [
-      "The most forceful published statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025. Soares is president of the Machine Intelligence Research Institute.",
+      "The most forceful published statement of the problem is Eliezer Yudkowsky and Nate Soares, If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All, published in September 2025.",
       "Their phrase for the mechanism above is that AI systems are grown, not crafted. Soares has made the regulatory case in those terms: that a superintelligent system would not be understandable, would not be predictable, and would not have human interests at heart.",
       "From there they argue that a system built with anything close to current techniques, and substantially more capable than the people who built it, would not be controllable, and that the default outcome is severe enough to threaten human survival. Self-improvement compounds it: a system permitted to deploy its own changes could change faster than its checks can keep up. Whether that happens depends on its rate of improvement and the controls around deployment.",
     ],

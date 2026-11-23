@@ -12,20 +12,24 @@ export const metadata = pageMetadata("/courses/getting-started-with-claude-code/
 
 # Getting set up
 
-This is the only part of the course that looks technical, and it is shorter than you expect. We go one small step at a time, and I explain what each thing is, not just what to type. Do this once and you never think about it again.
+We go one small step at a time, and I explain what each thing is, not just what to type. Install the tool, check that it starts, and keep the official setup guide handy as the software changes.
+
+Setup instructions checked on **23 November 2026** against the [official quickstart](https://code.claude.com/docs/en/quickstart) and [installation guide](https://code.claude.com/docs/en/setup).
 
 <Checklist
   title="Before you start, you need"
   items={[
     "A computer running macOS, Windows, or Linux",
-    "A paid Claude plan (Pro or Max). The free plan does not include Claude Code",
+    "Access through a supported paid Claude subscription, or a Claude Console account with API billing",
   ]}
 />
 
-<Callout type="important" title="You need a paid plan">
-  Claude Code runs on a Pro, Max, Team, or Enterprise account. The free plan at{" "}
-  <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>{" "}
-  does not include it. If you are on the free plan, upgrading to Pro is the smallest step that unlocks everything in this course.
+<Callout type="important" title="Choose how you will pay for usage">
+  Anthropic currently lists Pro, Max, Ultra, Team, and Enterprise subscriptions,
+  Claude Console API billing, and supported cloud providers as access options.
+  This walkthrough uses a personal subscription. API usage is billed separately
+  from a subscription, so check the sign-in method and current plan details before
+  starting. A free Claude chat account alone does not provide the access used here.
 </Callout>
 
 ## Prefer to skip the terminal entirely?
@@ -40,7 +44,7 @@ There is now a **Claude Code Desktop app** with a normal window, buttons, and no
 
 ## What a terminal is
 
-**Terminal.** A plain window where you type commands instead of clicking buttons. It comes built into your computer. That is all it is. Nothing you type in a single line here can break your machine, and you can always close the window and start again.
+**Terminal.** A window where you type commands instead of clicking buttons. It comes built into your computer. Commands can install software, change files, delete data, or send information over the network. Read a command before running it, use the official source, and ask for an explanation if any part is unclear. Closing the window does not undo a command that has already run.
 
 ## Step 1. Open your terminal
 
@@ -59,7 +63,7 @@ There is now a **Claude Code Desktop app** with a normal window, buttons, and no
 
 ## Step 2. Install Claude Code
 
-Copy the one line for your system, paste it into the terminal, and press Enter. This is the friendly native installer. It does not need any coding tools, and it keeps itself up to date on its own from now on.
+The commands below download and execute Anthropic's installer. Check them against the [official installation guide](https://code.claude.com/docs/en/setup), then use the one for your system. The native installer does not require Node.js and normally updates itself in the background.
 
 <PlatformTabs
   mac={
@@ -81,14 +85,16 @@ Give it a moment. When the cursor comes back and stops printing, it is done.
 
 <Callout type="note" title="Rather use npm?">
   If you already have Node.js version 22 or newer, you can install with{" "}
-  <code>npm install -g @anthropic-ai/claude-code</code> instead. The native installer above is simpler for most people because it needs nothing installed first, so that is the one I recommend starting with.
+  <code>npm install -g @anthropic-ai/claude-code@latest</code> instead. Do not add
+  <code>sudo</code>. The native installer avoids that Node.js prerequisite and is
+  the path used in this lesson.
 </Callout>
 
 ## Step 3. Check it worked
 
 Type this and press Enter:
 
-<Terminal command="claude --version" output="2.x.x (Claude Code)" />
+<Terminal command="claude --version" output="A version number, followed by (Claude Code)" />
 
 If you see a version number, any recent one, you are good. If instead you see &ldquo;command not found&rdquo;, close the terminal, open a fresh one, and try again. A brand new window picks up the freshly installed tool.
 
@@ -107,7 +113,7 @@ The first time, it opens your browser to sign in with your Claude account. Follo
 
 ## If something goes sideways
 
-That is normal, and it is not you. The single most useful move: copy the exact error message and paste it into Claude, the chat at claude.ai, or a search engine. Almost every setup snag has a short fix that someone has already written down.
+Start with the [official troubleshooting guide](https://code.claude.com/docs/en/troubleshooting). If you ask for help elsewhere, share the error after removing API keys, tokens, private paths, and other sensitive details.
 
 <Callout type="tip">
   Do not aim for a perfect, tidy setup. Aim for &ldquo;it starts.&rdquo; That is the whole bar for this lesson.

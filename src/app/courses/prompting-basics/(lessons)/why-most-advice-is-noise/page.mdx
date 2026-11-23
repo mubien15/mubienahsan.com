@@ -5,21 +5,21 @@ import { MythList, PromptCompare } from "@/components/course/prompting";
 export const metadata = pageMetadata("/courses/prompting-basics/why-most-advice-is-noise", {
   title: "Why most prompting advice is noise",
   description:
-    "Magic words, secret phrases and threats do not work. The techniques that do are unglamorous and few. Here is the honest list.",
+    "Clear goals, useful context, examples, and testing are a stronger foundation than promises of universal prompt tricks.",
 });
 
 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-grape"><span className="h-1.5 w-1.5 rounded-full bg-grape" />Lesson 1</span>
 
 # Why most prompting advice is noise
 
-Search for prompt engineering and you will find threads promising secret phrases, packs of "500 god tier prompts" for sale, and confident people telling you to threaten the model or offer it a tip. Almost none of it holds up.
+Search for prompt engineering and you will find threads promising secret phrases, packs of "500 god tier prompts" for sale, and confident people telling you to threaten the model or offer it a tip. A wording change can affect results on a particular task or model. That does not make it a reliable rule for every task.
 
 I want to save you that detour. This lesson clears the noise so the next four can give you the small handful of things that genuinely move results.
 
-## The stuff that does not work
+## The habits I would not rely on
 
 <MythList
-  title="You can stop doing all of this"
+  title="These are not substitutes for a clear task"
   items={[
     "Opening with \"You are a world class expert genius\" and hoping the flattery does the work",
     "Threatening the model, or promising it a $200 tip",
@@ -32,14 +32,14 @@ I want to save you that detour. This lesson clears the noise so the next four ca
 Why do these keep spreading? Because they are memorable and easy to sell, and because people credit the magic phrase when the real improvement came from something boring in the same prompt, usually being more specific.
 
 <Callout type="note" title="Where this course gets its facts">
-  Everything here is checked against Anthropic's own published prompting guidance rather than folklore. When their advice and a viral thread disagree, I follow the people who built the model.
+  Guidance reviewed on **23 November 2026** against Anthropic's [prompting overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview). Their starting point is to define success and test it. Treat these lessons as practical defaults, then compare outputs on your own task and model.
 </Callout>
 
 ## The stuff that does work
 
 Here is the honest list. It is short, and none of it is clever:
 
-1. **Say exactly what you want.** Specific beats vague, every time.
+1. **Say exactly what you want.** Specific requests give the model a clearer target.
 2. **Explain why you want it.** Reasons travel further than rules.
 3. **Show an example.** One good example beats a paragraph of description.
 4. **Steer instead of starting over.** The second ask is where the quality is.
@@ -78,7 +78,7 @@ Nothing on the right is clever. There is no incantation. It is just someone sayi
 
 Anthropic offer a test I now use constantly, and it is the single most useful idea in this whole course:
 
-> Show your prompt to a colleague with minimal context on the task and ask them to follow it. If they would be confused, Claude will be too.
+Could a colleague who knows little about the task follow your instructions? If they would need more context, add it before expecting the model to fill the gap.
 
 That is it. If a reasonable human with no background could not act on your request without asking a follow up question, your prompt is not finished. Every technique in the next four lessons is really just a way of passing this test.
 

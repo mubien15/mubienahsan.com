@@ -46,7 +46,7 @@ export const COURSES: Course[] = [
         slug: "setup",
         title: "Getting set up",
         summary:
-          "Install it once, and never think about it again. We go one step at a time and name each thing you do.",
+          "Choose an access option, install it, and check that it starts. Each step is explained and linked to the current documentation.",
         minutes: 8,
       },
       {

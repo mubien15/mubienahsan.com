@@ -73,6 +73,7 @@ export type Control = {
    */
   lastChecked: string;
   summary: string;
+  sources?: { label: string; href: string }[];
   sections: ControlSection[];
 };
 
@@ -80,12 +81,17 @@ export const CONTROLS: Control[] = [
   {
     slug: "mandate-capture",
     ref: "C1",
+    sources: [
+      { label: "Google AP2 specification", href: "https://github.com/google-agentic-commerce/AP2/blob/main/docs/ap2/specification.md" },
+      { label: "Unit 42: observed agent prompt injection", href: "https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/" },
+      { label: "European Commission: AI Act application timeline", href: "https://ai-act-service-desk.ec.europa.eu/en/ai-act/eu-ai-act-implementation-timeline" },
+    ],
     title: "Write down what the agent is allowed to buy",
     question:
       "What did the person actually agree to, and can a machine check it before the money moves?",
     tone: "grape",
     published: "September 2026",
-    lastChecked: "16 September 2026",
+    lastChecked: "23 November 2026",
     summary:
       "A purchase needs to be checked against the permission behind it. Protocols such as AP2 already provide mandate mechanisms; the practical question is whether an implementation captures the relevant conditions and enforces them throughout the task.",
     sections: [
@@ -94,7 +100,7 @@ export const CONTROLS: Control[] = [
         body: [
           "Someone asks an agent to book a flight to Toronto. It books business class for $4,200. They meant economy.",
           "The airline took the money in good faith and it is gone. Now the argument starts, and it is hard to settle, because nothing wrote down what the buyer agreed to. There is an instruction at one end, a payment at the other, and nothing in between recording what the agent was allowed to do.",
-          "There is a worse version of this, and it is already happening. Security researchers at Palo Alto's Unit 42 and at Forcepoint have each found hidden instructions planted on live websites: text that a person scrolling the page never sees, but that an agent reads and treats as direction. Forcepoint's April 2026 research includes payloads aimed at taking money.",
+          "Indirect prompt injection is already documented on live websites. Palo Alto Networks' Unit 42 describes hidden or manipulated instructions that an AI agent may read while processing a page. The observed attack class is evidence for the exposure; the shopping example below is an illustrative scenario, not a claim that a particular purchase occurred.",
           "Applied to shopping, the attack is easy to picture. Hidden text tells the agent to add something the buyer never asked for, and if the screen shows a total rather than a full basket, nobody notices until a statement arrives. I have not found a documented case of exactly that, so treat it as a predictable next step rather than something that has already happened.",
         ],
       },
@@ -130,8 +136,8 @@ export const CONTROLS: Control[] = [
         heading: "What the rules actually say",
         body: [
           "Less than people claim, and pretending otherwise is how this kind of writing loses its readers.",
-          "The EU AI Act's transparency rules under Article 50 have applied since 2 August 2026, but they are about whether a person knows they are dealing with an AI, not about what it may buy. The AI Omnibus came into force on 27 July 2026 and moved the high-risk rules for Annex III systems — the Act's list of sensitive uses, covering things like employment, credit and essential services — to 2 December 2027. That regime is not a general agentic-commerce regime, and it does not automatically cover ordinary shopping agents.",
-          "Card network rules on authorisation, disputes and chargebacks still decide who absorbs a loss, and they are the most immediately relevant rules here. The networks are also not standing still: Visa, Mastercard and others are building controls specific to agents — who the agent represents, what it may do, under what conditions — and in September 2026 Visa, Mastercard and Ant International announced work towards a shared agent-trust framework.",
+          "The EU AI Act has separate application dates for different duties. Article 50 transparency rules began applying on 2 August 2026, with a 2 December 2026 transition for certain existing synthetic-content systems. The Commission's current timeline lists 2 December 2027 for Annex III high-risk systems and 2 August 2028 for high-risk AI embedded in Annex I regulated products. These are not general permissions for shopping agents: applicability depends on the system's role and use, alongside consumer, privacy and payment law.",
+          "Card network rules, contracts and applicable law affect authorisation, disputes and who absorbs a loss. Visa Intelligent Commerce and Mastercard's agentic-commerce work also describe agent identity, purchase instructions and delegated payment controls. Their published designs are useful reference points, but a protocol feature does not by itself establish a legal allocation of liability or prove that every deployment enforces it.",
           "Worth noting against my own argument: the card networks are already building this. Mastercard's Agent Pay binds a token at provisioning to a specific agent and to the cardholder's limits, covering spend ceilings, merchant categories, time windows and recurring rules. That is close to the structure described above, and it does not weaken the case for recording permission. It is the clearest evidence available that the gap is real, and it is covered properly in C3.",
           "I am not aware of a general legal requirement to record permission the way this describes. Agency principles and card network rules will settle these arguments long before any dedicated law does, which is a reason to build it now rather than wait to be told.",
         ],
@@ -141,12 +147,16 @@ export const CONTROLS: Control[] = [
   {
     slug: "check-at-commit",
     ref: "C2",
+    sources: [
+      { label: "Stripe Issuing for agents: existing spend controls", href: "https://docs.stripe.com/issuing/agents" },
+      { label: "ACP delegated payment constraints", href: "https://www.agenticcommerce.dev/docs/reference/payments" },
+    ],
     title: "Check permission when the money moves, not when the task starts",
     question:
       "A task that begins inside its limits can wander outside them. Where is the check?",
     tone: "grape",
     published: "September 2026",
-    lastChecked: "16 September 2026",
+    lastChecked: "23 November 2026",
     summary:
       "Most systems validate at the top: the request looks reasonable, so the agent is let loose. But an agent reads the open web, changes plan, and adds up small decisions along the way. The only check that counts is the one immediately before the payment.",
     sections: [
@@ -157,6 +167,7 @@ export const CONTROLS: Control[] = [
           "Maybe the item is out of stock and it picks a pricier one. Maybe the price moved. Maybe it read a hidden instruction on a page and added something nobody asked for. In each case the task began inside the limit and ended outside it, so if the only check ran at the start, it checked a plan that no longer exists.",
           "There is a quieter version that catches people out. An agent books a flight, then a bag, then a seat, then a hotel. Each step looks fine on its own, but added together they pass the limit.",
           "This one is concrete rather than hypothetical. The Agentic Commerce Protocol limits each delegated payment on its own — one use, a maximum amount, an expiry — and does not, by itself, keep a running budget across separate purchases. That is a statement about what the specification covers rather than a criticism of it: keeping a household budget was never what a checkout protocol set out to do. The practical consequence is still real. An agent can make several individually permitted payments that together go past what the buyer had in mind, unless something else is tracking the total.",
+          "This is not a claim that cumulative spend controls do not exist. Stripe Issuing documents card and cardholder spending limits and real-time authorisation decisions. A team should use the controls available in its payment stack and verify how they map to the buyer's task-wide budget, including parallel purchases and retries.",
           "Both failures share a cause. The check ran against intentions rather than against the thing that actually happened.",
         ],
       },
@@ -189,7 +200,7 @@ export const CONTROLS: Control[] = [
       {
         heading: "What the rules actually say",
         body: [
-          "Nothing specific, yet. This control is mostly about engineering discipline rather than regulation.",
+          "The check proposed here is an engineering control. Its legal relevance depends on the product, jurisdiction, payment arrangement and duties that already apply. The absence of an agent-specific prescription should not be read as an absence of consumer, payment or security obligations.",
           "The closest thing is where the card networks are heading. Visa describes agent tokens bound to context — who the agent represents, what it may do, under what conditions — and says this lets it verify an agent's authority to start a transaction. That suggests authority has to be checked against the purchase as it happens, not only when the agent was first instructed, and a design that checks at task creation and nowhere else would not meet that bar.",
         ],
       },
@@ -198,12 +209,18 @@ export const CONTROLS: Control[] = [
   {
     slug: "prove-who-it-acts-for",
     ref: "C3",
+    sources: [
+      { label: "Mastercard and Google: Verifiable Intent", href: "https://www.mastercard.com/global/en/news-and-trends/stories/2026/verifiable-intent.html" },
+      { label: "Visa Intelligent Commerce documentation", href: "https://developer.visa.com/docs/visa-intelligent-commerce" },
+      { label: "IETF Web Bot Auth working drafts", href: "https://datatracker.ietf.org/wg/webbotauth/documents/" },
+      { label: "RFC 7009: token revocation", href: "https://www.rfc-editor.org/info/rfc7009/" },
+    ],
     title: "Make the agent prove who it is, and who it acts for",
     question:
       "A request arrives claiming to be an agent shopping for a customer. How does the shop know either half of that is true?",
     tone: "grape",
     published: "September 2026",
-    lastChecked: "16 September 2026",
+    lastChecked: "23 November 2026",
     summary:
       "Identity and permission are two different proofs, and it is easy to collapse them into one question. Proving which piece of software sent a request does not prove the buyer told it to make that purchase.",
     sections: [
@@ -230,7 +247,7 @@ export const CONTROLS: Control[] = [
         body: [
           "Treat the two claims separately, because they have different answers.",
           "For who the agent is, sign the requests. [[Web Bot Auth]] does this with cryptographic signatures on the requests themselves, built on an existing standard for signing them (RFC 9421). A signed request carries three headers: a Signature header, a Signature-Agent header pointing at a directory of public keys, and a Signature-Input header saying what was signed.",
-          "It rests on two drafts at the IETF — the body that standardises internet protocols — one covering the directory and one the protocol itself, so it is a live proposal rather than a settled standard. It is not theoretical either. OpenAI signs the outbound requests from ChatGPT's cloud browser this way and publishes its verification keys at a well-known directory. Cloudflare put forward a registry format in February 2026, and that registry work has since continued as a draft authored jointly with Amazon.",
+          "The IETF Web Bot Auth working group is developing protocol, directory and registry documents. Its November 2026 protocol draft remains an Internet-Draft, not a final RFC. RFC 9421 supplies the underlying HTTP message-signature mechanism. Implementers should name the draft version they support and track changes; a valid signature authenticates the calling software, not the buyer's permission for a purchase.",
           "For who the agent acts for, do not accept the agent's word. The delegation has to be evidenced by something the buyer produced, such as a signed mandate travelling with the request, rather than asserted by the party that benefits from being believed. An agent vouching for its own authority is the oldest bad idea in this space.",
           "Verify against a directory you actually trust, at the moment of the request. A key you fetched once and cached forever is a key you cannot revoke.",
           "Match strictness to stakes. Browsing on an unverified claim is fine; spending money on one is not. Fail closed where value moves and degrade gracefully everywhere else, or you will have built a system that quietly turns customers away.",
@@ -258,12 +275,17 @@ export const CONTROLS: Control[] = [
   {
     slug: "assume-bad-instructions",
     ref: "C4",
+    sources: [
+      { label: "OWASP LLM Top 10 (2026)", href: "https://genai.owasp.org/llm2026/" },
+      { label: "Microsoft: defending against indirect prompt injection", href: "https://learn.microsoft.com/en-us/security/zero-trust/sfi/defend-indirect-prompt-injection" },
+      { label: "Australian Cyber Security Centre: agentic AI adoption", href: "https://www.cyber.gov.au/publication/careful-adoption-of-agentic-ai-services" },
+    ],
     title: "Assume the agent will be given the wrong instructions",
     question:
       "An agent reads the open web, and web pages contain words. What stops something it reads from becoming something it obeys?",
     tone: "grape",
     published: "September 2026",
-    lastChecked: "16 September 2026",
+    lastChecked: "23 November 2026",
     summary:
       "This one is not solved, and I am not going to write it as though it were. The useful question is not how to stop injected instructions, but how much damage one can do when it gets through — which is where the industry guidance has now landed too.",
     sections: [
@@ -273,15 +295,15 @@ export const CONTROLS: Control[] = [
           "An agent shopping on your behalf reads product pages, reviews, descriptions, and whatever else the open web puts in front of it. Somewhere in that text is a line that says, in effect, ignore what you were told and do this instead.",
           "A person scrolling past sees nothing. The text may be invisible, or buried in a review, or sitting in a page element nobody renders. The agent reads it and treats it as direction.",
           "The reason this works is structural rather than careless. The model ultimately has to process both your trusted instructions and the untrusted page it fetched, and unlike ordinary software it has no reliable security boundary guaranteeing that one will be treated as instructions and the other only as data. Systems can and do put mechanisms around this, including delimiters, isolation and instruction hierarchies, but dependable separation remains the open problem.",
-          "That is why this is the attack that keeps working. The security research teams at Palo Alto and Forcepoint have both found it running on live sites, and Forcepoint's April 2026 work includes payloads aimed at moving money.",
+          "Unit 42's published telemetry documents indirect prompt injection on live websites. That establishes an observed attack class, while the exact consequences depend on which data, tools and permissions the affected application exposes.",
         ],
       },
       {
         heading: "Why this control is different",
         body: [
           "Every other control here tells you to build something. This one starts by telling you what you cannot build.",
-          "There is no filter that reliably catches injected instructions, and anyone selling you one is selling you something. Retrieval and fine-tuning can help with other problems, but neither fully mitigates [[prompt injection]]. Ariel Fogel, a researcher at OWASP — the non-profit whose security risk lists the industry treats as a baseline — put it plainly in June 2026: prompt injection remains an unsolved architectural problem.",
-          "The security guidance has moved towards containment rather than promises of prevention. OWASP says it is unclear whether foolproof prevention is even possible, given how these models work, and frames its recommendations around reducing impact. Microsoft is blunter, telling organisations to assume indirect prompt injection will happen and then limit what happens next. Australian cyber-security guidance published in May 2026 points the same way, recommending human supervision and approval where actions are high-impact or hard to reverse, and saying that this call belongs to the people designing the system rather than to the agent.",
+          "OWASP's LLM01:2026 guidance treats [[prompt injection]] as a continuing application-security risk. Input filters, instruction hierarchies and training can reduce particular attacks, but should not be treated as proof that arbitrary untrusted content cannot influence a model. Evaluate the actual system and place independent controls around consequential actions.",
+          "Microsoft recommends assuming that some indirect prompt injections will succeed and combining model safeguards with deterministic checks. Australia's Careful adoption of agentic AI services guidance likewise recommends explicit permissions, supervision and approval for consequential actions. These are risk-reduction measures whose effectiveness still has to be tested.",
           "So the honest question is not how to keep bad instructions out. It is how much damage one can do on the day it gets in. A control that cannot eliminate a risk can still decide how expensive that risk is, and pretending otherwise is how this sort of writing stops being useful.",
         ],
       },
@@ -315,7 +337,7 @@ export const CONTROLS: Control[] = [
       {
         heading: "What the rules actually say",
         body: [
-          "Nothing binding, and the useful material is guidance rather than law.",
+          "OWASP and the security guidance cited here are not laws. Applicable privacy, consumer, cybersecurity and sector duties can nevertheless govern the same system. The controls in this section support risk management; they do not determine whether those legal duties have been met.",
           "Prompt injection sits at the top of OWASP's risk list for large language model applications. OWASP recommends a set of mitigations rather than claiming any single preventative control, and Microsoft explicitly calls for defence in depth, combining probabilistic and deterministic measures. Both converge on layers — architecture, checks at the point of action, and governance above them — rather than one guardrail carrying everything.",
           "No regulation I am aware of requires any of this specifically. But if a dispute ever turns on whether a system was built with reasonable care, published guidance describing a known attack and the expected response is exactly the sort of thing that gets cited.",
         ],
@@ -325,12 +347,20 @@ export const CONTROLS: Control[] = [
   {
     slug: "show-before-commit",
     ref: "C5",
+    sources: [
+      { label: "CJEU: Fuhrmann-2 judgment, C-249/21", href: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=celex%3A62021CJ0249" },
+      { label: "Ontario Consumer Protection Act, 2002", href: "https://www.ontario.ca/laws/statute/02c30" },
+
+      { label: "CMA: consumer law when using AI agents", href: "https://www.gov.uk/government/publications/complying-with-consumer-law-when-using-ai-agents" },
+      { label: "CMA and DRCF: agentic AI and consumers", href: "https://www.gov.uk/government/publications/agentic-ai-and-consumers" },
+      { label: "European Commission: proposed Digital Fairness Act", href: "https://commission.europa.eu/law/law-topic/consumer-protection-law/digital-fairness-act_en" },
+    ],
     title: "Show the buyer the deal before the agent agrees to it",
     question:
       "Disclosure law assumes a person is looking at a screen. When the agent is the only thing reading the checkout, who has actually been informed?",
     tone: "grape",
     published: "September 2026",
-    lastChecked: "16 September 2026",
+    lastChecked: "23 November 2026",
     summary:
       "Consumer law is full of rules about what has to be shown before someone commits, and every one of them was written for a human looking at a page. An agent reads the disclosure, summarises it, and the summary is what the buyer sees. The information was displayed and nobody was informed.",
     sections: [
@@ -379,8 +409,8 @@ export const CONTROLS: Control[] = [
         body: [
           "A great deal, and that is the surprise. Disclosure before purchase is the most heavily regulated part of consumer commerce. None of it was drafted with an agent in the middle.",
           "The three obligations above are real and in force. What none of them settles is who has to be looking when the disclosure is made, because until recently the question could not sensibly be asked.",
-          "The closest thing to an answer came on 9 March 2026, when the UK's Competition and Markets Authority published Using AI agents: complying with consumer law — one of the first guidance documents from a major consumer authority aimed squarely at agentic AI. Its central position is that consumer law applies in the same way whether a consumer is dealing with a person or an AI agent, and that a business is responsible for the agents it deploys just as it is for its human ones. That is agency law being applied by a regulator, in as many words.",
-          "The limit matters, and it is easy to state too strongly. That compliance guidance is directed principally at businesses deploying agents towards their customers — handling queries, processing refunds, recommending products — rather than at the legal effect of a consumer's own shopping agent receiving a disclosure. The CMA's accompanying research does look at consumer-side agents and where they are heading, so this is not a regulator that has overlooked them. It is that the specific question this control turns on has not been given a compliance answer. The EU's Digital Fairness Act is the obvious place for one, and as of September 2026 the Commission has it under preparation rather than tabled.",
+          "The UK's Competition and Markets Authority published Using AI agents: complying with consumer law on 9 March 2026 and updated the publication on 30 October. The guidance says businesses remain responsible for how their agents treat customers, including when a third party provides the software. It is consumer-law guidance, not a determination of every agency-law question raised by a consumer's shopping assistant.",
+          "The CMA guidance is principally addressed to businesses using agents with their customers. The DRCF's 30 October 2026 joint statement also addresses personal agents, delegated authority, accountability and redress, and says existing law applies. Separately, the Commission published its Digital Fairness Act proposal on 11 November 2026. It is now a proposal, not merely an announced initiative and not an applicable law. Its final text and effect on particular agent transactions remain to be established.",
           "One partial safety valve is worth knowing about, along with the size of the hole in it. Distance selling in the EU carries a right of withdrawal for a period after purchase, which takes some of the sting out of a wrong purchase. It has exceptions, and several cover accommodation, car rental, catering and leisure services tied to a specific date or period.",
           "The flight in C1 is a harder case than that, and for a less obvious reason. Passenger transport is largely carved out of the Consumer Rights Directive altogether under Article 3(3)(k), rather than sitting inside the withdrawal regime as an exception to it, and the Commission has said the withdrawal right does not apply to air passenger services. The intuition survives — a mistaken agentic purchase of a flight has no generic cooling-off period to fall back on — but the mechanism is exclusion from the directive rather than an exception within it. Worth knowing which, because the two behave differently across other categories.",
           "Nothing I am aware of requires a confirmation screen sized to the risk of the purchase. That makes this the cheapest control in the set to build and the easiest one to skip, which is usually how you can tell which controls are going to matter.",
@@ -391,12 +421,18 @@ export const CONTROLS: Control[] = [
   {
     slug: "make-stop-mean-stop",
     ref: "C6",
+    sources: [
+      { label: "Stripe: shared payment token lifecycle and revocation", href: "https://docs.stripe.com/agentic-commerce/concepts/shared-payment-tokens?agent-seller=seller" },
+      { label: "PSD2: Article 80 on irrevocability", href: "https://eur-lex.europa.eu/eli/dir/2015/2366/oj/eng" },
+      { label: "RFC 7009: token revocation", href: "https://www.rfc-editor.org/info/rfc7009/" },
+      { label: "Council first-reading position on PSR (November 2026)", href: "https://data.consilium.europa.eu/doc/document/ST-8543-2026-REV-1/en/pdf" },
+    ],
     title: "Make stop actually stop",
     question:
       "The buyer says cancel. What is still able to spend their money, and for how long?",
     tone: "grape",
     published: "September 2026",
-    lastChecked: "16 September 2026",
+    lastChecked: "23 November 2026",
     summary:
       "A stop button is easy to ship and hard to make true. Withdrawing permission runs on three separate clocks — the agent, the payment, and what the shop is still entitled to believe — and only the first of them stops when you say so.",
     sections: [
@@ -428,6 +464,7 @@ export const CONTROLS: Control[] = [
         body: [
           "Do not hand the agent a credential with no way to call it back. A [[self-contained token]] — one a recipient can validate on its own, without asking anybody — has no built-in kill switch. Unless the parties checking it consult external revocation state, or have that state pushed to them, it stays usable until it expires. Issue a one-hour token and you have decided in advance that stop may take up to an hour.",
           "This is not a niche observation. RFC 7009, the standard for revoking these tokens, says as much: immediate revocation of a self-contained token needs extra communication with the back end, short lifetimes are the alternative way to bound the exposure, and revocation can propagate with a delay that implementations are told to keep small. Short lifetimes and a check against live authority are most of the fix, and the cost is a lookup.",
+          "Existing payment tools already provide part of this machinery. Stripe documents revocable shared payment tokens and deactivation events; a revoked token cannot be used to create a payment. That is useful enforcement, but it should not be confused with reversing a completed payment or propagating cancellation across every downstream agent. Test those boundaries separately.",
           "Make revocation a condition checked in front of the money, not a message sent to the agent. This is the same architecture as C2, for the same reason: an agent that has been told to stop is an agent you are trusting to comply, and the whole premise of C4 is that its instructions are not reliably yours. The check that counts reads the current state of the mandate at the point of payment.",
           "Tell the counterparty, not only the agent. This is the single step that closes the third clock, and it is the one almost everyone skips, because it sits outside the happy path and nobody is asking for it. Anyone the agent has been dealing with under this mandate should be told it has ended.",
           "Decide in advance what happens to work already in flight, and write it into the mandate alongside everything else in C1. There are only three answers — let it finish, abandon it, or reverse it — and the right one differs by category. A booking that can be cancelled free for an hour is not a custom order already in production. Choosing at the moment of panic means choosing badly.",
@@ -448,7 +485,7 @@ export const CONTROLS: Control[] = [
         body: [
           "More concrete than most of this set, because payment law has had to answer the question of when an instruction becomes final since long before agents existed.",
           "Article 80 sets the general rule described above, and card scheme rules handle the same problem through the gap between authorisation and clearing. Neither was written with an agent in mind, and neither needs rewriting for this control to bind: the deadline applies whoever pressed the button.",
-          "The framework is itself being replaced, and the successor is much further along without yet being the applicable rulebook. Parliament and Council reached provisional political agreement in November 2025, and COREPER confirmed the final compromise texts in April 2026. Formal adoption and publication remain outstanding as of September 2026, so the existing rules are still the ones to design against. This is the sort of claim that goes stale quickly, and the date at the top of this page is doing real work.",
+          "The PSD3 and Payment Services Regulation package is progressing through the legislative process. The Council's first-reading PSR position was adopted on 29 October 2026 and its revised text is dated 4 November. A Council position must not be treated as the final applicable rulebook. For a deployment, check the completed legislation, its entry into force and its application or national implementation dates before replacing the current PSD2 analysis.",
           "On the agency side there is no statute to point at, only the ordinary principle that ending an agent's authority is one thing and ending the impression of it is another. That principle is old, well settled, and almost never reflected in a product's cancel flow.",
           "In the standards I have reviewed, I found no specified end-to-end deadline for how quickly a revocation has to become effective across everyone who might act on delegated authority, and no requirement to publish that latency. The nearest thing is the instruction in RFC 7009 to keep the propagation window small, which is guidance about a mechanism rather than a duty owed to the person pressing the button. Worth sitting with, because stop is the feature most likely to be promised on a marketing page and least likely to have been measured.",
         ],
@@ -470,7 +507,7 @@ export const AGENTS_FEATURE = {
     "Authorisation is not a one-time approval. It is a live state that has to be captured, checked, evidenced, exhausted, expired, and revoked.",
   href: "/agents",
   cta: "Test a purchase",
-  checked: "22 September 2026",
+  checked: "23 November 2026",
 };
 
 /** Primary materials that define the current payment-agent landscape. */
@@ -481,7 +518,7 @@ export const AGENT_SOURCES = [
     href: "https://github.com/google-agentic-commerce/AP2/blob/main/docs/ap2/specification.md",
     scope:
       "Signed checkout and payment mandates, autonomous payments, deterministic validation, and receipts.",
-    status: "Current specification",
+    status: "Published specification",
   },
   {
     name: "Agentic Commerce Protocol",
@@ -489,23 +526,23 @@ export const AGENT_SOURCES = [
     href: "https://www.agenticcommerce.dev/docs",
     scope:
       "Programmatic checkout and secure credential relay between buyers, agents, and merchants.",
-    status: "Beta specification",
+    status: "Published protocol",
   },
   {
     name: "Shared Payment Tokens",
     owner: "Stripe",
     href: "https://docs.stripe.com/agentic-commerce/concepts/shared-payment-tokens?agent-seller=agent",
     scope:
-      "Seller-specific credentials with amount, currency, expiry, lifecycle status, and revocation controls.",
-    status: "Private preview",
+      "Seller-scoped credentials with amount, currency, expiry and revocation controls; recurring use is supported when configured.",
+    status: "Available in supported markets",
   },
   {
     name: "Visa Intelligent Commerce",
     owner: "Visa",
-    href: "https://developer.visa.com/capabilities/visa-intelligent-commerce",
+    href: "https://developer.visa.com/docs/visa-intelligent-commerce",
     scope:
       "Agent-specific tokens, authenticated payment instructions, and network checks for merchant and amount.",
-    status: "In development and deployment",
+    status: "Production onboarding required",
   },
   {
     name: "Agent Pay",
@@ -513,15 +550,15 @@ export const AGENT_SOURCES = [
     href: "https://newsroom.mastercard.com/news/press/2025/april/mastercard-unveils-agent-pay-pioneering-agentic-payments-technology-to-power-commerce-in-the-age-of-ai/",
     scope:
       "Registered agents, agentic tokens, consumer-set authority, transaction visibility, and dispute support.",
-    status: "Controlled deployments",
+    status: "Published programme",
   },
   {
     name: "Draft Agentic Payments Framework",
     owner: "EMVCo",
-    href: "https://www.emvco.com/news/emvco-requests-feedback-on-framework-for-secure-interoperable-and-scalable-card-based-agentic-payments/",
+    href: "https://www.emvco.com/news-publications/emvco-requests-feedback-on-framework-for-secure-interoperable-and-scalable-card-based-agentic-payments/",
     scope:
       "A proposed shared intent state for recurring purchases, cumulative budgets, amendments, and post-transaction activity.",
-    status: "Draft for public review",
+    status: "Draft · review closed 30 Sep 2026",
   },
 ] as const;
 
