@@ -10,7 +10,7 @@ import { SOCIAL_LINKS } from "@/lib/nav";
 export const metadata: Metadata = pageMetadata("/about", {
   title: "About Mubien",
   description:
-    "How Mubien builds with AI, studies its behaviour, and develops practical ways to think about product decisions, governance, risk, and human control.",
+    "Mubien's background in business law, internal audit, and risk consulting in Germany and Canada, alongside independent AI projects, research, and career support.",
 });
 
 const STRENGTHS: {
@@ -182,6 +182,26 @@ export default function AboutPage() {
               before moving to Toronto. Law trained me to ask a different set of
               questions: who made the decision, what authority supported it,
               what evidence remains, and who can challenge the result?
+            </p>
+          </Reveal>
+          <Reveal>
+            <p>
+              My professional background is in internal audit and risk
+              consulting, with experience in Germany and Canada, including
+              financial services. My work involves understanding processes,
+              assessing risks, and testing whether controls are designed well
+              and work in practice.
+            </p>
+          </Reveal>
+          <Reveal>
+            <p>
+              I also help students and recent graduates understand these
+              careers and prepare for their first opportunities. We work
+              through realistic exercises, connect their experience to the
+              role, and practise explaining their thinking. You can{" "}
+              <Link href="/careers" className="text-accent-strong underline underline-offset-4">
+                explore the career preparation pilot
+              </Link>.
             </p>
           </Reveal>
           <Reveal>

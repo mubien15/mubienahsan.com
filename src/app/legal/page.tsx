@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata("/legal", {
     "How this site handles newsletter and purchase information, the terms for digital products, which privacy laws may apply, and the limits of the material published here.",
 });
 
-const UPDATED = "24 September 2026";
+const UPDATED = "24 November 2026";
 const EMAIL = "hello@mubienahsan.com";
 
 /** Small helper so every section on this page looks the same. */
@@ -47,7 +47,7 @@ export default function LegalPage() {
       >
         Written in plain language, because a policy nobody can read is not
         transparency. Reading remains private. If you request the newsletter or
-        buy a digital product, the information needed to deliver that service is
+        send a career enquiry, or buy a digital product, the information needed to deliver that service is
         handled as described below.
       </PageIntro>
 
@@ -112,7 +112,7 @@ export default function LegalPage() {
             <strong className="text-ink">
               I do not add analytics, advertising trackers, or profiling to ordinary reading.
             </strong>{" "}
-            The exceptions are the newsletter and a purchase you choose to make,
+            The exceptions are the newsletter, a career enquiry, and a purchase you choose to make,
             both covered below. To be specific:
           </p>
           <ul className="my-4 list-disc space-y-2 pl-6 marker:text-accent">
@@ -123,8 +123,8 @@ export default function LegalPage() {
               twice. It stays on your device and is never sent anywhere
             </li>
             <li>
-              One form on this site, for the newsletter. Nothing is sent anywhere unless you
-              type your address and submit it
+              Newsletter signup and career enquiry forms. Your form details are sent
+              only when you choose to submit them
             </li>
             <li>No advertising and no sale of personal information</li>
             <li>
@@ -181,6 +181,32 @@ export default function LegalPage() {
             Email is not a secure channel. Please do not send me anything
             confidential, and particularly not anything belonging to your
             organisation or anyone whose information you are responsible for.
+          </p>
+        </Section>
+
+        <Section id="career-enquiries" title="Career preparation enquiries">
+          <p>
+            The career enquiry form asks for your name, email address, current
+            career stage, target role, preparation needs, and an optional
+            application or interview date. The form runs on Vercel and uses
+            Brevo to deliver those details to my email inbox. I use them to
+            respond to your enquiry and discuss the preparation package. They
+            are not added to a newsletter or marketing list.
+          </p>
+          <p>
+            Email providers may process your information outside Canada.
+            Please leave out confidential information and do not include a CV
+            in the enquiry form. You can email me to ask for your enquiry to
+            be deleted. I keep correspondence only as needed to handle the
+            enquiry or any service you choose to arrange.
+          </p>
+          <p>
+            Career preparation is an independent educational service. Sending
+            an enquiry does not make a booking or take a payment. Before any
+            payment, I will confirm scope, dates, price, and cancellation and
+            rescheduling terms in writing. The service does not include
+            recruitment, employer referrals, a professional qualification, or
+            a guarantee of an interview or job offer.
           </p>
         </Section>
 

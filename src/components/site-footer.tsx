@@ -25,6 +25,8 @@ export function SiteFooter() {
           <p className="mt-2 text-sm leading-relaxed text-muted">
             Building useful AI, testing the assumptions around it, and exploring
             what meaningful human control looks like as systems become more capable.
+            {" "}Helping students prepare for their first roles in risk consulting
+            and internal audit.
           </p>
         </div>
 

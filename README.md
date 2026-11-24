@@ -6,6 +6,8 @@ product, governance, and human questions that follow.
 
 ## Featured work
 
+- **[Career Support](https://mubienahsan.com/careers)** — individual preparation for students
+  and recent graduates entering risk consulting or internal audit, with a free practice guide.
 - **[AI Product Launch Review](https://mubienahsan.com/launch-review)** — a browser-based review
   that turns an AI product description into explicit risks, evidence gaps, launch conditions,
   and a decision path.
@@ -50,11 +52,16 @@ Then open [http://localhost:3000](http://localhost:3000).
 npm run lint
 npm run test:launch-review
 npm run test:execution-kit
+npm run test:career-enquiry
 npm run build
 ```
 
 Environment variables are managed outside the repository. Copy the names required by the route
 you are working on into a local `.env.local`; never commit credentials.
+
+The career enquiry route uses the existing `BREVO_API_KEY` to deliver enquiries to
+`hello@mubienahsan.com`. It does not add contacts to a newsletter or send automatic
+messages to applicants. With no key or a delivery error, the form offers direct email.
 
 ## Reuse
 
