@@ -9,6 +9,11 @@ export type NavLink = {
 export const NAV_LINKS: NavLink[] = [
   { href: "/", label: "Overview", summary: "A clear starting point" },
   {
+    href: "/careers",
+    label: "Career Support",
+    summary: "Prepare for your first role in risk consulting or internal audit",
+  },
+  {
     href: "/projects",
     label: "Projects",
     summary: "Working products and case studies",

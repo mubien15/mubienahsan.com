@@ -37,7 +37,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -62,7 +62,7 @@ export function SiteHeader() {
           aria-expanded={open}
           aria-controls="mobile-navigation"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full text-ink hover:bg-sunken md:hidden"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full text-ink hover:bg-sunken lg:hidden"
         >
           <svg
             width="20"
@@ -90,7 +90,7 @@ export function SiteHeader() {
       </Container>
 
       {open && (
-        <div className="border-t border-line bg-paper md:hidden">
+        <div className="border-t border-line bg-paper lg:hidden">
           <nav id="mobile-navigation" aria-label="Mobile navigation">
             <Container className="flex flex-col py-2">
               {NAV_LINKS.map((link) => (

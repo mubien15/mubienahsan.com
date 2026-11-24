@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // on every request tells crawlers that every page changed when it did not.
   const lastUpdated = new Date("2026-09-24");
   const reviewed = new Date("2026-11-23");
+  const careerUpdated = new Date("2026-11-24");
+  const careerPaths = new Set(["", "/about", "/legal", "/careers", "/careers/first-role"]);
   const refreshedPaths = new Set([
     "", "/launch-review/execution-kit", "/projects", "/projects/ai-launch-review", "/research", "/research/autonomy-governance",
     "/research/learning-and-self-improvement", "/agents", "/courses",
@@ -27,6 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 
   const staticPages: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/careers`, lastModified: careerUpdated, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/careers/first-role`, lastModified: careerUpdated, changeFrequency: "monthly", priority: 0.8 },
     { url: SITE_URL, lastModified: lastUpdated, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/courses`, lastModified: lastUpdated, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/projects`, lastModified: lastUpdated, changeFrequency: "monthly", priority: 0.8 },
@@ -77,7 +81,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticPages, ...projectPages, ...coursePages, ...controlPages].map((page) => ({
     ...page,
-    lastModified: refreshedPaths.has(page.url.slice(SITE_URL.length)) || page.url.startsWith(`${SITE_URL}/agents/`)
+    lastModified: careerPaths.has(page.url.slice(SITE_URL.length))
+      ? careerUpdated
+      : refreshedPaths.has(page.url.slice(SITE_URL.length)) || page.url.startsWith(`${SITE_URL}/agents/`)
       ? reviewed
       : page.lastModified,
   }));

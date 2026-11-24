@@ -18,6 +18,7 @@ import { AGENTS_FEATURE } from "@/content/agents";
 
 export const metadata = pageMetadata("/", {
   title: { absolute: "Mubien · clarity for what comes next" },
+  description: "Practical career support for students entering risk consulting and internal audit, alongside independent AI projects, free guides, and research by Mubien.",
 });
 
 const PATHS: {
@@ -27,6 +28,13 @@ const PATHS: {
   href: string;
   tone: Tone;
 }[] = [
+  {
+    emoji: "🎓",
+    title: "Preparing for your first role?",
+    body: "Understand risk consulting and internal audit, practise a realistic assignment, and prepare to explain your experience in an interview.",
+    href: "/careers",
+    tone: "accent",
+  },
   {
     emoji: "🛠️",
     title: "See what I have built",
@@ -128,6 +136,11 @@ export default function Home() {
                   frameworks, and evidence behind that work.
                 </p>
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
+                  Alongside my AI projects and research, I help students and
+                  recent graduates prepare for careers in risk consulting and
+                  internal audit.
+                </p>
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted lg:max-w-[65ch]">
                   Right now, I&apos;m deep down a research rabbit hole: how
                   neural networks are &ldquo;grown&rdquo; through training, why
                   their behaviour isn&apos;t coded rule by rule, and what the
@@ -148,6 +161,9 @@ export default function Home() {
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <CtaLink href="/launch-review">Try the launch review</CtaLink>
+                  <CtaLink href="/careers" variant="secondary">
+                    Explore career support
+                  </CtaLink>
                   <CtaLink href="#start-here" variant="secondary">
                     Explore the site
                   </CtaLink>
@@ -201,11 +217,11 @@ export default function Home() {
             Choose where you want to begin
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-muted">
-            The site is organized around four simple paths. Pick the one that
+            Pick the path that
             best matches what brought you here.
           </p>
         </Reveal>
-        <Stagger className="grid gap-4 sm:grid-cols-2" gap={0.08} inView>
+        <Stagger className="grid gap-4 sm:grid-cols-2 [&>div:first-child]:sm:col-span-2" gap={0.08} inView>
           {PATHS.map((path) => (
             <StaggerItem key={path.href}>
               <HoverLift className="h-full">
